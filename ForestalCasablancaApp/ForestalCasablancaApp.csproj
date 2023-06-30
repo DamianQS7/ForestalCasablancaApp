@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\mainpage_background.jpg" />
 	  <None Remove="Resources\Images\trunk.png" />
 	</ItemGroup>
 

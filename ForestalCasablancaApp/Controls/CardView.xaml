@@ -8,14 +8,16 @@
     <Border
         Margin="10,20,10,20"
         BindingContext="{x:Reference this}"
-        HeightRequest="100"
+        HeightRequest="{OnIdiom Phone=100,
+                                Tablet=150}"
         Style="{StaticResource CardView}"
-        WidthRequest="320">
+        WidthRequest="{OnIdiom Phone=350,
+                               Tablet=600}">
 
-        <Grid ColumnDefinitions="100, 200, 50 ">
+        <Grid ColumnDefinitions="2*, 4*, *">
             <Image
                 Grid.Column="0"
-                Margin="15"
+                Margin="25"
                 Aspect="AspectFill"
                 Source="{Binding CardImage}" />
 

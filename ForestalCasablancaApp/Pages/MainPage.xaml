@@ -3,19 +3,21 @@
     x:Class="ForestalCasablancaApp.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls">
+    xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
+    BackgroundImageSource="mainpage_background.jpg"
+    Shell.NavBarIsVisible="False">
 
 
     <VerticalStackLayout>
 
-        <Label Text="Forestal Casablanca" />
+        <Label
+            Margin="0,15"
+            Style="{StaticResource PageTitle}"
+            Text="Forestal Casablanca" />
 
-        <controls:CardView CardTitle="Leña" 
-                           CardImage="trunk.png"/>
-        <controls:CardView CardTitle="Metro Ruma"
-                           CardImage="trunk.png"/>
-        <controls:CardView CardTitle="Trozo Aserrable"
-                           CardImage="trunk.png"/>
+        <controls:CardView CardImage="trunk.png" CardTitle="Leña" />
+        <controls:CardView CardImage="trunk.png" CardTitle="Metro Ruma" />
+        <controls:CardView CardImage="trunk.png" CardTitle="Trozo Aserrable" />
 
     </VerticalStackLayout>
 
