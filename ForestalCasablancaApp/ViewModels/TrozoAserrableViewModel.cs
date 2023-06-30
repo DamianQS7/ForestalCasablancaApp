@@ -8,5 +8,9 @@ namespace ForestalCasablancaApp.ViewModels
 {
     public partial class TrozoAserrableViewModel : BaseViewModel
     {
+        public TrozoAserrableViewModel()
+        {
+            Title = "Despacho Trozo Aserrable";
+        }
     }
 }
