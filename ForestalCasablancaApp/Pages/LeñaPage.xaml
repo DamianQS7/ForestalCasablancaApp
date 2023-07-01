@@ -3,16 +3,38 @@
     x:Class="ForestalCasablancaApp.Pages.LeñaPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
     xmlns:viewModel="clr-namespace:ForestalCasablancaApp.ViewModels"
     Title="{Binding Title}"
     x:DataType="viewModel:LeñaViewModel">
 
-    <VerticalStackLayout>
-        <Label            
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+    <Grid RowDefinitions="150, *">
 
-        
-    </VerticalStackLayout>
+        <Image
+            Grid.Row="0"
+            Aspect="AspectFill"
+            Source="lena_background.jpg" />
+
+        <ScrollView Grid.Row="1">
+
+            <Grid RowDefinitions="Auto, *">
+                <controls:ClientInfoCard Grid.Row="0" />
+                <Border
+                    Grid.Row="1"
+                    Margin="10,0,10,20"
+                    Padding="8,0,8,8"
+                    HeightRequest="{OnIdiom Phone=400,
+                                            Tablet=450}"
+                    Style="{StaticResource CustomerInfoCard}"
+                    WidthRequest="{OnIdiom Phone=400,
+                                           Tablet=600}" />
+            </Grid>
+
+
+        </ScrollView>
+
+
+
+
+    </Grid>
 </ContentPage>

@@ -4,13 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:pages="clr-namespace:ForestalCasablancaApp.Pages"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
     x:DataType="viewModels:MainPageViewModel"
     BackgroundImageSource="mainpage_background.jpg"
     Shell.NavBarIsVisible="False">
 
-
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="LightContent" />
+    </Page.Behaviors>
     <VerticalStackLayout>
 
         <Label

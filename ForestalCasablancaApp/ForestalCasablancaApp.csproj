@@ -49,7 +49,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fontello.ttf" />
+	  <None Remove="Resources\Images\lena_background.jpg" />
 	  <None Remove="Resources\Images\mainpage_background.jpg" />
+	  <None Remove="Resources\Images\metroruma_background.jpg" />
+	  <None Remove="Resources\Images\trozoaserrable_background.jpg" />
 	  <None Remove="Resources\Images\trunk.png" />
 	</ItemGroup>
 
@@ -68,6 +72,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\CardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ClientInfoCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LeñaPage.xaml">

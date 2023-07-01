@@ -35,7 +35,21 @@
                 Text="{Binding CardTitle}"
                 VerticalOptions="Center" />
 
-            <Image Grid.Column="2" />
+            <Image
+                Grid.Column="2"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+                <Image.Source>
+
+                    <FontImageSource
+                        FontFamily="Icons"
+                        Glyph="&#xE800;"
+                        Size="{OnIdiom Tablet=30, Phone=15}" 
+                        Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+
+                </Image.Source>
+            </Image>
 
         </Grid>
     </Border>
