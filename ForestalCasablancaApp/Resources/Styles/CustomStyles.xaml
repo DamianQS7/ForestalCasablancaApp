@@ -70,5 +70,31 @@
 
     </Style>
 
+    <Style x:Key="EntryCellBorderStyle" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray300}}" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 2" />
+        <Setter Property="Margin" Value="0, 0, 5, 0" />
+    </Style>
+
+    <Style x:Key="PageSectionCard" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Margin" Value="10,0,10,20" />
+        <Setter Property="Padding" Value="8,0,8,8" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=400, Tablet=600}" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="{StaticResource Black}"
+                    Radius="50"
+                    Offset="20, 20" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

@@ -17,17 +17,122 @@
 
         <ScrollView Grid.Row="1">
 
-            <Grid RowDefinitions="Auto, *">
+            <Grid RowDefinitions="Auto, *, Auto">
                 <controls:ClientInfoCard Grid.Row="0" />
-                <Border
-                    Grid.Row="1"
-                    Margin="10,0,10,20"
-                    Padding="8,0,8,8"
-                    HeightRequest="{OnIdiom Phone=400,
-                                            Tablet=450}"
-                    Style="{StaticResource CustomerInfoCard}"
-                    WidthRequest="{OnIdiom Phone=400,
-                                           Tablet=600}" />
+                <Border Grid.Row="1" 
+                        HeightRequest="{OnIdiom Phone=312, Tablet=450}"
+                        Style="{StaticResource PageSectionCard}">
+                    <VerticalStackLayout>
+                        <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
+                        <Grid
+                            Grid.Row="1"
+                            Padding="10,0"
+                            ColumnDefinitions="Auto, *, Auto, *"
+                            RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                            RowSpacing="8">
+
+                            <Label
+                                Grid.Row="0"
+                                Text="Largo Camión: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="0" Grid.Column="1" />
+
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Text="N° de Bancos: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="0" Grid.Column="3" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="Altura 1: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="1" Grid.Column="1" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Text="Altura 5: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="1" Grid.Column="3" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="Altura 2: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="2" Grid.Column="1" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Text="Altura 6: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="2" Grid.Column="3" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="Altura 3: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="3" Grid.Column="1" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Text="Altura 7: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="3" Grid.Column="3" />
+
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="Altura 4: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="4" Grid.Column="1" />
+
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Text="Altura 8: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="4" Grid.Column="3" />
+
+                        </Grid>
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <Border Grid.Row="2" 
+                        HeightRequest="{OnIdiom Phone=55, Tablet=150}"
+                        Style="{StaticResource PageSectionCard}">
+
+                    <HorizontalStackLayout>
+                        <Label Text="Palomera?" Style="{StaticResource PageSubtitle}" />
+                    </HorizontalStackLayout>
+                </Border>
+
             </Grid>
 
 
@@ -37,4 +142,32 @@
 
 
     </Grid>
+
+    <!--<ScrollView>
+
+        <Grid RowDefinitions="150, *">
+            <Image
+            Grid.Row="0"
+            Aspect="AspectFill"
+            Source="lena_background.jpg" />
+
+            <Grid RowDefinitions="Auto, *"
+              Grid.Row="1">
+                <controls:ClientInfoCard Grid.Row="0" />
+                <Border
+                    Grid.Row="1"
+                    Margin="10,0,10,20"
+                    Padding="8,0,8,8"
+                    HeightRequest="{OnIdiom Phone=400,
+                                            Tablet=450}"
+                    Style="{StaticResource CustomerInfoCard}"
+                    WidthRequest="{OnIdiom Phone=400,
+                                           Tablet=600}" >
+
+
+                </Border>
+            </Grid>
+        </Grid>
+
+    </ScrollView>-->
 </ContentPage>

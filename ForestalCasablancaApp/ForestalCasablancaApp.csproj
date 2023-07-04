@@ -77,6 +77,9 @@
 	  <MauiXaml Update="Controls\ClientInfoCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\NumericEntryCell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\LeñaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

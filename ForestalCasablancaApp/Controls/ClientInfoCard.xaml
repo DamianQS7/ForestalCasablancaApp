@@ -30,19 +30,19 @@
 
                     <Label
                         Grid.Row="0"
-                        Text="Nombre"
+                        Text="Nombre: "
                         VerticalOptions="Center" />
                     <Entry Grid.Row="0" Grid.Column="1" />
 
                     <Label
                         Grid.Row="1"
-                        Text="RUT"
+                        Text="RUT: "
                         VerticalOptions="Center" />
-                    <Entry Grid.Row="1" Grid.Column="1" />
+                    <Entry Grid.Row="1" Grid.Column="1"/>
 
                     <Label
                         Grid.Row="2"
-                        Text="Patente"
+                        Text="Patente: "
                         VerticalOptions="Center" />
                     <Entry Grid.Row="2" Grid.Column="1" />
 
