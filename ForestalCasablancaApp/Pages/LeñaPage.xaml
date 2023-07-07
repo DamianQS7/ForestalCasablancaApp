@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModel="clr-namespace:ForestalCasablancaApp.ViewModels"
     Title="{Binding Title}"
     x:DataType="viewModel:LeñaViewModel">
@@ -17,11 +18,13 @@
 
         <ScrollView Grid.Row="1">
 
-            <Grid RowDefinitions="Auto, *, Auto">
+            <Grid RowDefinitions="Auto, *, Auto, Auto">
                 <controls:ClientInfoCard Grid.Row="0" />
-                <Border Grid.Row="1" 
-                        HeightRequest="{OnIdiom Phone=312, Tablet=450}"
-                        Style="{StaticResource PageSectionCard}">
+                <Border
+                    Grid.Row="1"
+                    HeightRequest="{OnIdiom Phone=312,
+                                            Tablet=390}"
+                    Style="{StaticResource PageSectionCard}">
                     <VerticalStackLayout>
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
                         <Grid
@@ -36,7 +39,7 @@
                                 Text="Largo Camión: "
                                 VerticalOptions="Center" />
 
-                            <controls:NumericEntryCell Grid.Row="0" Grid.Column="1" />
+                            <controls:NumericEntryCell Grid.Row="0" Grid.Column="1" UserInput="{Binding Despacho.LargoCamion}"/>
 
 
                             <Label
@@ -124,50 +127,67 @@
 
                 </Border>
 
-                <Border Grid.Row="2" 
-                        HeightRequest="{OnIdiom Phone=55, Tablet=150}"
-                        Style="{StaticResource PageSectionCard}">
+                <Border
+                    Grid.Row="2"
+                    HeightRequest="{OnIdiom Phone=100,
+                                            Tablet=140}"
+                    Style="{StaticResource PageSectionCard}">
 
-                    <HorizontalStackLayout>
-                        <Label Text="Palomera?" Style="{StaticResource PageSubtitle}" />
-                    </HorizontalStackLayout>
+                    <VerticalStackLayout>
+
+                        <Label Style="{StaticResource PageSubtitle}" Text="Palomera" />
+
+                        <Grid
+                            Grid.Row="1"
+                            Padding="10,0"
+                            ColumnDefinitions="Auto, *, Auto, *"
+                            RowSpacing="8">
+
+                            <Label
+                                Text="Altura: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="0" Grid.Column="1" />
+
+
+                            <Label
+                                Grid.Column="2"
+                                Text="Ancho: "
+                                VerticalOptions="Center" />
+
+                            <controls:NumericEntryCell Grid.Row="0" Grid.Column="3" />
+                        </Grid>
+                    </VerticalStackLayout>
                 </Border>
 
+                <Border 
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource PageSectionCard}" >
+
+                    <Grid ColumnDefinitions="*, *">
+
+                        <Button Grid.Column="0" 
+                            Text="Calcular" 
+                            Clicked="ShowConfirmationPopup"
+                            HeightRequest="60"
+                            WidthRequest="100"
+                            BackgroundColor="DarkSeaGreen"
+                            Margin="0, 0, 0, 0"
+                            TextColor="White"
+                            Command="{Binding DisplayTotalAsyncCommand}"/>
+                        <Button Grid.Column="1" 
+                            Text="Reiniciar"
+                            HeightRequest="60"
+                            WidthRequest="100"
+                            BackgroundColor="DarkSeaGreen"
+                            Margin="0, 0, 0, 0"
+                            TextColor="White"/>
+                    </Grid>
+                </Border>
+                
             </Grid>
-
-
         </ScrollView>
 
-
-
-
     </Grid>
-
-    <!--<ScrollView>
-
-        <Grid RowDefinitions="150, *">
-            <Image
-            Grid.Row="0"
-            Aspect="AspectFill"
-            Source="lena_background.jpg" />
-
-            <Grid RowDefinitions="Auto, *"
-              Grid.Row="1">
-                <controls:ClientInfoCard Grid.Row="0" />
-                <Border
-                    Grid.Row="1"
-                    Margin="10,0,10,20"
-                    Padding="8,0,8,8"
-                    HeightRequest="{OnIdiom Phone=400,
-                                            Tablet=450}"
-                    Style="{StaticResource CustomerInfoCard}"
-                    WidthRequest="{OnIdiom Phone=400,
-                                           Tablet=600}" >
-
-
-                </Border>
-            </Grid>
-        </Grid>
-
-    </ScrollView>-->
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using ForestalCasablancaApp.Pages;
+using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +24,7 @@ public static class MauiProgram
 			});
 
 		builder.Services
+			.AddSingleton<ICalculatorService, CalculatorService>()
 			.AddSingleton<MainPage>()
 			.AddSingleton<MainPageViewModel>()
 			.AddTransient<LeñaPage>()

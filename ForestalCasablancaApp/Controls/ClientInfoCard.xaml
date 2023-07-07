@@ -4,14 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:viewmodel="clr-namespace:ForestalCasablancaApp.ViewModels"
+    xmlns:models="clr-namespace:ForestalCasablancaApp.Models"
+    x:DataType="models:Cliente"
     x:Name="this">
 
     <VerticalStackLayout>
         <Border
             Margin="10,10,10,20"
             Padding="8,0,8,8"
-            BindingContext="{x:Reference this}"
             HeightRequest="{OnIdiom Phone=210,
                                     Tablet=250}"
             Style="{StaticResource CustomerInfoCard}"
@@ -32,19 +32,19 @@
                         Grid.Row="0"
                         Text="Nombre: "
                         VerticalOptions="Center" />
-                    <Entry Grid.Row="0" Grid.Column="1" />
+                    <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Nombre}"/>
 
                     <Label
                         Grid.Row="1"
                         Text="RUT: "
                         VerticalOptions="Center" />
-                    <Entry Grid.Row="1" Grid.Column="1"/>
+                    <Entry Grid.Row="1" Grid.Column="1" Text="{Binding RUT}"/>
 
                     <Label
                         Grid.Row="2"
                         Text="Patente: "
                         VerticalOptions="Center" />
-                    <Entry Grid.Row="2" Grid.Column="1" />
+                    <Entry Grid.Row="2" Grid.Column="1"  Text="{Binding Patente}"/>
 
                 </Grid>
             </Grid>
