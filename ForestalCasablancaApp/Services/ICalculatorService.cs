@@ -10,7 +10,7 @@ namespace ForestalCasablancaApp.Services
     public interface ICalculatorService
     {
         bool CheckPalomera(double ancho, double alto, out double medidaPalomera);
-        double CalculateAlturaMedia(double[] alturas);
+        double CalculateAlturaMedia(List<double> alturas);
         double CalculateTotalMetrosLeña(DespachoLeñaModel model);
     }
 }

@@ -9,14 +9,14 @@ namespace ForestalCasablancaApp.Services
 {
     public class CalculatorService : ICalculatorService
     {
-        public double CalculateAlturaMedia(double[] alturas)
+        public double CalculateAlturaMedia(List<double> alturas)
         {
             int count = 0;
             double sum = 0;
 
             foreach (double altura in alturas)
             {
-                if(altura > 0)
+                if (altura > 0)
                 {
                     count++;
                     sum += altura;

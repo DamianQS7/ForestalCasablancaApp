@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
-               x:DataType="viewModels:LeñaViewModel"
-               x:Class="ForestalCasablancaApp.Controls.ConfirmationPopup">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding TotalDespacho}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<toolkit:Popup
+    x:Class="ForestalCasablancaApp.Controls.ConfirmationPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
+    x:DataType="viewModels:LeñaViewModel">
+
+    <Border Style="{StaticResource Popup}">
+
+        <VerticalStackLayout>
+
+            <Label Text="Resumen" />
+            <Label Text="Información del Cliente" />
+            <Label Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
+            <Label Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
+            <Label Text="{Binding Cliente.Patente, StringFormat='Patente: {0}'}" />
+            <Label Text="Rut:" />
+
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding TotalDespacho}"
+                VerticalOptions="Center" />
+        </VerticalStackLayout>
+    </Border>
 </toolkit:Popup>

@@ -28,14 +28,14 @@ namespace ForestalCasablancaApp.ViewModels
         {
             Title = "Despacho Leña";
             _calculatorService = calculatorService;
-            Despacho = new();
+            Despacho = new DespachoLeñaModel();
             Cliente = new();
         }
 
         [RelayCommand]
         private void DisplayTotalAsync()
         {
-            TotalDespacho =  _calculatorService.CalculateTotalMetrosLeña(Despacho);
+            TotalDespacho = _calculatorService.CalculateTotalMetrosLeña(Despacho);
 
             var popup = new ConfirmationPopup();
 
