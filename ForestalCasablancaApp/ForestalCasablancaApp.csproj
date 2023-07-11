@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\logo_transparent_background.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\fontello.ttf" />
 	  <None Remove="Resources\Images\lena_background.jpg" />
 	  <None Remove="Resources\Images\mainpage_background.jpg" />

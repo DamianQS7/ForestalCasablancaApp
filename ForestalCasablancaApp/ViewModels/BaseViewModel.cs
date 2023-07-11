@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ForestalCasablancaApp.ViewModels
 {
-    public partial class BaseViewModel : ObservableObject
+    public abstract partial class BaseViewModel : ObservableObject
     {
         public BaseViewModel() { }
         
@@ -21,6 +21,8 @@ namespace ForestalCasablancaApp.ViewModels
         private bool _isBusy;
 
         public bool IsNotBusy => !IsBusy;
+
+        public static Page BasePage => Application.Current.MainPage;
 
         [RelayCommand]
         async Task GoBackAsync()

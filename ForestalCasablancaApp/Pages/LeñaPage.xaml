@@ -9,21 +9,24 @@
     Title="{Binding Title}"
     x:DataType="viewModel:LeñaViewModel">
 
-    <Grid RowDefinitions="150, *">
+    <Grid RowDefinitions="160, *">
 
         <Image
             Grid.Row="0"
             Aspect="AspectFill"
-            Source="lena_background.jpg" />
+            Source="lena_background.png"
+            HeightRequest="300"/>
 
         <ScrollView Grid.Row="1">
 
             <Grid RowDefinitions="Auto, *, Auto, Auto">
+                <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}"/>
                 <Border
                     Grid.Row="0"
-                    Style="{StaticResource PageSectionCard}"
                     HeightRequest="{OnIdiom Phone=210,
-                                            Tablet=250}">
+                                            Tablet=250}"
+                    Style="{StaticResource PageSectionCard}"
+                    Margin="10, 10, 10, 20">
 
                     <Grid RowDefinitions="Auto, *">
                         <Label Style="{StaticResource PageSubtitle}" Text="Datos del Cliente" />
@@ -65,7 +68,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                
+
                 <Border
                     Grid.Row="1"
                     HeightRequest="{OnIdiom Phone=312,
@@ -236,33 +239,23 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <Border
+                <Grid
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
-                    Style="{StaticResource PageSectionCard}">
+                    ColumnDefinitions="*, *">
 
-                    <Grid ColumnDefinitions="*, *">
-
-                        <Button
-                            Grid.Column="0"
-                            Margin="0,0,0,0"
-                            BackgroundColor="DarkSeaGreen"
-                            Clicked="ShowConfirmationPopup"
-                            Command="{Binding DisplayTotalAsyncCommand}"
-                            HeightRequest="60"
-                            Text="Calcular"
-                            TextColor="White"
-                            WidthRequest="100" />
-                        <Button
-                            Grid.Column="1"
-                            Margin="0,0,0,0"
-                            BackgroundColor="DarkSeaGreen"
-                            HeightRequest="60"
-                            Text="Reiniciar"
-                            TextColor="White"
-                            WidthRequest="100" />
-                    </Grid>
-                </Border>
+                    <Button
+                        Margin="0, 10, 0, 20"
+                        Grid.Column="0"
+                        Command="{Binding DisplaySummaryAsyncCommand}"
+                        Style="{StaticResource PageButtons}"
+                        Text="Calcular" />
+                    <Button
+                        Margin="0, 10, 0, 20"
+                        Grid.Column="1"
+                        Style="{StaticResource PageButtons}"
+                        Text="Reiniciar" />
+                </Grid>
 
             </Grid>
         </ScrollView>

@@ -15,7 +15,7 @@
         <mct:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="LightContent" />
     </Page.Behaviors>
     <VerticalStackLayout>
-
+        
         <Label
             Margin="0,15"
             Style="{StaticResource PageTitle}"

@@ -11,6 +11,6 @@ namespace ForestalCasablancaApp.Services
     {
         bool CheckPalomera(double ancho, double alto, out double medidaPalomera);
         double CalculateAlturaMedia(List<double> alturas);
-        double CalculateTotalMetrosLeña(DespachoLeñaModel model);
+        void CalculateTotalMetrosLeña(DespachoLeñaModel model);
     }
 }
