@@ -19,11 +19,6 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty]
         private Cliente _cliente;
 
-        [ObservableProperty]
-        private double _totalDespacho;
-
-        static Page Page => Application.Current.MainPage;
-
         public LeñaViewModel(ICalculatorService calculatorService)
         {
             Title = "Despacho Leña";
@@ -33,13 +28,13 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private void DisplayTotalAsync()
+        private void DisplaySummaryAsync()
         {
-            TotalDespacho = _calculatorService.CalculateTotalMetrosLeña(Despacho);
+            _calculatorService.CalculateTotalMetrosLeña(Despacho);
 
             var popup = new ConfirmationPopup();
 
-            Page.ShowPopup(popup);
+            BasePage.ShowPopup(popup);
         }
 
     }

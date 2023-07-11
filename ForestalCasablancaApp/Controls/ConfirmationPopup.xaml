@@ -1,27 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<toolkit:Popup
+<toolkit2:Popup
     x:Class="ForestalCasablancaApp.Controls.ConfirmationPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:toolkit2="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
-    x:DataType="viewModels:LeñaViewModel">
+    x:DataType="viewModels:LeñaViewModel"
+    Color="Transparent">
+
 
     <Border Style="{StaticResource Popup}">
 
-        <VerticalStackLayout>
+        <VerticalStackLayout
+            Margin="8,0,0,0"
+            Padding="10"
+            Spacing="8">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="150"
+                Source="popup_icon.png"
+                WidthRequest="150">
 
-            <Label Text="Resumen" />
-            <Label Text="Información del Cliente" />
-            <Label Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
-            <Label Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
-            <Label Text="{Binding Cliente.Patente, StringFormat='Patente: {0}'}" />
-            <Label Text="Rut:" />
-
+                <Image.Shadow>
+                    <Shadow Offset="20,20" />
+                </Image.Shadow>
+            </Image>
             <Label
-                HorizontalOptions="Center"
-                Text="{Binding TotalDespacho}"
-                VerticalOptions="Center" />
+                FontSize="24"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource PageSubtitle}"
+                Text="Resumen">
+
+                <Label.Shadow>
+                    <Shadow Offset="20, 20" />
+                </Label.Shadow>
+            </Label>
+
+            <Label FontSize="16" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
+            <Label FontSize="16" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
+            <Label FontSize="16" Text="{Binding Cliente.Patente, StringFormat='Patente: {0}'}" />
+            <Label FontSize="16" Text="{Binding Despacho.LargoCamion, StringFormat='Largo Camión: {0}'}" />
+            <Label FontSize="16" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />
+            <Label FontSize="16" Text="{Binding Despacho.AlturaMedia, StringFormat='Altura Media: {0}'}" />
+            <Label FontSize="16" Text="{Binding Despacho.TotalMetrosLeña, StringFormat='Total Despacho: {0} ML'}" />
+
+            <Grid ColumnDefinitions="*, *">
+                <Button Grid.Column="0"  Text="Generar PDF" Style="{StaticResource Buttons}"/>
+                <Button Grid.Column="1" Text="Volver" Style="{StaticResource Buttons}"/>
+            </Grid>
+
+
         </VerticalStackLayout>
     </Border>
-</toolkit:Popup>
+</toolkit2:Popup>

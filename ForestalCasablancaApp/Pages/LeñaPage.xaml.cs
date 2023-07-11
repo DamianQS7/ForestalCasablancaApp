@@ -13,12 +13,4 @@ public partial class LeñaPage : ContentPage
 
 		BindingContext = viewModel;
 	}
-
-	
-	void ShowConfirmationPopup(object sender, EventArgs args)
-	{
-        var Popup = new ConfirmationPopup();
-
-		this.ShowPopup(Popup);
-    }
 }

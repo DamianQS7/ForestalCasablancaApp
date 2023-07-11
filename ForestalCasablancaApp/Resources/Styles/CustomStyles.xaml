@@ -9,6 +9,11 @@
 
     </Style>
 
+    <Style TargetType="BoxView" x:Key="PageContentBackground">
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}" />
+        <Setter Property="CornerRadius" Value="25, 25, 10, 10" />
+    </Style>
+
     <Style x:Key="CardLabel" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
@@ -90,8 +95,8 @@
             <Setter.Value>
                 <Shadow
                     Brush="{StaticResource Black}"
-                    Radius="50"
-                    Offset="20, 20" />
+                    Radius="30"
+                    Offset="20, 30" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -105,17 +110,57 @@
 
     <Style x:Key="Popup" TargetType="Border">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray700}}" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=300, Tablet=600}" />
-        <Setter Property="HeightRequest" Value="{OnIdiom Phone=400, Tablet=600}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=350, Tablet=650}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=530, Tablet=730}" />
         <Setter Property="Shadow">
             <Setter.Value>
                 <Shadow
                     Brush="{StaticResource Black}"
                     Radius="50"
                     Offset="20, 20" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="Buttons">
+        <Setter Property="Margin" Value="0, 20, 0, 0" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PaleGreen}" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="WidthRequest" Value="130" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="BorderWidth" Value="2" />
+        <Setter Property="BorderColor" Value="{StaticResource Gray600}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="{StaticResource Black}"
+                    Radius="50"
+                    Offset="20, 20" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="PageButtons">
+        <Setter Property="Margin" Value="0, 20, 0, 0" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PaleGreen}" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="WidthRequest" Value="130" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="BorderWidth" Value="2" />
+        <Setter Property="BorderColor" Value="{StaticResource Black}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="{StaticResource Black}"
+                    Radius="30"
+                    Offset="30, 30" />
             </Setter.Value>
         </Setter>
     </Style>
