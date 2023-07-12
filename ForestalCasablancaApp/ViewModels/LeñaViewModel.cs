@@ -25,16 +25,37 @@ namespace ForestalCasablancaApp.ViewModels
             _calculatorService = calculatorService;
             Despacho = new DespachoLeñaModel();
             Cliente = new();
+            IsValidInput = false;
+        }
+
+        private void ValidateInput()
+        {
+            _calculatorService.CalculateTotalMetrosLeña(Despacho);
+            bool validPalomera = _calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera);
+            
+            if(Cliente.Nombre is null || Cliente.RUT is null || Cliente.Patente is null
+                || Despacho.AlturaMedia <= 0  || validPalomera == false)
+                IsValidInput = false;
+            else
+                IsValidInput = true;
         }
 
         [RelayCommand]
-        private void DisplaySummaryAsync()
+        private async void DisplaySummaryAsync()
         {
-            _calculatorService.CalculateTotalMetrosLeña(Despacho);
+            ValidateInput();
 
-            var popup = new ConfirmationPopup();
+            if (IsValidInput)
+            {
+                var popup = new ConfirmationPopup();
 
-            BasePage.ShowPopup(popup);
+                BasePage.ShowPopup(popup);
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "Debe completar todos los campos", "OK");
+            }
+            
         }
 
     }
