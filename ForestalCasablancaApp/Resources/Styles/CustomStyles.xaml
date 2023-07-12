@@ -23,7 +23,7 @@
 
     </Style>
 
-    <Style x:Key="CardView" TargetType="Border">
+    <Style TargetType="Border" x:Key="CardView">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}" />
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray600}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
@@ -38,7 +38,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomerInfoCard" TargetType="Border">
+    <Style TargetType="Border" x:Key="CustomerInfoCard">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}" />
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
@@ -51,6 +51,47 @@
                     Offset="20, 20" />
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="Border" x:Key="EntryCellBorderStyle" >
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray300}}" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 2" />
+        <Setter Property="Margin" Value="0, 0, 5, 0" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="PageSectionCard" >
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Margin" Value="10,0,10,20" />
+        <Setter Property="Padding" Value="8,0,8,8" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=400, Tablet=600}" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="{StaticResource Black}"
+                    Radius="30"
+                    Offset="20, 30" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Entry" x:Key="InalidInput" >
+        <Setter Property="BackgroundColor" Value="{StaticResource ErrorRed}" />
+    </Style>
+
+    <Style TargetType="Entry" x:Key="ValidInput" >
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+    <Style TargetType="Entry" x:Key="NumericEntryStyle" >
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=50}" />
+        <Setter Property="Keyboard" Value="Numeric" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="PageTitle" TargetType="Label">
@@ -73,39 +114,6 @@
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="Margin" Value="10" />
 
-    </Style>
-
-    <Style x:Key="EntryCellBorderStyle" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray300}}" />
-        <Setter Property="HeightRequest" Value="30" />
-        <Setter Property="WidthRequest" Value="50" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 2" />
-        <Setter Property="Margin" Value="0, 0, 5, 0" />
-    </Style>
-
-    <Style x:Key="PageSectionCard" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 20" />
-        <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="Margin" Value="10,0,10,20" />
-        <Setter Property="Padding" Value="8,0,8,8" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=400, Tablet=600}" />
-        <Setter Property="Shadow">
-            <Setter.Value>
-                <Shadow
-                    Brush="{StaticResource Black}"
-                    Radius="30"
-                    Offset="20, 30" />
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="NumericEntryStyle" TargetType="Entry">
-        <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=50}" />
-        <Setter Property="Keyboard" Value="Numeric" />
-        <Setter Property="HorizontalTextAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="Popup" TargetType="Border">

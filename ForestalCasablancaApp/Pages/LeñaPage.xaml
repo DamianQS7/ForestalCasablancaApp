@@ -14,19 +14,19 @@
         <Image
             Grid.Row="0"
             Aspect="AspectFill"
-            Source="lena_background.png"
-            HeightRequest="300"/>
+            HeightRequest="300"
+            Source="lena_background.png" />
 
         <ScrollView Grid.Row="1">
 
             <Grid RowDefinitions="Auto, *, Auto, Auto">
-                <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}"/>
+                <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
                 <Border
                     Grid.Row="0"
+                    Margin="10,10,10,20"
                     HeightRequest="{OnIdiom Phone=210,
                                             Tablet=250}"
-                    Style="{StaticResource PageSectionCard}"
-                    Margin="10, 10, 10, 20">
+                    Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, *">
                         <Label Style="{StaticResource PageSubtitle}" Text="Datos del Cliente" />
@@ -47,6 +47,7 @@
                                 Grid.Column="1"
                                 Text="{Binding Cliente.Nombre}" />
 
+
                             <Label
                                 Grid.Row="1"
                                 Text="RUT: "
@@ -55,6 +56,7 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Text="{Binding Cliente.RUT}" />
+
 
                             <Label
                                 Grid.Row="2"
@@ -113,7 +115,21 @@
 
                             <Grid Grid.Row="1" Grid.Column="1">
                                 <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[0], Mode=TwoWay}" />
+                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[0], Mode=TwoWay}">
+
+                                    <Entry.Triggers>
+                                        <Trigger></Trigger>
+                                    </Entry.Triggers>
+                                    <Entry.Behaviors>
+                                        <mct:NumericValidationBehavior
+                                            Flags="ValidateOnValueChanged, ValidateOnUnfocusing"
+                                            IsValid="{Binding IsValidInput}"
+                                            MaximumDecimalPlaces="2"
+                                            MaximumValue="100.0"
+                                            MinimumValue="0.0" />
+                                    </Entry.Behaviors>
+                                </Entry>
+
                             </Grid>
 
                             <Label
@@ -245,14 +261,14 @@
                     ColumnDefinitions="*, *">
 
                     <Button
-                        Margin="0, 10, 0, 20"
                         Grid.Column="0"
+                        Margin="0,10,0,20"
                         Command="{Binding DisplaySummaryAsyncCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Calcular" />
                     <Button
-                        Margin="0, 10, 0, 20"
                         Grid.Column="1"
+                        Margin="0,10,0,20"
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />
                 </Grid>

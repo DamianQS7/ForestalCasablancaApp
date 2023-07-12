@@ -17,6 +17,9 @@ namespace ForestalCasablancaApp.ViewModels
         private string _title;
 
         [ObservableProperty]
+        private bool _isValidInput;
+
+        [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         private bool _isBusy;
 

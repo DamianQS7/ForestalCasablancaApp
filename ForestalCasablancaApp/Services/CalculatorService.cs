@@ -23,21 +23,16 @@ namespace ForestalCasablancaApp.Services
                 }
             }
 
-            return sum / count;
+            
+            return sum / count > 0 ? sum / count : 0;
         }
 
-        public bool CheckPalomera(double ancho, double alto, out double medidaPalomera)
+        public bool CheckPalomera(double ancho, double alto)
         {
-            if(ancho > 0 && alto > 0)
-            {
-                medidaPalomera = ancho * alto;
+            if((ancho > 0 && alto > 0) || (ancho == 0 && alto == 0))
                 return true;
-            }
             else
-            {
-                medidaPalomera = 0;
                 return false;
-            }
         }
 
         public void CalculateTotalMetrosLeña(DespachoLeñaModel model)
