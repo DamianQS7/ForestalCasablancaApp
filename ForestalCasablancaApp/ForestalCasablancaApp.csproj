@@ -35,8 +35,11 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#70b175" BaseSize="256,256" />
 
+		<!-- Logos -->
+		<MauiImage Include="Resources\Logos\*" />
+		
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
@@ -53,6 +56,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-brands.otf" />
+	  <None Remove="Resources\Fonts\fa-regular.otf" />
+	  <None Remove="Resources\Fonts\fa-solid.otf" />
 	  <None Remove="Resources\Fonts\fontello.ttf" />
 	  <None Remove="Resources\Images\lena_background.jpg" />
 	  <None Remove="Resources\Images\mainpage_background.jpg" />
@@ -98,6 +104,13 @@
 
 	<ItemGroup>
 	  <Folder Include="Validations\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Logos\black_logo_no_bg.png" />
+	  <MauiImage Include="Resources\Logos\color_logo_no_bg.png" />
+	  <MauiImage Include="Resources\Logos\color_logo_with_bg.png" />
+	  <MauiImage Include="Resources\Logos\white_logo_no_bg.png" />
 	</ItemGroup>
 
 </Project>

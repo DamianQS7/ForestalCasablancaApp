@@ -4,11 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
+    xmlns:fontAwesome="clr-namespace:ForestalCasablancaApp.Helpers"
+    xmlns:models="clr-namespace:ForestalCasablancaApp.Models"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
     Title="{Binding Title}"
     x:DataType="viewModels:TrozoAserrableViewModel">
 
-    <Grid RowDefinitions="150, *">
+    <Grid RowDefinitions="160, *">
 
         <Image
             Grid.Row="0"
@@ -17,20 +19,175 @@
 
         <ScrollView Grid.Row="1">
 
-            <Grid RowDefinitions="Auto, *">
-                <controls:ClientInfoCard Grid.Row="0" />
-                <Border
-                    Grid.Row="1"
-                    Margin="10,0,10,20"
-                    Padding="8,0,8,8"
-                    HeightRequest="{OnIdiom Phone=400,
-                                            Tablet=450}"
-                    Style="{StaticResource CustomerInfoCard}"
-                    WidthRequest="{OnIdiom Phone=400,
-                                           Tablet=600}" />
+            <Grid RowDefinitions="Auto, *, Auto, Auto">
+                <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
+
+                <!--  Client Info Section  -->
+                <controls:ClientInfoCard
+                    Grid.Row="0"
+                    NombreCliente="{Binding Cliente.Nombre}"
+                    PatenteCliente="{Binding Cliente.Patente}"
+                    RutCliente="{Binding Cliente.RUT}" />
+
+                <!--  Mediciones Especie 1 Section  -->
+                <Border Grid.Row="1" Style="{StaticResource PageSectionCard}">
+
+                    <Grid RowDefinitions="Auto, Auto">
+                        <Label
+                            Grid.Row="0"
+                            Style="{StaticResource PageSubtitle}"
+                            Text="Mediciones Especie 1" />
+
+                        <VerticalStackLayout Grid.Row="1" Spacing="5">
+                            <Grid
+                                Padding="10,0"
+                                ColumnDefinitions="80, *"
+                                RowDefinitions="Auto, Auto"
+                                RowSpacing="8">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Text="Especie: "
+                                    VerticalOptions="Center" />
+                                <Entry Grid.Column="1" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Largo: "
+                                    VerticalOptions="Center" />
+                                <controls:NumericEntryCell
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    UserInput="" />
+                            </Grid>
+
+                            <CollectionView ItemsSource="{Binding MedidasEspecieUno}">
+                                <CollectionView.Header>
+                                    <Grid Margin="10" ColumnDefinitions="Auto, *, Auto, *">
+                                        <Label
+                                            Grid.Row="0"
+                                            FontAttributes="Bold"
+                                            Text="Diametro: "
+                                            VerticalOptions="Center" />
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="Center"
+                                            Text="Total (Q):"
+                                            VerticalOptions="Center" />
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            Text="Volumen: "
+                                            VerticalOptions="Center" />
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="3"
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="Center"
+                                            Text="Total: "
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </CollectionView.Header>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:MedidaTrozoAserrable">
+                                        <SwipeView>
+                                            <SwipeView.RightItems>
+                                                <SwipeItems>
+
+                                                    <SwipeItem
+                                                        BackgroundColor="Maroon"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TrozoAserrableViewModel}}, Path=RemoveItemFromList1Command}"
+                                                        CommandParameter="{Binding .}">
+
+                                                        <SwipeItem.IconImageSource>
+                                                            <FontImageSource
+                                                                FontFamily="FAS"
+                                                                Glyph="{x:Static fontAwesome:FontAwesomeIcons.TrashCan}"
+                                                                Color="{AppThemeBinding Light={StaticResource Black},
+                                                                                        Dark={StaticResource White}}" />
+                                                        </SwipeItem.IconImageSource>
+                                                    </SwipeItem>
+                                                </SwipeItems>
+                                            </SwipeView.RightItems>
+
+                                            <Border Padding="5" StrokeShape="RoundRectangle 10">
+
+                                                <Grid
+                                                    Padding="10,0"
+                                                    ColumnDefinitions="Auto, *, Auto, *"
+                                                    RowDefinitions="Auto, Auto"
+                                                    RowSpacing="8">
+
+                                                    <controls:NumericEntryCell
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        UserInput="{Binding Diametro}" />
+
+                                                    <controls:NumericEntryCell
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        UserInput="{Binding Cantidad}" />
+
+                                                    <controls:NumericEntryCell
+                                                        Grid.Row="1"
+                                                        Grid.Column="2"
+                                                        UserInput="{Binding Volumen}" />
+
+                                                    <controls:NumericEntryCell
+                                                        Grid.Row="1"
+                                                        Grid.Column="3"
+                                                        UserInput="{Binding Total}" />
+
+                                                </Grid>
+                                            </Border>
+                                        </SwipeView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <Button
+                                Margin="0,5"
+                                Text="Agregar Medición"
+                                WidthRequest="300">
+                                <Button.ImageSource>
+                                    <FontImageSource
+                                        FontFamily="FAS"
+                                        Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
+                                        Color="{AppThemeBinding Light={StaticResource White},
+                                                                Dark={StaticResource Tertiary}}" />
+                                </Button.ImageSource>
+                            </Button>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!--  Buttons Section  -->
+                <Grid
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    ColumnDefinitions="*, *">
+
+                    <Button
+                        Grid.Column="0"
+                        Margin="0,10,0,20"
+                        Style="{StaticResource PageButtons}"
+                        Text="Calcular" />
+                    <Button
+                        Grid.Column="1"
+                        Margin="0,10,0,20"
+                        Style="{StaticResource PageButtons}"
+                        Text="Reiniciar" />
+                </Grid>
+
             </Grid>
-
-
         </ScrollView>
     </Grid>
 </ContentPage>

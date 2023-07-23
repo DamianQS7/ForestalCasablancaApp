@@ -24,7 +24,7 @@ namespace ForestalCasablancaApp.ViewModels
         private bool _isBusy;
 
         public bool IsNotBusy => !IsBusy;
-
+        public DateTime CurrentDate => DateTime.Now;
         public static Page BasePage => Application.Current.MainPage;
 
         [RelayCommand]

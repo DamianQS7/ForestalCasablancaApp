@@ -17,7 +17,23 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         async Task GoToDespachoAsync(string name)
         {
-            await Shell.Current.GoToAsync(name);
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+                await Shell.Current.GoToAsync(name);
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+            
         }
     }
 }

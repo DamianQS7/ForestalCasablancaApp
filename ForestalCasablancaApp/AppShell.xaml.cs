@@ -1,4 +1,5 @@
-﻿using ForestalCasablancaApp.Pages;
+﻿using CommunityToolkit.Maui.Core;
+using ForestalCasablancaApp.Pages;
 
 namespace ForestalCasablancaApp;
 

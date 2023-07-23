@@ -21,56 +21,15 @@
 
             <Grid RowDefinitions="Auto, *, Auto, Auto">
                 <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
-                <Border
+
+                <!--  Client Info Section  -->
+                <controls:ClientInfoCard
                     Grid.Row="0"
-                    Margin="10,10,10,20"
-                    HeightRequest="{OnIdiom Phone=210,
-                                            Tablet=250}"
-                    Style="{StaticResource PageSectionCard}">
+                    NombreCliente="{Binding Cliente.Nombre}"
+                    PatenteCliente="{Binding Cliente.Patente}"
+                    RutCliente="{Binding Cliente.RUT}" />
 
-                    <Grid RowDefinitions="Auto, *">
-                        <Label Style="{StaticResource PageSubtitle}" Text="Datos del Cliente" />
-
-                        <Grid
-                            Grid.Row="1"
-                            Padding="10,0"
-                            ColumnDefinitions="80, *"
-                            RowDefinitions="Auto, Auto, Auto"
-                            RowSpacing="8">
-
-                            <Label
-                                Grid.Row="0"
-                                Text="Nombre: "
-                                VerticalOptions="Center" />
-                            <Entry
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding Cliente.Nombre}" />
-
-
-                            <Label
-                                Grid.Row="1"
-                                Text="RUT: "
-                                VerticalOptions="Center" />
-                            <Entry
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Text="{Binding Cliente.RUT}" />
-
-
-                            <Label
-                                Grid.Row="2"
-                                Text="Patente: "
-                                VerticalOptions="Center" />
-                            <Entry
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                Text="{Binding Cliente.Patente}" />
-
-                        </Grid>
-                    </Grid>
-                </Border>
-
+                <!--  Mediciones Section  -->
                 <Border
                     Grid.Row="1"
                     HeightRequest="{OnIdiom Phone=312,
@@ -89,22 +48,20 @@
                                 Grid.Row="0"
                                 Text="Largo Camión: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="0" Grid.Column="1">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.LargoCamion}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                UserInput="{Binding Despacho.LargoCamion}" />
 
                             <Label
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Text="N° de Bancos: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="0" Grid.Column="3">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Bancos}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                UserInput="{Binding Despacho.Bancos}" />
 
                             <Label
                                 Grid.Row="1"
@@ -112,25 +69,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 1: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="1" Grid.Column="1">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[0], Mode=TwoWay}">
-
-                                    <Entry.Triggers>
-                                        <Trigger></Trigger>
-                                    </Entry.Triggers>
-                                    <Entry.Behaviors>
-                                        <mct:NumericValidationBehavior
-                                            Flags="ValidateOnValueChanged, ValidateOnUnfocusing"
-                                            IsValid="{Binding IsValidInput}"
-                                            MaximumDecimalPlaces="2"
-                                            MaximumValue="100.0"
-                                            MinimumValue="0.0" />
-                                    </Entry.Behaviors>
-                                </Entry>
-
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                UserInput="{Binding Despacho.Alturas[0]}" />
 
                             <Label
                                 Grid.Row="1"
@@ -138,11 +80,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 5: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="1" Grid.Column="3">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[4], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                UserInput="{Binding Despacho.Alturas[4]}" />
 
                             <Label
                                 Grid.Row="2"
@@ -150,11 +91,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 2: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="2" Grid.Column="1">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[1], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                UserInput="{Binding Despacho.Alturas[1]}" />
 
                             <Label
                                 Grid.Row="2"
@@ -162,11 +102,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 6: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="2" Grid.Column="3">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[5], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                UserInput="{Binding Despacho.Alturas[5]}" />
 
                             <Label
                                 Grid.Row="3"
@@ -174,11 +113,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 3: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="3" Grid.Column="1">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[2], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                UserInput="{Binding Despacho.Alturas[2]}" />
 
                             <Label
                                 Grid.Row="3"
@@ -186,11 +124,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 7: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="3" Grid.Column="3">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[6], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                UserInput="{Binding Despacho.Alturas[6]}" />
 
                             <Label
                                 Grid.Row="4"
@@ -198,11 +135,10 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 4: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="4" Grid.Column="1">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[3], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                UserInput="{Binding Despacho.Alturas[3]}" />
 
                             <Label
                                 Grid.Row="4"
@@ -210,15 +146,15 @@
                                 HorizontalOptions="Center"
                                 Text="Altura 8: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="4" Grid.Column="3">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.Alturas[7], Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="4"
+                                Grid.Column="3"
+                                UserInput="{Binding Despacho.Alturas[7]}" />
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
 
+                <!--  Palomera Section  -->
                 <Border
                     Grid.Row="2"
                     HeightRequest="{OnIdiom Phone=100,
@@ -236,25 +172,24 @@
                             RowSpacing="8">
 
                             <Label Text="Altura: " VerticalOptions="Center" />
-
-                            <Grid Grid.Row="0" Grid.Column="1">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.AltoPalomera, Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                UserInput="{Binding Despacho.AltoPalomera}" />
 
                             <Label
                                 Grid.Column="2"
                                 Text="Ancho: "
                                 VerticalOptions="Center" />
-
-                            <Grid Grid.Row="0" Grid.Column="3">
-                                <Border Style="{StaticResource EntryCellBorderStyle}" />
-                                <Entry Style="{StaticResource NumericEntryStyle}" Text="{Binding Despacho.AnchoPalomera, Mode=TwoWay}" />
-                            </Grid>
+                            <controls:NumericEntryCell
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                UserInput="{Binding Despacho.AnchoPalomera}" />
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
 
+                <!--  Buttons Section  -->
                 <Grid
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
@@ -272,7 +207,6 @@
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />
                 </Grid>
-
             </Grid>
         </ScrollView>
 

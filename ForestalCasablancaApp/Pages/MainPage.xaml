@@ -14,12 +14,26 @@
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="LightContent" />
     </Page.Behaviors>
+    
     <VerticalStackLayout>
-        
-        <Label
-            Margin="0,15"
-            Style="{StaticResource PageTitle}"
-            Text="Forestal Casablanca" />
+
+        <Image
+            Aspect="AspectFit"
+            HeightRequest="200"
+            WidthRequest="200"
+            Margin="0, 10"
+            Source="color_logo_no_bg.png">
+
+            <Image.Background>
+                <RadialGradientBrush >
+                    <GradientStop Color="{StaticResource Primary}"
+                                  Offset="0.95"/>
+                    <GradientStop Color="Transparent"
+                                  Offset="0.5"/>
+                </RadialGradientBrush>
+            </Image.Background>
+        </Image>
+
 
         <controls:CardView
             CardImage="trunk.png"
@@ -34,6 +48,23 @@
             CardTitle="Trozo Aserrable"
             CommandPath="TrozoAserrablePage" />
 
-    </VerticalStackLayout>
+        <Border
+            Margin="0,20,0,0"
+            BackgroundColor="{StaticResource Gray900}"
+            HeightRequest="70"
+            IsVisible="{Binding IsBusy}"
+            StrokeShape="Ellipse"
+            WidthRequest="70">
 
+            <ActivityIndicator
+                HorizontalOptions="Fill"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center"
+                WidthRequest="70"
+                Color="{StaticResource PaleGreen}" />
+        </Border>
+
+
+    </VerticalStackLayout>
 </ContentPage>
