@@ -21,7 +21,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("fontello.ttf", "Icons");
-			});
+                fonts.AddFont("fa-brands.otf", "FAB");
+                fonts.AddFont("fa-regular.otf", "FAR");
+                fonts.AddFont("fa-solid.otf", "FAS");
+            });
 
 		builder.Services
 			.AddSingleton<ICalculatorService, CalculatorService>()

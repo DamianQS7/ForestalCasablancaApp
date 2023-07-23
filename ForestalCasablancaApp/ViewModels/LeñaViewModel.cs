@@ -55,7 +55,6 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", "Debe completar todos los campos", "OK");
             }
-            
         }
 
     }

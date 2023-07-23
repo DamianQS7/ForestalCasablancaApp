@@ -4,14 +4,9 @@ public partial class NumericEntryCell : ContentView
 {
     #region Bindable Properties
 
-    public static readonly BindableProperty UserInputProperty = 
-        BindableProperty.Create(nameof(UserInput), typeof(string), typeof(NumericEntryCell), string.Empty, BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var control = (NumericEntryCell)bindable;
+    public static readonly BindableProperty UserInputProperty =
+        BindableProperty.Create(nameof(UserInput), typeof(string), typeof(NumericEntryCell), string.Empty, BindingMode.TwoWay);
 
-            control.Input.Text = newValue as string;
-        });
-    
     public string UserInput
     {
         get => (string)GetValue(UserInputProperty);
@@ -20,10 +15,10 @@ public partial class NumericEntryCell : ContentView
 
     #endregion
 
-
     public NumericEntryCell()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
-	}
+        UserInputEntry.SetBinding(Entry.TextProperty, new Binding(nameof(UserInput), source: this));
+    }
 }
