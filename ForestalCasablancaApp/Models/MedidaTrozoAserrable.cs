@@ -15,5 +15,7 @@ namespace ForestalCasablancaApp.Models
         public double Volumen { get; set; }
 
         public double Total { get; set;}
+
+        public int NumeroLista { get; set; }
     }
 }

@@ -12,12 +12,17 @@ namespace ForestalCasablancaApp.ViewModels
     {
         private readonly ICalculatorService _calculatorService;
 
-        [ObservableProperty]
-        private Cliente _cliente;
+        [ObservableProperty] private Cliente _cliente;
+        [ObservableProperty] private string _especieUno;
+        [ObservableProperty] private string _especieDos;
+        [ObservableProperty] private string _especieTres;
+        [ObservableProperty] private double _largoEspecieUno;
+        [ObservableProperty] private double _largoEspecieDos;
+        [ObservableProperty] private double _largoEspecieTres;
 
-        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieUno { get; set; } = new() { new MedidaTrozoAserrable() { Diametro = 10}, new MedidaTrozoAserrable() { Diametro = 20} };
-        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieDos { get; set; }
-        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieTres { get; set; }
+        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieUno { get; set; } = new();
+        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieDos { get; set; } = new();
+        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieTres { get; set; } = new();
 
         public TrozoAserrableViewModel(ICalculatorService calculatorService)
         {
@@ -26,16 +31,44 @@ namespace ForestalCasablancaApp.ViewModels
             Cliente = new();
         }
 
-        /// <summary>
-        /// I had to do it this way because the ObservableCollection was not allowed in the RelayCommands
-        /// </summary>
-        /// <param name="item"></param>
-        [RelayCommand]
-        void RemoveItemFromList1(MedidaTrozoAserrable item)
-        {
-            MedidasEspecieUno.Remove(item);
+        #region Commands
 
-            Toast.Make("Medida Eliminada", ToastDuration.Short);
+        [RelayCommand]
+        void AddItemToList(string numeroLista)
+        {
+            if(numeroLista == "1")
+                MedidasEspecieUno.Add(new MedidaTrozoAserrable() { NumeroLista = 1});
+            else if(numeroLista == "2")
+                MedidasEspecieDos.Add(new MedidaTrozoAserrable() { NumeroLista = 2});
+            else if(numeroLista == "3")
+                MedidasEspecieTres.Add(new MedidaTrozoAserrable() { NumeroLista = 3});
         }
+
+        [RelayCommand]
+        void RemoveItemFromList(MedidaTrozoAserrable item)
+        {
+            if(item.NumeroLista == 1)
+                MedidasEspecieUno.Remove(item);
+            else if(item.NumeroLista == 2)
+                MedidasEspecieDos.Remove(item);
+            else if(item.NumeroLista == 3)
+                MedidasEspecieTres.Remove(item);
+        }
+
+        [RelayCommand]
+        void ClearPage()
+        {
+            MedidasEspecieUno.Clear();
+            MedidasEspecieDos.Clear();
+            MedidasEspecieTres.Clear();
+            Cliente = new();
+            EspecieUno = "";
+            EspecieDos = "";
+            EspecieTres = "";
+            LargoEspecieUno = 0;
+            LargoEspecieDos = 0;
+            LargoEspecieTres = 0;
+        }
+        #endregion
     }
 }
