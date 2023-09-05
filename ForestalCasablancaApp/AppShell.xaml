@@ -3,15 +3,16 @@
     x:Class="ForestalCasablancaApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:fontAwesome="clr-namespace:ForestalCasablancaApp.Helpers"
     xmlns:local="clr-namespace:ForestalCasablancaApp"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    xmlns:pages="clr-namespace:ForestalCasablancaApp.Pages"
     Shell.FlyoutBehavior="Disabled">
 
     <Shell.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="White" StatusBarStyle="LightContent" />
     </Shell.Behaviors>
-    
+
 
     <Tab Title="Despachos">
         <Tab.Icon>
@@ -36,9 +37,9 @@
                                         Dark={StaticResource White}}" />
         </Tab.Icon>
         <ShellContent
-            Title=""
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
+            Title="Settings"
+            ContentTemplate="{DataTemplate pages:SettingsPage}"
+            Route="SettingsPage" />
     </Tab>
 
 
