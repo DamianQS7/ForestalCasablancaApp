@@ -94,6 +94,9 @@
 	  <MauiXaml Update="Pages\MetroRumaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\TrozoAserrablePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

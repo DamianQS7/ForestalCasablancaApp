@@ -49,7 +49,7 @@
                                     Grid.Row="0"
                                     Text="Especie: "
                                     VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Text="{Binding EspecieUno}"/>
+                                <Entry Grid.Column="1" Text="{Binding EspecieUno}" />
 
                                 <Label
                                     Grid.Row="1"
@@ -155,10 +155,10 @@
 
                             <Button
                                 Margin="0,5"
-                                Text="Agregar Medición"
-                                WidthRequest="300"
                                 Command="{Binding AddItemToListCommand}"
-                                CommandParameter="1">
+                                CommandParameter="1"
+                                Text="Agregar Medición"
+                                WidthRequest="300">
                                 <Button.ImageSource>
                                     <FontImageSource
                                         FontFamily="FAS"
@@ -170,8 +170,8 @@
                         </VerticalStackLayout>
                     </Grid>
                 </Border>
-                
-                <!--Mediciones Especie 2 Section-->
+
+                <!--  Mediciones Especie 2 Section  -->
                 <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, Auto">
@@ -191,7 +191,7 @@
                                     Grid.Row="0"
                                     Text="Especie: "
                                     VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Text="{Binding EspecieDos}"/>
+                                <Entry Grid.Column="1" Text="{Binding EspecieDos}" />
 
                                 <Label
                                     Grid.Row="1"
@@ -297,10 +297,10 @@
 
                             <Button
                                 Margin="0,5"
-                                Text="Agregar Medición"
-                                WidthRequest="300"
                                 Command="{Binding AddItemToListCommand}"
-                                CommandParameter="2">
+                                CommandParameter="2"
+                                Text="Agregar Medición"
+                                WidthRequest="300">
                                 <Button.ImageSource>
                                     <FontImageSource
                                         FontFamily="FAS"
@@ -313,7 +313,7 @@
                     </Grid>
                 </Border>
 
-                <!--Mediciones Especie 3 Section-->
+                <!--  Mediciones Especie 3 Section  -->
                 <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, Auto">
@@ -333,7 +333,7 @@
                                     Grid.Row="0"
                                     Text="Especie: "
                                     VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Text="{Binding EspecieTres}"/>
+                                <Entry Grid.Column="1" Text="{Binding EspecieTres}" />
 
                                 <Label
                                     Grid.Row="1"
@@ -439,10 +439,10 @@
 
                             <Button
                                 Margin="0,5"
-                                Text="Agregar Medición"
-                                WidthRequest="300"
                                 Command="{Binding AddItemToListCommand}"
-                                CommandParameter="3">
+                                CommandParameter="3"
+                                Text="Agregar Medición"
+                                WidthRequest="300">
                                 <Button.ImageSource>
                                     <FontImageSource
                                         FontFamily="FAS"
@@ -469,9 +469,9 @@
                     <Button
                         Grid.Column="1"
                         Margin="0,10,0,20"
+                        Command="{Binding ClearPageCommand}"
                         Style="{StaticResource PageButtons}"
-                        Text="Reiniciar"
-                        Command="{Binding ClearPageCommand}"/>
+                        Text="Reiniciar" />
                 </Grid>
 
             </Grid>

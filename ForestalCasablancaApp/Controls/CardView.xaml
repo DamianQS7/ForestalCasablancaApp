@@ -13,7 +13,7 @@
         BindingContext="{x:Reference this}"
         HeightRequest="{OnIdiom Phone=100,
                                 Tablet=150}"
-        Style="{StaticResource CardView}"
+        Style="{StaticResource CardViewControlStyle}"
         WidthRequest="{OnIdiom Phone=350,
                                Tablet=600}">
 
