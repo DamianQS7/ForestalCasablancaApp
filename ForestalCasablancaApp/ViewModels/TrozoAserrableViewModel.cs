@@ -12,7 +12,6 @@ namespace ForestalCasablancaApp.ViewModels
     {
         private readonly ICalculatorService _calculatorService;
 
-        [ObservableProperty] private Cliente _cliente;
         [ObservableProperty] private string _especieUno;
         [ObservableProperty] private string _especieDos;
         [ObservableProperty] private string _especieTres;
@@ -29,6 +28,7 @@ namespace ForestalCasablancaApp.ViewModels
             Title = "Despacho Trozo Aserrable";
             _calculatorService = calculatorService;
             Cliente = new();
+            DatosCamion = new();
         }
 
         #region Commands
@@ -62,6 +62,7 @@ namespace ForestalCasablancaApp.ViewModels
             MedidasEspecieDos.Clear();
             MedidasEspecieTres.Clear();
             Cliente = new();
+            DatosCamion = new();
             EspecieUno = "";
             EspecieDos = "";
             EspecieTres = "";

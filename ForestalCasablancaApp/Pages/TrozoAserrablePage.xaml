@@ -19,7 +19,7 @@
 
         <ScrollView Grid.Row="1">
 
-            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
                 <BoxView Grid.RowSpan="5" Style="{StaticResource PageContentBackground}" />
 
                 <!--  Client Info Section  -->
@@ -29,8 +29,16 @@
                     PatenteCliente="{Binding Cliente.Patente}"
                     RutCliente="{Binding Cliente.RUT}" />
 
+                <!--  Camion Info Section  -->
+                <controls:CamionInfoCard
+                    Grid.Row="1"
+                    Empresa="{Binding DatosCamion.EmpresaTransportista}"
+                    NombreChofer="{Binding DatosCamion.Chofer}"
+                    PatenteCamion="{Binding DatosCamion.Patente}"
+                    RutChofer="{Binding DatosCamion.RutChofer}" />
+
                 <!--  Mediciones Especie 1 Section  -->
-                <Border Grid.Row="1" Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, Auto">
                         <Label
@@ -172,7 +180,7 @@
                 </Border>
 
                 <!--  Mediciones Especie 2 Section  -->
-                <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, Auto">
                         <Label
@@ -314,7 +322,7 @@
                 </Border>
 
                 <!--  Mediciones Especie 3 Section  -->
-                <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="4" Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, Auto">
                         <Label
@@ -457,7 +465,7 @@
 
                 <!--  Buttons Section  -->
                 <Grid
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.ColumnSpan="2"
                     ColumnDefinitions="*, *">
 

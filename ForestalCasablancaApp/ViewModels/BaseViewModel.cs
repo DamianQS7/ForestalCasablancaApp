@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ForestalCasablancaApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,6 @@ namespace ForestalCasablancaApp.ViewModels
     public abstract partial class BaseViewModel : ObservableObject
     {
         public BaseViewModel() { }
-        
 
         [ObservableProperty]
         private string _title;
@@ -22,6 +22,12 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         private bool _isBusy;
+
+        [ObservableProperty]
+        private Cliente _cliente;
+
+        [ObservableProperty]
+        private DatosCamion _datosCamion;
 
         public bool IsNotBusy => !IsBusy;
         public DateTime CurrentDate => DateTime.Now;

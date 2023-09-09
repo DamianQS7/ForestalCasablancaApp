@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView
-    x:Class="ForestalCasablancaApp.Controls.ClientInfoCard"
+    x:Class="ForestalCasablancaApp.Controls.CamionInfoCard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:ForestalCasablancaApp.Models"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="this"
-    x:DataType="models:Cliente">
+    x:DataType="models:DatosCamion">
 
     <VerticalStackLayout>
         <Border
@@ -19,7 +19,7 @@
                                    Tablet=600}">
 
             <Grid RowDefinitions="Auto, *">
-                <Label Style="{StaticResource PageSubtitle}" Text="Datos del Cliente" />
+                <Label Style="{StaticResource PageSubtitle}" Text="Datos Camión" />
 
                 <Grid
                     Grid.Row="1"
@@ -30,31 +30,41 @@
 
                     <Label
                         Grid.Row="0"
-                        Text="Nombre: "
+                        Text="Empresa: "
                         VerticalOptions="Center" />
                     <Entry
-                        x:Name="NombreEntry"
+                        x:Name="EmpresaEntry"
                         Grid.Row="0"
                         Grid.Column="1"
-                        Text="{Binding Nombre}" />
+                        Text="{Binding EmpresaTransportista}" />
 
                     <Label
                         Grid.Row="1"
-                        Text="RUT: "
+                        Text="Chofer: "
                         VerticalOptions="Center" />
                     <Entry
-                        x:Name="RutEntry"
+                        x:Name="ChoferEntry"
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{Binding RUT}" />
+                        Text="{Binding Chofer}" />
 
                     <Label
                         Grid.Row="2"
+                        Text="Rut Chofer: "
+                        VerticalOptions="Center" />
+                    <Entry
+                        x:Name="RutChoferEntry"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding RutChofer}" />
+
+                    <Label
+                        Grid.Row="3"
                         Text="Patente: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="PatenteEntry"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding Patente}" />
 
