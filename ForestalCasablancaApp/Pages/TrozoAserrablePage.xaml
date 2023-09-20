@@ -26,7 +26,6 @@
                 <controls:ClientInfoCard
                     Grid.Row="0"
                     NombreCliente="{Binding Cliente.Nombre}"
-                    PatenteCliente="{Binding Cliente.Patente}"
                     RutCliente="{Binding Cliente.RUT}" />
 
                 <!--  Camion Info Section  -->
@@ -57,25 +56,95 @@
                                     Grid.Row="0"
                                     Text="Especie: "
                                     VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Text="{Binding EspecieUno}" />
+
+                                <Picker
+                                    x:Name="pickerEspecie1"
+                                    Title="Seleccione una especie"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding ListaEspecies}"
+                                    SelectedItem="{Binding EspecieUno}" />
 
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Text="Largo: "
                                     VerticalOptions="Center" />
+
+                                <Picker
+                                    x:Name="pickerLargo1"
+                                    Title="Selecione el largo"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding ListaLargos}"
+                                    SelectedItem="{Binding LargoEspecieUno}" />
+                            </Grid>
+
+                            <Grid
+                                Margin="10"
+                                ColumnDefinitions="*, *, *"
+                                RowDefinitions="Auto, *, *">
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Diametro: "
+                                    VerticalOptions="Center" />
+
+                                <controls:NumericEntryCell
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalOptions="Center"
+                                    UserInput="{Binding DiametroIngresado}" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Total (Q):"
+                                    VerticalOptions="Center" />
+
                                 <controls:NumericEntryCell
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    UserInput="{Binding LargoEspecieUno}" />
+                                    UserInput="{Binding CantidadIngresada}" />
+
+                                <Button
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    Margin="0,5"
+                                    Command="{Binding AddItemToListCommand}"
+                                    CommandParameter="1"
+                                    Text=""
+                                    WidthRequest="100">
+
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                            FontFamily="FAS"
+                                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
+                                            Color="{AppThemeBinding Light={StaticResource White},
+                                                                    Dark={StaticResource Tertiary}}" />
+                                    </Button.ImageSource>
+                                </Button>
                             </Grid>
 
                             <CollectionView ItemsSource="{Binding MedidasEspecieUno}">
+
+                                <CollectionView.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding MedidasEspecieUno.Count}"
+                                        TargetType="CollectionView"
+                                        Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </CollectionView.Triggers>
+
                                 <CollectionView.Header>
-                                    <Grid Margin="10" ColumnDefinitions="Auto, *, Auto, *">
+                                    <Grid Margin="10" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
                                             FontAttributes="Bold"
+                                            HorizontalOptions="Center"
                                             Text="Diametro: "
                                             VerticalOptions="Center" />
 
@@ -91,25 +160,18 @@
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             FontAttributes="Bold"
+                                            HorizontalOptions="Center"
                                             Text="Volumen: "
-                                            VerticalOptions="Center" />
-
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="3"
-                                            FontAttributes="Bold"
-                                            HorizontalTextAlignment="Center"
-                                            Text="Total: "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="models:MedidaTrozoAserrable">
+
                                         <SwipeView>
                                             <SwipeView.RightItems>
                                                 <SwipeItems>
-
                                                     <SwipeItem
                                                         BackgroundColor="Maroon"
                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TrozoAserrableViewModel}}, Path=RemoveItemFromListCommand}"
@@ -130,7 +192,7 @@
 
                                                 <Grid
                                                     Padding="10,0"
-                                                    ColumnDefinitions="Auto, *, Auto, *"
+                                                    ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
                                                     RowSpacing="8">
 
@@ -149,32 +211,12 @@
                                                         Grid.Column="2"
                                                         UserInput="{Binding Volumen}" />
 
-                                                    <controls:NumericEntryCell
-                                                        Grid.Row="1"
-                                                        Grid.Column="3"
-                                                        UserInput="{Binding Total}" />
-
                                                 </Grid>
                                             </Border>
                                         </SwipeView>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
-                            <Button
-                                Margin="0,5"
-                                Command="{Binding AddItemToListCommand}"
-                                CommandParameter="1"
-                                Text="Agregar Medición"
-                                WidthRequest="300">
-                                <Button.ImageSource>
-                                    <FontImageSource
-                                        FontFamily="FAS"
-                                        Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                        Color="{AppThemeBinding Light={StaticResource White},
-                                                                Dark={StaticResource Tertiary}}" />
-                                </Button.ImageSource>
-                            </Button>
                         </VerticalStackLayout>
                     </Grid>
                 </Border>
@@ -199,25 +241,95 @@
                                     Grid.Row="0"
                                     Text="Especie: "
                                     VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Text="{Binding EspecieDos}" />
+
+                                <Picker
+                                    x:Name="pickerEspecie2"
+                                    Title="Seleccione una especie"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding ListaEspecies}"
+                                    SelectedItem="{Binding EspecieDos}" />
 
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Text="Largo: "
                                     VerticalOptions="Center" />
+
+                                <Picker
+                                    x:Name="pickerLargo2"
+                                    Title="Selecione el largo"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding ListaLargos}"
+                                    SelectedItem="{Binding LargoEspecieDos}" />
+                            </Grid>
+
+                            <Grid
+                                Margin="10"
+                                ColumnDefinitions="*, *, *"
+                                RowDefinitions="Auto, *, *">
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Diametro: "
+                                    VerticalOptions="Center" />
+
+                                <controls:NumericEntryCell
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalOptions="Center"
+                                    UserInput="{Binding DiametroIngresado2}" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Total (Q):"
+                                    VerticalOptions="Center" />
+
                                 <controls:NumericEntryCell
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    UserInput="{Binding LargoEspecieDos}" />
+                                    UserInput="{Binding CantidadIngresada2}" />
+
+                                <Button
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    Margin="0,5"
+                                    Command="{Binding AddItemToListCommand}"
+                                    CommandParameter="2"
+                                    Text=""
+                                    WidthRequest="100">
+
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                            FontFamily="FAS"
+                                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
+                                            Color="{AppThemeBinding Light={StaticResource White},
+                                                                    Dark={StaticResource Tertiary}}" />
+                                    </Button.ImageSource>
+                                </Button>
                             </Grid>
 
                             <CollectionView ItemsSource="{Binding MedidasEspecieDos}">
+
+                                <CollectionView.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding MedidasEspecieDos.Count}"
+                                        TargetType="CollectionView"
+                                        Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </CollectionView.Triggers>
+
                                 <CollectionView.Header>
-                                    <Grid Margin="10" ColumnDefinitions="Auto, *, Auto, *">
+                                    <Grid Margin="10" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
                                             FontAttributes="Bold"
+                                            HorizontalOptions="Center"
                                             Text="Diametro: "
                                             VerticalOptions="Center" />
 
@@ -233,25 +345,18 @@
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             FontAttributes="Bold"
+                                            HorizontalOptions="Center"
                                             Text="Volumen: "
-                                            VerticalOptions="Center" />
-
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="3"
-                                            FontAttributes="Bold"
-                                            HorizontalTextAlignment="Center"
-                                            Text="Total: "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="models:MedidaTrozoAserrable">
+
                                         <SwipeView>
                                             <SwipeView.RightItems>
                                                 <SwipeItems>
-
                                                     <SwipeItem
                                                         BackgroundColor="Maroon"
                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TrozoAserrableViewModel}}, Path=RemoveItemFromListCommand}"
@@ -272,7 +377,7 @@
 
                                                 <Grid
                                                     Padding="10,0"
-                                                    ColumnDefinitions="Auto, *, Auto, *"
+                                                    ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
                                                     RowSpacing="8">
 
@@ -291,35 +396,16 @@
                                                         Grid.Column="2"
                                                         UserInput="{Binding Volumen}" />
 
-                                                    <controls:NumericEntryCell
-                                                        Grid.Row="1"
-                                                        Grid.Column="3"
-                                                        UserInput="{Binding Total}" />
-
                                                 </Grid>
                                             </Border>
                                         </SwipeView>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
-                            <Button
-                                Margin="0,5"
-                                Command="{Binding AddItemToListCommand}"
-                                CommandParameter="2"
-                                Text="Agregar Medición"
-                                WidthRequest="300">
-                                <Button.ImageSource>
-                                    <FontImageSource
-                                        FontFamily="FAS"
-                                        Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                        Color="{AppThemeBinding Light={StaticResource White},
-                                                                Dark={StaticResource Tertiary}}" />
-                                </Button.ImageSource>
-                            </Button>
                         </VerticalStackLayout>
                     </Grid>
                 </Border>
+
 
                 <!--  Mediciones Especie 3 Section  -->
                 <Border Grid.Row="4" Style="{StaticResource PageSectionCard}">
@@ -341,25 +427,95 @@
                                     Grid.Row="0"
                                     Text="Especie: "
                                     VerticalOptions="Center" />
-                                <Entry Grid.Column="1" Text="{Binding EspecieTres}" />
+
+                                <Picker
+                                    x:Name="pickerEspecie3"
+                                    Title="Seleccione una especie"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding ListaEspecies}"
+                                    SelectedItem="{Binding EspecieTres}" />
 
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Text="Largo: "
                                     VerticalOptions="Center" />
+
+                                <Picker
+                                    x:Name="pickerLargo3"
+                                    Title="Selecione el largo"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding ListaLargos}"
+                                    SelectedItem="{Binding LargoEspecieTres}" />
+                            </Grid>
+
+                            <Grid
+                                Margin="10"
+                                ColumnDefinitions="*, *, *"
+                                RowDefinitions="Auto, *, *">
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Diametro: "
+                                    VerticalOptions="Center" />
+
+                                <controls:NumericEntryCell
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalOptions="Center"
+                                    UserInput="{Binding DiametroIngresado3}" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Total (Q):"
+                                    VerticalOptions="Center" />
+
                                 <controls:NumericEntryCell
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    UserInput="{Binding LargoEspecieTres}" />
+                                    UserInput="{Binding CantidadIngresada3}" />
+
+                                <Button
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    Margin="0,5"
+                                    Command="{Binding AddItemToListCommand}"
+                                    CommandParameter="3"
+                                    Text=""
+                                    WidthRequest="100">
+
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                            FontFamily="FAS"
+                                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
+                                            Color="{AppThemeBinding Light={StaticResource White},
+                                                                    Dark={StaticResource Tertiary}}" />
+                                    </Button.ImageSource>
+                                </Button>
                             </Grid>
 
                             <CollectionView ItemsSource="{Binding MedidasEspecieTres}">
+
+                                <CollectionView.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding MedidasEspecieTres.Count}"
+                                        TargetType="CollectionView"
+                                        Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </CollectionView.Triggers>
+
                                 <CollectionView.Header>
-                                    <Grid Margin="10" ColumnDefinitions="Auto, *, Auto, *">
+                                    <Grid Margin="10" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
                                             FontAttributes="Bold"
+                                            HorizontalOptions="Center"
                                             Text="Diametro: "
                                             VerticalOptions="Center" />
 
@@ -375,25 +531,18 @@
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             FontAttributes="Bold"
+                                            HorizontalOptions="Center"
                                             Text="Volumen: "
-                                            VerticalOptions="Center" />
-
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="3"
-                                            FontAttributes="Bold"
-                                            HorizontalTextAlignment="Center"
-                                            Text="Total: "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="models:MedidaTrozoAserrable">
+
                                         <SwipeView>
                                             <SwipeView.RightItems>
                                                 <SwipeItems>
-
                                                     <SwipeItem
                                                         BackgroundColor="Maroon"
                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TrozoAserrableViewModel}}, Path=RemoveItemFromListCommand}"
@@ -414,7 +563,7 @@
 
                                                 <Grid
                                                     Padding="10,0"
-                                                    ColumnDefinitions="Auto, *, Auto, *"
+                                                    ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
                                                     RowSpacing="8">
 
@@ -433,32 +582,12 @@
                                                         Grid.Column="2"
                                                         UserInput="{Binding Volumen}" />
 
-                                                    <controls:NumericEntryCell
-                                                        Grid.Row="1"
-                                                        Grid.Column="3"
-                                                        UserInput="{Binding Total}" />
-
                                                 </Grid>
                                             </Border>
                                         </SwipeView>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
-                            <Button
-                                Margin="0,5"
-                                Command="{Binding AddItemToListCommand}"
-                                CommandParameter="3"
-                                Text="Agregar Medición"
-                                WidthRequest="300">
-                                <Button.ImageSource>
-                                    <FontImageSource
-                                        FontFamily="FAS"
-                                        Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                        Color="{AppThemeBinding Light={StaticResource White},
-                                                                Dark={StaticResource Tertiary}}" />
-                                </Button.ImageSource>
-                            </Button>
                         </VerticalStackLayout>
                     </Grid>
                 </Border>

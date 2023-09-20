@@ -26,7 +26,6 @@
                 <controls:ClientInfoCard
                     Grid.Row="0"
                     NombreCliente="{Binding Cliente.Nombre}"
-                    PatenteCliente="{Binding Cliente.Patente}"
                     RutCliente="{Binding Cliente.RUT}" />
 
                 <!--  Mediciones Section  -->
