@@ -26,7 +26,6 @@
                 <controls:ClientInfoCard
                     Grid.Row="0"
                     NombreCliente="{Binding Cliente.Nombre}"
-                    PatenteCliente="{Binding Cliente.Patente}"
                     RutCliente="{Binding Cliente.RUT}" />
 
                 <!--  Mediciones Section  -->
@@ -204,6 +203,7 @@
                     <Button
                         Grid.Column="1"
                         Margin="0,10,0,20"
+                        Command="{Binding ClearPageCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />
                 </Grid>

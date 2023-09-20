@@ -42,5 +42,17 @@ namespace ForestalCasablancaApp.Services
 
             model.TotalMetrosLeña = model.AlturaMedia * model.Bancos * model.LargoCamion + medidaPalomera;
         }
+
+        public double CalculateTrozoAserrableVolume(double diametro, int cantidad, double largo)
+        {
+            if(largo <= 5.90)
+            {
+                return Math.Round((diametro * diametro * cantidad) / 10000, 2);
+            }
+            else
+            {
+                return (diametro * diametro * cantidad) / 10000;
+            }
+        }
     }
 }

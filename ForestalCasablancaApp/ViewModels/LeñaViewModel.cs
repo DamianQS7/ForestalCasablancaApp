@@ -16,15 +16,13 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty]
         private DespachoLeñaModel _despacho;
 
-        [ObservableProperty]
-        private Cliente _cliente;
-
         public LeñaViewModel(ICalculatorService calculatorService)
         {
             Title = "Despacho Leña";
             _calculatorService = calculatorService;
             Despacho = new DespachoLeñaModel();
             Cliente = new();
+            DatosCamion = new();
             IsValidInput = false;
         }
 
@@ -33,12 +31,13 @@ namespace ForestalCasablancaApp.ViewModels
             _calculatorService.CalculateTotalMetrosLeña(Despacho);
             bool validPalomera = _calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera);
             
-            if(Cliente.Nombre is null || Cliente.RUT is null || Cliente.Patente is null
-                || Despacho.AlturaMedia <= 0  || validPalomera == false)
+            if(Despacho.AlturaMedia <= 0  || validPalomera == false)
                 IsValidInput = false;
             else
                 IsValidInput = true;
         }
+
+        #region Commands
 
         [RelayCommand]
         private async void DisplaySummaryAsync()
@@ -56,6 +55,17 @@ namespace ForestalCasablancaApp.ViewModels
                 await Shell.Current.DisplayAlert("Error", "Debe completar todos los campos", "OK");
             }
         }
+
+        [RelayCommand]
+        void ClearPage()
+        {
+            Cliente = new();
+            DatosCamion = new();
+            Despacho = new();
+            IsValidInput = false;
+        }
+
+        #endregion
 
     }
 }
