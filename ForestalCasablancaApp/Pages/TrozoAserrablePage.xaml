@@ -602,7 +602,8 @@
                         Grid.Column="0"
                         Margin="0,10,0,20"
                         Style="{StaticResource PageButtons}"
-                        Text="Calcular" />
+                        Text="Calcular"
+                        Command="{Binding DisplaySummaryAsyncCommand}"/>
                     <Button
                         Grid.Column="1"
                         Margin="0,10,0,20"

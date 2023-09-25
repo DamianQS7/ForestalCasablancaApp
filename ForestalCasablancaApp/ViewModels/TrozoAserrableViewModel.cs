@@ -4,7 +4,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Maui.Core;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Services;
+using ForestalCasablancaApp.Controls;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Views;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -26,6 +28,7 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private int _cantidadIngresada2;
         [ObservableProperty] private double _diametroIngresado3;
         [ObservableProperty] private int _cantidadIngresada3;
+        private TrozoAserrableSummaryPopup _popup;
 
         public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieUno { get; set; } = new();
         public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieDos { get; set; } = new();
@@ -107,6 +110,7 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         #region Commands
+
         /// <summary>
         /// Adds a new item to a specific list based on the provided "numeroLista" value.
         /// </summary>
@@ -211,6 +215,27 @@ namespace ForestalCasablancaApp.ViewModels
             LargoEspecieTres = "";
         }
 
+        [RelayCommand]
+        private async void DisplaySummaryAsync()
+        {
+            if(MedidasEspecieUno.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
+            {
+                _popup = new TrozoAserrableSummaryPopup();
+
+                BasePage.ShowPopup(_popup);
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "Debe ingresar al menos una medida", "OK");
+            }
+    
+        }
+
+        [RelayCommand]
+        private void ClosePopup()
+        {
+             _popup.Close();
+        }
         #endregion
     }
 }
