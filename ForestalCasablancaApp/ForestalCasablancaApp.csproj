@@ -85,6 +85,9 @@
 	  <MauiXaml Update="Controls\ClientInfoCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\TrozoAserrableSummaryPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\ConfirmationPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -113,6 +116,12 @@
 	  <MauiImage Include="Resources\Logos\color_logo_no_bg.png" />
 	  <MauiImage Include="Resources\Logos\color_logo_with_bg.png" />
 	  <MauiImage Include="Resources\Logos\white_logo_no_bg.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Controls\TrozoAserrableSummaryPopup.xaml.cs">
+	    <DependentUpon>TrozoAserrableSummaryPopup.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

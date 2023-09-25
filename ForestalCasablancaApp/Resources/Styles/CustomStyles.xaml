@@ -79,6 +79,10 @@
         </Setter>
     </Style>
 
+    <Style TargetType="BoxView" x:Key="Separator" >
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray100}, Light={StaticResource Primary}}" />
+    </Style>
+
     <Style TargetType="Entry" x:Key="InalidInput" >
         <Setter Property="BackgroundColor" Value="{StaticResource ErrorRed}" />
     </Style>
@@ -121,8 +125,8 @@
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=350, Tablet=650}" />
-        <Setter Property="HeightRequest" Value="{OnIdiom Phone=530, Tablet=730}" />
+        <!--<Setter Property="WidthRequest" Value="{OnIdiom Phone=350, Tablet=650}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=530, Tablet=730}" />-->
         <Setter Property="Shadow">
             <Setter.Value>
                 <Shadow
