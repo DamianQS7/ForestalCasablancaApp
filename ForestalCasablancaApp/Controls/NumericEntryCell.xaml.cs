@@ -7,10 +7,19 @@ public partial class NumericEntryCell : ContentView
     public static readonly BindableProperty UserInputProperty =
         BindableProperty.Create(nameof(UserInput), typeof(string), typeof(NumericEntryCell), string.Empty, BindingMode.TwoWay);
 
+    public static readonly BindableProperty ReadOnlyProperty =
+        BindableProperty.Create(nameof(ReadOnly), typeof(bool), typeof(NumericEntryCell), false, BindingMode.TwoWay);
+
     public string UserInput
     {
         get => (string)GetValue(UserInputProperty);
         set => SetValue(UserInputProperty, value);
+    }
+
+    public bool ReadOnly
+    {
+        get => (bool)GetValue(ReadOnlyProperty);
+        set => SetValue(ReadOnlyProperty, value);
     }
 
     #endregion
@@ -20,5 +29,6 @@ public partial class NumericEntryCell : ContentView
         InitializeComponent();
 
         UserInputEntry.SetBinding(Entry.TextProperty, new Binding(nameof(UserInput), source: this));
+        UserInputEntry.SetBinding(Entry.IsReadOnlyProperty, new Binding(nameof(ReadOnly), source: this));
     }
 }

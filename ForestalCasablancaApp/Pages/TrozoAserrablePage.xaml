@@ -199,17 +199,20 @@
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="0"
-                                                        UserInput="{Binding Diametro}" />
+                                                        UserInput="{Binding Diametro}" 
+                                                        ReadOnly="True"/>
 
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="1"
-                                                        UserInput="{Binding Cantidad}" />
+                                                        UserInput="{Binding Cantidad}" 
+                                                        ReadOnly="True"/>
 
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="2"
-                                                        UserInput="{Binding Volumen}" />
+                                                        UserInput="{Binding Volumen}" 
+                                                        ReadOnly="True"/>
 
                                                 </Grid>
                                             </Border>
