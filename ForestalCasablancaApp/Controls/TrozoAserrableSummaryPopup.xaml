@@ -181,7 +181,8 @@
                 <Button
                     Grid.Column="0"
                     Style="{StaticResource Buttons}"
-                    Text="Generar PDF" />
+                    Text="Generar PDF" 
+                    Command="{Binding GeneratePDFCommand}"/>
                 <Button
                     Grid.Column="1"
                     Style="{StaticResource Buttons}"
