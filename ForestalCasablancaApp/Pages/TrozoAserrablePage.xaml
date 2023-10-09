@@ -109,6 +109,7 @@
                                     Grid.Column="1"
                                     UserInput="{Binding CantidadIngresada}" />
 
+
                                 <Button
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
@@ -199,20 +200,20 @@
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="0"
-                                                        UserInput="{Binding Diametro}" 
-                                                        ReadOnly="True"/>
+                                                        ReadOnly="True"
+                                                        UserInput="{Binding Diametro}" />
 
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="1"
-                                                        UserInput="{Binding Cantidad}" 
-                                                        ReadOnly="True"/>
+                                                        ReadOnly="True"
+                                                        UserInput="{Binding Cantidad}" />
 
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="2"
-                                                        UserInput="{Binding Volumen}" 
-                                                        ReadOnly="True"/>
+                                                        ReadOnly="True"
+                                                        UserInput="{Binding Volumen}" />
 
                                                 </Grid>
                                             </Border>
@@ -604,9 +605,9 @@
                     <Button
                         Grid.Column="0"
                         Margin="0,10,0,20"
+                        Command="{Binding DisplaySummaryAsyncCommand}"
                         Style="{StaticResource PageButtons}"
-                        Text="Calcular"
-                        Command="{Binding DisplaySummaryAsyncCommand}"/>
+                        Text="Calcular" />
                     <Button
                         Grid.Column="1"
                         Margin="0,10,0,20"

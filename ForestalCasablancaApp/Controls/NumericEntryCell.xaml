@@ -12,5 +12,12 @@
             Keyboard="Numeric"
             Style="{StaticResource NumericEntryStyle}"
             WidthRequest="50" />
+
+        <!--<Entry.Triggers>
+                <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                    <Setter Property="Text" Value="" />
+                </Trigger>
+            </Entry.Triggers>
+        </Entry>-->
     </Grid>
 </ContentView>

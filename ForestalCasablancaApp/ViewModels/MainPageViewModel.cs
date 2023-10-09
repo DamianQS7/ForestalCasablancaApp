@@ -12,6 +12,7 @@ namespace ForestalCasablancaApp.ViewModels
         public MainPageViewModel()
         {
             Title = string.Empty;
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
         }
 
         [RelayCommand]

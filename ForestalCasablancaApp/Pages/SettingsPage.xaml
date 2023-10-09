@@ -76,6 +76,7 @@
 
     <VerticalStackLayout>
 
+        <!--  App Theme  -->
         <Label
             Margin="5,0"
             Padding="10"
@@ -152,6 +153,7 @@
             </Grid>
         </Border>
 
+        <!--  PDF Directory  -->
         <Label
             Margin="5,0"
             Padding="10"
@@ -188,7 +190,6 @@
                 </Button>
             </VerticalStackLayout>
         </Border>
-
 
     </VerticalStackLayout>
 </ContentPage>

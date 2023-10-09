@@ -29,6 +29,7 @@ public static class MauiProgram
 
 		builder.Services
 			.AddSingleton<ICalculatorService, CalculatorService>()
+			.AddSingleton<IPdfGeneratorService, PdfGeneratorService>()
 			.AddSingleton<IFolderPicker>(FolderPicker.Default)
 			.AddSingleton<MainPage>()
 			.AddSingleton<MainPageViewModel>()
