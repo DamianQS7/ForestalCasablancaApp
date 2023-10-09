@@ -4,7 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fontAwesome="clr-namespace:ForestalCasablancaApp.Helpers"
-    Title="Configuración">
+    xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewModels:SettingsPageViewModel">
 
     <ContentPage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
@@ -74,18 +76,20 @@
 
     <VerticalStackLayout>
 
+        <!--  App Theme  -->
         <Label
-            HorizontalOptions="Start"
-            Text="Tema de la App"
-            VerticalOptions="Center"
-            Style="{StaticResource BaseLabel}"
+            Margin="5,0"
             Padding="10"
-            Margin="5, 0"/>
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Style="{StaticResource BaseLabel}"
+            Text="Tema de la App"
+            VerticalOptions="Center" />
 
         <Border Style="{StaticResource PageSectionCard}">
 
             <Grid
-                Margin="20, 15, 15, 15"
+                Margin="20,15,15,15"
                 ColumnDefinitions="Auto, Auto, Auto"
                 ColumnSpacing="30"
                 RadioButtonGroup.GroupName="ThemeGroup">
@@ -97,7 +101,7 @@
                     Value="System">
 
                     <RadioButton.Content>
-                        <StackLayout Margin="0, 5, 0, 0">
+                        <StackLayout Margin="0,5,0,0">
                             <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource Black}}" />
                             <Label
                                 Margin="0,8,0,0"
@@ -116,7 +120,7 @@
                     Value="Light">
 
                     <RadioButton.Content>
-                        <StackLayout Margin="0, 5, 0, 0">
+                        <StackLayout Margin="0,5,0,0">
                             <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource Black}}" />
                             <Label
                                 Margin="0,8,0,0"
@@ -135,7 +139,7 @@
                     Value="Dark">
 
                     <RadioButton.Content>
-                        <StackLayout Margin="0, 5, 0, 0">
+                        <StackLayout Margin="0,5,0,0">
                             <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource Black}}" />
                             <Label
                                 Margin="0,8,0,0"
@@ -148,5 +152,44 @@
                 </RadioButton>
             </Grid>
         </Border>
+
+        <!--  PDF Directory  -->
+        <Label
+            Margin="5,0"
+            Padding="10"
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Style="{StaticResource BaseLabel}"
+            Text="Directorio de destino para PDF"
+            VerticalOptions="Center" />
+
+        <Border Style="{StaticResource PageSectionCard}">
+
+            <VerticalStackLayout Padding="10">
+                <Label Text="Directorio Actual:" TextDecorations="Underline" />
+                <Label
+                    Margin="0,12,0,0"
+                    Padding="5"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
+                                                      Light={StaticResource Gray300}}"
+                    Text="{Binding CurrentWorkingDirectory}" />
+
+                <Button
+                    Command="{Binding PickFolderCommand}"
+                    Style="{StaticResource Buttons}"
+                    Text="Seleccionar"
+                    WidthRequest="160">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="FAS"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.FolderOpen}"
+                            Size="Medium"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </Button.ImageSource>
+                </Button>
+            </VerticalStackLayout>
+        </Border>
+
     </VerticalStackLayout>
 </ContentPage>

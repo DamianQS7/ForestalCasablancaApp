@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Storage;
 using ForestalCasablancaApp.Pages;
 using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.ViewModels;
@@ -28,8 +29,12 @@ public static class MauiProgram
 
 		builder.Services
 			.AddSingleton<ICalculatorService, CalculatorService>()
+			.AddSingleton<IPdfGeneratorService, PdfGeneratorService>()
+			.AddSingleton<IFolderPicker>(FolderPicker.Default)
 			.AddSingleton<MainPage>()
 			.AddSingleton<MainPageViewModel>()
+			.AddSingleton<SettingsPage>()
+			.AddSingleton<SettingsPageViewModel>()
 			.AddTransient<LeñaPage>()
 			.AddTransient<LeñaViewModel>()
 			.AddTransient<MetroRumaPage>()

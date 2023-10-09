@@ -1,12 +1,15 @@
 using ForestalCasablancaApp.Helpers;
+using ForestalCasablancaApp.ViewModels;
 
 namespace ForestalCasablancaApp.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+	public SettingsPage(SettingsPageViewModel viewModel)
 	{
 		InitializeComponent();
+
+        BindingContext = viewModel;
 
         // Set the correct RadioButton when the app is launched.
 		switch (Settings.Theme)

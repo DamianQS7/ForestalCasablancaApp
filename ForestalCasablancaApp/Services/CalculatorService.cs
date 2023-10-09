@@ -47,11 +47,11 @@ namespace ForestalCasablancaApp.Services
         {
             if(largo <= 5.90)
             {
-                return Math.Round((diametro * diametro * cantidad) / 10000, 2);
+                return Math.Round((diametro * diametro * largo) / 10000, 2);
             }
             else
             {
-                return (diametro * diametro * cantidad) / 10000;
+                return Math.Round(Math.Pow(diametro + (largo - 4) / 2, 2) * ((largo + 0.10)/ 10000), 2);
             }
         }
     }

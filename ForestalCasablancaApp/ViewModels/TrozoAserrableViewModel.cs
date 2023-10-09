@@ -7,12 +7,16 @@ using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.Controls;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace ForestalCasablancaApp.ViewModels
 {
     public partial class TrozoAserrableViewModel : BaseViewModel
     {
         private readonly ICalculatorService _calculatorService;
+        private readonly IPdfGeneratorService _pdfGeneratorService;
 
         #region Properties
 
@@ -72,12 +76,13 @@ namespace ForestalCasablancaApp.ViewModels
 
         #region Methods
 
-        public TrozoAserrableViewModel(ICalculatorService calculatorService)
+        public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Trozo Aserrable";
             _calculatorService = calculatorService;
             Cliente = new();
             DatosCamion = new();
+            _pdfGeneratorService = pdfGeneratorService;
         }
 
         private bool ValidateInput(int numeroLista)
@@ -232,9 +237,15 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private void ClosePopup()
+        private async Task ClosePopup()
         {
-             _popup.Close();
+             await _popup.CloseAsync();
+        }
+
+        [RelayCommand]
+        private void GeneratePDF()
+        {
+            _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
         }
         #endregion
     }
