@@ -51,6 +51,8 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	
+
 	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\logo_transparent_background.png" />
 	</ItemGroup>
@@ -65,6 +67,7 @@
 	  <None Remove="Resources\Images\metroruma_background.jpg" />
 	  <None Remove="Resources\Images\trozoaserrable_background.jpg" />
 	  <None Remove="Resources\Images\trunk.png" />
+	  <None Remove="Resources\Raw\black_logo_no_bg.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -116,6 +119,11 @@
 	  <MauiImage Include="Resources\Logos\color_logo_no_bg.png" />
 	  <MauiImage Include="Resources\Logos\color_logo_with_bg.png" />
 	  <MauiImage Include="Resources\Logos\white_logo_no_bg.png" />
+	  <MauiImage Include="Resources\Raw\black_logo_no_bg.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiAsset Update="Resources\Raw\black_logo_no_bg.png" LogicalName="black_logo_no_bg.png" />
 	</ItemGroup>
 
 	<ItemGroup>

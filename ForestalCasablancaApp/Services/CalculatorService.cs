@@ -1,6 +1,8 @@
 ﻿using ForestalCasablancaApp.Models;
+using ForestalCasablancaApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,6 +55,30 @@ namespace ForestalCasablancaApp.Services
             {
                 return Math.Round(Math.Pow(diametro + (largo - 4) / 2, 2) * ((largo + 0.10)/ 10000), 2);
             }
+        }
+
+        public int CalculateTotalSum(ObservableCollection<MedidaTrozoAserrable> lista)
+        {
+            int totalFinal = 0;
+
+            foreach (int total in lista.Select(x => x.Cantidad))
+            {
+                totalFinal += total;
+            }
+
+            return totalFinal;
+        }
+
+        public double CalculateFinalTotalSum(ObservableCollection<MedidaTrozoAserrable> lista)
+        {
+            double totalFinal = 0;
+
+            foreach (double total in lista.Select(x => x.Total))
+            {
+                totalFinal += total;
+            }
+
+            return totalFinal;
         }
     }
 }
