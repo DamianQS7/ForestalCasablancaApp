@@ -27,7 +27,7 @@ namespace ForestalCasablancaApp.Services
             ImagePath = Path.Combine(FileSystem.Current.AppDataDirectory, "black_logo_no_bg.png");
         }
 
-        public async void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
+        public void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
         {
             Document.Create(container =>
             {
@@ -100,7 +100,7 @@ namespace ForestalCasablancaApp.Services
                                       row.RelativeItem()
                                          .Border(1)
                                          .AlignCenter()
-                                         .Text("1");
+                                         .Text(model.Folio);
 
                                       row.RelativeItem()
                                          .Border(1)

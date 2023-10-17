@@ -76,6 +76,81 @@
 
     <VerticalStackLayout>
 
+        <!--  User  -->
+        <Label
+            Margin="5,0"
+            Padding="10"
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Style="{StaticResource BaseLabel}"
+            Text="Nombre de Usuario"
+            VerticalOptions="Center" />
+
+        <Border Style="{StaticResource PageSectionCard}">
+
+            <VerticalStackLayout Padding="10">
+                <Label Text="Usuario Actual:" TextDecorations="Underline" />
+                <Entry
+                    Margin="0,12,0,0"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
+                                                      Light={StaticResource Gray300}}"
+                    Text="{Binding CurrentUser}" />
+
+                <Button
+                    Command="{Binding SetCurrentUserCommand}"
+                    Style="{StaticResource Buttons}"
+                    Text="Actualizar"
+                    WidthRequest="160">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="FAS"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.User}"
+                            Size="Medium"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </Button.ImageSource>
+                </Button>
+            </VerticalStackLayout>
+        </Border>
+
+        <!--  PDF Directory  -->
+        <Label
+            Margin="5,0"
+            Padding="10"
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Style="{StaticResource BaseLabel}"
+            Text="Directorio de destino para PDF"
+            VerticalOptions="Center" />
+
+        <Border Style="{StaticResource PageSectionCard}">
+
+            <VerticalStackLayout Padding="10">
+                <Label Text="Directorio Actual:" TextDecorations="Underline" />
+                <Label
+                    Margin="0,12,0,0"
+                    Padding="5"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
+                                                      Light={StaticResource Gray300}}"
+                    Text="{Binding CurrentWorkingDirectory}" />
+
+                <Button
+                    Command="{Binding PickFolderCommand}"
+                    Style="{StaticResource Buttons}"
+                    Text="Seleccionar"
+                    WidthRequest="160">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="FAS"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.FolderOpen}"
+                            Size="Medium"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </Button.ImageSource>
+                </Button>
+            </VerticalStackLayout>
+        </Border>
+
         <!--  App Theme  -->
         <Label
             Margin="5,0"
@@ -152,44 +227,5 @@
                 </RadioButton>
             </Grid>
         </Border>
-
-        <!--  PDF Directory  -->
-        <Label
-            Margin="5,0"
-            Padding="10"
-            FontAttributes="Bold"
-            HorizontalOptions="Start"
-            Style="{StaticResource BaseLabel}"
-            Text="Directorio de destino para PDF"
-            VerticalOptions="Center" />
-
-        <Border Style="{StaticResource PageSectionCard}">
-
-            <VerticalStackLayout Padding="10">
-                <Label Text="Directorio Actual:" TextDecorations="Underline" />
-                <Label
-                    Margin="0,12,0,0"
-                    Padding="5"
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
-                                                      Light={StaticResource Gray300}}"
-                    Text="{Binding CurrentWorkingDirectory}" />
-
-                <Button
-                    Command="{Binding PickFolderCommand}"
-                    Style="{StaticResource Buttons}"
-                    Text="Seleccionar"
-                    WidthRequest="160">
-                    <Button.ImageSource>
-                        <FontImageSource
-                            FontFamily="FAS"
-                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.FolderOpen}"
-                            Size="Medium"
-                            Color="{AppThemeBinding Light={StaticResource Black},
-                                                    Dark={StaticResource White}}" />
-                    </Button.ImageSource>
-                </Button>
-            </VerticalStackLayout>
-        </Border>
-
     </VerticalStackLayout>
 </ContentPage>

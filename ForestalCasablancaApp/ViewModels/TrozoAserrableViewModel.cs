@@ -302,6 +302,9 @@ namespace ForestalCasablancaApp.ViewModels
             try
             {
                 IsBusy = true;
+
+                Folio = GenerateFolio();
+
                 _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
 
                 await Toast.Make("El archivo PDF se ha generado con éxito").Show();
