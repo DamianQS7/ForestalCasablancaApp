@@ -11,12 +11,28 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly IFolderPicker _folderPicker;
 
         [ObservableProperty] private string _currentWorkingDirectory;
+        [ObservableProperty] private string _currentUser;
 
         public SettingsPageViewModel(IFolderPicker folderPicker)
         {
             Title = "Configuración";
             _folderPicker = folderPicker;
             CurrentWorkingDirectory = Preferences.Get("CurrentWorkingDirectory", FileSystem.Current.AppDataDirectory);
+            CurrentUser = Preferences.Get("CurrentUser", "Usuario 01");
+        }
+
+        public void GetUserInitials()
+        {
+            string[] names = CurrentUser.Split(' ');
+
+            string initials = "";
+
+            foreach (string name in names)
+            {
+                initials += name[0];
+            }
+
+            Preferences.Set("CurrentUserInitials", initials.ToUpper());
         }
 
         [RelayCommand]
@@ -33,6 +49,20 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 await Toast.Make($"Folder is not picked, {folderPickerResult.Exception.Message}").Show(cancellationToken);
             }
+        }
+
+        [RelayCommand]
+        async Task SetCurrentUser()
+        {
+            if(string.IsNullOrEmpty(CurrentUser))
+            {
+                await Toast.Make($"Debe ingresar un nombre de usuario.").Show();
+                return;
+            }
+
+            Preferences.Set("CurrentUser", CurrentUser);
+            GetUserInitials();
+            await Toast.Make($"Usuario actualizado con éxito.").Show();
         }
     }
 }

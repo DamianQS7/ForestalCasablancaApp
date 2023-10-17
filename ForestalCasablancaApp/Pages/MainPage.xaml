@@ -34,7 +34,6 @@
             </Image.Background>
         </Image>
 
-
         <controls:CardView
             CardImage="trunk.png"
             CardTitle="Leña"

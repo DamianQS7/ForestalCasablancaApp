@@ -11,32 +11,33 @@ namespace ForestalCasablancaApp.ViewModels
 {
     public abstract partial class BaseViewModel : ObservableObject
     {
-        public BaseViewModel() { }
-
-        [ObservableProperty]
-        private string _title;
-
-        [ObservableProperty]
-        private bool _isValidInput;
-
+        #region Properties
+        [ObservableProperty] private string _title;
+        [ObservableProperty] private bool _isValidInput;
+        [ObservableProperty] private string _folio;
+        [ObservableProperty] private Cliente _cliente;
+        [ObservableProperty] private DatosCamion _datosCamion;
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         private bool _isBusy;
-
-        [ObservableProperty]
-        private Cliente _cliente;
-
-        [ObservableProperty]
-        private DatosCamion _datosCamion;
-
         public bool IsNotBusy => !IsBusy;
-        public DateTime CurrentDate => DateTime.Now;
         public static Page BasePage => Application.Current.MainPage;
 
+        #endregion
+
+        #region Methods
+        public static string GenerateFolio() => Preferences.Get("CurrentUserInitials", "NN") + DateTime.Now.ToString("dd'/'MM'/'yy'-'HH:mm");
+
+        #endregion
+
+        #region Commands
         [RelayCommand]
         async Task GoBackAsync()
         {
             await Shell.Current.GoToAsync("..");
         }
+
+        #endregion
     }
 }
