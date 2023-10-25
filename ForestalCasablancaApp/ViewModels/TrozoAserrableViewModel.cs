@@ -10,6 +10,7 @@ using CommunityToolkit.Maui.Views;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using System.Globalization;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -68,8 +69,8 @@ namespace ForestalCasablancaApp.ViewModels
             "1.20",
             "1.60",
             "2.10",
-            "2,44",
-            "2,74",
+            "2.44",
+            "2.74",
             "3.20",
             "3.66",
             "4.00",

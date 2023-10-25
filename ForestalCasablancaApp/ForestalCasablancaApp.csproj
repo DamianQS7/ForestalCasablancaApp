@@ -12,10 +12,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>ForestalCasablancaApp</ApplicationTitle>
+		<ApplicationTitle>Forestal Casablanca App</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.forestalcasablancaapp</ApplicationId>
+		<ApplicationId>forestalcasablancaapp</ApplicationId>
 		<ApplicationIdGuid>b77893e4-c53a-4f5f-83c4-a7f63962191e</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -42,8 +42,7 @@
 		
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
+		
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
@@ -52,14 +51,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\lenamodule_icon_dos.png" />
-	  <None Remove="Resources\Images\mainpage_background_dos.jpg" />
-	  <None Remove="Resources\Images\metroruma_module_icon.png" />
-	  <None Remove="Resources\Images\trozo_module_icon.png" />
-	  <None Remove="Resources\Logos\bosquesnalcahue.png" />
-	  <None Remove="Resources\Logos\mainpage_logo.png" />
-	  <None Remove="Resources\Logos\pdf_image.png" />
-	  <None Remove="Resources\Splash\splash.png" />
+		<None Remove="Resources\Images\lenamodule_icon_dos.png" />
+		<None Remove="Resources\Images\mainpage_background_dos.jpg" />
+		<None Remove="Resources\Images\metroruma_module_icon.png" />
+		<None Remove="Resources\Images\trozo_module_icon.png" />
+		<None Remove="Resources\Logos\bosquesnalcahue.png" />
+		<None Remove="Resources\Logos\mainpage_logo.png" />
+		<None Remove="Resources\Logos\pdf_image.png" />
+		<None Remove="Resources\Raw\pdf_image.png" />
+		<None Remove="Resources\Splash\splash.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiAsset Update="Resources\Raw\pdf_image.png" LogicalName="pdf_image.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -107,17 +111,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Include="Resources\Logos\black_logo_no_bg.png" />
-	  <MauiImage Include="Resources\Raw\pdf_image.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<MauiAsset Update="Resources\Raw\pdf_image.png" LogicalName="pdf_image.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Controls\TrozoAserrableSummaryPopup.xaml.cs">
-	    <DependentUpon>TrozoAserrableSummaryPopup.xaml</DependentUpon>
+		<Compile Update="Controls\TrozoAserrableSummaryPopup.xaml.cs">
+			<DependentUpon>TrozoAserrableSummaryPopup.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
