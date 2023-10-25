@@ -8,42 +8,41 @@
     xmlns:pages="clr-namespace:ForestalCasablancaApp.Pages"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
     x:DataType="viewModels:MainPageViewModel"
-    BackgroundImageSource="mainpage_background.jpg"
+    BackgroundImageSource="{OnIdiom Phone='mainpage_background_dos.jpg', Tablet='mainpage_background.jpg'}"
     Shell.NavBarIsVisible="False">
 
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="LightContent" />
     </Page.Behaviors>
-    
+
     <VerticalStackLayout>
 
         <Image
-            Aspect="AspectFit"
-            HeightRequest="200"
-            WidthRequest="200"
-            Margin="0, 10"
-            Source="color_logo_no_bg.png">
+            Opacity="0.85"
+            Margin="0,20"
+            Aspect="Fill"
+            HeightRequest="170"
+            Source="mainpage_logo.png"
+            WidthRequest="170">
 
             <Image.Background>
-                <RadialGradientBrush >
-                    <GradientStop Color="{StaticResource Primary}"
-                                  Offset="0.95"/>
-                    <GradientStop Color="Transparent"
-                                  Offset="0.5"/>
+                <RadialGradientBrush>
+                    <GradientStop Offset="1.0" Color="{StaticResource Gray900}" />
+                    <GradientStop Offset="0.1" Color="Transparent" />
                 </RadialGradientBrush>
             </Image.Background>
         </Image>
 
         <controls:CardView
-            CardImage="trunk.png"
+            CardImage="lenamodule_icon_dos.png"
             CardTitle="Leña"
             CommandPath="LeñaPage" />
         <controls:CardView
-            CardImage="trunk.png"
+            CardImage="metroruma_module_icon.png"
             CardTitle="Metro Ruma"
             CommandPath="MetroRumaPage" />
         <controls:CardView
-            CardImage="trunk.png"
+            CardImage="trozo_module_icon.png"
             CardTitle="Trozo Aserrable"
             CommandPath="TrozoAserrablePage" />
 
@@ -61,7 +60,7 @@
                 IsVisible="{Binding IsBusy}"
                 VerticalOptions="Center"
                 WidthRequest="70"
-                Color="{StaticResource PaleGreen}" />
+                Color="{StaticResource Primary}" />
         </Border>
 
 

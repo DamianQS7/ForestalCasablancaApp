@@ -8,13 +8,13 @@ namespace ForestalCasablancaApp.Models
 {
     public class MedidaTrozoAserrable
     {
-        public double Diametro { get; set; }
+        public double? Diametro { get; set; }
 
-        public int Cantidad { get; set; }
+        public int? Cantidad { get; set; }
 
         public double Volumen { get; set; }
 
-        public double Total { get; set;}
+        public double? Total { get; set;}
 
         public int NumeroLista { get; set; }
     }

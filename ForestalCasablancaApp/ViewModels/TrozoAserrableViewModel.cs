@@ -26,12 +26,12 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private string _largoEspecieUno;
         [ObservableProperty] private string _largoEspecieDos;
         [ObservableProperty] private string _largoEspecieTres;
-        [ObservableProperty] private double _diametroIngresado;
-        [ObservableProperty] private int _cantidadIngresada;
-        [ObservableProperty] private double _diametroIngresado2;
-        [ObservableProperty] private int _cantidadIngresada2;
-        [ObservableProperty] private double _diametroIngresado3;
-        [ObservableProperty] private int _cantidadIngresada3;
+        [ObservableProperty] private double? _diametroIngresado;
+        [ObservableProperty] private int? _cantidadIngresada;
+        [ObservableProperty] private double? _diametroIngresado2;
+        [ObservableProperty] private int? _cantidadIngresada2;
+        [ObservableProperty] private double? _diametroIngresado3;
+        [ObservableProperty] private int? _cantidadIngresada3;
         private TrozoAserrableSummaryPopup _popup;
 
         public int TotalSumLista1 { get; set; }
@@ -82,6 +82,7 @@ namespace ForestalCasablancaApp.ViewModels
 
         #region Methods
 
+        // Constructor
         public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Trozo Aserrable";
@@ -127,7 +128,6 @@ namespace ForestalCasablancaApp.ViewModels
         /// <summary>
         /// Updates the total sum and final total sum for a specific list based on the content of each MedidasEspecie list.
         /// </summary>
-        /// <param name="numeroLista">The identifier for each list</param>
         private void UpdateViewModelTotals()
         {
             if (MedidasEspecieUno.Count > 0)
@@ -174,12 +174,12 @@ namespace ForestalCasablancaApp.ViewModels
                         Diametro = DiametroIngresado,
                         Cantidad = CantidadIngresada,
                         Volumen = volume,
-                        Total = volume * CantidadIngresada
+                        Total = Math.Round((double)(volume * CantidadIngresada), 2)
                     });
 
                     // Clear the input fields
-                    DiametroIngresado = 0;
-                    CantidadIngresada = 0;
+                    DiametroIngresado = null;
+                    CantidadIngresada = null;
                 }
             } 
             else if(numeroLista == "2")
@@ -195,12 +195,12 @@ namespace ForestalCasablancaApp.ViewModels
                         Diametro = DiametroIngresado2,
                         Cantidad = CantidadIngresada2,
                         Volumen = volume,
-                        Total = volume * CantidadIngresada2
+                        Total = Math.Round((double)(volume * CantidadIngresada2), 2)
                     });
 
                     // Clear the input fields
-                    DiametroIngresado2 = 0;
-                    CantidadIngresada2 = 0;
+                    DiametroIngresado2 = null;
+                    CantidadIngresada2 = null;
                 }
             }    
             else if(numeroLista == "3")
@@ -216,12 +216,12 @@ namespace ForestalCasablancaApp.ViewModels
                         Diametro = DiametroIngresado3,
                         Cantidad = CantidadIngresada3,
                         Volumen = volume,
-                        Total = volume * CantidadIngresada3
+                        Total = Math.Round((double)(volume * CantidadIngresada3), 2)
                     });
 
                     // Clear the input fields
-                    DiametroIngresado3 = 0;
-                    CantidadIngresada3 = 0;
+                    DiametroIngresado3 = null;
+                    CantidadIngresada3 = null;
                 }
             }
         }
@@ -319,6 +319,7 @@ namespace ForestalCasablancaApp.ViewModels
             }
             
         }
+
         #endregion
     }
 }

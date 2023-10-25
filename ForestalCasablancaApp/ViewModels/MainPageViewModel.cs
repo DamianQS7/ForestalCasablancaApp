@@ -13,7 +13,7 @@ namespace ForestalCasablancaApp.ViewModels
         {
             Title = string.Empty;
             QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
-            CopyFileToAppDataDirectory("black_logo_no_bg.png");
+            CopyFileToAppDataDirectory("pdf_image.png");
         }
 
         [RelayCommand]

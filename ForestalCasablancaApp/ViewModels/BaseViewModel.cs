@@ -33,7 +33,7 @@ namespace ForestalCasablancaApp.ViewModels
 
         #region Commands
         [RelayCommand]
-        async Task GoBackAsync()
+        async static Task GoBackAsync()
         {
             await Shell.Current.GoToAsync("..");
         }
