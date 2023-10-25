@@ -14,183 +14,122 @@
 
     <Border Style="{StaticResource Popup}">
 
-        <VerticalStackLayout
-            Margin="8,0,0,0"
-            Padding="10"
-            Spacing="8">
+        <ScrollView>
+            <VerticalStackLayout
+                Margin="8,0,0,0"
+                Padding="10"
+                Spacing="8">
 
-            <Image
-                Aspect="AspectFill"
-                HeightRequest="80"
-                Source="popup_icon.png"
-                WidthRequest="80">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="80"
+                    Source="popup_icon.png"
+                    WidthRequest="80">
 
-                <Image.Shadow>
-                    <Shadow Offset="20,20" />
-                </Image.Shadow>
-            </Image>
+                    <Image.Shadow>
+                        <Shadow Offset="20,20" />
+                    </Image.Shadow>
+                </Image>
 
-            <Label
-                FontSize="20"
-                HorizontalTextAlignment="Center"
-                Style="{StaticResource PageSubtitle}"
-                Text="Resumen">
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource PageSubtitle}"
+                    Text="Resumen">
 
-                <Label.Shadow>
-                    <Shadow Opacity="0.6" Offset="20, 20" />
-                </Label.Shadow>
-            </Label>
-            <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                    <Label.Shadow>
+                        <Shadow Opacity="0.6" Offset="20, 20" />
+                    </Label.Shadow>
+                </Label>
+                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
-            <!--  Datos del Cliente  -->
-            <Label
-                FontAttributes="Bold"
-                FontSize="15"
-                Text="Datos del Cliente:" />
-            <Label FontSize="14" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
-            <Label FontSize="14" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
-            <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <!--  Datos del Cliente  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    Text="Datos del Cliente:" />
+                <Label FontSize="14" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
+                <Label FontSize="14" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
+                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
-            <!--  Datos del Camión  -->
-            <Label
-                FontAttributes="Bold"
-                FontSize="15"
-                Text="Datos del Camión:" />
-            <Label FontSize="14" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
-            <Label FontSize="14" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
-            <Label FontSize="14" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
-            <Label FontSize="14" Text="{Binding DatosCamion.Patente, StringFormat='Patente: {0}'}" />
-            <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <!--  Datos del Camión  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    Text="Datos del Camión:" />
+                <Label FontSize="14" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
+                <Label FontSize="14" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
+                <Label FontSize="14" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
+                <Label FontSize="14" Text="{Binding DatosCamion.Patente, StringFormat='Patente: {0}'}" />
+                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
-            <!--  Especie 1  -->
-            <Label
-                FontAttributes="Bold"
-                FontSize="15"
-                Text="Especie 1:" />
-            <Grid ColumnDefinitions="*, *">
-                <Label Grid.Column="0" FontSize="14" Text="{Binding EspecieUno, StringFormat='Especie: {0}'}" />
-                <Label Grid.Column="1" FontSize="14" Text="{Binding LargoEspecieUno, StringFormat='Largo: {0}'}" />
-            </Grid>
-            <Label FontSize="14" Text="{Binding MedidasEspecieUno.Count, StringFormat='N° de mediciones: {0}'}" />
-            <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <!--  Especie 1  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    Text="Especie 1:" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding EspecieUno, StringFormat='Especie: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="14"
+                        Text="{Binding LargoEspecieUno, StringFormat='Largo: {0}'}" />
+                </Grid>
+                <Label FontSize="14" Text="{Binding MedidasEspecieUno.Count, StringFormat='N° de mediciones: {0}'}" />
+                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
-            <!--
-            <Label
-                FontAttributes="Bold"
-                FontSize="14"
-                Text="{Binding EspecieUno, StringFormat='Especie 1: {0}'}" />
-            <Label FontSize="12" Text="{Binding LargoEspecieUno, StringFormat='Largo: {0}'}" />
+                <!--  Especie 2  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    Text="Especie 2:" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding EspecieDos, StringFormat='Especie: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="14"
+                        Text="{Binding LargoEspecieDos, StringFormat='Largo: {0}'}" />
+                </Grid>
+                <Label FontSize="14" Text="{Binding MedidasEspecieDos.Count, StringFormat='N° de mediciones: {0}'}" />
+                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
-            <CollectionView ItemsSource="{Binding MedidasEspecieUno}">
+                <!--  Especie 3  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    Text="Especie 3:" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding EspecieTres, StringFormat='Especie: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="14"
+                        Text="{Binding LargoEspecieTres, StringFormat='Largo: {0}'}" />
+                </Grid>
+                <Label FontSize="14" Text="{Binding MedidasEspecieTres.Count, StringFormat='N° de mediciones: {0}'}" />
+                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
-                <CollectionView.Header>
-                    <Grid Margin="10" ColumnDefinitions="Auto, *, Auto, *, Auto">
-                        <Label
-                            Grid.Row="0"
-                            FontSize="12"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="Diametro: "
-                            VerticalOptions="Center" />
-
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            FontSize="12"
-                            FontAttributes="Bold"
-                            HorizontalTextAlignment="Center"
-                            Text="Total (Q):"
-                            VerticalOptions="Center" />
-
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="4"
-                            FontSize="12"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="Volumen: "
-                            VerticalOptions="Center" />
-                    </Grid>
-                </CollectionView.Header>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:MedidaTrozoAserrable">
-                        <Grid
-                            Padding="10,0"
-                            ColumnDefinitions="*, *, *"
-                            RowDefinitions="Auto, Auto"
-                            RowSpacing="8">
-
-                            <controls:NumericEntryCell
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                UserInput="{Binding Diametro}" />
-
-                            <controls:NumericEntryCell
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                UserInput="{Binding Cantidad}" />
-
-                            <controls:NumericEntryCell
-                                Grid.Row="1"
-                                Grid.Column="2"
-                                UserInput="{Binding Volumen}" />
-
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-            -->
-            <!--  Especie 2  -->
-            <Label
-                FontAttributes="Bold"
-                FontSize="15"
-                Text="Especie 2:" />
-            <Grid ColumnDefinitions="*, *">
-                <Label Grid.Column="0" FontSize="14" Text="{Binding EspecieDos, StringFormat='Especie: {0}'}" />
-                <Label Grid.Column="1" FontSize="14" Text="{Binding LargoEspecieDos, StringFormat='Largo: {0}'}" />
-            </Grid>
-            <Label FontSize="14" Text="{Binding MedidasEspecieDos.Count, StringFormat='N° de mediciones: {0}'}" />
-            <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
-            <!--
-            <Label
-                FontAttributes="Bold"
-                FontSize="14"
-                Text="Especie 2:" />
-
-            -->
-            <!--  Especie 3  -->
-            <Label
-                FontAttributes="Bold"
-                FontSize="15"
-                Text="Especie 3:" />
-            <Grid ColumnDefinitions="*, *">
-                <Label Grid.Column="0" FontSize="14" Text="{Binding EspecieTres, StringFormat='Especie: {0}'}" />
-                <Label Grid.Column="1" FontSize="14" Text="{Binding LargoEspecieTres, StringFormat='Largo: {0}'}" />
-            </Grid>
-            <Label FontSize="14" Text="{Binding MedidasEspecieTres.Count, StringFormat='N° de mediciones: {0}'}" />
-            <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
-            <!--
-            <Label
-                FontAttributes="Bold"
-                FontSize="14"
-                Text="Especie 3:" />-->
-
-            <Grid ColumnDefinitions="*, *">
-                <Button
-                    Grid.Column="0"
-                    Style="{StaticResource Buttons}"
-                    Text="Generar PDF" 
-                    Command="{Binding GeneratePDFCommand}"/>
-                <Button
-                    Grid.Column="1"
-                    Style="{StaticResource Buttons}"
-                    Text="Volver" 
-                    Command="{Binding ClosePopupCommand}"/>
-            </Grid>
-
-
-        </VerticalStackLayout>
+                <Grid ColumnDefinitions="*, *">
+                    <Button
+                        Grid.Column="0"
+                        Command="{Binding GeneratePDFCommand}"
+                        Style="{StaticResource Buttons}"
+                        Text="Generar PDF" />
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding ClosePopupCommand}"
+                        Style="{StaticResource Buttons}"
+                        Text="Volver" />
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
     </Border>
 </toolkit2:Popup>

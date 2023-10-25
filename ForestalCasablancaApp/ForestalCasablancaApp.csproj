@@ -35,7 +35,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#70b175" BaseSize="256,256" />
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#212121" BaseSize="256,256" />
 
 		<!-- Logos -->
 		<MauiImage Include="Resources\Logos\*" />
@@ -51,23 +51,15 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	
-
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\logo_transparent_background.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Fonts\fa-brands.otf" />
-	  <None Remove="Resources\Fonts\fa-regular.otf" />
-	  <None Remove="Resources\Fonts\fa-solid.otf" />
-	  <None Remove="Resources\Fonts\fontello.ttf" />
-	  <None Remove="Resources\Images\lena_background.jpg" />
-	  <None Remove="Resources\Images\mainpage_background.jpg" />
-	  <None Remove="Resources\Images\metroruma_background.jpg" />
-	  <None Remove="Resources\Images\trozoaserrable_background.jpg" />
-	  <None Remove="Resources\Images\trunk.png" />
-	  <None Remove="Resources\Raw\black_logo_no_bg.png" />
+	  <None Remove="Resources\Images\lenamodule_icon_dos.png" />
+	  <None Remove="Resources\Images\mainpage_background_dos.jpg" />
+	  <None Remove="Resources\Images\metroruma_module_icon.png" />
+	  <None Remove="Resources\Images\trozo_module_icon.png" />
+	  <None Remove="Resources\Logos\bosquesnalcahue.png" />
+	  <None Remove="Resources\Logos\mainpage_logo.png" />
+	  <None Remove="Resources\Logos\pdf_image.png" />
+	  <None Remove="Resources\Splash\splash.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -116,14 +108,11 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Logos\black_logo_no_bg.png" />
-	  <MauiImage Include="Resources\Logos\color_logo_no_bg.png" />
-	  <MauiImage Include="Resources\Logos\color_logo_with_bg.png" />
-	  <MauiImage Include="Resources\Logos\white_logo_no_bg.png" />
-	  <MauiImage Include="Resources\Raw\black_logo_no_bg.png" />
+	  <MauiImage Include="Resources\Raw\pdf_image.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiAsset Update="Resources\Raw\black_logo_no_bg.png" LogicalName="black_logo_no_bg.png" />
+		<MauiAsset Update="Resources\Raw\pdf_image.png" LogicalName="pdf_image.png" />
 	</ItemGroup>
 
 	<ItemGroup>

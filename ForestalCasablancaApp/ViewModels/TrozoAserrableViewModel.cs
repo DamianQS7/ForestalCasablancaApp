@@ -82,6 +82,7 @@ namespace ForestalCasablancaApp.ViewModels
 
         #region Methods
 
+        // Constructor
         public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Trozo Aserrable";
@@ -173,7 +174,7 @@ namespace ForestalCasablancaApp.ViewModels
                         Diametro = DiametroIngresado,
                         Cantidad = CantidadIngresada,
                         Volumen = volume,
-                        Total = volume * CantidadIngresada
+                        Total = Math.Round((double)(volume * CantidadIngresada), 2)
                     });
 
                     // Clear the input fields
@@ -194,7 +195,7 @@ namespace ForestalCasablancaApp.ViewModels
                         Diametro = DiametroIngresado2,
                         Cantidad = CantidadIngresada2,
                         Volumen = volume,
-                        Total = volume * CantidadIngresada2
+                        Total = Math.Round((double)(volume * CantidadIngresada2), 2)
                     });
 
                     // Clear the input fields
@@ -215,7 +216,7 @@ namespace ForestalCasablancaApp.ViewModels
                         Diametro = DiametroIngresado3,
                         Cantidad = CantidadIngresada3,
                         Volumen = volume,
-                        Total = volume * CantidadIngresada3
+                        Total = Math.Round((double)(volume * CantidadIngresada3), 2)
                     });
 
                     // Clear the input fields
@@ -318,6 +319,7 @@ namespace ForestalCasablancaApp.ViewModels
             }
             
         }
+
         #endregion
     }
 }

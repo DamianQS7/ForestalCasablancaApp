@@ -49,12 +49,13 @@ namespace ForestalCasablancaApp.Services
         {
             if(largo <= 5.90)
             {
-                
-                return Math.Round(((double)diametro * (double)diametro * (double)largo) / 10000, 2);
+                double result = ((double)diametro * (double)diametro * (double)largo) / 10000;
+                return Math.Round(result, 2);
             }
             else
             {
-                return Math.Round(Math.Pow((double)diametro + ((double)largo - 4) / 2, 2) * (((double)largo + 0.10)/ 10000), 2);
+                double result = Math.Pow((double)diametro + ((double)largo - 4) / 2, 2) * (((double)largo + 0.10) / 10000);
+                return Math.Round(result, 2);
             }
         }
 
@@ -79,7 +80,7 @@ namespace ForestalCasablancaApp.Services
                 totalFinal += total;
             }
 
-            return totalFinal;
+            return Math.Round(totalFinal, 2);
         }
     }
 }

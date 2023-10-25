@@ -24,7 +24,7 @@ namespace ForestalCasablancaApp.Services
 
         public PdfGeneratorService() 
         { 
-            ImagePath = Path.Combine(FileSystem.Current.AppDataDirectory, "black_logo_no_bg.png");
+            ImagePath = Path.Combine(FileSystem.Current.AppDataDirectory, "pdf_image.png");
         }
 
         public void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
@@ -49,11 +49,12 @@ namespace ForestalCasablancaApp.Services
                                   .PaddingBottom(5)
                                   .Row(row =>
                                   {
-                                      row.ConstantItem(80)
+                                      row.ConstantItem(200)
                                          .Image(ImagePath);
 
                                       row.RelativeItem()
                                           .AlignRight()
+                                          .PaddingTop(5)
                                           .Column(column =>
                                           {
                                               column.Spacing(5);
@@ -454,7 +455,7 @@ namespace ForestalCasablancaApp.Services
                     {
                         table.Cell().Element(CellStyle).Text(item.Diametro.ToString());
                         table.Cell().Element(CellStyle).Text(item.Cantidad.ToString());
-                        table.Cell().Element(CellStyle).Text(item.Volumen.ToString());
+                        table.Cell().Element(CellStyle).Text(item.Volumen.ToString("F2"));
                         table.Cell().Element(CellStyle).Text(item.Total.ToString());
                     }
 

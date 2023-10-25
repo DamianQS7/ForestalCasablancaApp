@@ -6,12 +6,13 @@
     xmlns:fontAwesome="clr-namespace:ForestalCasablancaApp.Helpers"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
     Title="{Binding Title}"
-    x:DataType="viewModels:SettingsPageViewModel">
+    x:DataType="viewModels:SettingsPageViewModel"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600}, Light={StaticResource Gray100}}">
 
     <ContentPage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
             <Border
-                BackgroundColor="#F3F2F1"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray600}}"
                 HeightRequest="90"
                 HorizontalOptions="Start"
                 Stroke="#F3F2F1"
@@ -51,13 +52,12 @@
                         <VisualStateGroup x:Name="CheckedStates">
                             <VisualState x:Name="Checked">
                                 <VisualState.Setters>
-                                    <Setter Property="Stroke" Value="{StaticResource Primary}" />
+                                    <Setter Property="Stroke" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource Gray900}}" />
                                     <Setter TargetName="check" Property="Opacity" Value="1" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Unchecked">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#F3F2F1" />
                                     <Setter Property="Stroke" Value="#F3F2F1" />
                                     <Setter TargetName="check" Property="Opacity" Value="0" />
                                 </VisualState.Setters>
@@ -91,9 +91,7 @@
             <VerticalStackLayout Padding="10">
                 <Label Text="Usuario Actual:" TextDecorations="Underline" />
                 <Entry
-                    Margin="0,12,0,0"
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
-                                                      Light={StaticResource Gray300}}"
+                    Style="{StaticResource CurrentUserEntryStyle}"
                     Text="{Binding CurrentUser}" />
 
                 <Button
@@ -106,8 +104,7 @@
                             FontFamily="FAS"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.User}"
                             Size="Medium"
-                            Color="{AppThemeBinding Light={StaticResource Black},
-                                                    Dark={StaticResource White}}" />
+                            Color="{StaticResource White}" />
                     </Button.ImageSource>
                 </Button>
             </VerticalStackLayout>
@@ -130,8 +127,8 @@
                 <Label
                     Margin="0,12,0,0"
                     Padding="5"
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
-                                                      Light={StaticResource Gray300}}"
+                    BackgroundColor="{StaticResource Gray500}"
+                    TextColor="{StaticResource White}"
                     Text="{Binding CurrentWorkingDirectory}" />
 
                 <Button
@@ -144,8 +141,7 @@
                             FontFamily="FAS"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.FolderOpen}"
                             Size="Medium"
-                            Color="{AppThemeBinding Light={StaticResource Black},
-                                                    Dark={StaticResource White}}" />
+                            Color="{StaticResource White}" />
                     </Button.ImageSource>
                 </Button>
             </VerticalStackLayout>
@@ -177,12 +173,15 @@
 
                     <RadioButton.Content>
                         <StackLayout Margin="0,5,0,0">
-                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource Black}}" />
+                            <Image 
+                                Scale="0.75" 
+                                Source="{FontImage FontFamily=FAS, 
+                                Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource White}}" />
                             <Label
                                 Margin="0,8,0,0"
                                 HorizontalOptions="Center"
                                 Text="Sistema"
-                                TextColor="{StaticResource Gray900}"
+                                TextColor="{StaticResource White}"
                                 VerticalOptions="End" />
                         </StackLayout>
                     </RadioButton.Content>
@@ -196,12 +195,12 @@
 
                     <RadioButton.Content>
                         <StackLayout Margin="0,5,0,0">
-                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource Black}}" />
+                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource White}}" />
                             <Label
                                 Margin="0,8,0,0"
                                 HorizontalOptions="Center"
                                 Text="Claro"
-                                TextColor="{StaticResource Gray900}"
+                                TextColor="{StaticResource White}"
                                 VerticalOptions="End" />
                         </StackLayout>
                     </RadioButton.Content>
@@ -215,12 +214,12 @@
 
                     <RadioButton.Content>
                         <StackLayout Margin="0,5,0,0">
-                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource Black}}" />
+                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource White}}" />
                             <Label
                                 Margin="0,8,0,0"
                                 HorizontalOptions="Center"
                                 Text="Oscuro"
-                                TextColor="{StaticResource Gray900}"
+                                TextColor="{StaticResource White}"
                                 VerticalOptions="End" />
                         </StackLayout>
                     </RadioButton.Content>

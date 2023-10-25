@@ -62,7 +62,7 @@
                                     Title="Seleccione una especie"
                                     Grid.Column="1"
                                     ItemsSource="{Binding ListaEspecies}"
-                                    SelectedItem="{Binding EspecieUno}" />
+                                    SelectedItem="{Binding EspecieUno}"/>
 
                                 <Label
                                     Grid.Row="1"
@@ -116,6 +116,7 @@
                                     Margin="0,5"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="1"
+                                    Style="{StaticResource Buttons}"
                                     Text=""
                                     WidthRequest="100">
 
@@ -123,8 +124,7 @@
                                         <FontImageSource
                                             FontFamily="FAS"
                                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                            Color="{AppThemeBinding Light={StaticResource White},
-                                                                    Dark={StaticResource Tertiary}}" />
+                                            Color="{StaticResource White}" />
                                     </Button.ImageSource>
                                 </Button>
                             </Grid>
@@ -189,7 +189,13 @@
                                                 </SwipeItems>
                                             </SwipeView.RightItems>
 
-                                            <Border Padding="5" StrokeShape="RoundRectangle 10">
+                                            <Border
+                                                Padding="5"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
+                                                                                  Light={StaticResource Gray600}}"
+                                                Stroke="{StaticResource Gray700}"
+                                                StrokeShape="RoundRectangle 10"
+                                                StrokeThickness="2">
 
                                                 <Grid
                                                     Padding="10,0"
@@ -304,6 +310,7 @@
                                     Margin="0,5"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="2"
+                                    Style="{StaticResource Buttons}"
                                     Text=""
                                     WidthRequest="100">
 
@@ -311,8 +318,7 @@
                                         <FontImageSource
                                             FontFamily="FAS"
                                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                            Color="{AppThemeBinding Light={StaticResource White},
-                                                                    Dark={StaticResource Tertiary}}" />
+                                            Color="{StaticResource White}" />
                                     </Button.ImageSource>
                                 </Button>
                             </Grid>
@@ -377,7 +383,13 @@
                                                 </SwipeItems>
                                             </SwipeView.RightItems>
 
-                                            <Border Padding="5" StrokeShape="RoundRectangle 10">
+                                            <Border
+                                                Padding="5"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
+                                                                                  Light={StaticResource Gray600}}"
+                                                Stroke="{StaticResource Gray700}"
+                                                StrokeShape="RoundRectangle 10"
+                                                StrokeThickness="2">
 
                                                 <Grid
                                                     Padding="10,0"
@@ -409,7 +421,6 @@
                         </VerticalStackLayout>
                     </Grid>
                 </Border>
-
 
                 <!--  Mediciones Especie 3 Section  -->
                 <Border Grid.Row="4" Style="{StaticResource PageSectionCard}">
@@ -485,6 +496,7 @@
                                     UserInput="{Binding CantidadIngresada3}" />
 
                                 <Button
+                                    Style="{StaticResource Buttons}"
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
                                     Margin="0,5"
@@ -497,8 +509,7 @@
                                         <FontImageSource
                                             FontFamily="FAS"
                                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                            Color="{AppThemeBinding Light={StaticResource White},
-                                                                    Dark={StaticResource Tertiary}}" />
+                                            Color="{StaticResource White}" />
                                     </Button.ImageSource>
                                 </Button>
                             </Grid>
@@ -563,7 +574,13 @@
                                                 </SwipeItems>
                                             </SwipeView.RightItems>
 
-                                            <Border Padding="5" StrokeShape="RoundRectangle 10">
+                                            <Border
+                                                Padding="5"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
+                                                                                  Light={StaticResource Gray600}}"
+                                                Stroke="{StaticResource Gray700}"
+                                                StrokeShape="RoundRectangle 10"
+                                                StrokeThickness="2">
 
                                                 <Grid
                                                     Padding="10,0"

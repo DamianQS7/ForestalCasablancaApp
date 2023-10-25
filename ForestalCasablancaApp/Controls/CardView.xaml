@@ -7,50 +7,68 @@
     xmlns:viewmodel="clr-namespace:ForestalCasablancaApp.ViewModels"
     x:Name="this">
 
-    <Border
-        x:Name="CustomBorder"
-        Margin="10,20,10,20"
-        BindingContext="{x:Reference this}"
-        HeightRequest="{OnIdiom Phone=100,
-                                Tablet=150}"
-        Style="{StaticResource CardViewControlStyle}"
-        WidthRequest="{OnIdiom Phone=350,
-                               Tablet=600}">
+    <Grid BindingContext="{x:Reference this}">
 
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=GoToDespachoCommand}" CommandParameter="{Binding CommandPath}" />
-        </Border.GestureRecognizers>
+        <Border
+            x:Name="CustomBorder"
+            Margin="10,20,10,20"
+            HeightRequest="{OnIdiom Phone=100,
+                                    Tablet=150}"
+            Style="{StaticResource CardViewControlStyle}"
+            WidthRequest="{OnIdiom Phone=350,
+                                   Tablet=600}">
 
-        <Grid ColumnDefinitions="2*, 4*, *">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=GoToDespachoCommand}" 
+                    CommandParameter="{Binding CommandPath}" />
+            </Border.GestureRecognizers>
+
+            <Grid ColumnDefinitions="2*, 4*, *">
+
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource CardLabel}"
+                    Text="{Binding CardTitle}"
+                    VerticalOptions="Center" />
+
+                <Image
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Image.Source>
+
+                        <FontImageSource
+                            FontFamily="Icons"
+                            Glyph="&#xE800;"
+                            Size="{OnIdiom Tablet=30,
+                                           Phone=15}"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Border>
+
+        <Border
+            x:Name="IconBorder"
+            Margin="20, 0, 0, 0"
+            HorizontalOptions="Start"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600},
+                                              Light={StaticResource PaleGreen}}"
+            HeightRequest="115"
+            Stroke="{AppThemeBinding Dark={StaticResource Gray300},Light={StaticResource Gray900}}"
+            StrokeShape="RoundRectangle 50"
+            StrokeThickness="3"
+            WidthRequest="115">
+
             <Image
-                Grid.Column="0"
-                Margin="25"
+                Margin="24"
                 Aspect="AspectFill"
                 Source="{Binding CardImage}" />
+        </Border>
+    </Grid>
 
-            <Label
-                Grid.Column="1"
-                HorizontalOptions="Center"
-                Style="{StaticResource CardLabel}"
-                Text="{Binding CardTitle}"
-                VerticalOptions="Center" />
-
-            <Image
-                Grid.Column="2"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
-
-                <Image.Source>
-
-                    <FontImageSource
-                        FontFamily="Icons"
-                        Glyph="&#xE800;"
-                        Size="{OnIdiom Tablet=30, Phone=15}" 
-                        Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-
-                </Image.Source>
-            </Image>
-
-        </Grid>
-    </Border>
 </ContentView>
