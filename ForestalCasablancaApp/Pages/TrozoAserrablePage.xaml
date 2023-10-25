@@ -219,7 +219,7 @@
                                                         Grid.Row="1"
                                                         Grid.Column="2"
                                                         ReadOnly="True"
-                                                        UserInput="{Binding Volumen}" />
+                                                        UserInput="{Binding Volumen, StringFormat='{0:F2}'}" />
 
                                                 </Grid>
                                             </Border>
@@ -410,7 +410,7 @@
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="2"
-                                                        UserInput="{Binding Volumen}" />
+                                                        UserInput="{Binding Volumen, StringFormat='{0:F2}'}" />
 
                                                 </Grid>
                                             </Border>
@@ -601,7 +601,7 @@
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="2"
-                                                        UserInput="{Binding Volumen}" />
+                                                        UserInput="{Binding Volumen, StringFormat='{0:F2}'}" />
 
                                                 </Grid>
                                             </Border>

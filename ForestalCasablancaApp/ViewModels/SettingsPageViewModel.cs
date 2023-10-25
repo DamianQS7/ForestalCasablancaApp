@@ -23,6 +23,7 @@ namespace ForestalCasablancaApp.ViewModels
 
         public void GetUserInitials()
         {
+            CurrentUser = CurrentUser.Trim();
             string[] names = CurrentUser.Split(' ');
 
             string initials = "";
@@ -43,7 +44,7 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 Preferences.Set("CurrentWorkingDirectory", folderPickerResult.Folder.Path);
                 CurrentWorkingDirectory = folderPickerResult.Folder.Path;
-                await Toast.Make($"Folder picked: Name - {folderPickerResult.Folder.Name}, Path - {folderPickerResult.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
+                await Toast.Make($"Directorio Seleccionado: {folderPickerResult.Folder.Name}", ToastDuration.Long).Show(cancellationToken);
             }
             else
             {
@@ -60,7 +61,7 @@ namespace ForestalCasablancaApp.ViewModels
                 return;
             }
 
-            Preferences.Set("CurrentUser", CurrentUser);
+            Preferences.Set("CurrentUser", CurrentUser.Trim());
             GetUserInitials();
             await Toast.Make($"Usuario actualizado con éxito.").Show();
         }
