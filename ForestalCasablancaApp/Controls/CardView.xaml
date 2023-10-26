@@ -64,7 +64,15 @@
             StrokeThickness="3"
             WidthRequest="115">
 
-            <Image
+            <!--<Border.Triggers>
+                <DataTrigger TargetType="Border" 
+                             Binding="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=IsBusy}"
+                             Value="True" >
+                    <Setter Property="BackgroundColor" Value="Black" />
+                </DataTrigger>
+            </Border.Triggers>-->
+            
+            <ImageButton
                 Margin="24"
                 Aspect="AspectFill"
                 Source="{Binding CardImage}" />

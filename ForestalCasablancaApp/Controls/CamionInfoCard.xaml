@@ -12,7 +12,7 @@
         <Border
             Margin="10,10,10,20"
             Padding="8,0,8,18"
-            Style="{StaticResource CustomerInfoCard}"
+            Style="{StaticResource InfoCard}"
             WidthRequest="{OnIdiom Phone=400,
                                    Tablet=600}">
 
