@@ -270,14 +270,14 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         private async void DisplaySummaryAsync()
         {
-            if(MedidasEspecieUno.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
+            if (MedidasEspecieUno.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
             {
                 // We get the totals for each list, before calling the popup.
                 UpdateViewModelTotals();
-                
+
                 // We get a new instance of the popup each time we call it.
                 _popup = new TrozoAserrableSummaryPopup();
-                
+
                 // Call the popup and display it.
                 BasePage.ShowPopup(_popup);
             }
@@ -285,7 +285,6 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", "Debe ingresar al menos una medida", "OK");
             }
-    
         }
 
         [RelayCommand]
@@ -318,7 +317,6 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 IsBusy = false;
             }
-            
         }
 
         #endregion

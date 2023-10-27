@@ -44,7 +44,7 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 Preferences.Set("CurrentWorkingDirectory", folderPickerResult.Folder.Path);
                 CurrentWorkingDirectory = folderPickerResult.Folder.Path;
-                await Toast.Make($"Directorio Seleccionado: {folderPickerResult.Folder.Name}", ToastDuration.Long).Show(cancellationToken);
+                await Toast.Make($"Directorio Seleccionado: {folderPickerResult.Folder.Path}", ToastDuration.Long).Show(cancellationToken);
             }
             else
             {
