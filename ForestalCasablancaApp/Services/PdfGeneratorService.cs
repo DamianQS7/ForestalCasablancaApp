@@ -29,6 +29,12 @@ namespace ForestalCasablancaApp.Services
 
         public void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
         {
+            // Set the file name
+            string folder = Preferences.Get("CurrentWorkingDirectory", "");
+            string fileName = PdfGeneratorService.FormatFileName("Trozo");
+            string finalPath = Path.Combine(folder, fileName);
+
+            // Design the PDF
             Document.Create(container =>
             {
                 container.Page(page =>
@@ -210,7 +216,7 @@ namespace ForestalCasablancaApp.Services
                         });
                 });
             })
-            .GeneratePdf(Preferences.Get("CurrentWorkingDirectory", "") + PdfGeneratorService.FormatFileName("TrozoAserrable"));
+            .GeneratePdf(finalPath);
         }
 
         public void GenerateLeñaPDF(LeñaViewModel model)
@@ -232,13 +238,15 @@ namespace ForestalCasablancaApp.Services
         /// <returns></returns>
         public static string FormatFileName(string despacho)
         {
-            string dateAsString = DateTime.Now.ToString();
+            string dateAsString = DateTime.Now.ToString("dd/MM/yy HH/mm/ss");
 
-            dateAsString = dateAsString.Replace(":", "-");
+            dateAsString = dateAsString.Replace(":", "");
 
             dateAsString = dateAsString.Replace(" ", "_");
 
-            return $"/{despacho}_{dateAsString}.pdf";
+            dateAsString = dateAsString.Replace("/", "-");
+
+            return $"{despacho}_{dateAsString}.pdf";
         }
 
         /// <summary>
