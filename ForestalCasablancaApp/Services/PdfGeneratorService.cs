@@ -7,6 +7,7 @@ using IContainer = QuestPDF.Infrastructure.IContainer;
 using System.Collections.ObjectModel;
 using ForestalCasablancaApp.Models;
 using CommunityToolkit.Maui.Alerts;
+using System.Diagnostics;
 
 namespace ForestalCasablancaApp.Services
 {
@@ -27,7 +28,7 @@ namespace ForestalCasablancaApp.Services
             ImagePath = Path.Combine(FileSystem.Current.AppDataDirectory, "pdf_image.png");
         }
 
-        public void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
+        public async void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
         {
             // Set the file name
             string folder = Preferences.Get("CurrentWorkingDirectory", "");
@@ -130,13 +131,13 @@ namespace ForestalCasablancaApp.Services
 
                             // Datos Camión
                             x.Item()
-                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente, 
+                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
 
                             // Detalles de Carga
-                            
+
                             // Lista 1
-                            if(model.MedidasEspecieUno.Count > 0)
+                            if (model.MedidasEspecieUno.Count > 0)
                             {
                                 x.Item()
                              .Component(new EspecieInfo("Producto 1", SubtitleSize, FirstColumnSize, model.EspecieUno, model.LargoEspecieUno));
@@ -177,7 +178,7 @@ namespace ForestalCasablancaApp.Services
                             // Lista 3
                             if (model.MedidasEspecieTres.Count > 0)
                             {
-                                if(model.MedidasEspecieDos.Count > 0 || model.MedidasEspecieUno.Count > 0)
+                                if (model.MedidasEspecieDos.Count > 0 || model.MedidasEspecieUno.Count > 0)
                                     x.Item().Height(0).PageBreak();
 
                                 x.Item()
@@ -206,7 +207,7 @@ namespace ForestalCasablancaApp.Services
                             });
 
                         });
-                                        
+
                     page.Footer()
                         .AlignCenter()
                         .Text(x =>
@@ -215,8 +216,10 @@ namespace ForestalCasablancaApp.Services
                             x.CurrentPageNumber();
                         });
                 });
-            })
-            .GeneratePdf(finalPath);
+            }).GeneratePdf(finalPath);
+
+            // Open the generated PDF
+            await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
         public void GenerateLeñaPDF(LeñaViewModel model)

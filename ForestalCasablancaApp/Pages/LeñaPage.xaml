@@ -19,7 +19,7 @@
 
         <ScrollView Grid.Row="1">
 
-            <Grid RowDefinitions="Auto, *, Auto, Auto">
+            <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
                 <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
 
                 <!--  Client Info Section  -->
@@ -28,11 +28,18 @@
                     NombreCliente="{Binding Cliente.Nombre}"
                     RutCliente="{Binding Cliente.RUT}" />
 
+                <!--  Camion Info Section  -->
+                <controls:CamionInfoCard
+                    Grid.Row="1"
+                    Empresa="{Binding DatosCamion.EmpresaTransportista}"
+                    NombreChofer="{Binding DatosCamion.Chofer}"
+                    PatenteCamion="{Binding DatosCamion.Patente}"
+                    RutChofer="{Binding DatosCamion.RutChofer}" />
+
                 <!--  Mediciones Section  -->
                 <Border
-                    Grid.Row="1"
-                    HeightRequest="{OnIdiom Phone=312,
-                                            Tablet=390}"
+                    Grid.Row="2"
+                    
                     Style="{StaticResource PageSectionCard}">
                     <VerticalStackLayout>
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
@@ -155,9 +162,7 @@
 
                 <!--  Palomera Section  -->
                 <Border
-                    Grid.Row="2"
-                    HeightRequest="{OnIdiom Phone=100,
-                                            Tablet=140}"
+                    Grid.Row="3"
                     Style="{StaticResource PageSectionCard}">
 
                     <VerticalStackLayout>
@@ -190,7 +195,7 @@
 
                 <!--  Buttons Section  -->
                 <Grid
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.ColumnSpan="2"
                     ColumnDefinitions="*, *">
 
