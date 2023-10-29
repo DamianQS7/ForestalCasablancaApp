@@ -78,7 +78,16 @@
                         FontSize="14"
                         Text="{Binding LargoEspecieUno, StringFormat='Largo: {0}'}" />
                 </Grid>
-                <Label FontSize="14" Text="{Binding MedidasEspecieUno.Count, StringFormat='N° de mediciones: {0}'}" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding TotalSumLista1, StringFormat='Cantidad: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="14"
+                        Text="{Binding FinalTotalSumLista1, StringFormat='Volumen: {0} m3'}" />
+                </Grid>
                 <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
                 <!--  Especie 2  -->
@@ -96,7 +105,16 @@
                         FontSize="14"
                         Text="{Binding LargoEspecieDos, StringFormat='Largo: {0}'}" />
                 </Grid>
-                <Label FontSize="14" Text="{Binding MedidasEspecieDos.Count, StringFormat='N° de mediciones: {0}'}" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding TotalSumLista2, StringFormat='Cantidad: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="14"
+                        Text="{Binding FinalTotalSumLista2, StringFormat='Volumen: {0} m3'}" />
+                </Grid>
                 <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
                 <!--  Especie 3  -->
@@ -114,7 +132,16 @@
                         FontSize="14"
                         Text="{Binding LargoEspecieTres, StringFormat='Largo: {0}'}" />
                 </Grid>
-                <Label FontSize="14" Text="{Binding MedidasEspecieTres.Count, StringFormat='N° de mediciones: {0}'}" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding TotalSumLista3, StringFormat='Cantidad: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="14"
+                        Text="{Binding FinalTotalSumLista3, StringFormat='Volumen: {0} m3'}" />
+                </Grid>
                 <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
 
                 <Grid ColumnDefinitions="*, *">

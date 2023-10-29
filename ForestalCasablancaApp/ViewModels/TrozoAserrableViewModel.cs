@@ -63,7 +63,6 @@ namespace ForestalCasablancaApp.ViewModels
             "Aromo",
             "Encino" 
         };
-
         public List<string> ListaLargos { get; set; } = new()
         {
             "1.20",

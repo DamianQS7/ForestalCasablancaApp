@@ -48,7 +48,7 @@ namespace ForestalCasablancaApp.ViewModels
             }
             else
             {
-                await Toast.Make($"Folder is not picked, {folderPickerResult.Exception.Message}").Show(cancellationToken);
+                await Toast.Make($"Tarea Cancelada: {folderPickerResult.Exception.Message}").Show(cancellationToken);
             }
         }
 

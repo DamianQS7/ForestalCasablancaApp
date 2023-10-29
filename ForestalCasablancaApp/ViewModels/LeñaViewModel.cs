@@ -5,6 +5,7 @@ using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Pages;
 using ForestalCasablancaApp.Services;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace ForestalCasablancaApp.ViewModels
@@ -13,8 +14,8 @@ namespace ForestalCasablancaApp.ViewModels
     {
         private readonly ICalculatorService _calculatorService;
 
-        [ObservableProperty]
-        private DespachoLeñaModel _despacho;
+        [ObservableProperty] private DespachoLeñaModel _despacho;
+        public ObservableCollection<double?> Alturas { get; set; } = new();
 
         public LeñaViewModel(ICalculatorService calculatorService)
         {
@@ -52,7 +53,7 @@ namespace ForestalCasablancaApp.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "Debe completar todos los campos", "OK");
+                await Shell.Current.DisplayAlert("Error", "Debe incluir 'Largo Camión', 'N° de Bancos' y por lo menos una altura", "OK");
             }
         }
 
