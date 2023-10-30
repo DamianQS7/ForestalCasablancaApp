@@ -85,10 +85,10 @@
 	  <MauiXaml Update="Controls\ClientInfoCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\TrozoAserrableSummaryPopup.xaml">
+	  <MauiXaml Update="Popups\TrozoAserrableSummaryPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\ConfirmationPopup.xaml">
+	  <MauiXaml Update="Popups\ConfirmationPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\NumericEntryCell.xaml">
@@ -112,7 +112,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Controls\TrozoAserrableSummaryPopup.xaml.cs">
+		<Compile Update="Popups\TrozoAserrableSummaryPopup.xaml.cs">
 			<DependentUpon>TrozoAserrableSummaryPopup.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>

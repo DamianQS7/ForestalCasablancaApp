@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <toolkit2:Popup
-    x:Class="ForestalCasablancaApp.Controls.TrozoAserrableSummaryPopup"
+    x:Class="ForestalCasablancaApp.Popups.TrozoAserrableSummaryPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
     xmlns:models="clr-namespace:ForestalCasablancaApp.Models"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:toolkit2="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"

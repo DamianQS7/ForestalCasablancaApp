@@ -1,12 +1,9 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Models;
-using ForestalCasablancaApp.Pages;
+using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -15,8 +12,10 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly ICalculatorService _calculatorService;
 
         [ObservableProperty] private DespachoLeñaModel _despacho;
-        public ObservableCollection<double?> Alturas { get; set; } = new();
+        [ObservableProperty] private Cliente _cliente;
+        [ObservableProperty] private DatosCamion _datosCamion;
 
+        #region Methods
         public LeñaViewModel(ICalculatorService calculatorService)
         {
             Title = "Despacho Leña";
@@ -37,6 +36,8 @@ namespace ForestalCasablancaApp.ViewModels
             else
                 IsValidInput = true;
         }
+
+        #endregion
 
         #region Commands
 
