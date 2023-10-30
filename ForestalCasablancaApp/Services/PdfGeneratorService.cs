@@ -18,6 +18,7 @@ namespace ForestalCasablancaApp.Services
         public int TitleSize { get; set; } = 18;
         public int SubtitleSize { get; set; } = 14;
         public int NormalSize { get; set; } = 12;
+        public int FooterSize { get; set; } = 10;
         public int FirstColumnSize { get; set; } = 140;
         public string ImagePath { get; set; }
 
@@ -32,7 +33,7 @@ namespace ForestalCasablancaApp.Services
         {
             // Set the file name
             string folder = Preferences.Get("CurrentWorkingDirectory", "");
-            string fileName = PdfGeneratorService.FormatFileName("Trozo");
+            string fileName = PdfGeneratorService.GenerateFileName("Trozo");
             string finalPath = Path.Combine(folder, fileName);
 
             // Design the PDF
@@ -50,72 +51,7 @@ namespace ForestalCasablancaApp.Services
                     #endregion
 
                     page.Header()
-                        .Column(column =>
-                        {
-                            column.Item()
-                                  .PaddingBottom(5)
-                                  .Row(row =>
-                                  {
-                                      row.ConstantItem(80)
-                                         .Image(ImagePath);
-
-                                      row.RelativeItem()
-                                          .AlignRight()
-                                          .PaddingTop(5)
-                                          .Column(column =>
-                                          {
-                                              column.Spacing(5);
-
-                                              column.Item()
-                                                    .Text("Detalle Despacho")
-                                                    .Bold()
-                                                    .FontSize(TitleSize);
-
-                                              column.Item()
-                                                    .Text("Venta en Trozos");
-                                          });
-                                  });
-
-                            // N° & Fecha ColumnHeaders
-                            column.Item()
-                                  .PaddingRight(300)
-                                  .Row(row =>
-                                  {
-                                      row.RelativeItem()
-                                         .Border(1)
-                                         .AlignCenter()
-                                         .Text(x =>
-                                         {
-                                             x.Span("N°")
-                                              .Bold();
-                                         });
-
-                                      row.RelativeItem()
-                                         .Border(1)
-                                         .AlignCenter()
-                                         .Text(x =>
-                                         {
-                                             x.Span("Fecha")
-                                              .Bold();
-                                         });
-                                  });
-
-                            // N° y Fecha actual values
-                            column.Item()
-                                  .PaddingRight(300)
-                                  .Row(row =>
-                                  {
-                                      row.RelativeItem()
-                                         .Border(1)
-                                         .AlignCenter()
-                                         .Text(model.Folio);
-
-                                      row.RelativeItem()
-                                         .Border(1)
-                                         .AlignCenter()
-                                         .Text(DateTime.Now.ToString());
-                                  });
-                        });
+                        .Component(new DocumentHeader("Venta en Trozos", ImagePath, TitleSize, model.Folio));
 
                     page.Content()
                         .PaddingVertical(0, Unit.Centimetre)
@@ -209,12 +145,7 @@ namespace ForestalCasablancaApp.Services
                         });
 
                     page.Footer()
-                        .AlignCenter()
-                        .Text(x =>
-                        {
-                            x.Span("Página ");
-                            x.CurrentPageNumber();
-                        });
+                        .Element(ComposeFooter);
                 });
             }).GeneratePdf(finalPath);
 
@@ -222,14 +153,203 @@ namespace ForestalCasablancaApp.Services
             await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
-        public void GenerateLeñaPDF(LeñaViewModel model)
+        public async void GenerateLeñaPDF(LeñaViewModel model)
         {
-            throw new NotImplementedException();
+            // Set the file name
+            string folder = Preferences.Get("CurrentWorkingDirectory", "");
+            string fileName = PdfGeneratorService.GenerateFileName("Leña");
+            string finalPath = Path.Combine(folder, fileName);
+
+            // Format the information to be displayed
+            List<double> alturas = new List<double>();
+
+            foreach(var item in model.Despacho.Alturas)
+            {
+                if(item is null)
+                    alturas.Add(0);
+                else
+                    alturas.Add((double)item);
+            }
+
+            // Design the PDF
+            Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    // Page Settings
+                    page.Size(PageSizes.A4);
+                    page.Margin(1.5f, Unit.Centimetre);
+                    page.PageColor(Colors.White);
+                    page.DefaultTextStyle(x => x.FontSize(NormalSize));
+
+                    // Document Sections
+                    page.Header()
+                        .Component(new DocumentHeader("Venta Leña", ImagePath, TitleSize, model.Folio));
+
+                    page.Content()
+                        .PaddingVertical(0, Unit.Centimetre)
+                        .Column(x =>
+                        {
+                            x.Spacing(20);
+
+                            x.Item().Height(0);
+
+                            //Datos Cliente
+                            x.Item()
+                             .Component(new ClientInfo("Datos Cliente", SubtitleSize, FirstColumnSize, model.Cliente.Nombre, model.Cliente.RUT));
+
+                            // Datos Camión
+                            x.Item()
+                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
+                             model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Detalles de Carga
+                            x.Item().Column(col =>
+                            {
+                                // Title
+                                col.Item()
+                                   .Component(new SectionTitle("Detalle Despacho", SubtitleSize));
+
+                                // Medidas
+                                col.Item()
+                                   .Table(table =>
+                                   {
+                                       // Table columns definition
+                                       table.ColumnsDefinition(col =>
+                                       {
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                       });
+
+                                       // Table Header definition
+                                       table.Header(header =>
+                                       {
+                                           header.Cell().ColumnSpan(4).Element(HeaderCellStyle).Text("Medidas");
+                                       });
+
+                                       // Table Content
+                                       // Table Content
+                                       table.Cell().Element(SummaryCellStyle).Text("Largo Camión: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.LargoCamion.ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("N° de Bancos : ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.Bancos.ToString());
+
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 1: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[0].ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 2: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[1].ToString());
+
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 3: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[2].ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 4: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[3].ToString());
+
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 5: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[4].ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 6: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[5].ToString());
+
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 7: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[6].ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura 8: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(alturas[7].ToString());
+                                   });
+                                
+                                // Palomera
+                                col.Item()
+                                   .Table(table =>
+                                   {
+                                       // Table columns definition
+                                       table.ColumnsDefinition(col =>
+                                       {
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                       });
+
+                                       // Table Header definition
+                                       table.Header(header =>
+                                       {
+                                           header.Cell().ColumnSpan(4).Element(HeaderCellStyle).Text("Palomera");
+                                       });
+
+                                       // Table Content
+                                       table.Cell().Element(SummaryCellStyle).Text("Ancho Palomera: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AnchoPalomera.ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("Alto Palomera : ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AltoPalomera.ToString());
+                                   });
+
+                                // Resumen
+                                col.Item()
+                                   .Table(table =>
+                                   {
+                                       // Table columns definition
+                                       table.ColumnsDefinition(col =>
+                                       {
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                           col.RelativeColumn();
+                                       });
+
+                                       // Table Header definition
+                                       table.Header(header =>
+                                       {
+                                           header.Cell().ColumnSpan(4).Element(HeaderCellStyle).Text("Resumen Final");
+                                       });
+
+                                       // Table Content
+                                       table.Cell().Element(SummaryCellStyle).Text("Altura Media: ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AlturaMedia.ToString());
+                                       table.Cell().Element(SummaryCellStyle).Text("Total : ").SemiBold();
+                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.TotalMetrosLeña.ToString());
+                                   });
+                            });
+
+                        });
+
+                    page.Footer()
+                        .Element(ComposeFooter);
+                });
+            }).GeneratePdf(finalPath);
+
+            // Open the generated PDF
+            await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
         public void GenerateMetroRumaPDF(MetroRumaViewModel model)
         {
-            throw new NotImplementedException();
+            // Set the file name
+            string folder = Preferences.Get("CurrentWorkingDirectory", "");
+            string fileName = PdfGeneratorService.GenerateFileName("MetroRuma");
+            string finalPath = Path.Combine(folder, fileName);
+
+            // Design the PDF
+            Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    // Page Settings
+                    page.Size(PageSizes.A4);
+                    page.Margin(1.5f, Unit.Centimetre);
+                    page.PageColor(Colors.White);
+                    page.DefaultTextStyle(x => x.FontSize(NormalSize));
+
+                    // Document Sections
+                    page.Header()
+                        .Component(new DocumentHeader("Venta Leña", ImagePath, TitleSize, model.Folio));
+
+                    page.Footer()
+                        .Element(ComposeFooter);
+                });
+            }).GeneratePdf(finalPath);
+
+            // Open the generated PDF
+            //await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
         #region Helper Methods
@@ -239,17 +359,16 @@ namespace ForestalCasablancaApp.Services
         /// </summary>
         /// <param name="despacho">String that will help to identify which module generated the PDF</param>
         /// <returns></returns>
-        public static string FormatFileName(string despacho)
-        {
+        public static string GenerateFileName(string despacho)
+        {            
+            // Get the current date and time
             string dateAsString = DateTime.Now.ToString("dd/MM/yy HH/mm/ss");
 
-            dateAsString = dateAsString.Replace(":", "");
+            // Remove the characters that we don't want in the file name
+            string formattedDate = dateAsString.Replace(":", "").Replace(" ", "_").Replace("/", "-");
 
-            dateAsString = dateAsString.Replace(" ", "_");
-
-            dateAsString = dateAsString.Replace("/", "-");
-
-            return $"{despacho}_{dateAsString}.pdf";
+            // Return the formatted string
+            return $"{despacho}_{formattedDate}.pdf";
         }
 
         /// <summary>
@@ -295,10 +414,112 @@ namespace ForestalCasablancaApp.Services
                             .AlignCenter()
                             .BorderColor(Colors.Black);
         }
+
+        /// <summary>
+        /// Method that defines the layout for the footer of the PDF.
+        /// </summary>
+        /// <param name="container"></param>
+        private void ComposeFooter(IContainer container)
+        {
+            container
+                    .AlignCenter()
+                    .DefaultTextStyle(x => x.FontSize(FooterSize))
+                    .Text(x =>
+                    {
+                        x.Span("Página ");
+                        x.CurrentPageNumber();
+                    });
+        }
+
         #endregion
 
-
         #region Components
+
+        public class DocumentHeader : IComponent
+        {
+            public string Title { get; set; }
+            public string ImagePath { get; set; }
+            public int TitleSize { get; set; }
+            public string Folio { get; set; }
+
+            public DocumentHeader(string title, string imagePath, int titleSize, string folio)
+            {
+                Title = title;
+                ImagePath = imagePath;
+                TitleSize = titleSize;
+                Folio = folio;
+            }
+
+            public void Compose(IContainer container)
+            {
+                container.Column(column =>
+                {
+                    column.Item()
+                          .PaddingBottom(5)
+                          .Row(row =>
+                          {
+                              row.ConstantItem(80)
+                                 .Image(ImagePath);
+
+                              row.RelativeItem()
+                                  .AlignRight()
+                                  .PaddingTop(5)
+                                  .Column(column =>
+                                  {
+                                      column.Spacing(5);
+
+                                      column.Item()
+                                            .Text("Detalle Despacho")
+                                            .Bold()
+                                            .FontSize(TitleSize);
+
+                                      column.Item()
+                                            .Text(Title);
+                                  });
+                          });
+
+                    // N° & Fecha ColumnHeaders
+                    column.Item()
+                          .PaddingRight(300)
+                          .Row(row =>
+                          {
+                              row.RelativeItem()
+                                 .Border(1)
+                                 .AlignCenter()
+                                 .Text(x =>
+                                 {
+                                     x.Span("N°")
+                                      .Bold();
+                                 });
+
+                              row.RelativeItem()
+                                 .Border(1)
+                                 .AlignCenter()
+                                 .Text(x =>
+                                 {
+                                     x.Span("Fecha")
+                                      .Bold();
+                                 });
+                          });
+
+                    // N° y Fecha actual values
+                    column.Item()
+                          .PaddingRight(300)
+                          .Row(row =>
+                          {
+                              row.RelativeItem()
+                                 .Border(1)
+                                 .AlignCenter()
+                                 .Text(Folio);
+
+                              row.RelativeItem()
+                                 .Border(1)
+                                 .AlignCenter()
+                                 .Text(DateTime.Now.ToString());
+                          });
+                });
+            }
+        }
 
         public class SectionTitle : IComponent
         {
