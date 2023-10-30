@@ -1,6 +1,6 @@
 using CommunityToolkit.Maui.Views;
 
-namespace ForestalCasablancaApp.Controls;
+namespace ForestalCasablancaApp.Popups;
 
 public partial class TrozoAserrableSummaryPopup : Popup
 {

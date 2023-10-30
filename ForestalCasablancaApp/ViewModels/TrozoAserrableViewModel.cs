@@ -1,16 +1,11 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Maui.Core;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Services;
-using ForestalCasablancaApp.Controls;
+using ForestalCasablancaApp.Popups;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-using System.Globalization;
 
 namespace ForestalCasablancaApp.ViewModels
 {
