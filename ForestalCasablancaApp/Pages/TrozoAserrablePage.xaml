@@ -10,7 +10,7 @@
     Title="{Binding Title}"
     x:DataType="viewModels:TrozoAserrableViewModel">
 
-    <Grid RowDefinitions="160, *">
+    <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
 
         <Image
             Grid.Row="0"
@@ -20,7 +20,10 @@
         <ScrollView Grid.Row="1">
 
             <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-                <BoxView Grid.RowSpan="5" Style="{StaticResource PageContentBackground}" />
+                <BoxView
+                    Grid.Row="0"
+                    Grid.RowSpan="5"
+                    Style="{StaticResource PageContentBackground}" />
 
                 <!--  Client Info Section  -->
                 <controls:ClientInfoCard
@@ -47,11 +50,12 @@
 
                         <VerticalStackLayout Grid.Row="1" Spacing="5">
                             <Grid
-                                Padding="10,0"
-                                ColumnDefinitions="80, *"
+                                Padding="{OnIdiom Phone='10,0'}"
+                                ColumnDefinitions="{OnIdiom Phone='80, *'}"
                                 RowDefinitions="Auto, Auto"
                                 RowSpacing="8">
 
+                                <!--  Especie 1  -->
                                 <Label
                                     Grid.Row="0"
                                     Text="Especie: "
@@ -62,8 +66,9 @@
                                     Title="Seleccione una especie"
                                     Grid.Column="1"
                                     ItemsSource="{Binding ListaEspecies}"
-                                    SelectedItem="{Binding EspecieUno}"/>
+                                    SelectedItem="{Binding EspecieUno}" />
 
+                                <!--  Largo 1  -->
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -80,9 +85,11 @@
                             </Grid>
 
                             <Grid
-                                Margin="10"
+                                Margin="{OnIdiom Phone=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *">
+
+                                <!--  Diametro  -->
                                 <Label
                                     Grid.Row="0"
                                     FontAttributes="Bold"
@@ -96,6 +103,7 @@
                                     HorizontalOptions="Center"
                                     UserInput="{Binding DiametroIngresado}" />
 
+                                <!--  Cantidad  -->
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
@@ -113,12 +121,12 @@
                                 <Button
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
-                                    Margin="0,5"
+                                    Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="1"
                                     Style="{StaticResource Buttons}"
                                     Text=""
-                                    WidthRequest="100">
+                                    WidthRequest="{OnIdiom Phone=100}">
 
                                     <Button.ImageSource>
                                         <FontImageSource
@@ -141,7 +149,7 @@
                                 </CollectionView.Triggers>
 
                                 <CollectionView.Header>
-                                    <Grid Margin="10" ColumnDefinitions="*, *, *">
+                                    <Grid Margin="{OnIdiom Phone=10}" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
                                             FontAttributes="Bold"
@@ -198,7 +206,7 @@
                                                 StrokeThickness="2">
 
                                                 <Grid
-                                                    Padding="10,0"
+                                                    Padding="{OnIdiom Phone='10,0'}"
                                                     ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
                                                     RowSpacing="8">
@@ -242,8 +250,8 @@
 
                         <VerticalStackLayout Grid.Row="1" Spacing="5">
                             <Grid
-                                Padding="10,0"
-                                ColumnDefinitions="80, *"
+                                Padding="{OnIdiom Phone='10,0'}"
+                                ColumnDefinitions="{OnIdiom Phone='80, *'}"
                                 RowDefinitions="Auto, Auto"
                                 RowSpacing="8">
 
@@ -275,7 +283,7 @@
                             </Grid>
 
                             <Grid
-                                Margin="10"
+                                Margin="{OnIdiom Phone=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *">
                                 <Label
@@ -307,12 +315,12 @@
                                 <Button
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
-                                    Margin="0,5"
+                                    Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="2"
                                     Style="{StaticResource Buttons}"
                                     Text=""
-                                    WidthRequest="100">
+                                    WidthRequest="{OnIdiom Phone=100}">
 
                                     <Button.ImageSource>
                                         <FontImageSource
@@ -335,7 +343,7 @@
                                 </CollectionView.Triggers>
 
                                 <CollectionView.Header>
-                                    <Grid Margin="10" ColumnDefinitions="*, *, *">
+                                    <Grid Margin="{OnIdiom Phone=10}" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
                                             FontAttributes="Bold"
@@ -384,7 +392,7 @@
                                             </SwipeView.RightItems>
 
                                             <Border
-                                                Padding="5"
+                                                Padding="{OnIdiom Phone=5}"
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
                                                                                   Light={StaticResource Gray600}}"
                                                 Stroke="{StaticResource Gray700}"
@@ -392,7 +400,7 @@
                                                 StrokeThickness="2">
 
                                                 <Grid
-                                                    Padding="10,0"
+                                                    Padding="{OnIdiom Phone='10,0'}"
                                                     ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
                                                     RowSpacing="8">
@@ -433,8 +441,8 @@
 
                         <VerticalStackLayout Grid.Row="1" Spacing="5">
                             <Grid
-                                Padding="10,0"
-                                ColumnDefinitions="80, *"
+                                Padding="{OnIdiom Phone='10,0'}"
+                                ColumnDefinitions="{OnIdiom Phone='80, *'}"
                                 RowDefinitions="Auto, Auto"
                                 RowSpacing="8">
 
@@ -466,7 +474,7 @@
                             </Grid>
 
                             <Grid
-                                Margin="10"
+                                Margin="{OnIdiom Phone=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *">
                                 <Label
@@ -496,14 +504,14 @@
                                     UserInput="{Binding CantidadIngresada3}" />
 
                                 <Button
-                                    Style="{StaticResource Buttons}"
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
-                                    Margin="0,5"
+                                    Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="3"
+                                    Style="{StaticResource Buttons}"
                                     Text=""
-                                    WidthRequest="100">
+                                    WidthRequest="{OnIdiom Phone=100}">
 
                                     <Button.ImageSource>
                                         <FontImageSource
@@ -526,7 +534,7 @@
                                 </CollectionView.Triggers>
 
                                 <CollectionView.Header>
-                                    <Grid Margin="10" ColumnDefinitions="*, *, *">
+                                    <Grid Margin="{OnIdiom Phone=10}" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
                                             FontAttributes="Bold"
@@ -575,7 +583,7 @@
                                             </SwipeView.RightItems>
 
                                             <Border
-                                                Padding="5"
+                                                Padding="{OnIdiom Phone=5}"
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
                                                                                   Light={StaticResource Gray600}}"
                                                 Stroke="{StaticResource Gray700}"
@@ -583,7 +591,7 @@
                                                 StrokeThickness="2">
 
                                                 <Grid
-                                                    Padding="10,0"
+                                                    Padding="{OnIdiom Phone='10,0'}"
                                                     ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
                                                     RowSpacing="8">
@@ -621,18 +629,17 @@
 
                     <Button
                         Grid.Column="0"
-                        Margin="0,10,0,20"
+                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding DisplaySummaryAsyncCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Calcular" />
                     <Button
                         Grid.Column="1"
-                        Margin="0,10,0,20"
+                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding ClearPageCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />
                 </Grid>
-
             </Grid>
         </ScrollView>
     </Grid>

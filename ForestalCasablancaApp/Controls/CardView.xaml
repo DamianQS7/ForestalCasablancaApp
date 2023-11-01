@@ -11,12 +11,7 @@
 
         <Border
             x:Name="CustomBorder"
-            Margin="10,20,10,20"
-            HeightRequest="{OnIdiom Phone=100,
-                                    Tablet=150}"
-            Style="{StaticResource CardViewControlStyle}"
-            WidthRequest="{OnIdiom Phone=350,
-                                   Tablet=600}">
+            Style="{StaticResource CardViewControlStyle}" >
 
             <Border.GestureRecognizers>
                 <TapGestureRecognizer
@@ -54,15 +49,14 @@
 
         <Border
             x:Name="IconBorder"
-            Margin="20, 0, 0, 0"
             HorizontalOptions="Start"
             BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600},
                                               Light={StaticResource PaleGreen}}"
-            HeightRequest="115"
+            HeightRequest="110"
             Stroke="{AppThemeBinding Dark={StaticResource Gray300},Light={StaticResource Gray900}}"
             StrokeShape="RoundRectangle 50"
             StrokeThickness="3"
-            WidthRequest="115">
+            WidthRequest="110">
 
             <!--<Border.Triggers>
                 <DataTrigger TargetType="Border" 
@@ -73,7 +67,7 @@
             </Border.Triggers>-->
             
             <ImageButton
-                Margin="24"
+                Margin="25"
                 Aspect="AspectFill"
                 Source="{Binding CardImage}" />
         </Border>

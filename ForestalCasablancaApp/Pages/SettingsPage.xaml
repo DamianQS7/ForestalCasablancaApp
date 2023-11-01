@@ -7,23 +7,25 @@
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
     Title="{Binding Title}"
     x:DataType="viewModels:SettingsPageViewModel"
-    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600}, Light={StaticResource Gray100}}">
+    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600},
+                                      Light={StaticResource Gray100}}">
 
     <ContentPage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
             <Border
-                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray600}}"
-                HeightRequest="90"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
+                                                  Light={StaticResource Gray600}}"
+                HeightRequest="85"
                 HorizontalOptions="Start"
                 Stroke="#F3F2F1"
                 StrokeShape="RoundRectangle 10"
                 StrokeThickness="2"
                 VerticalOptions="Start"
-                WidthRequest="90">
+                WidthRequest="85">
                 <Grid
                     Margin="4"
                     Padding="5"
-                    WidthRequest="90">
+                    WidthRequest="85">
                     <Grid
                         Margin="0,0,4,0"
                         HeightRequest="18"
@@ -73,158 +75,157 @@
         </Style>
     </ContentPage.Resources>
 
+    <ScrollView>
+        <FlexLayout
+            AlignItems="Center"
+            Direction="Column"
+            JustifyContent="SpaceEvenly">
 
-    <VerticalStackLayout>
+            <!--  User  -->
+            <Label
+                Margin="5,0"
+                Padding="10"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Style="{StaticResource BaseLabel}"
+                Text="Nombre de Usuario"
+                VerticalOptions="Center" />
 
-        <!--  User  -->
-        <Label
-            Margin="5,0"
-            Padding="10"
-            FontAttributes="Bold"
-            HorizontalOptions="Start"
-            Style="{StaticResource BaseLabel}"
-            Text="Nombre de Usuario"
-            VerticalOptions="Center" />
+            <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
 
-        <Border Style="{StaticResource PageSectionCard}">
+                <VerticalStackLayout Padding="10">
+                    <Label Text="Usuario Actual:" TextDecorations="Underline" />
+                    <Entry Style="{StaticResource CurrentUserEntryStyle}" Text="{Binding CurrentUser}" />
 
-            <VerticalStackLayout Padding="10">
-                <Label Text="Usuario Actual:" TextDecorations="Underline" />
-                <Entry
-                    Style="{StaticResource CurrentUserEntryStyle}"
-                    Text="{Binding CurrentUser}" />
+                    <Button
+                        Command="{Binding SetCurrentUserCommand}"
+                        Style="{StaticResource Buttons}"
+                        Text="Actualizar"
+                        WidthRequest="160">
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="FAS"
+                                Glyph="{x:Static fontAwesome:FontAwesomeIcons.User}"
+                                Size="Medium"
+                                Color="{StaticResource White}" />
+                        </Button.ImageSource>
+                    </Button>
+                </VerticalStackLayout>
+            </Border>
+    
+            <!--  PDF Directory  -->
+            <Label
+                Margin="5,0"
+                Padding="10"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Style="{StaticResource BaseLabel}"
+                Text="Directorio de destino para PDF"
+                VerticalOptions="Center" />
 
-                <Button
-                    Command="{Binding SetCurrentUserCommand}"
-                    Style="{StaticResource Buttons}"
-                    Text="Actualizar"
-                    WidthRequest="160">
-                    <Button.ImageSource>
-                        <FontImageSource
-                            FontFamily="FAS"
-                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.User}"
-                            Size="Medium"
-                            Color="{StaticResource White}" />
-                    </Button.ImageSource>
-                </Button>
-            </VerticalStackLayout>
-        </Border>
+            <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
 
-        <!--  PDF Directory  -->
-        <Label
-            Margin="5,0"
-            Padding="10"
-            FontAttributes="Bold"
-            HorizontalOptions="Start"
-            Style="{StaticResource BaseLabel}"
-            Text="Directorio de destino para PDF"
-            VerticalOptions="Center" />
+                <VerticalStackLayout Padding="10">
+                    <Label Text="Directorio Actual:" TextDecorations="Underline" />
+                    <Label
+                        Margin="0,12,0,0"
+                        Padding="5"
+                        BackgroundColor="{StaticResource Gray500}"
+                        Text="{Binding CurrentWorkingDirectory}"
+                        TextColor="{StaticResource White}" />
 
-        <Border Style="{StaticResource PageSectionCard}">
+                    <Button
+                        Command="{Binding PickFolderCommand}"
+                        Style="{StaticResource Buttons}"
+                        Text="Seleccionar"
+                        WidthRequest="160">
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="FAS"
+                                Glyph="{x:Static fontAwesome:FontAwesomeIcons.FolderOpen}"
+                                Size="Medium"
+                                Color="{StaticResource White}" />
+                        </Button.ImageSource>
+                    </Button>
+                </VerticalStackLayout>
+            </Border>
 
-            <VerticalStackLayout Padding="10">
-                <Label Text="Directorio Actual:" TextDecorations="Underline" />
-                <Label
-                    Margin="0,12,0,0"
-                    Padding="5"
-                    BackgroundColor="{StaticResource Gray500}"
-                    TextColor="{StaticResource White}"
-                    Text="{Binding CurrentWorkingDirectory}" />
+            <!--  App Theme  -->
+            <Label
+                Margin="5,0"
+                Padding="10"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Style="{StaticResource BaseLabel}"
+                Text="Tema de la App"
+                VerticalOptions="Center" />
 
-                <Button
-                    Command="{Binding PickFolderCommand}"
-                    Style="{StaticResource Buttons}"
-                    Text="Seleccionar"
-                    WidthRequest="160">
-                    <Button.ImageSource>
-                        <FontImageSource
-                            FontFamily="FAS"
-                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.FolderOpen}"
-                            Size="Medium"
-                            Color="{StaticResource White}" />
-                    </Button.ImageSource>
-                </Button>
-            </VerticalStackLayout>
-        </Border>
+            <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
 
-        <!--  App Theme  -->
-        <Label
-            Margin="5,0"
-            Padding="10"
-            FontAttributes="Bold"
-            HorizontalOptions="Start"
-            Style="{StaticResource BaseLabel}"
-            Text="Tema de la App"
-            VerticalOptions="Center" />
+                <Grid
+                    Margin="15,15,15,15"
+                    ColumnDefinitions="Auto, Auto, Auto"
+                    ColumnSpacing="30"
+                    RadioButtonGroup.GroupName="ThemeGroup">
 
-        <Border Style="{StaticResource PageSectionCard}">
+                    <RadioButton
+                        x:Name="RadBtnSystem"
+                        Grid.Column="0"
+                        CheckedChanged="RadioButton_CheckedChanged"
+                        Value="System">
 
-            <Grid
-                Margin="20,15,15,15"
-                ColumnDefinitions="Auto, Auto, Auto"
-                ColumnSpacing="30"
-                RadioButtonGroup.GroupName="ThemeGroup">
+                        <RadioButton.Content>
+                            <StackLayout Margin="0,5,0,0">
+                                <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource White}}" />
+                                <Label
+                                    Margin="0,8,0,0"
+                                    HorizontalOptions="Center"
+                                    Text="Sistema"
+                                    TextColor="{StaticResource White}"
+                                    VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <RadioButton
-                    x:Name="RadBtnSystem"
-                    Grid.Column="0"
-                    CheckedChanged="RadioButton_CheckedChanged"
-                    Value="System">
+                    <RadioButton
+                        x:Name="RadBtnLight"
+                        Grid.Column="1"
+                        CheckedChanged="RadioButton_CheckedChanged"
+                        Value="Light">
 
-                    <RadioButton.Content>
-                        <StackLayout Margin="0,5,0,0">
-                            <Image 
-                                Scale="0.75" 
-                                Source="{FontImage FontFamily=FAS, 
-                                Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource White}}" />
-                            <Label
-                                Margin="0,8,0,0"
-                                HorizontalOptions="Center"
-                                Text="Sistema"
-                                TextColor="{StaticResource White}"
-                                VerticalOptions="End" />
-                        </StackLayout>
-                    </RadioButton.Content>
-                </RadioButton>
+                        <RadioButton.Content>
+                            <StackLayout Margin="0,5,0,0">
+                                <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource White}}" />
+                                <Label
+                                    Margin="0,8,0,0"
+                                    HorizontalOptions="Center"
+                                    Text="Claro"
+                                    TextColor="{StaticResource White}"
+                                    VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <RadioButton
-                    x:Name="RadBtnLight"
-                    Grid.Column="1"
-                    CheckedChanged="RadioButton_CheckedChanged"
-                    Value="Light">
+                    <RadioButton
+                        x:Name="RadBtnDark"
+                        Grid.Column="2"
+                        CheckedChanged="RadioButton_CheckedChanged"
+                        Value="Dark">
 
-                    <RadioButton.Content>
-                        <StackLayout Margin="0,5,0,0">
-                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource White}}" />
-                            <Label
-                                Margin="0,8,0,0"
-                                HorizontalOptions="Center"
-                                Text="Claro"
-                                TextColor="{StaticResource White}"
-                                VerticalOptions="End" />
-                        </StackLayout>
-                    </RadioButton.Content>
-                </RadioButton>
-
-                <RadioButton
-                    x:Name="RadBtnDark"
-                    Grid.Column="2"
-                    CheckedChanged="RadioButton_CheckedChanged"
-                    Value="Dark">
-
-                    <RadioButton.Content>
-                        <StackLayout Margin="0,5,0,0">
-                            <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource White}}" />
-                            <Label
-                                Margin="0,8,0,0"
-                                HorizontalOptions="Center"
-                                Text="Oscuro"
-                                TextColor="{StaticResource White}"
-                                VerticalOptions="End" />
-                        </StackLayout>
-                    </RadioButton.Content>
-                </RadioButton>
-            </Grid>
-        </Border>
-    </VerticalStackLayout>
+                        <RadioButton.Content>
+                            <StackLayout Margin="0,5,0,0">
+                                <Image Scale="0.75" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource White}}" />
+                                <Label
+                                    Margin="0,8,0,0"
+                                    HorizontalOptions="Center"
+                                    Text="Oscuro"
+                                    TextColor="{StaticResource White}"
+                                    VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </Grid>
+            </Border>
+        </FlexLayout>
+    </ScrollView>
 </ContentPage>

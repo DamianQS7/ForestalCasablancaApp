@@ -8,7 +8,7 @@
     Title="{Binding Title}"
     x:DataType="viewModels:MetroRumaViewModel">
 
-    <Grid RowDefinitions="150, *">
+    <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
 
         <Image
             Grid.Row="0"
@@ -17,21 +17,26 @@
 
         <ScrollView Grid.Row="1">
 
-            <Grid RowDefinitions="Auto, *">
-                <controls:ClientInfoCard Grid.Row="0" />
-                <Border
+            <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
+                <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
+
+                <!--  Client Info Section  -->
+                <controls:ClientInfoCard
+                    Grid.Row="0"
+                    NombreCliente="{Binding Cliente.Nombre}"
+                    RutCliente="{Binding Cliente.RUT}" />
+
+                <!--  Camion Info Section  -->
+                <controls:CamionInfoCard
                     Grid.Row="1"
-                    Margin="10,0,10,20"
-                    Padding="8,0,8,8"
-                    HeightRequest="{OnIdiom Phone=400,
-                                            Tablet=450}"
-                    Style="{StaticResource CustomerInfoCard}"
-                    WidthRequest="{OnIdiom Phone=400,
-                                           Tablet=600}" />
+                    Empresa="{Binding DatosCamion.EmpresaTransportista}"
+                    NombreChofer="{Binding DatosCamion.Chofer}"
+                    PatenteCamion="{Binding DatosCamion.Patente}"
+                    RutChofer="{Binding DatosCamion.RutChofer}" />
+
+                
+
             </Grid>
-
-
         </ScrollView>
-
     </Grid>
 </ContentPage>
