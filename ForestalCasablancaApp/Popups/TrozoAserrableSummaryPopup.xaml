@@ -15,15 +15,15 @@
 
         <ScrollView>
             <VerticalStackLayout
-                Margin="8,0,0,0"
-                Padding="10"
+                Margin="{OnIdiom Phone='8,0,0,0'}"
+                Padding="{OnIdiom Phone=10}"
                 Spacing="8">
 
                 <Image
                     Aspect="AspectFill"
-                    HeightRequest="80"
+                    HeightRequest="{OnIdiom Phone=80}"
                     Source="popup_icon.png"
-                    WidthRequest="80">
+                    WidthRequest="{OnIdiom Phone=80}">
 
                     <Image.Shadow>
                         <Shadow Offset="20,20" />
@@ -31,117 +31,105 @@
                 </Image>
 
                 <Label
-                    FontSize="20"
-                    HorizontalTextAlignment="Center"
-                    Style="{StaticResource PageSubtitle}"
-                    Text="Resumen">
-
-                    <Label.Shadow>
-                        <Shadow Opacity="0.6" Offset="20, 20" />
-                    </Label.Shadow>
-                </Label>
-                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                    Style="{StaticResource PopupTitle}"
+                    Text="Resumen" />
+                <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Datos del Cliente  -->
                 <Label
-                    FontAttributes="Bold"
-                    FontSize="15"
+                    Style="{StaticResource PopupSectionLabel}"
                     Text="Datos del Cliente:" />
-                <Label FontSize="14" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
-                <Label FontSize="14" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
-                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
+                <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Datos del Camión  -->
                 <Label
-                    FontAttributes="Bold"
-                    FontSize="15"
+                    Style="{StaticResource PopupSectionLabel}"
                     Text="Datos del Camión:" />
-                <Label FontSize="14" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
-                <Label FontSize="14" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
-                <Label FontSize="14" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
-                <Label FontSize="14" Text="{Binding DatosCamion.Patente, StringFormat='Patente: {0}'}" />
-                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Patente, StringFormat='Patente: {0}'}" />
+                <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Especie 1  -->
                 <Label
-                    FontAttributes="Bold"
-                    FontSize="15"
+                    Style="{StaticResource PopupSectionLabel}"
                     Text="Especie 1:" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding EspecieUno, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding LargoEspecieUno, StringFormat='Largo: {0}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding TotalSumLista1, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding FinalTotalSumLista1, StringFormat='Volumen: {0} m3'}" />
                 </Grid>
-                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Especie 2  -->
                 <Label
-                    FontAttributes="Bold"
-                    FontSize="15"
+                    Style="{StaticResource PopupSectionLabel}"
                     Text="Especie 2:" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding EspecieDos, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding LargoEspecieDos, StringFormat='Largo: {0}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding TotalSumLista2, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding FinalTotalSumLista2, StringFormat='Volumen: {0} m3'}" />
                 </Grid>
-                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Especie 3  -->
                 <Label
-                    FontAttributes="Bold"
-                    FontSize="15"
+                    Style="{StaticResource PopupSectionLabel}"
                     Text="Especie 3:" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding EspecieTres, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding LargoEspecieTres, StringFormat='Largo: {0}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding TotalSumLista3, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
-                        FontSize="14"
+                        Style="{StaticResource PopupContent}"
                         Text="{Binding FinalTotalSumLista3, StringFormat='Volumen: {0} m3'}" />
                 </Grid>
-                <BoxView HeightRequest="1" Style="{StaticResource Separator}" />
+                <BoxView Style="{StaticResource Separator}" />
 
                 <Grid ColumnDefinitions="*, *">
                     <Button

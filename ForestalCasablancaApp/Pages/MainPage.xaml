@@ -8,22 +8,28 @@
     xmlns:pages="clr-namespace:ForestalCasablancaApp.Pages"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
     x:DataType="viewModels:MainPageViewModel"
-    BackgroundImageSource="{OnIdiom Phone='mainpage_background_dos.jpg', Tablet='mainpage_background.jpg'}"
+    BackgroundImageSource="{OnIdiom Phone='mainpage_background_dos.jpg',
+                                    Tablet='mainpage_background.jpg'}"
     Shell.NavBarIsVisible="False">
 
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="LightContent" />
     </Page.Behaviors>
 
-    <VerticalStackLayout>
+    <FlexLayout
+        Margin="20, 0, 20, 30"
+        AlignContent="Center"
+        Direction="Column"
+        JustifyContent="SpaceEvenly">
 
         <Image
-            Opacity="0.85"
-            Margin="0,20"
+            Margin="0,0"
             Aspect="Fill"
-            HeightRequest="170"
+            FlexLayout.AlignSelf="Center"
+            HeightRequest="{OnIdiom Phone=150}"
+            Opacity="0.85"
             Source="mainpage_logo.png"
-            WidthRequest="170">
+            WidthRequest="{OnIdiom Phone=150}">
 
             <Image.Background>
                 <RadialGradientBrush>
@@ -46,23 +52,26 @@
             CardTitle="Trozo Aserrable"
             CommandPath="TrozoAserrablePage" />
 
-        <Border
-            Margin="0,20,0,0"
-            BackgroundColor="{StaticResource Gray900}"
-            HeightRequest="70"
-            IsVisible="{Binding IsBusy}"
-            StrokeShape="Ellipse"
-            WidthRequest="70">
 
-            <ActivityIndicator
-                HorizontalOptions="Fill"
-                IsRunning="{Binding IsBusy}"
+        <FlexLayout AlignContent="Start" Direction="Column" Margin="0, 0, 0, 12">
+            <Border
+                BackgroundColor="{StaticResource Gray900}"
+                FlexLayout.AlignSelf="Center"
+                HeightRequest="55"
                 IsVisible="{Binding IsBusy}"
-                VerticalOptions="Center"
-                WidthRequest="70"
-                Color="{StaticResource Primary}" />
-        </Border>
+                StrokeShape="Ellipse"
+                WidthRequest="55">
+
+                <ActivityIndicator
+                    HorizontalOptions="Fill"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Center"
+                    WidthRequest="55"
+                    Color="{StaticResource Primary}" />
+            </Border>
+        </FlexLayout>
 
 
-    </VerticalStackLayout>
+    </FlexLayout>
 </ContentPage>
