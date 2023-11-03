@@ -12,5 +12,6 @@ namespace ForestalCasablancaApp.Models
         public string Chofer { get; set; }
         public string RutChofer { get; set; }
         public string EmpresaTransportista { get; set; }
+        public string UnidadOrigen { get; set; }
     }
 }

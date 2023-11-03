@@ -24,10 +24,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="5"
                     Style="{StaticResource PageContentBackground}" />
-                
-                
-                <!--<Button Text="testing Focus()" Command="{Binding FocusEntryCommand}" CommandParameter="{Binding Source={x:Reference test2}}" />-->
-                
+
                 <!--  Client Info Section  -->
                 <controls:ClientInfoCard
                     Grid.Row="0"
@@ -95,9 +92,8 @@
                                 <!--  Diametro  -->
                                 <Label
                                     Grid.Row="0"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="Diametro: "
+                                    HorizontalTextAlignment="Center"
+                                    Text="Diámetro &#10;(cm) "
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -112,9 +108,8 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="Total (Q):"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Total&#10;(Cantidad)"
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -157,25 +152,22 @@
                                     <Grid Margin="{OnIdiom Phone=10}" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            Text="Diametro: "
+                                            HorizontalTextAlignment="Center"
+                                            Text="Diámetro&#10;(cm)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
-                                            FontAttributes="Bold"
                                             HorizontalTextAlignment="Center"
-                                            Text="Total (Q):"
+                                            Text="Total&#10;(Cantidad)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            Text="Volumen: "
+                                            HorizontalTextAlignment="Center"
+                                            Text="Volumen&#10;(m3) "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
@@ -232,7 +224,7 @@
                                                         Grid.Row="1"
                                                         Grid.Column="2"
                                                         ReadOnly="True"
-                                                        UserInput="{Binding Volumen, StringFormat='{0:F2}'}" />
+                                                        UserInput="{Binding Total, StringFormat='{0:F2}'}" />
 
                                                 </Grid>
                                             </Border>
@@ -293,9 +285,8 @@
                                 RowDefinitions="Auto, *, *">
                                 <Label
                                     Grid.Row="0"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="Diametro: "
+                                    HorizontalTextAlignment="Center"
+                                    Text="Diámetro&#10;(cm) "
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -309,9 +300,8 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="Total (Q):"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Total&#10;(Cantidad)"
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -353,25 +343,22 @@
                                     <Grid Margin="{OnIdiom Phone=10}" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            Text="Diametro: "
+                                            HorizontalTextAlignment="Center"
+                                            Text="Diámetro&#10;(cm) "
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
-                                            FontAttributes="Bold"
                                             HorizontalTextAlignment="Center"
-                                            Text="Total (Q):"
+                                            Text="Total&#10;(Cantidad)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            Text="Volumen: "
+                                            HorizontalTextAlignment="Center"
+                                            Text="Volumen&#10;(m3) "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
@@ -425,7 +412,7 @@
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="2"
-                                                        UserInput="{Binding Volumen, StringFormat='{0:F2}'}" />
+                                                        UserInput="{Binding Total, StringFormat='{0:F2}'}" />
 
                                                 </Grid>
                                             </Border>
@@ -484,11 +471,11 @@
                                 Margin="{OnIdiom Phone=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *">
+                                
                                 <Label
                                     Grid.Row="0"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="Diametro: "
+                                    HorizontalTextAlignment="Center"
+                                    Text="Diámetro&#10;(cm) "
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -502,9 +489,8 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="Total (Q):"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Total&#10;(Cantidad)"
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -546,25 +532,22 @@
                                     <Grid Margin="{OnIdiom Phone=10}" ColumnDefinitions="*, *, *">
                                         <Label
                                             Grid.Row="0"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            Text="Diametro: "
+                                            HorizontalTextAlignment="Center"
+                                            Text="Diámetro&#10;(cm) "
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
-                                            FontAttributes="Bold"
                                             HorizontalTextAlignment="Center"
-                                            Text="Total (Q):"
+                                            Text="Total&#10;(Cantidad)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            Text="Volumen: "
+                                            HorizontalTextAlignment="Center"
+                                            Text="Volumen&#10;(m3) "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
@@ -618,7 +601,7 @@
                                                     <controls:NumericEntryCell
                                                         Grid.Row="1"
                                                         Grid.Column="2"
-                                                        UserInput="{Binding Volumen, StringFormat='{0:F2}'}" />
+                                                        UserInput="{Binding Total, StringFormat='{0:F2}'}" />
 
                                                 </Grid>
                                             </Border>

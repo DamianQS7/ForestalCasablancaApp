@@ -67,7 +67,7 @@ namespace ForestalCasablancaApp.Services
 
                             // Datos Camión
                             x.Item()
-                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
+                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.UnidadOrigen, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
 
                             // Detalles de Carga
@@ -200,116 +200,31 @@ namespace ForestalCasablancaApp.Services
 
                             // Datos Camión
                             x.Item()
-                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
-                             model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.UnidadOrigen,
+                             model.DatosCamion.Patente, model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
 
                             // Detalles de Carga
                             x.Item().Column(col =>
                             {
-                                // Title
+                                col.Spacing(3);
+
                                 col.Item()
-                                   .Component(new SectionTitle("Detalle Despacho", SubtitleSize));
+                                    .Component(new SectionTitle("Detalles Despacho", SubtitleSize));
 
-                                // Medidas
                                 col.Item()
-                                   .Table(table =>
-                                   {
-                                       // Table columns definition
-                                       table.ColumnsDefinition(col =>
-                                       {
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                       });
-
-                                       // Table Header definition
-                                       table.Header(header =>
-                                       {
-                                           header.Cell().ColumnSpan(4).Element(HeaderCellStyle).Text("Medidas");
-                                       });
-
-                                       // Table Content
-                                       // Table Content
-                                       table.Cell().Element(SummaryCellStyle).Text("Largo Camión: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.LargoCamion.ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("N° de Bancos : ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.Bancos.ToString());
-
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 1: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[0].ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 2: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[1].ToString());
-
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 3: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[2].ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 4: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[3].ToString());
-
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 5: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[4].ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 6: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[5].ToString());
-
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 7: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[6].ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura 8: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(alturas[7].ToString());
-                                   });
-                                
-                                // Palomera
+                                   .Component(new SingleRow(FirstColumnSize, " Largo de Camión:",
+                                       model.Despacho.LargoCamion.ToString()));
                                 col.Item()
-                                   .Table(table =>
-                                   {
-                                       // Table columns definition
-                                       table.ColumnsDefinition(col =>
-                                       {
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                       });
-
-                                       // Table Header definition
-                                       table.Header(header =>
-                                       {
-                                           header.Cell().ColumnSpan(4).Element(HeaderCellStyle).Text("Palomera");
-                                       });
-
-                                       // Table Content
-                                       table.Cell().Element(SummaryCellStyle).Text("Ancho Palomera: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AnchoPalomera.ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("Alto Palomera : ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AltoPalomera.ToString());
-                                   });
-
-                                // Resumen
+                                   .Component(new SingleRow(FirstColumnSize, " N° de Bancos:",
+                                       model.Despacho.Bancos.ToString()));
                                 col.Item()
-                                   .Table(table =>
-                                   {
-                                       // Table columns definition
-                                       table.ColumnsDefinition(col =>
-                                       {
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                           col.RelativeColumn();
-                                       });
-
-                                       // Table Header definition
-                                       table.Header(header =>
-                                       {
-                                           header.Cell().ColumnSpan(4).Element(HeaderCellStyle).Text("Resumen Final");
-                                       });
-
-                                       // Table Content
-                                       table.Cell().Element(SummaryCellStyle).Text("Altura Media: ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AlturaMedia.ToString());
-                                       table.Cell().Element(SummaryCellStyle).Text("Total : ").SemiBold();
-                                       table.Cell().Element(SummaryCellStyle).Text(model.Despacho.TotalMetrosLeña.ToString());
-                                   });
+                                   .Component(new SingleRow(FirstColumnSize, " Altura Media:",
+                                       $"{model.Despacho.AlturaMedia} m"));
+                                col.Item()
+                                   .Component(new SingleRow(FirstColumnSize, " Total Despacho:",
+                                       $"{model.Despacho.LargoCamion} ML"));
                             });
-
+                            
                         });
 
                     page.Footer()
@@ -647,8 +562,9 @@ namespace ForestalCasablancaApp.Services
             public string Chofer { get; set; }
             public string RutChofer { get; set; }
             public string EmpresaTransportista { get; set; }
+            public string UnidadOrigen { get; set; }
 
-            public CamionInfo(string title, int subtitle, int columnSize, string patente, string chofer, string rut, string empresa)
+            public CamionInfo(string title, int subtitle, int columnSize, string patente, string chofer, string rut, string empresa, string origen)
             {
                 SubtitleSize = subtitle;
                 FirstColumnSize = columnSize;
@@ -657,6 +573,7 @@ namespace ForestalCasablancaApp.Services
                 Chofer = chofer;
                 RutChofer = rut;
                 EmpresaTransportista = empresa;
+                UnidadOrigen = origen;
             }
 
             public void Compose(IContainer container)
@@ -667,6 +584,10 @@ namespace ForestalCasablancaApp.Services
 
                     col.Item()
                        .Component(new SectionTitle(SectionTitle, SubtitleSize));
+
+                    col.Item()
+                       .Component(new SingleRow(FirstColumnSize, " Unidad de Origen:",
+                           UnidadOrigen));
 
                     col.Item()
                        .Component(new SingleRow(FirstColumnSize, " Empresa de Transporte:",
@@ -794,6 +715,14 @@ namespace ForestalCasablancaApp.Services
                         table.Cell().Element(SummaryCellStyle).Text(ViewModel.TotalSumLista3.ToString());
                         table.Cell().Element(SummaryCellStyle).Text(ViewModel.FinalTotalSumLista3.ToString("F2"));
                     }
+
+                    // Total
+                    int cantidadFinal = ViewModel.TotalSumLista1 + ViewModel.TotalSumLista2 + ViewModel.TotalSumLista3;
+                    double volumenFinal = ViewModel.FinalTotalSumLista1 + ViewModel.FinalTotalSumLista2 + ViewModel.FinalTotalSumLista3;
+
+                    table.Cell().Element(SummaryCellStyle).Text("Total:");
+                    table.Cell().Element(SummaryCellStyle).Text(cantidadFinal.ToString());
+                    table.Cell().Element(SummaryCellStyle).Text(volumenFinal.ToString("F2"));
                 });
             }
         }
