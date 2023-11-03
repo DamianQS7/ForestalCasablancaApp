@@ -6,6 +6,7 @@ using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.Popups;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
+using ForestalCasablancaApp.Controls;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -15,7 +16,10 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly IPdfGeneratorService _pdfGeneratorService;
 
         #region Properties
-
+        [NotifyPropertyChangedFor(nameof(IsNotFocused))]
+        [ObservableProperty] private bool _focusedEntry1;
+        [ObservableProperty] private bool _focusedEntry2;
+        [ObservableProperty] private bool _focusedEntry3;
         [ObservableProperty] private string _especieUno;
         [ObservableProperty] private string _especieDos;
         [ObservableProperty] private string _especieTres;
@@ -30,6 +34,7 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private int? _cantidadIngresada3;
         private TrozoAserrableSummaryPopup _popup;
 
+        public bool IsNotFocused => !FocusedEntry1;
         public int TotalSumLista1 { get; set; }
         public double FinalTotalSumLista1 { get; set; }
         public int TotalSumLista2 { get; set; }
@@ -148,15 +153,15 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         #region Commands
-
+        
         /// <summary>
         /// Adds a new item to a specific list based on the provided "numeroLista" value.
         /// </summary>
         /// <param name="numeroLista">The identifier for the target list (1, 2, or 3).</param>
         [RelayCommand]
-        void AddItemToList(string numeroLista)
+        void AddItemToList(NumericEntryCell cell)
         {
-            if(numeroLista == "1")
+            if(cell.Identifier == "1")
             {
                 if (ValidateInput(1))
                 {
@@ -175,9 +180,12 @@ namespace ForestalCasablancaApp.ViewModels
                     // Clear the input fields
                     DiametroIngresado = null;
                     CantidadIngresada = null;
+
+                    // Set the focus on Diametro Entry.
+                    cell.Focus();
                 }
             } 
-            else if(numeroLista == "2")
+            else if(cell.Identifier == "2")
             {
                 if (ValidateInput(2))
                 {
@@ -196,9 +204,12 @@ namespace ForestalCasablancaApp.ViewModels
                     // Clear the input fields
                     DiametroIngresado2 = null;
                     CantidadIngresada2 = null;
+
+                    // Set the focus on Diametro Entry.
+                    cell.Focus();
                 }
             }    
-            else if(numeroLista == "3")
+            else if(cell.Identifier == "3")
             {
                 if(ValidateInput(3))
                 {
@@ -217,6 +228,9 @@ namespace ForestalCasablancaApp.ViewModels
                     // Clear the input fields
                     DiametroIngresado3 = null;
                     CantidadIngresada3 = null;
+
+                    // Set the focus on Diametro Entry.
+                    cell.Focus();
                 }
             }
         }

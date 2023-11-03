@@ -24,7 +24,10 @@
                     Grid.Row="0"
                     Grid.RowSpan="5"
                     Style="{StaticResource PageContentBackground}" />
-
+                
+                
+                <!--<Button Text="testing Focus()" Command="{Binding FocusEntryCommand}" CommandParameter="{Binding Source={x:Reference test2}}" />-->
+                
                 <!--  Client Info Section  -->
                 <controls:ClientInfoCard
                     Grid.Row="0"
@@ -98,10 +101,12 @@
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
+                                    x:Name="Cell1"
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     HorizontalOptions="Center"
-                                    UserInput="{Binding DiametroIngresado}" />
+                                    UserInput="{Binding DiametroIngresado}" 
+                                    Identifier="1"/>
 
                                 <!--  Cantidad  -->
                                 <Label
@@ -123,7 +128,7 @@
                                     Grid.Column="2"
                                     Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
-                                    CommandParameter="1"
+                                    CommandParameter="{Binding Source={x:Reference Cell1}}"
                                     Style="{StaticResource Buttons}"
                                     Text=""
                                     WidthRequest="{OnIdiom Phone=100}">
@@ -294,10 +299,12 @@
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
+                                    x:Name="Cell2"
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     HorizontalOptions="Center"
-                                    UserInput="{Binding DiametroIngresado2}" />
+                                    UserInput="{Binding DiametroIngresado2}" 
+                                    Identifier="2" />
 
                                 <Label
                                     Grid.Row="0"
@@ -317,7 +324,7 @@
                                     Grid.Column="2"
                                     Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
-                                    CommandParameter="2"
+                                    CommandParameter="{Binding Source={x:Reference Cell2}}"
                                     Style="{StaticResource Buttons}"
                                     Text=""
                                     WidthRequest="{OnIdiom Phone=100}">
@@ -485,10 +492,12 @@
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
+                                    x:Name="Cell3"
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     HorizontalOptions="Center"
-                                    UserInput="{Binding DiametroIngresado3}" />
+                                    UserInput="{Binding DiametroIngresado3}" 
+                                    Identifier="3"/>
 
                                 <Label
                                     Grid.Row="0"
@@ -508,7 +517,7 @@
                                     Grid.Column="2"
                                     Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
-                                    CommandParameter="3"
+                                    CommandParameter="{Binding Source={x:Reference Cell3}}"
                                     Style="{StaticResource Buttons}"
                                     Text=""
                                     WidthRequest="{OnIdiom Phone=100}">

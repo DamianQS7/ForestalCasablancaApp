@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Grid>
+        
         <Border Style="{StaticResource EntryCellBorderStyle}" />
         <Entry
             x:Name="UserInputEntry"
@@ -12,12 +13,6 @@
             Keyboard="Numeric"
             Style="{StaticResource NumericEntryStyle}"
             WidthRequest="{OnIdiom Phone=50}" />
-
-        <!--<Entry.Triggers>
-                <Trigger TargetType="Entry" Property="IsFocused" Value="True">
-                    <Setter Property="Text" Value="" />
-                </Trigger>
-            </Entry.Triggers>
-        </Entry>-->
+        
     </Grid>
 </ContentView>
