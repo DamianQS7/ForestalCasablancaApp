@@ -85,6 +85,9 @@
 	  <MauiXaml Update="Controls\ClientInfoCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\MetroRumaPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\TrozoAserrableSummaryPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -112,6 +115,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Popups\MetroRumaPopup.xaml.cs">
+		  <DependentUpon>MetroRumaPopup.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Popups\TrozoAserrableSummaryPopup.xaml.cs">
 			<DependentUpon>TrozoAserrableSummaryPopup.xaml</DependentUpon>
 	  </Compile>
