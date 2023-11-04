@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,18 @@ namespace ForestalCasablancaApp.ViewModels
 
         #region Methods
         public static string GenerateFolio() => Preferences.Get("CurrentUserInitials", "NN") + DateTime.Now.ToString("dd'/'MM'/'yy'-'HH:mm");
+
+        public async Task DisplayInputError(InfoMessage infoMessage)
+        {
+            if (infoMessage == InfoMessage.InvalidDiameter)
+            {
+                await Shell.Current.DisplayAlert("Error", "El diámetro debe ser un número par", "OK");
+            }
+            else if (infoMessage == InfoMessage.MissingTrozoData)
+            {
+                await Shell.Current.DisplayAlert("Error", "Se requiere Largo, Diámetro, y Cantidad para agregar una medida", "OK");
+            }
+        }
 
         #endregion
 
