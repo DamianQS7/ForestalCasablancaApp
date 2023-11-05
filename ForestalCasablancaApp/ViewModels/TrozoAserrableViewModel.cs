@@ -17,10 +17,7 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly IPdfGeneratorService _pdfGeneratorService;
 
         #region Properties
-        [NotifyPropertyChangedFor(nameof(IsNotFocused))]
-        [ObservableProperty] private bool _focusedEntry1;
-        [ObservableProperty] private bool _focusedEntry2;
-        [ObservableProperty] private bool _focusedEntry3;
+
         [ObservableProperty] private string _especieUno;
         [ObservableProperty] private string _especieDos;
         [ObservableProperty] private string _especieTres;
@@ -35,7 +32,6 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private int? _cantidadIngresada3;
         private TrozoAserrableSummaryPopup _popup;
 
-        public bool IsNotFocused => !FocusedEntry1;
         public int TotalSumLista1 { get; set; }
         public double FinalTotalSumLista1 { get; set; }
         public int TotalSumLista2 { get; set; }

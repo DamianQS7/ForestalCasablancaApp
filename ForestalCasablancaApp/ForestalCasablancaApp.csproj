@@ -32,7 +32,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" BaseSize="128,128" Color="#86AD6D" />
+		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#FFFFFF" BaseSize="128,128"/>
 		
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#212121" BaseSize="256,256" />
@@ -51,7 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="Resources\AppIcon\appicon.svg" />
+		<None Remove="Resources\AppIcon\appicon.png" />
 		<None Remove="Resources\Images\lenamodule_icon_dos.png" />
 		<None Remove="Resources\Images\mainpage_background_dos.jpg" />
 		<None Remove="Resources\Images\metroruma_module_icon.png" />
