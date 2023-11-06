@@ -9,17 +9,16 @@
     Title="{Binding Title}"
     x:DataType="viewModel:LeñaViewModel">
 
-    <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+    <ScrollView>
+        <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
 
-        <Image
-            Grid.Row="0"
-            Aspect="AspectFill"
-            HeightRequest="{OnIdiom Phone=300}"
-            Source="lena_background.png" />
+            <Image
+                Grid.Row="0"
+                Aspect="AspectFill"
+                HeightRequest="{OnIdiom Phone=300}"
+                Source="lena_background.png" />
 
-        <ScrollView Grid.Row="1">
-
-            <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
+            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, *, Auto, Auto">
                 <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
 
                 <!--  Client Info Section  -->
@@ -39,16 +38,16 @@
                 <!--  Mediciones Section  -->
                 <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
                     <VerticalStackLayout>
-                        
+
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
-                        
+
+                        <!--  Especie  -->
                         <Grid
                             Padding="{OnIdiom Phone='10,0'}"
                             ColumnDefinitions="{OnIdiom Phone='80, *'}"
                             RowDefinitions="Auto, Auto"
                             RowSpacing="8">
 
-                            <!--  Especie   -->
                             <Label
                                 Grid.Row="0"
                                 Text="Especie: "
@@ -61,14 +60,10 @@
                                 ItemsSource="{Binding ListaEspecies}"
                                 SelectedItem="{Binding Despacho.Especie}" />
                         </Grid>
-                        
-                        <Grid
-                            Grid.Row="1"
-                            Padding="{OnIdiom Phone='10,0'}"
-                            ColumnDefinitions="Auto, *, Auto, *"
-                            RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                            RowSpacing="8">
 
+                        <!--  Largo Camión y N° de Bancos  -->
+
+                        <Grid Padding="{OnIdiom Phone='10, 0'}" ColumnDefinitions="Auto, *, Auto, *">
                             <Label
                                 Grid.Row="0"
                                 Text="Largo Camión: "
@@ -87,12 +82,40 @@
                                 Grid.Row="0"
                                 Grid.Column="3"
                                 UserInput="{Binding Despacho.Bancos}" />
+                        </Grid>
+
+                        <!--  Alturas  -->
+                        <Label Padding="{OnIdiom Phone='10, 20, 10, 0', Tablet='10, 20, 10, 0'}" Text="Alturas:" />
+                        <Grid
+                            Padding="{OnIdiom Phone='10'}"
+                            ColumnDefinitions="Auto, Auto, *, *, Auto, Auto"
+                            RowDefinitions="{OnIdiom Phone='75, Auto, Auto, Auto, Auto, 15',
+                                                     Tablet='75, Auto, Auto, Auto, Auto, 15'}"
+                            RowSpacing="8">
+
+                            <Image
+                                Grid.Row="0"
+                                Grid.RowSpan="6"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                Margin="{OnIdiom Phone='18, 0',
+                                                 Tablet='15, 0'}"
+                                Aspect="Fill"
+                                HorizontalOptions="Center"
+                                Source="lena_truck2.png"
+                                VerticalOptions="EndAndExpand" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Text="" />
 
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Altura 1: "
+                                Text="H1"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="1"
@@ -101,20 +124,21 @@
 
                             <Label
                                 Grid.Row="1"
-                                Grid.Column="2"
+                                Grid.Column="4"
                                 HorizontalOptions="Center"
-                                Text="Altura 5: "
+                                Text="H5"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="1"
-                                Grid.Column="3"
+                                Grid.Column="5"
+                                HorizontalOptions="End"
                                 UserInput="{Binding Despacho.Alturas[4]}" />
 
                             <Label
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Altura 2: "
+                                Text="H2"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="2"
@@ -123,20 +147,20 @@
 
                             <Label
                                 Grid.Row="2"
-                                Grid.Column="2"
+                                Grid.Column="4"
                                 HorizontalOptions="Center"
-                                Text="Altura 6: "
+                                Text="H6"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="2"
-                                Grid.Column="3"
+                                Grid.Column="5"
                                 UserInput="{Binding Despacho.Alturas[5]}" />
 
                             <Label
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Altura 3: "
+                                Text="H3"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="3"
@@ -145,20 +169,20 @@
 
                             <Label
                                 Grid.Row="3"
-                                Grid.Column="2"
+                                Grid.Column="4"
                                 HorizontalOptions="Center"
-                                Text="Altura 7: "
+                                Text="H7"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="3"
-                                Grid.Column="3"
+                                Grid.Column="5"
                                 UserInput="{Binding Despacho.Alturas[6]}" />
 
                             <Label
                                 Grid.Row="4"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Altura 4: "
+                                Text="H4"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="4"
@@ -167,13 +191,13 @@
 
                             <Label
                                 Grid.Row="4"
-                                Grid.Column="2"
+                                Grid.Column="4"
                                 HorizontalOptions="Center"
-                                Text="Altura 8: "
+                                Text="H8"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="4"
-                                Grid.Column="3"
+                                Grid.Column="5"
                                 UserInput="{Binding Despacho.Alturas[7]}" />
                         </Grid>
                     </VerticalStackLayout>
@@ -230,7 +254,6 @@
                         Text="Reiniciar" />
                 </Grid>
             </Grid>
-        </ScrollView>
-
-    </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>

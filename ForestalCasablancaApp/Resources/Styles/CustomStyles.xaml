@@ -11,7 +11,7 @@
 
     <Style x:Key="CardViewControlStyle" TargetType="Border">
         <Setter Property="Margin" Value="10, 0" />
-        <Setter Property="HeightRequest" Value="{OnIdiom Phone=90}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=90, Tablet=120}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" />
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />

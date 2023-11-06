@@ -8,16 +8,15 @@
     Title="{Binding Title}"
     x:DataType="viewModels:MetroRumaViewModel">
 
-    <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+    <ScrollView>
 
-        <Image
-            Grid.Row="0"
-            Aspect="AspectFill"
-            Source="metroruma_background.jpg" />
+        <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+            <Image
+                Grid.Row="0"
+                Aspect="AspectFill"
+                Source="metroruma_background.jpg" />
 
-        <ScrollView Grid.Row="1">
-
-            <Grid RowDefinitions="Auto, Auto, *, Auto, Auto">
+            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, *, Auto, Auto">
                 <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
 
                 <!--  Client Info Section  -->
@@ -85,6 +84,6 @@
                         Text="Reiniciar" />
                 </Grid>
             </Grid>
-        </ScrollView>
-    </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>
