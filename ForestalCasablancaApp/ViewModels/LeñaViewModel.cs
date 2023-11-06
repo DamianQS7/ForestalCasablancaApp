@@ -14,16 +14,24 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly IPdfGeneratorService _pdfGeneratorService;
         private ConfirmationPopup _popup;
 
-        [ObservableProperty] private DespachoLeñaModel _despacho;
+        [ObservableProperty] private DespachoModel _despacho;
         [ObservableProperty] private Cliente _cliente;
         [ObservableProperty] private DatosCamion _datosCamion;
+
+        public List<string> ListaEspecies { get; set; } = new()
+        {
+            "Nativo",
+            "Oregón",
+            "Encino",
+            "Mezcla de Oregón-Nativo"
+        };
 
         #region Methods
         public LeñaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Leña";
             _calculatorService = calculatorService;
-            Despacho = new DespachoLeñaModel();
+            Despacho = new();
             Cliente = new();
             DatosCamion = new();
             IsValidInput = false;

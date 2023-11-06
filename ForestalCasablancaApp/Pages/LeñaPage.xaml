@@ -37,12 +37,31 @@
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
                 <!--  Mediciones Section  -->
-                <Border
-                    Grid.Row="2"
-                    
-                    Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
                     <VerticalStackLayout>
+                        
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
+                        
+                        <Grid
+                            Padding="{OnIdiom Phone='10,0'}"
+                            ColumnDefinitions="{OnIdiom Phone='80, *'}"
+                            RowDefinitions="Auto, Auto"
+                            RowSpacing="8">
+
+                            <!--  Especie   -->
+                            <Label
+                                Grid.Row="0"
+                                Text="Especie: "
+                                VerticalOptions="Center" />
+
+                            <Picker
+                                x:Name="pickerEspecie"
+                                Title="Seleccione una especie"
+                                Grid.Column="1"
+                                ItemsSource="{Binding ListaEspecies}"
+                                SelectedItem="{Binding Despacho.Especie}" />
+                        </Grid>
+                        
                         <Grid
                             Grid.Row="1"
                             Padding="{OnIdiom Phone='10,0'}"
@@ -161,9 +180,7 @@
                 </Border>
 
                 <!--  Palomera Section  -->
-                <Border
-                    Grid.Row="3"
-                    Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
 
                     <VerticalStackLayout>
 

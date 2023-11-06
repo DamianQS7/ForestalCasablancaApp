@@ -40,12 +40,12 @@ namespace ForestalCasablancaApp.Services
                 return false;
         }
 
-        public void CalculateTotalMetrosLeña(DespachoLeñaModel model)
+        public void CalculateTotalMetrosLeña(DespachoModel model)
         {
             model.AlturaMedia = CalculateAlturaMedia(model.Alturas);
             double medidaPalomera = CalculatePalomera(model.AnchoPalomera, model.AltoPalomera);
 
-            model.TotalMetrosLeña = model.AlturaMedia * model.Bancos * model.LargoCamion + medidaPalomera;
+            model.TotalMetros = model.AlturaMedia * model.Bancos * model.LargoCamion + medidaPalomera;
         }
 
         public double CalculatePalomera(double? largo, double? ancho)

@@ -16,13 +16,13 @@ namespace ForestalCasablancaApp.ViewModels
 
         [ObservableProperty] private Cliente _cliente;
         [ObservableProperty] private DatosCamion _datosCamion;
-        [ObservableProperty] private DespachoLeñaModel _despacho;
+        [ObservableProperty] private DespachoModel _despacho;
 
         public MetroRumaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Metro Ruma";
             _calculatorService = calculatorService;
-            Despacho = new DespachoLeñaModel();
+            Despacho = new DespachoModel();
             Cliente = new();
             DatosCamion = new();
             _pdfGeneratorService = pdfGeneratorService;
