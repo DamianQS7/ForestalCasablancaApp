@@ -7,7 +7,7 @@ public partial class TrozoAserrablePage : ContentPage
 	public TrozoAserrablePage(TrozoAserrableViewModel viewModel)
 	{
 		InitializeComponent();
-
+        
 		BindingContext = viewModel;
 	}
 

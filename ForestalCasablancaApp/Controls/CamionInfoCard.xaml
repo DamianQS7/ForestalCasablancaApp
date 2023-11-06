@@ -12,7 +12,7 @@
         <Border
             Margin="{OnIdiom Phone='10,10,10,15'}"
             Padding="{OnIdiom Phone='8,0,8,18'}"
-            Style="{StaticResource InfoCard}" >
+            Style="{StaticResource InfoCard}">
 
             <Grid RowDefinitions="Auto, *">
                 <Label Style="{StaticResource PageSubtitle}" Text="Datos Camión" />
@@ -21,50 +21,61 @@
                     Grid.Row="1"
                     Padding="{OnIdiom Phone='10,0'}"
                     ColumnDefinitions="{OnIdiom Phone='80, *'}"
-                    RowDefinitions="Auto, Auto, Auto, Auto"
+                    RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                     RowSpacing="8">
 
-                    <!--Empresa Transportista-->
+                    <!--  Unidad de Origen  -->
                     <Label
                         Grid.Row="0"
+                        Text="Unidad de Origen: "
+                        VerticalOptions="Center" />
+                    <Entry
+                        x:Name="OrigenEntry"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding UnidadOrigen}" />
+
+                    <!--  Empresa Transportista  -->
+                    <Label
+                        Grid.Row="1"
                         Text="Empresa: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="EmpresaEntry"
-                        Grid.Row="0"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding EmpresaTransportista}" />
 
-                    <!-- Chofer -->
+                    <!--  Chofer  -->
                     <Label
-                        Grid.Row="1"
+                        Grid.Row="2"
                         Text="Chofer: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="ChoferEntry"
-                        Grid.Row="1"
+                        Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding Chofer}" />
 
-                    <!-- Rut Chofer -->
+                    <!--  Rut Chofer  -->
                     <Label
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Text="Rut Chofer: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="RutChoferEntry"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding RutChofer}" />
 
-                    <!-- Patente -->
+                    <!--  Patente  -->
                     <Label
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Text="Patente: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="PatenteEntry"
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Grid.Column="1"
                         Text="{Binding Patente}" />
                 </Grid>
