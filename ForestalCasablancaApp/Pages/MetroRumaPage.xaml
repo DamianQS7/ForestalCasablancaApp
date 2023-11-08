@@ -30,6 +30,7 @@
                     Grid.Row="1"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
+                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 

@@ -33,6 +33,7 @@
                 <!--  Camion Info Section  -->
                 <controls:CamionInfoCard
                     Grid.Row="1"
+                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
