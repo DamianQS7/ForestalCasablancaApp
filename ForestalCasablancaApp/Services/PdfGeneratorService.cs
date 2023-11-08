@@ -6,9 +6,6 @@ using Colors = QuestPDF.Helpers.Colors;
 using IContainer = QuestPDF.Infrastructure.IContainer;
 using System.Collections.ObjectModel;
 using ForestalCasablancaApp.Models;
-using CommunityToolkit.Maui.Alerts;
-using System.Diagnostics;
-using static Android.Graphics.ColorSpace;
 
 namespace ForestalCasablancaApp.Services
 {
