@@ -26,7 +26,7 @@
                         <Shadow Offset="20,20" />
                     </Image.Shadow>
                 </Image>
-
+                
                 <Label
                     Style="{StaticResource PopupTitle}"
                     Text="Resumen" />
@@ -58,10 +58,11 @@
                 <Label
                     Style="{StaticResource PopupSectionLabel}"
                     Text="Detalles Despacho:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Especie, StringFormat='Tipo Leña: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Largo Camión: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.AlturaMedia, StringFormat='Altura Media: {0} m'}" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.TotalMetrosLeña, StringFormat='Total Despacho: {0} ML'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.AlturaMedia, StringFormat='Altura Media: {0:F2} m'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.TotalMetros, StringFormat='Total Despacho: {0:F2} ML'}" />
 
                 <BoxView Style="{StaticResource Separator}" />
 

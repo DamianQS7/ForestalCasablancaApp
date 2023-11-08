@@ -11,7 +11,7 @@
 
     <Style x:Key="CardViewControlStyle" TargetType="Border">
         <Setter Property="Margin" Value="10, 0" />
-        <Setter Property="HeightRequest" Value="{OnIdiom Phone=90}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=90, Tablet=120}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" />
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
@@ -62,6 +62,21 @@
                     Brush="{StaticResource Black}"
                     Radius="50"
                     Offset="20, 30" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Popup" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray700}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                Brush="{StaticResource Black}"
+                Radius="50"
+                Offset="20, 20" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -196,19 +211,6 @@
         <Setter Property="FontSize" Value="14" />
     </Style>
 
-    <Style x:Key="Popup" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray700}}" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 20" />
-        <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="Shadow">
-            <Setter.Value>
-                <Shadow
-                    Brush="{StaticResource Black}"
-                    Radius="50"
-                    Offset="20, 20" />
-            </Setter.Value>
-        </Setter>
-    </Style>
+    
 
 </ResourceDictionary>

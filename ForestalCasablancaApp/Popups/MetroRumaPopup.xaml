@@ -53,7 +53,7 @@
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Largo Camión: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.AlturaMedia, StringFormat='Altura Media: {0}'}" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.TotalMetrosLeña, StringFormat='Total Despacho: {0} m'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.TotalMetros, StringFormat='Total Despacho: {0} m'}" />
 
                 <BoxView Style="{StaticResource Separator}" />
 

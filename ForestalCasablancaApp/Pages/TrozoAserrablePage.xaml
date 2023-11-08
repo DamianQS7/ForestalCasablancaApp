@@ -10,16 +10,15 @@
     Title="{Binding Title}"
     x:DataType="viewModels:TrozoAserrableViewModel">
 
-    <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+    <ScrollView>
 
-        <Image
-            Grid.Row="0"
-            Aspect="AspectFill"
-            Source="trozoaserrable_background.jpg" />
+        <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+            <Image
+                Grid.Row="0"
+                Aspect="AspectFill"
+                Source="trozoaserrable_background.jpg" />
 
-        <ScrollView Grid.Row="1">
-
-            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
                 <BoxView
                     Grid.Row="0"
                     Grid.RowSpan="5"
@@ -34,6 +33,7 @@
                 <!--  Camion Info Section  -->
                 <controls:CamionInfoCard
                     Grid.Row="1"
+                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
@@ -101,8 +101,8 @@
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     HorizontalOptions="Center"
-                                    UserInput="{Binding DiametroIngresado}" 
-                                    Identifier="1"/>
+                                    Identifier="1"
+                                    UserInput="{Binding DiametroIngresado}" />
 
                                 <!--  Cantidad  -->
                                 <Label
@@ -294,8 +294,8 @@
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     HorizontalOptions="Center"
-                                    UserInput="{Binding DiametroIngresado2}" 
-                                    Identifier="2" />
+                                    Identifier="2"
+                                    UserInput="{Binding DiametroIngresado2}" />
 
                                 <Label
                                     Grid.Row="0"
@@ -471,7 +471,7 @@
                                 Margin="{OnIdiom Phone=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *">
-                                
+
                                 <Label
                                     Grid.Row="0"
                                     HorizontalTextAlignment="Center"
@@ -483,8 +483,8 @@
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     HorizontalOptions="Center"
-                                    UserInput="{Binding DiametroIngresado3}" 
-                                    Identifier="3"/>
+                                    Identifier="3"
+                                    UserInput="{Binding DiametroIngresado3}" />
 
                                 <Label
                                     Grid.Row="0"
@@ -633,6 +633,6 @@
                         Text="Reiniciar" />
                 </Grid>
             </Grid>
-        </ScrollView>
-    </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>

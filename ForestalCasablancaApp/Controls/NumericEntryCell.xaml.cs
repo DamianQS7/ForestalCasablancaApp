@@ -13,6 +13,9 @@ public partial class NumericEntryCell : ContentView
     public static readonly BindableProperty IdentifierProperty =
         BindableProperty.Create(nameof(Identifier), typeof(string), typeof(NumericEntryCell), string.Empty, BindingMode.TwoWay);
 
+    public static readonly BindableProperty MaxInputLenghtProperty =
+        BindableProperty.Create(nameof(MaxInputLength), typeof(int), typeof(NumericEntryCell), 10, BindingMode.TwoWay);
+
     public string UserInput
     {
         get => (string)GetValue(UserInputProperty);
@@ -31,6 +34,12 @@ public partial class NumericEntryCell : ContentView
         set => SetValue(IdentifierProperty, value);
     }
 
+    public int MaxInputLength
+    {
+        get => (int)GetValue(MaxInputLenghtProperty);
+        set => SetValue(MaxInputLenghtProperty, value);
+    }
+
     #endregion
 
     public NumericEntryCell()
@@ -39,5 +48,6 @@ public partial class NumericEntryCell : ContentView
         
         UserInputEntry.SetBinding(Entry.TextProperty, new Binding(nameof(UserInput), source: this));
         UserInputEntry.SetBinding(Entry.IsReadOnlyProperty, new Binding(nameof(ReadOnly), source: this));
+        UserInputEntry.SetBinding(Entry.MaxLengthProperty, new Binding(nameof(MaxInputLength), source: this));
     }
 }
