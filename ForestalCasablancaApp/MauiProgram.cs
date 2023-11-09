@@ -28,6 +28,7 @@ public static class MauiProgram
             });
 
 		builder.Services
+			.AddTransient<IPermissionsManager, PermissionsManager>()
 			.AddSingleton<ICalculatorService, CalculatorService>()
 			.AddSingleton<IPdfGeneratorService, PdfGeneratorService>()
 			.AddSingleton<IFolderPicker>(FolderPicker.Default)
