@@ -3,20 +3,23 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ForestalCasablancaApp.Services;
 
 namespace ForestalCasablancaApp.ViewModels
 {
     public partial class SettingsPageViewModel : BaseViewModel
     {
         private readonly IFolderPicker _folderPicker;
+        private readonly IPermissionsManager _manager;
 
         [ObservableProperty] private string _currentWorkingDirectory;
         [ObservableProperty] private string _currentUser;
 
-        public SettingsPageViewModel(IFolderPicker folderPicker)
+        public SettingsPageViewModel(IFolderPicker folderPicker, IPermissionsManager permissionsManager)
         {
             Title = "Configuración";
             _folderPicker = folderPicker;
+            _manager = permissionsManager;
             CurrentWorkingDirectory = Preferences.Get("CurrentWorkingDirectory", FileSystem.Current.AppDataDirectory);
             CurrentUser = Preferences.Get("CurrentUser", "Usuario 01");
         }
@@ -39,6 +42,8 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         async Task PickFolder(CancellationToken cancellationToken)
         {
+            await _manager.GetPermissionsAsync();
+
             var folderPickerResult = await _folderPicker.PickAsync(cancellationToken);
             if (folderPickerResult.IsSuccessful)
             {
