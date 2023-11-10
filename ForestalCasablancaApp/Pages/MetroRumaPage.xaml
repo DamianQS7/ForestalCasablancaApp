@@ -34,33 +34,305 @@
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
+                <!--  Mediciones  -->
+                <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
+                    <VerticalStackLayout>
+
+                        <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
+
+                        <!--  Especie  -->
+                        <Grid
+                            Padding="{OnIdiom Phone='10,0'}"
+                            ColumnDefinitions="{OnIdiom Phone='80, *'}"
+                            RowDefinitions="Auto, Auto"
+                            RowSpacing="8">
+
+                            <Label
+                                Grid.Row="0"
+                                Text="Tipo MR: "
+                                VerticalOptions="Center" />
+
+                            <Picker
+                                x:Name="pickerEspecie"
+                                Title="Seleccione una especie"
+                                Grid.Column="1"
+                                ItemsSource="{Binding ListaEspecies}"
+                                SelectedItem="{Binding Despacho.Especie}" />
+                        </Grid>
+
+                        <!--  Ancho Camión y N° de Bancos  -->
+
+                        <Grid Padding="{OnIdiom Phone='10, 0'}" ColumnDefinitions="Auto, *, Auto, *">
+                            <Label
+                                Grid.Row="0"
+                                Text="Ancho Camión: "
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.LargoCamion}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Text="N° de Bancos: "
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                MaxInputLength="1"
+                                UserInput="{Binding Despacho.Bancos}" />
+                        </Grid>
+
+                        <!--  Alturas  -->
+                        <Label Padding="{OnIdiom Phone='10, 20, 10, 0', Tablet='10, 20, 10, 0'}" Text="Alturas:" />
+                        <Grid
+                            Padding="{OnIdiom Phone='5, 0, 5, 5'}"
+                            ColumnDefinitions="*, *, 4*, *, *"
+                            RowDefinitions="{OnIdiom Phone='Auto, *, *, *, Auto, *, *, *',
+                                                     Tablet='75, Auto, Auto, Auto, Auto, Auto, Auto, Auto, 15'}"
+                            RowSpacing="3">
+
+                            <Image
+                                Grid.Row="0"
+                                Grid.RowSpan="8"
+                                Grid.Column="2"
+                                Margin="{OnIdiom Phone='15, 0',
+                                                 Tablet='15, 0'}"
+                                Aspect="Fill"
+                                HorizontalOptions="Center"
+                                Source="metroruma_truck.png"
+                                VerticalOptions="EndAndExpand" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                Text="" />
+
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                Text="" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H1"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[0], StringFormat='{0:F2}'}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="H7"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                HorizontalOptions="Center"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[6]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H2"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[1]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="H8"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="2"
+                                Grid.Column="4"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[7]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H3"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[2]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="H9"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="3"
+                                Grid.Column="4"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[8]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H4"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[3]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="H10"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="5"
+                                Grid.Column="4"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[9]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H5"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[4]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="H11"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="6"
+                                Grid.Column="4"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[10]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H6"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[5]}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="H12"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="7"
+                                Grid.Column="4"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[11]}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
                 <!--  Palomera Section  -->
                 <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
-
                     <VerticalStackLayout>
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Palomera" />
 
                         <Grid
-                            Grid.Row="1"
-                            Padding="{OnIdiom Phone='10,0'}"
-                            ColumnDefinitions="Auto, *, Auto, *"
-                            RowSpacing="8">
+                            Padding="{OnIdiom Phone='10'}"
+                            ColumnDefinitions="*, *, *"
+                            RowDefinitions="Auto, Auto"
+                            RowSpacing="0">
 
-                            <Label Text="Altura: " VerticalOptions="Center" />
-                            <controls:NumericEntryCell
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                UserInput="{Binding Despacho.AltoPalomera}" />
-
+                            <!--  Altura Palomera 1  -->
                             <Label
-                                Grid.Column="2"
-                                Text="Ancho: "
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                Text="H1"
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalOptions="Center"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.AltoPalomera}"
+                                VerticalOptions="Center" />
+
+                            <!--  Altura Palomera 2  -->
+                            <Label
                                 Grid.Row="0"
-                                Grid.Column="3"
-                                UserInput="{Binding Despacho.AnchoPalomera}" />
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Text="H2"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.AltoPalomera2}"
+                                VerticalOptions="Center" />
+
+                            <!--  Ancho Palomera  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Text="Ancho"
+                                VerticalOptions="Center" />
+                            <controls:NumericEntryCell
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.AnchoPalomera}"
+                                VerticalOptions="Center" />
                         </Grid>
                     </VerticalStackLayout>
                 </Border>

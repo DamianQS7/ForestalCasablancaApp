@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
@@ -18,6 +19,13 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private DatosCamion _datosCamion;
         [ObservableProperty] private DespachoModel _despacho;
 
+        public List<string> ListaEspecies { get; set; } = new()
+        {
+            "Nativo",
+            "Oregón",
+            "Otro"
+        };
+
         public MetroRumaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Metro Ruma";
@@ -30,7 +38,22 @@ namespace ForestalCasablancaApp.ViewModels
 
         private bool ValidateInput()
         {
-            return false;
+            _calculatorService.CalculateTotalMetros(Despacho);
+            bool validPalomera = _calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2);
+
+            if (Despacho.AlturaMedia <= 0)
+            {
+                DisplayInputError(InfoMessage.MissingLeñaData);
+                return false;
+            }
+
+            if (!validPalomera)
+            {
+                DisplayInputError(InfoMessage.InvalidPalomera);
+                return false;
+            }
+
+            return true;
         }
 
         #region Commands
@@ -46,7 +69,7 @@ namespace ForestalCasablancaApp.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "...", "OK");
+                await DisplayInputError(InfoMessage.MissingMetroRumaData);
             }
         }
 
@@ -87,7 +110,7 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         private async Task ClosePopup()
         {
-            //await _popup.CloseAsync();
+            await _popup.CloseAsync();
         }
         #endregion
     }
