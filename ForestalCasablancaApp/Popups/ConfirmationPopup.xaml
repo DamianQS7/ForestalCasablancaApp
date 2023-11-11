@@ -26,26 +26,20 @@
                         <Shadow Offset="20,20" />
                     </Image.Shadow>
                 </Image>
-                
-                <Label
-                    Style="{StaticResource PopupTitle}"
-                    Text="Resumen" />
+
+                <Label Style="{StaticResource PopupTitle}" Text="Resumen" />
 
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Datos del Cliente  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Datos del Cliente:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Cliente:" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
 
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Datos del Camión  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Datos del Camión:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Camión:" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
@@ -55,9 +49,7 @@
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Detalles Despacho  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Detalles Despacho:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Detalles Despacho:" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Especie, StringFormat='Tipo Leña: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Largo Camión: {0} m'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />

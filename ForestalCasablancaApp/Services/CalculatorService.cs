@@ -31,19 +31,11 @@ namespace ForestalCasablancaApp.Services
             return alturaMedia > 0 ? alturaMedia : 0;
         }
 
-        //public bool CheckPalomera(double? ancho, double? alto)
-        //{
-        //    // Si ambos son mayores a 0 o ambos son 0 o ambos son null, es valido
-        //    if((ancho > 0 && alto > 0) || (ancho == 0 && alto == 0) || (ancho is null && alto is null ))
-        //        return true;
-        //    else
-        //        return false;
-        //}
-
         public bool CheckPalomera(double? ancho, double? alto, double? alto2)
         {
+            
             // Si ambos son mayores a 0 o ambos son 0 o ambos son null, es valido
-            if((ancho > 0 && (alto > 0 || alto2 > 0)) || (ancho == 0 && alto == 0 && alto2 == 0) || (ancho is null && alto is null && alto2 is null ))
+            if((ancho > 0 && (alto > 0 || alto2 > 0)) || ((ancho == 0 || ancho is null) && (alto == 0 || alto is null) && (alto2 == 0 || alto2 is null)))
                 return true;
             else
                 return false;

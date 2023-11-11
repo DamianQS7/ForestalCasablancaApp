@@ -41,7 +41,7 @@ namespace ForestalCasablancaApp.ViewModels
             _calculatorService.CalculateTotalMetros(Despacho);
             bool validPalomera = _calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2);
 
-            if (Despacho.AlturaMedia <= 0)
+            if (Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
             {
                 DisplayInputError(InfoMessage.MissingLeñaData);
                 return false;
@@ -66,10 +66,6 @@ namespace ForestalCasablancaApp.ViewModels
                 _popup = new MetroRumaPopup();
 
                 BasePage.ShowPopup(_popup);
-            }
-            else
-            {
-                await DisplayInputError(InfoMessage.MissingMetroRumaData);
             }
         }
 
