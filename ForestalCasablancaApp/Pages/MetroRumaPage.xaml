@@ -102,7 +102,7 @@
                                                  Tablet='15, 0'}"
                                 Aspect="Fill"
                                 HorizontalOptions="Center"
-                                Source="metroruma_truck.png"
+                                Source="metroruma_truck2.png"
                                 VerticalOptions="EndAndExpand" />
 
                             <Label

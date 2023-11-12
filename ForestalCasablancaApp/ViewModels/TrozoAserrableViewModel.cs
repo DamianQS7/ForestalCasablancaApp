@@ -195,9 +195,9 @@ namespace ForestalCasablancaApp.ViewModels
         #region Commands
         
         /// <summary>
-        /// Adds a new item to a specific list based on the provided "numeroLista" value.
+        /// Adds a new item to the respective list based on the assigned property "Identifier" of the NumericEntryCell.
         /// </summary>
-        /// <param name="numeroLista">The identifier for the target list (1, 2, or 3).</param>
+        /// <param name="cell"></param>
         [RelayCommand]
         void AddItemToList(NumericEntryCell cell)
         {

@@ -159,17 +159,6 @@ namespace ForestalCasablancaApp.Services
             string fileName = PdfGeneratorService.GenerateFileName("Leña");
             string finalPath = Path.Combine(folder, fileName);
 
-            // Format the information to be displayed
-            List<double> alturas = new List<double>();
-
-            foreach(var item in model.Despacho.Alturas)
-            {
-                if(item is null)
-                    alturas.Add(0);
-                else
-                    alturas.Add((double)item);
-            }
-
             // Design the PDF
             Document.Create(container =>
             {
@@ -218,60 +207,7 @@ namespace ForestalCasablancaApp.Services
                                 col.Item()
                                    .Component(new DetalleCarga("Camión", "Largo Camión", model.Despacho.AlturaMedia, model.Despacho.LargoCamion,
                                    model.Despacho.Bancos, model.Despacho.AltoPalomera, model.Despacho.AnchoPalomera));
-                                //col.Item().Row(row =>
-                                //{
-                                //    row.Spacing(70);
-                                //    // Camion Table
-                                //    row.AutoItem().Table(table =>
-                                //    {
-                                //        // Table columns definition
-                                //        table.ColumnsDefinition(col =>
-                                //        {
-                                //            col.ConstantColumn(140);
-                                //            col.ConstantColumn(80);
-                                //        });
 
-                                //        // Table Header definition
-                                //        table.Header(header =>
-                                //        {
-                                //            header.Cell().ColumnSpan(2).Element(SummaryHeaderCellStyle).Text("Camión");
-                                //        });
-
-                                //        // Table Content
-                                //        table.Cell().Element(SummaryCellStyle).Text("H Media (m)");
-                                //        table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AlturaMedia.ToString());
-
-                                //        table.Cell().Element(SummaryCellStyle).Text("Largo Camión (m)");
-                                //        table.Cell().Element(SummaryCellStyle).Text(model.Despacho.LargoCamion.ToString());
-
-                                //        table.Cell().Element(SummaryCellStyle).Text("N° de Bancos");
-                                //        table.Cell().Element(SummaryCellStyle).Text(model.Despacho.Bancos.ToString());
-                                //    });
-
-                                //    // Palomera Table
-                                //    row.AutoItem().Table(table =>
-                                //    {
-                                //        // Table columns definition
-                                //        table.ColumnsDefinition(col =>
-                                //        {
-                                //            col.ConstantColumn(140);
-                                //            col.ConstantColumn(80);
-                                //        });
-
-                                //        // Table Header definition
-                                //        table.Header(header =>
-                                //        {
-                                //            header.Cell().ColumnSpan(2).Element(SummaryHeaderCellStyle).Text("Palomera");
-                                //        });
-
-                                //        // Table Content
-                                //        table.Cell().Element(SummaryCellStyle).Text("H Media (m)");
-                                //        table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AltoPalomera.ToString());
-
-                                //        table.Cell().Element(SummaryCellStyle).Text("Ancho (m)");
-                                //        table.Cell().Element(SummaryCellStyle).Text(model.Despacho.AnchoPalomera.ToString());
-                                //    });
-                                //});
 
                                 col.Item().Height(12);
                                 col.Item().Table(table =>
@@ -302,7 +238,7 @@ namespace ForestalCasablancaApp.Services
             await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
-        public void GenerateMetroRumaPDF(MetroRumaViewModel model)
+        public async void GenerateMetroRumaPDF(MetroRumaViewModel model)
         {
             // Set the file name
             string folder = Preferences.Get("CurrentWorkingDirectory", "");
@@ -322,7 +258,62 @@ namespace ForestalCasablancaApp.Services
 
                     // Document Sections
                     page.Header()
-                        .Component(new DocumentHeader("Venta Leña", ImagePath, TitleSize, model.Folio));
+                        .Component(new DocumentHeader("Metro Ruma", ImagePath, TitleSize, model.Folio));
+
+                    page.Content()
+                        .PaddingVertical(0, Unit.Centimetre)
+                        .Column(x =>
+                        {
+                            x.Spacing(20);
+
+                            x.Item().Height(0);
+
+                            //Datos Cliente
+                            x.Item()
+                             .Component(new ClientInfo("Datos Cliente", SubtitleSize, FirstColumnSize, model.Cliente.Nombre,
+                             model.Cliente.RUT));
+
+                            // Datos Camión
+                            x.Item()
+                             .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
+                             model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Despacho Leña
+                            x.Item().Component(new DespachoInfo("Despacho Metro Ruma", SubtitleSize, FirstColumnSize,
+                                model.Despacho.Especie, model.DatosCamion.UnidadOrigen));
+
+                            // Detalles de Carga
+                            x.Item().Column(col =>
+                            {
+                                col.Spacing(3);
+
+                                col.Item()
+                                   .Component(new SectionTitle("Detalles de Carga", SubtitleSize));
+
+                                col.Item()
+                                   .Component(new DetalleCarga("Camión y Carro", "Ancho Camión", model.Despacho.AlturaMedia, model.Despacho.LargoCamion,
+                                   model.Despacho.Bancos, model.Despacho.AltoPalomera, model.Despacho.AnchoPalomera));
+
+
+                                col.Item().Height(12);
+                                col.Item().Table(table =>
+                                {
+                                    // Table columns definition
+                                    table.ColumnsDefinition(col =>
+                                    {
+                                        col.RelativeColumn();
+                                    });
+
+                                    table.Header(header =>
+                                    {
+                                        header.Cell().Element(SummaryHeaderCellStyle).Text("Resultado Cantidad de Metro Ruma");
+                                    });
+
+                                    table.Cell().Element(SummaryFinalCellStyle).Text($"{model.Despacho.TotalMetros:F2} MR");
+                                });
+                            });
+
+                        });
 
                     page.Footer()
                         .Element(ComposeFooter);
@@ -330,7 +321,7 @@ namespace ForestalCasablancaApp.Services
             }).GeneratePdf(finalPath);
 
             // Open the generated PDF
-            //await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
+            await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
         #region Helper Methods
@@ -767,13 +758,13 @@ namespace ForestalCasablancaApp.Services
             public string SectionTitle { get; set; }
             public string RowName { get; set; }
             public double? AlturaMedia { get; set; }
-            public double? MedidaCamion { get; set; }
-            public int? Bancos { get; set; }
-            public double? AltoPalomera { get; set; }
-            public double? AnchoPalomera { get; set; }
+            public string MedidaCamion { get; set; }
+            public string Bancos { get; set; }
+            public string AltoPalomera { get; set; }
+            public string? AnchoPalomera { get; set; }
 
-            public DetalleCarga(string title, string rowName, double? alturaMedia, double? medidaCamion, int? bancos, 
-                double? altoPalomera, double? anchoPalomera)
+            public DetalleCarga(string title, string rowName, double? alturaMedia, string medidaCamion, string bancos,
+                string altoPalomera, string anchoPalomera)
             {
                 SectionTitle = title;
                 RowName = rowName;
@@ -812,10 +803,10 @@ namespace ForestalCasablancaApp.Services
                             table.Cell().Element(SummaryCellStyle).Text(AlturaMedia.ToString());
 
                             table.Cell().Element(SummaryCellStyle).Text($"{RowName} (m)");
-                            table.Cell().Element(SummaryCellStyle).Text(MedidaCamion.ToString());
+                            table.Cell().Element(SummaryCellStyle).Text(MedidaCamion);
 
                             table.Cell().Element(SummaryCellStyle).Text("N° de Bancos");
-                            table.Cell().Element(SummaryCellStyle).Text(Bancos.ToString());
+                            table.Cell().Element(SummaryCellStyle).Text(Bancos);
                         });
 
                         // Palomera Table
@@ -836,10 +827,10 @@ namespace ForestalCasablancaApp.Services
 
                             // Table Content
                             table.Cell().Element(SummaryCellStyle).Text("H Media (m)");
-                            table.Cell().Element(SummaryCellStyle).Text(AltoPalomera.ToString());
+                            table.Cell().Element(SummaryCellStyle).Text(AltoPalomera);
 
                             table.Cell().Element(SummaryCellStyle).Text("Ancho (m)");
-                            table.Cell().Element(SummaryCellStyle).Text(AnchoPalomera.ToString());
+                            table.Cell().Element(SummaryCellStyle).Text(AnchoPalomera);
                         });
                     });
                 });

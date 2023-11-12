@@ -56,6 +56,7 @@
 		<None Remove="Resources\Images\mainpage_background_dos.jpg" />
 		<None Remove="Resources\Images\metroruma_module_icon.png" />
 		<None Remove="Resources\Images\metroruma_truck.png" />
+		<None Remove="Resources\Images\metroruma_truck2.png" />
 		<None Remove="Resources\Images\trozo_module_icon.png" />
 		<None Remove="Resources\Logos\bosquesnalcahue.png" />
 		<None Remove="Resources\Logos\mainpage_logo.png" />
