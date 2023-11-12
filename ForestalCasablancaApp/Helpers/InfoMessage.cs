@@ -5,6 +5,7 @@
         InvalidDiameter,
         MissingTrozoData,
         MissingLeñaData,
-        MissingMetroRumaData
+        MissingMetroRumaData,
+        InvalidPalomera
     }
 }

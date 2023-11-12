@@ -3,6 +3,7 @@ using ForestalCasablancaApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,52 +12,94 @@ namespace ForestalCasablancaApp.Services
 {
     public class CalculatorService : ICalculatorService
     {
-        public double CalculateAlturaMedia(List<double?> alturas)
+        public bool CheckIfAlturasAreValid(List<string> alturas)
         {
-            int count = 0;
-            double? sum = 0;
-            double alturaMedia = 0;
-
-            foreach (double? altura in alturas)
+            foreach (string altura in alturas)
             {
-                if (altura > 0)
+                if (double.TryParse(altura, CultureInfo.InvariantCulture, out double valueHolder))
                 {
-                    count++;
-                    sum += altura;
+                    if (valueHolder > 0)
+                        return true;
                 }
             }
 
-            alturaMedia = (double)sum / count;
+            return false;
+        }
+        public double CalculateAlturaMedia(List<string> alturas)
+        {
+            int count = 0;
+            double sum = 0;
+            double alturaMedia;
+
+            foreach (string altura in alturas)
+            {
+                if (double.TryParse(altura, CultureInfo.InvariantCulture, out double valueHolder))
+                {
+                    if(valueHolder > 0)
+                    {
+                        count++;
+                        sum += valueHolder;
+                    }
+                }
+            }
+
+            alturaMedia = sum / count;
             
             return alturaMedia > 0 ? alturaMedia : 0;
         }
 
-        public bool CheckPalomera(double? ancho, double? alto)
+        public bool CheckPalomera(string ancho, string alto, string alto2)
         {
-            // Si ambos son mayores a 0 o ambos son 0 o ambos son null, es valido
-            if((ancho > 0 && alto > 0) || (ancho == 0 && alto == 0) || (ancho is null && alto is null ))
+            // Check if the user has entered the values required to perform the calculation
+            if (string.IsNullOrEmpty(ancho) && string.IsNullOrEmpty(alto) && string.IsNullOrEmpty(alto2))
                 return true;
-            else
-                return false;
-        }
 
-        public void CalculateTotalMetrosLeña(DespachoModel model)
-        {
-            model.AlturaMedia = CalculateAlturaMedia(model.Alturas);
-            double medidaPalomera = CalculatePalomera(model.AnchoPalomera, model.AltoPalomera);
+            double.TryParse(ancho, CultureInfo.InvariantCulture, out double anchoPalomera);
+            double.TryParse(alto, CultureInfo.InvariantCulture, out double altoPalomera);
+            double.TryParse(alto2, CultureInfo.InvariantCulture, out double altoPalomera2);
 
-            model.TotalMetros = model.AlturaMedia * model.Bancos * model.LargoCamion + medidaPalomera;
-        }
+            if (anchoPalomera == 0 && altoPalomera == 0 && altoPalomera2 == 0)
+                return true;
 
-        public double CalculatePalomera(double? largo, double? ancho)
-        {
-            if(largo is null || ancho is null)
-                return 0;
+            // Check if the values entered are valid
+            if (anchoPalomera > 0 && (altoPalomera > 0 || altoPalomera2 > 0))
+                return true;
             
-            if(largo == 0 || ancho == 0)
-                return 0;
+            return false;
+        }
 
-            return (double)largo * (double)ancho;
+        public double CalculateTotalMetros(DespachoModel model)
+        {
+            double.TryParse(model.Bancos, CultureInfo.InvariantCulture, out double bancos);
+            double.TryParse(model.LargoCamion, CultureInfo.InvariantCulture, out double largoCamion);
+
+            return model.AlturaMedia * bancos * largoCamion + model.MedidaPalomera;
+        }
+
+        /// <summary>
+        /// This method calculates the palomera's volume. It assumes that the user input is valid, because it will be called after the CheckPalomera method.
+        /// </summary>
+        /// <param name="ancho"> String representing the value for AnchoPalomera input by the user. </param>
+        /// <param name="alto"> String representing the value for AltoPalomera input by the user. </param>
+        /// <param name="alto2"> String representing the value for AltoPalomera2 input by the user. </param>
+        /// <returns> A double value representing the palomera's volume. </returns>
+        public double CalculatePalomera(string ancho, string alto, string alto2)
+        {
+
+            double.TryParse(ancho, CultureInfo.InvariantCulture, out double anchoPalomera);
+            double.TryParse(alto, CultureInfo.InvariantCulture, out double altoPalomera);
+            double.TryParse(alto2, CultureInfo.InvariantCulture, out double altoPalomera2);
+            int count = 0;
+
+            if (altoPalomera > 0)
+                count++;
+            
+            if(altoPalomera2 > 0)
+                count++;
+
+
+            return count > 0 ? (altoPalomera + altoPalomera2) / count * anchoPalomera : 0;
+                        
         }
 
         public double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, double? largo)

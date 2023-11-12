@@ -50,10 +50,11 @@
 
                 <!--  Detalles Despacho  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Detalles Despacho:" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Largo Camión: {0}'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Especie, StringFormat='Tipo MR: {0}'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Ancho Camión: {0} m'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.AlturaMedia, StringFormat='Altura Media: {0}'}" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.TotalMetros, StringFormat='Total Despacho: {0} m'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.AlturaMedia, StringFormat='Altura Media: {0:F2} m'}" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.TotalMetros, StringFormat='Total Despacho: {0:F2} MR'}" />
 
                 <BoxView Style="{StaticResource Separator}" />
 

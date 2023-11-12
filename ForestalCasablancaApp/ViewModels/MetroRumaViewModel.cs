@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
@@ -18,6 +19,13 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private DatosCamion _datosCamion;
         [ObservableProperty] private DespachoModel _despacho;
 
+        public List<string> ListaEspecies { get; set; } = new()
+        {
+            "Nativo",
+            "Oregón",
+            "Otro"
+        };
+
         public MetroRumaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Metro Ruma";
@@ -30,7 +38,37 @@ namespace ForestalCasablancaApp.ViewModels
 
         private bool ValidateInput()
         {
-            return false;
+            // Get the average height of the wood
+            if (_calculatorService.CheckIfAlturasAreValid(Despacho.Alturas))
+                Despacho.AlturaMedia = _calculatorService.CalculateAlturaMedia(Despacho.Alturas);
+            else
+                Despacho.AlturaMedia = 0;
+
+            // Check if palomera is valid
+            if (_calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2))
+            {
+                Despacho.MedidaPalomera = _calculatorService.CalculatePalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2);
+                Despacho.IsPalomeraValid = true;
+            }
+            else
+            {
+                Despacho.MedidaPalomera = 0;
+                Despacho.IsPalomeraValid = false;
+            }
+
+            if (Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
+            {
+                DisplayInputError(InfoMessage.MissingLeñaData);
+                return false;
+            }
+
+            if (!Despacho.IsPalomeraValid)
+            {
+                DisplayInputError(InfoMessage.InvalidPalomera);
+                return false;
+            }
+
+            return true;
         }
 
         #region Commands
@@ -40,13 +78,11 @@ namespace ForestalCasablancaApp.ViewModels
         {
             if (ValidateInput())
             {
+                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho);
+
                 _popup = new MetroRumaPopup();
 
                 BasePage.ShowPopup(_popup);
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", "...", "OK");
             }
         }
 
@@ -87,8 +123,9 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         private async Task ClosePopup()
         {
-            //await _popup.CloseAsync();
+            await _popup.CloseAsync();
         }
+
         #endregion
     }
 }

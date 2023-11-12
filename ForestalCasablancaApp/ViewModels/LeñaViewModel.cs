@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
@@ -38,15 +39,39 @@ namespace ForestalCasablancaApp.ViewModels
             _pdfGeneratorService = pdfGeneratorService;
         }
 
-        private void ValidateInput()
+        private bool ValidateInput()
         {
-            _calculatorService.CalculateTotalMetrosLeña(Despacho);
-            bool validPalomera = _calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera);
-            
-            if(Despacho.AlturaMedia <= 0  || validPalomera == false)
-                IsValidInput = false;
+            // Get the average height of the wood
+            if(_calculatorService.CheckIfAlturasAreValid(Despacho.Alturas))
+                Despacho.AlturaMedia = _calculatorService.CalculateAlturaMedia(Despacho.Alturas);
             else
-                IsValidInput = true;
+                Despacho.AlturaMedia = 0;
+
+            // Check if palomera is valid
+            if (_calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2))
+            {
+                Despacho.MedidaPalomera = _calculatorService.CalculatePalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2);
+                Despacho.IsPalomeraValid = true;
+            }
+            else
+            {
+                Despacho.MedidaPalomera = 0;
+                Despacho.IsPalomeraValid = false;
+            }
+
+            if(Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
+            {
+                DisplayInputError(InfoMessage.MissingLeñaData);
+                return false;
+            }
+
+            if (!Despacho.IsPalomeraValid)
+            {
+                DisplayInputError(InfoMessage.InvalidPalomera);
+                return false;
+            }
+
+            return true;
         }
 
         #endregion
@@ -56,17 +81,13 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         private async void DisplaySummaryAsync()
         {
-            ValidateInput();
 
-            if (IsValidInput)
+            if (ValidateInput())
             {
+                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho);
+
                 _popup = new ConfirmationPopup();
-
                 BasePage.ShowPopup(_popup);
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", "Debe incluir 'Largo Camión', 'N° de Bancos' y por lo menos una altura", "OK");
             }
         }
 
