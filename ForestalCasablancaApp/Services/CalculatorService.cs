@@ -119,9 +119,9 @@ namespace ForestalCasablancaApp.Services
         {
             int totalFinal = 0;
 
-            foreach (int total in lista.Select(x => x.Cantidad))
+            foreach (int? total in lista.Select(x => x.Cantidad))
             {
-                totalFinal += total;
+                totalFinal += (int)total;
             }
 
             return totalFinal;
@@ -131,9 +131,9 @@ namespace ForestalCasablancaApp.Services
         {
             double totalFinal = 0;
 
-            foreach (double total in lista.Select(x => x.Total))
+            foreach (double? total in lista.Select(x => x.Total))
             {
-                totalFinal += total;
+                totalFinal += (double)total;
             }
 
             return Math.Round(totalFinal, 2);

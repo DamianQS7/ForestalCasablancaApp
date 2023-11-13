@@ -10,6 +10,5 @@ namespace ForestalCasablancaApp.Models
     {
         public string Nombre { get; set; }
         public string RUT { get; set; }
-        public string Patente { get; set; }
     }
 }

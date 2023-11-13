@@ -622,7 +622,7 @@
                     <Button
                         Grid.Column="0"
                         Margin="{OnIdiom Phone='0,10,0,20'}"
-                        Command="{Binding DisplaySummaryAsyncCommand}"
+                        Command="{Binding DisplaySummaryCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Calcular" />
                     <Button
