@@ -15,17 +15,18 @@
             <Border
                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
                                                   Light={StaticResource Gray600}}"
-                HeightRequest="85"
+                HeightRequest="{OnIdiom Phone=85, Tablet=100}"
                 HorizontalOptions="Start"
                 Stroke="#F3F2F1"
                 StrokeShape="RoundRectangle 10"
                 StrokeThickness="2"
                 VerticalOptions="Start"
-                WidthRequest="85">
+                WidthRequest="{OnIdiom Phone=85, Tablet=100}"
+                Margin="{OnIdiom Phone=0, Tablet='0,10'}">
                 <VerticalStackLayout
                     Margin="0,4"
                     Padding="5"
-                    WidthRequest="80">
+                    WidthRequest="{OnIdiom Phone=80, Tablet=95}">
                     <Grid
                         Margin="0,0,4,0"
                         HeightRequest="15"
@@ -50,7 +51,8 @@
                     <ContentPresenter
                         Margin="{OnIdiom Phone='-2,-6,-2,0',
                                          Tablet='-4,-8,-2,0'}"
-                        Padding="{OnIdiom Phone='6,0', Tablet='6,0'}"
+                        Padding="{OnIdiom Phone='6,0',
+                                          Tablet='6,0'}"
                         HorizontalOptions="Center"
                         VerticalOptions="Start" />
                 </VerticalStackLayout>
@@ -87,19 +89,13 @@
             JustifyContent="SpaceEvenly">
 
             <!--  User  -->
-            <Label
-                Margin="5,0"
-                Padding="10,10,10,0"
-                FontAttributes="Bold"
-                HorizontalOptions="Start"
-                Style="{StaticResource BaseLabel}"
-                Text="Nombre de Usuario"
-                VerticalOptions="Center" />
+            <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Nombre de Usuario" />
 
             <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
 
-                <VerticalStackLayout Padding="10">
-                    <Label Text="Usuario Actual:" FontAttributes="Italic" />
+                <VerticalStackLayout Style="{StaticResource SettingsPageSectionsStackLayout}">
+                    <Label Style="{StaticResource SettingsPageSectionSubtitle}" Text="Usuario Actual:" />
+
                     <Entry Style="{StaticResource CurrentUserEntryStyle}" Text="{Binding CurrentUser}" />
 
                     <Button
@@ -119,19 +115,13 @@
             </Border>
 
             <!--  PDF Directory  -->
-            <Label
-                Margin="5,0"
-                Padding="10,10,10,0"
-                FontAttributes="Bold"
-                HorizontalOptions="Start"
-                Style="{StaticResource BaseLabel}"
-                Text="Directorio de destino para PDF"
-                VerticalOptions="Center" />
+            <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Directorio de destino para PDF" />
 
             <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
 
-                <VerticalStackLayout Padding="10">
-                    <Label Text="Directorio Actual:" FontAttributes="Italic" Margin="0, 2, 0, 0" />
+                <VerticalStackLayout Style="{StaticResource SettingsPageSectionsStackLayout}">
+
+                    <Label Style="{StaticResource SettingsPageSectionSubtitle}" Text="Directorio Actual:" />
                     <Label
                         Margin="0,12,0,0"
                         Padding="5"
@@ -156,14 +146,7 @@
             </Border>
 
             <!--  App Theme  -->
-            <Label
-                Margin="5,0"
-                Padding="10,10,10,0"
-                FontAttributes="Bold"
-                HorizontalOptions="Start"
-                Style="{StaticResource BaseLabel}"
-                Text="Tema de la App"
-                VerticalOptions="Center" />
+            <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Tema de la App" />
 
             <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
 
