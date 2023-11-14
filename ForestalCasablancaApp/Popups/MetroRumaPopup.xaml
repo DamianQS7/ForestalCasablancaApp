@@ -13,15 +13,15 @@
 
         <ScrollView>
             <VerticalStackLayout
-                Margin="{OnIdiom Phone='8,0,0,0'}"
-                Padding="{OnIdiom Phone=10}"
-                Spacing="{OnIdiom Phone=8}">
+                Margin="{OnIdiom Phone='8,0,0,0', Tablet='8,0,0,0'}"
+                Padding="{OnIdiom Phone=10, Tablet=15}"
+                Spacing="{OnIdiom Phone=8, Tablet=12}">
 
                 <Image
                     Aspect="AspectFill"
-                    HeightRequest="{OnIdiom Phone=80}"
+                    HeightRequest="{OnIdiom Phone=80, Tablet=150}"
                     Source="popup_icon.png"
-                    WidthRequest="{OnIdiom Phone=80}">
+                    WidthRequest="{OnIdiom Phone=80, Tablet=150}">
                     <Image.Shadow>
                         <Shadow Offset="20,20" />
                     </Image.Shadow>

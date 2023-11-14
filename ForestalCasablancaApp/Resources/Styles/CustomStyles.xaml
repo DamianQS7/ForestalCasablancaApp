@@ -67,7 +67,7 @@
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=280}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=280, Tablet=500}" />
     </Style>
 
     <!--  BOXVIEW  -->
@@ -79,7 +79,7 @@
 
     <Style x:Key="Separator" TargetType="BoxView">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray100}, Light={StaticResource Primary}}" />
-        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=1, Tablet=2}" />
     </Style>
 
     <!--  BUTTON  -->
@@ -203,7 +203,7 @@
         x:Key="PopupContent"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=14, Tablet=19}" />
     </Style>
 
 
@@ -212,7 +212,7 @@
         BasedOn="{StaticResource PageSubtitle}"
         TargetType="Label">
 
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=20, Tablet=26}" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="Shadow">
             <Setter.Value>
@@ -229,7 +229,7 @@
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
 
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=15, Tablet=20}" />
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
@@ -241,7 +241,7 @@
         <Setter Property="FontAttributes" Value="Italic" />
         <Setter Property="Margin" Value="{OnIdiom Phone='0,4,0,0', Tablet='0,8,0,0'}" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="WidthRequest" Value="52" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=52, Tablet=65}" />
         <Setter Property="VerticalOptions" Value="End" />
         <Setter Property="TextColor" Value="{StaticResource White}" />
     </Style>
