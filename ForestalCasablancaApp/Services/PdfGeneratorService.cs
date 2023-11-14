@@ -31,7 +31,7 @@ namespace ForestalCasablancaApp.Services
         {
             // Set the file name
             string folder = Preferences.Get("CurrentWorkingDirectory", "");
-            string fileName = PdfGeneratorService.GenerateFileName("Trozo");
+            string fileName = PdfGeneratorService.GenerateFileName(model.Cliente.Nombre);
             string finalPath = Path.Combine(folder, fileName);
 
             // Design the PDF
@@ -156,7 +156,7 @@ namespace ForestalCasablancaApp.Services
         {
             // Set the file name
             string folder = Preferences.Get("CurrentWorkingDirectory", "");
-            string fileName = PdfGeneratorService.GenerateFileName("Leña");
+            string fileName = PdfGeneratorService.GenerateFileName(model.Cliente.Nombre);
             string finalPath = Path.Combine(folder, fileName);
 
             // Design the PDF
@@ -242,7 +242,7 @@ namespace ForestalCasablancaApp.Services
         {
             // Set the file name
             string folder = Preferences.Get("CurrentWorkingDirectory", "");
-            string fileName = PdfGeneratorService.GenerateFileName("MetroRuma");
+            string fileName = PdfGeneratorService.GenerateFileName(model.Cliente.Nombre);
             string finalPath = Path.Combine(folder, fileName);
 
             // Design the PDF
@@ -329,18 +329,42 @@ namespace ForestalCasablancaApp.Services
         /// <summary>
         /// Static method that formats the name of the file to be generated.
         /// </summary>
-        /// <param name="despacho">String that will help to identify which module generated the PDF</param>
+        /// <param name="nombreCliente">String that represents the Nombre property in the Cliente object of the viewModel</param>
         /// <returns></returns>
-        public static string GenerateFileName(string despacho)
-        {            
-            // Get the current date and time
-            string dateAsString = DateTime.Now.ToString("dd/MM/yy HH/mm/ss");
+        public static string GenerateFileName(string nombreCliente)
+        {
+            // Get the next file number
+            int fileNumber = GetNextFileNumber();
 
-            // Remove the characters that we don't want in the file name
-            string formattedDate = dateAsString.Replace(":", "").Replace(" ", "_").Replace("/", "-");
+            // Get user initials
+            string userInitials = Preferences.Get("CurrentUserInitials", "XX");
+
+            // Get the current date
+            string dateAsString = DateTime.Now.ToString("dd/MM/yy");
+            string formattedDate = dateAsString.Replace("/", "-");
+
+            // Get cliente's name
+            string formattedCliente;
+            if (string.IsNullOrEmpty(nombreCliente))
+                formattedCliente = "Sin_Nombre";
+            else
+                formattedCliente = nombreCliente.Trim().Split(' ')[0];
 
             // Return the formatted string
-            return $"{despacho}_{formattedDate}.pdf";
+            return $"{fileNumber}{userInitials}{formattedDate}_{formattedCliente}.pdf";
+        }
+
+        /// <summary>
+        /// Generates a new file number and saves it in the app's preferences.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetNextFileNumber()
+        {
+            int currentNumber = Preferences.Get("CurrentFileNumber", 1);
+
+            Preferences.Set("CurrentFileNumber", currentNumber + 1);
+
+            return currentNumber;
         }
 
         /// <summary>
@@ -761,7 +785,7 @@ namespace ForestalCasablancaApp.Services
             public string MedidaCamion { get; set; }
             public string Bancos { get; set; }
             public string AltoPalomera { get; set; }
-            public string? AnchoPalomera { get; set; }
+            public string AnchoPalomera { get; set; }
 
             public DetalleCarga(string title, string rowName, double? alturaMedia, string medidaCamion, string bancos,
                 string altoPalomera, string anchoPalomera)

@@ -79,7 +79,7 @@ namespace ForestalCasablancaApp.ViewModels
         #region Commands
 
         [RelayCommand]
-        private async void DisplaySummaryAsync()
+        private void DisplaySummaryAsync()
         {
 
             if (ValidateInput())

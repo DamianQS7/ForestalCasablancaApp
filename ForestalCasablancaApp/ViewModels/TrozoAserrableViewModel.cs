@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
 using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Helpers;
+using System.Globalization;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -205,7 +206,8 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if (ValidateInput(1))
                 {
-                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado, CantidadIngresada, double.Parse(LargoEspecieUno));
+                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado, CantidadIngresada, 
+                                    double.Parse(LargoEspecieUno, NumberStyles.AllowDecimalPoint ,CultureInfo.InvariantCulture));
 
                     // Add the new item to the list number 1
                     MedidasEspecieUno.Add(new MedidaTrozoAserrable()
@@ -229,7 +231,8 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if (ValidateInput(2))
                 {
-                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado2, CantidadIngresada2, double.Parse(LargoEspecieDos));
+                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado2, CantidadIngresada2, 
+                                    double.Parse(LargoEspecieDos, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture));
 
                     // Add the new item to the list number 2
                     MedidasEspecieDos.Add(new MedidaTrozoAserrable()
@@ -253,7 +256,8 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if(ValidateInput(3))
                 {
-                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado3, CantidadIngresada3, double.Parse(LargoEspecieTres));
+                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado3, CantidadIngresada3, 
+                                    double.Parse(LargoEspecieTres, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture));
 
                     // Add the new item to the list number 3
                     MedidasEspecieTres.Add(new MedidaTrozoAserrable()
@@ -316,7 +320,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private async void DisplaySummaryAsync()
+        private async Task DisplaySummaryAsync()
         {
             if (MedidasEspecieUno.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
             {
