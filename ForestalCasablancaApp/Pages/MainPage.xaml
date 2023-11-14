@@ -26,10 +26,10 @@
             Margin="0,0"
             Aspect="Fill"
             FlexLayout.AlignSelf="Center"
-            HeightRequest="{OnIdiom Phone=140, Tablet=200}"
+            HeightRequest="{OnIdiom Phone=130, Tablet=200}"
             Opacity="0.85"
             Source="mainpage_logo.png"
-            WidthRequest="{OnIdiom Phone=140, Tablet=200}">
+            WidthRequest="{OnIdiom Phone=130, Tablet=200}">
 
             <Image.Background>
                 <RadialGradientBrush>
