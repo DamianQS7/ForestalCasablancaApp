@@ -17,7 +17,7 @@
     </Page.Behaviors>
 
     <FlexLayout
-        Margin="{OnIdiom Phone='20, 0, 20, 30', Tablet='50, 0, 50, 50'}"
+        Margin="{OnIdiom Phone='20, 0, 20, 30', Tablet='80, 0, 80, 50'}"
         AlignContent="Center"
         Direction="Column"
         JustifyContent="SpaceEvenly">
@@ -57,7 +57,7 @@
             <Border
                 BackgroundColor="{StaticResource Gray900}"
                 FlexLayout.AlignSelf="Center"
-                HeightRequest="55"
+                HeightRequest="{OnIdiom Phone=55, Tablet=85}"
                 IsVisible="{Binding IsBusy}"
                 StrokeShape="Ellipse"
                 WidthRequest="{OnIdiom Phone=55, Tablet=85}">
