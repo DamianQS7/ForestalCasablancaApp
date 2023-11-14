@@ -10,12 +10,13 @@
     x:DataType="viewModel:LeñaViewModel">
 
     <ScrollView>
-        <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+        <Grid RowDefinitions="{OnIdiom Phone='160, *', Tablet='260, *'}">
 
             <Image
                 Grid.Row="0"
                 Aspect="AspectFill"
-                HeightRequest="{OnIdiom Phone=300}"
+                HeightRequest="{OnIdiom Phone=300,
+                                        Tablet=300}"
                 Source="lena_background.png" />
 
             <Grid Grid.Row="1" RowDefinitions="Auto, Auto, *, Auto, Auto">
@@ -30,9 +31,9 @@
                 <!--  Camion Info Section  -->
                 <controls:CamionInfoCard
                     Grid.Row="1"
-                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
+                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
@@ -43,11 +44,7 @@
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
 
                         <!--  Especie  -->
-                        <Grid
-                            Padding="{OnIdiom Phone='10,0'}"
-                            ColumnDefinitions="{OnIdiom Phone='80, *'}"
-                            RowDefinitions="Auto, Auto"
-                            RowSpacing="8">
+                        <Grid RowDefinitions="Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
 
                             <Label
                                 Grid.Row="0"
@@ -64,7 +61,7 @@
 
                         <!--  Largo Camión y N° de Bancos  -->
 
-                        <Grid Padding="{OnIdiom Phone='10, 0'}" ColumnDefinitions="Auto, *, Auto, *">
+                        <Grid Padding="{OnIdiom Phone='10,0', Tablet='10,10,10,5'}" ColumnDefinitions="Auto, *, Auto, *">
                             <Label
                                 Grid.Row="0"
                                 Text="Largo Camión: "
@@ -88,12 +85,14 @@
                         </Grid>
 
                         <!--  Alturas  -->
-                        <Label Padding="{OnIdiom Phone='10, 20, 10, 0', Tablet='10, 20, 10, 0'}" Text="Alturas:" />
+                        <Label Padding="{OnIdiom Phone='10, 20, 10, 0', Tablet='10, 38, 10, 0'}" Text="Alturas:" />
                         <Grid
-                            Padding="{OnIdiom Phone='5, 0, 5, 5'}"
-                            ColumnDefinitions="*, *, 4*,  *, *"
+                            Padding="{OnIdiom Phone='5, 0, 5, 5',
+                                              Tablet='5, 0, 10, 5'}"
+                            ColumnDefinitions="{OnIdiom Phone='*, *, 4*,  *, *',
+                                                        Tablet='*, *, 3*,  *, *'}"
                             RowDefinitions="{OnIdiom Phone='Auto, *, *, *, *',
-                                                     Tablet='75, Auto, Auto, Auto, Auto, 15'}"
+                                                     Tablet='Auto, Auto, Auto, Auto, Auto, Auto'}"
                             RowSpacing="3">
 
                             <Image
@@ -101,7 +100,7 @@
                                 Grid.RowSpan="5"
                                 Grid.Column="2"
                                 Margin="{OnIdiom Phone='15, 0',
-                                                 Tablet='15, 0'}"
+                                                 Tablet='20, 0'}"
                                 Aspect="AspectFit"
                                 HorizontalOptions="Center"
                                 Source="lena_truck2.png"
@@ -122,10 +121,10 @@
                             <controls:NumericEntryCell
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                MaxInputLength="4"
-                                VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[0], StringFormat='{0:F2}'}" />
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[0], StringFormat='{0:F2}'}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="1"
@@ -137,9 +136,9 @@
                                 Grid.Row="1"
                                 Grid.Column="4"
                                 HorizontalOptions="Center"
-                                VerticalOptions="Center"
                                 MaxInputLength="4"
-                                UserInput="{Binding Despacho.Alturas[4]}" />
+                                UserInput="{Binding Despacho.Alturas[4]}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="2"
@@ -150,10 +149,10 @@
                             <controls:NumericEntryCell
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                MaxInputLength="4"
-                                VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[1]}" />
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[1]}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="2"
@@ -165,8 +164,8 @@
                                 Grid.Row="2"
                                 Grid.Column="4"
                                 MaxInputLength="4"
-                                VerticalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[5]}" />
+                                UserInput="{Binding Despacho.Alturas[5]}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="3"
@@ -177,10 +176,10 @@
                             <controls:NumericEntryCell
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                MaxInputLength="4"
-                                VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[2]}" />
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[2]}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="3"
@@ -191,10 +190,10 @@
                             <controls:NumericEntryCell
                                 Grid.Row="3"
                                 Grid.Column="4"
-                                MaxInputLength="4"
-                                VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[6]}" />
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[6]}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="4"
@@ -205,10 +204,10 @@
                             <controls:NumericEntryCell
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                MaxInputLength="4"
-                                VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[3]}" />
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[3]}"
+                                VerticalOptions="Center" />
 
                             <Label
                                 Grid.Row="4"
@@ -219,10 +218,10 @@
                             <controls:NumericEntryCell
                                 Grid.Row="4"
                                 Grid.Column="4"
-                                MaxInputLength="4"
-                                VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                UserInput="{Binding Despacho.Alturas[7]}" />
+                                MaxInputLength="4"
+                                UserInput="{Binding Despacho.Alturas[7]}"
+                                VerticalOptions="Center" />
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
@@ -236,11 +235,13 @@
 
                         <Grid
                             Grid.Row="1"
-                            Padding="{OnIdiom Phone='10,0'}"
                             ColumnDefinitions="Auto, *, Auto, *"
-                            RowSpacing="8">
+                            Style="{StaticResource PageSectionGrid}">
 
-                            <Label Text="Altura: " VerticalOptions="Center" />
+                            <Label
+                                Padding="0,10"
+                                Text="Altura: "
+                                VerticalOptions="Center" />
                             <controls:NumericEntryCell
                                 Grid.Row="0"
                                 Grid.Column="1"
@@ -249,6 +250,7 @@
 
                             <Label
                                 Grid.Column="2"
+                                Padding="0,10"
                                 Text="Ancho: "
                                 VerticalOptions="Center" />
                             <controls:NumericEntryCell
@@ -268,13 +270,11 @@
 
                     <Button
                         Grid.Column="0"
-                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding DisplaySummaryAsyncCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Calcular" />
                     <Button
                         Grid.Column="1"
-                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding ClearPageCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />

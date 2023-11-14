@@ -9,20 +9,16 @@
     x:DataType="models:DatosCamion">
 
     <VerticalStackLayout>
-        <Border
-            Margin="{OnIdiom Phone='10,10,10,15'}"
-            Padding="{OnIdiom Phone='8,0,8,18'}"
-            Style="{StaticResource InfoCard}">
+        <Border Style="{StaticResource InfoCard}">
 
             <Grid RowDefinitions="Auto, *">
+
                 <Label Style="{StaticResource PageSubtitle}" Text="Datos Camión" />
 
                 <Grid
                     Grid.Row="1"
-                    Padding="{OnIdiom Phone='10,0'}"
-                    ColumnDefinitions="{OnIdiom Phone='80, *'}"
                     RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                    RowSpacing="8">
+                    Style="{StaticResource PageSectionTwoColumnGrid}">
 
                     <!--  Unidad de Origen  -->
                     <Label

@@ -10,10 +10,12 @@
 
     <ScrollView>
 
-        <Grid RowDefinitions="{OnIdiom Phone='160, *'}">
+        <Grid RowDefinitions="{OnIdiom Phone='160, *', Tablet='260, *'}">
             <Image
                 Grid.Row="0"
                 Aspect="AspectFill"
+                HeightRequest="{OnIdiom Phone=300,
+                                        Tablet=300}"
                 Source="metroruma_background.jpg" />
 
             <Grid Grid.Row="1" RowDefinitions="Auto, Auto, *, Auto, Auto">
@@ -42,10 +44,13 @@
 
                         <!--  Especie  -->
                         <Grid
-                            Padding="{OnIdiom Phone='10,0'}"
-                            ColumnDefinitions="{OnIdiom Phone='80, *'}"
+                            Padding="{OnIdiom Phone='10,0',
+                                              Tablet='10,10,10,5'}"
+                            ColumnDefinitions="{OnIdiom Phone='80, *',
+                                                        Tablet='180, *'}"
                             RowDefinitions="Auto, Auto"
-                            RowSpacing="8">
+                            RowSpacing="{OnIdiom Phone=8,
+                                                 Tablet=12}">
 
                             <Label
                                 Grid.Row="0"
@@ -62,7 +67,7 @@
 
                         <!--  Ancho Camión y N° de Bancos  -->
 
-                        <Grid Padding="{OnIdiom Phone='10, 0'}" ColumnDefinitions="Auto, *, Auto, *">
+                        <Grid Padding="{OnIdiom Phone='10, 0', Tablet='10,10,10,5'}" ColumnDefinitions="Auto, *, Auto, *">
                             <Label
                                 Grid.Row="0"
                                 Text="Ancho Camión: "
@@ -86,12 +91,14 @@
                         </Grid>
 
                         <!--  Alturas  -->
-                        <Label Padding="{OnIdiom Phone='10, 20, 10, 0', Tablet='10, 20, 10, 0'}" Text="Alturas:" />
+                        <Label Padding="{OnIdiom Phone='10, 20, 10, 0', Tablet='10, 38, 10, 0'}" Text="Alturas:" />
                         <Grid
-                            Padding="{OnIdiom Phone='5, 0, 5, 5'}"
-                            ColumnDefinitions="*, *, 4*, *, *"
+                            Padding="{OnIdiom Phone='5, 0, 5, 5',
+                                              Tablet='5, 0, 10, 5'}"
+                            ColumnDefinitions="{OnIdiom Phone='*, *, 4*,  *, *',
+                                                        Tablet='*, *, 3*,  *, *'}"
                             RowDefinitions="{OnIdiom Phone='Auto, *, *, *, Auto, *, *, *',
-                                                     Tablet='75, Auto, Auto, Auto, Auto, Auto, Auto, Auto, 15'}"
+                                                     Tablet='Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto'}"
                             RowSpacing="3">
 
                             <Image
@@ -279,15 +286,16 @@
 
                 <!--  Palomera Section  -->
                 <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
+                    
                     <VerticalStackLayout>
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Palomera" />
 
                         <Grid
-                            Padding="{OnIdiom Phone='10'}"
+                            Style="{StaticResource PageSectionGrid}"
                             ColumnDefinitions="*, *, *"
                             RowDefinitions="Auto, Auto"
-                            RowSpacing="0">
+                            RowSpacing="{OnIdiom Phone=0, Tablet=8}">
 
                             <!--  Altura Palomera 1  -->
                             <Label
@@ -300,6 +308,7 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
+                                Padding="0,10"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AltoPalomera}"
                                 VerticalOptions="Center" />
@@ -314,6 +323,7 @@
                             <controls:NumericEntryCell
                                 Grid.Row="1"
                                 Grid.Column="1"
+                                Padding="0,10"
                                 HorizontalOptions="Center"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AltoPalomera2}"
@@ -329,6 +339,7 @@
                             <controls:NumericEntryCell
                                 Grid.Row="1"
                                 Grid.Column="2"
+                                Padding="0,10"
                                 HorizontalOptions="Center"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AnchoPalomera}"
@@ -345,13 +356,11 @@
 
                     <Button
                         Grid.Column="0"
-                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding DisplaySummaryAsyncCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Calcular" />
                     <Button
                         Grid.Column="1"
-                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding ClearPageCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />

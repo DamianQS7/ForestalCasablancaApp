@@ -49,14 +49,15 @@
 
         <Border
             x:Name="IconBorder"
+            Margin="{OnIdiom Phone=0, Tablet=-10}"
             HorizontalOptions="Start"
             BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600},
                                               Light={StaticResource PaleGreen}}"
-            HeightRequest="110"
+            HeightRequest="{OnIdiom Phone=110, Tablet=170}"
             Stroke="{AppThemeBinding Dark={StaticResource Gray300},Light={StaticResource Gray900}}"
-            StrokeShape="RoundRectangle 50"
-            StrokeThickness="3"
-            WidthRequest="110">
+            StrokeShape="{OnIdiom Phone='RoundRectangle 50', Tablet='RoundRectangle 80'}"
+            StrokeThickness="{OnIdiom Phone=3, Tablet=4}"
+            WidthRequest="{OnIdiom Phone=110, Tablet=170}">
 
             <!--<Border.Triggers>
                 <DataTrigger TargetType="Border" 
@@ -67,7 +68,7 @@
             </Border.Triggers>-->
             
             <ImageButton
-                Margin="25"
+                Margin="{OnIdiom Phone=25, Tablet=35}"
                 Aspect="AspectFill"
                 Source="{Binding CardImage}" />
         </Border>

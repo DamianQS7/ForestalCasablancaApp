@@ -2,7 +2,7 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- BORDER -->
+    <!--  BORDER  -->
     <Style x:Key="CardViewControlStyle" TargetType="Border">
         <Setter Property="Margin" Value="10, 0" />
         <Setter Property="HeightRequest" Value="{OnIdiom Phone=90, Tablet=120}" />
@@ -22,13 +22,15 @@
 
     <Style x:Key="EntryCellBorderStyle" TargetType="Border">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray300}}" />
-        <Setter Property="HeightRequest" Value="{OnIdiom Phone=30}" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=50}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=30, Tablet=45}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=50, Tablet=70}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 2" />
-        <Setter Property="Margin" Value="{OnIdiom Phone='0, 0, 5, 0'}" />
+        <Setter Property="Margin" Value="{OnIdiom Phone='0, 0, 5, 0', Tablet='0, 0, 5, 0'}" />
     </Style>
 
     <Style x:Key="InfoCard" TargetType="Border">
+        <Setter Property="Margin" Value="{OnIdiom Phone='10,10,10,15', Tablet='20,20,20,30'}" />
+        <Setter Property="Padding" Value="{OnIdiom Phone='8,0,8,8', Tablet='12,12,12,18'}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PaleGreen}, Dark={StaticResource Gray700}}" />
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
@@ -48,8 +50,8 @@
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="Margin" Value="{OnIdiom Phone='10,10,10,15'}" />
-        <Setter Property="Padding" Value="{OnIdiom Phone='8,0,8,8'}" />
+        <Setter Property="Margin" Value="{OnIdiom Phone='10,10,10,15', Tablet='20,20,20,30'}" />
+        <Setter Property="Padding" Value="{OnIdiom Phone='8,0,8,8', Tablet='12,12,12,18'}" />
         <Setter Property="Shadow">
             <Setter.Value>
                 <Shadow
@@ -65,7 +67,7 @@
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20" />
         <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=280}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=280, Tablet=500}" />
     </Style>
 
     <!--  BOXVIEW  -->
@@ -77,18 +79,18 @@
 
     <Style x:Key="Separator" TargetType="BoxView">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray100}, Light={StaticResource Primary}}" />
-        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=1, Tablet=2}" />
     </Style>
 
     <!--  BUTTON  -->
 
     <Style x:Key="Buttons" TargetType="Button">
-        <Setter Property="Margin" Value="5, 15, 5, 0" />
+        <Setter Property="Margin" Value="{OnIdiom Phone='5, 15, 5, 0', Tablet='5, 15, 5, 5'}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource PaleGreen}, Light={StaticResource Gray600}}" />
-        <Setter Property="HeightRequest" Value="45" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=45, Tablet=55}" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=14, Tablet=18}" />
         <Setter Property="BorderWidth" Value="2" />
         <Setter Property="BorderColor" Value="{StaticResource Gray700}" />
         <Setter Property="TextColor" Value="White" />
@@ -103,13 +105,13 @@
     </Style>
 
     <Style x:Key="PageButtons" TargetType="Button">
-        <Setter Property="Margin" Value="0, 20, 0, 0" />
+        <Setter Property="Margin" Value="{OnIdiom Phone='0, 10, 0, 20', Tablet='0, 10, 0, 30'}" />
         <Setter Property="BackgroundColor" Value="{StaticResource PaleGreen}" />
-        <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="WidthRequest" Value="130" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=50, Tablet=65}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=130, Tablet=200}" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="BorderWidth" Value="2" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=16, Tablet=22}" />
+        <Setter Property="BorderWidth" Value="{OnIdiom Phone=2, Tablet=4}" />
         <Setter Property="BorderColor" Value="{StaticResource Black}" />
         <Setter Property="TextColor" Value="White" />
         <Setter Property="Shadow">
@@ -133,16 +135,31 @@
     </Style>
 
     <Style x:Key="NumericEntryStyle" TargetType="Entry">
-        <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=50}" />
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=50, Tablet=65}" />
         <Setter Property="Keyboard" Value="Numeric" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=15, Tablet=20}" />
     </Style>
 
     <Style x:Key="CurrentUserEntryStyle" TargetType="Entry">
-        <Setter Property="Margin" Value="0,12,0,0" />
+        <Setter Property="Margin" Value="{OnIdiom Phone='0,12,0,0', Tablet=0}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Gray500}" />
         <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=15, Tablet=19}" />
+    </Style>
+
+    <!--  GRIDS  -->
+
+    <Style x:Key="PageSectionTwoColumnGrid" TargetType="Grid">
+        <Setter Property="Padding" Value="{OnIdiom Phone='10,0', Tablet='10,0'}" />
+        <Setter Property="RowSpacing" Value="{OnIdiom Phone=8, Tablet=12}" />
+        <Setter Property="ColumnDefinitions" Value="{OnIdiom Phone='80, *', Tablet='180, *'}" />
+    </Style>
+
+    <Style x:Key="PageSectionGrid" TargetType="Grid">
+        <Setter Property="Padding" Value="{OnIdiom Phone='10,0', Tablet='10,0'}" />
+        <Setter Property="RowSpacing" Value="{OnIdiom Phone=8, Tablet=12}" />
     </Style>
 
     <!--  LABELS  -->
@@ -150,14 +167,14 @@
     <Style x:Key="BaseLabel" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="FontSize" Value="{OnIdiom Phone=18, Tablet=32}" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=18, Tablet=28}" />
 
     </Style>
 
     <Style x:Key="CardLabel" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="FontSize" Value="{OnIdiom Phone=20, Tablet=32}" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=20, Tablet=28}" />
         <Setter Property="FontAutoScalingEnabled" Value="True" />
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
@@ -173,21 +190,20 @@
         <Setter Property="Padding" Value="40" />
     </Style>
 
-
     <Style x:Key="PageSubtitle" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="FontSize" Value="{OnIdiom Phone=18, Tablet=32}" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=18, Tablet=26}" />
         <Setter Property="FontAutoScalingEnabled" Value="True" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="Margin" Value="{OnIdiom Phone=10}" />
+        <Setter Property="Margin" Value="{OnIdiom Phone=10, Tablet=10}" />
     </Style>
 
-    <Style
+    <Style 
         x:Key="PopupContent"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=14, Tablet=19}" />
     </Style>
 
 
@@ -196,7 +212,7 @@
         BasedOn="{StaticResource PageSubtitle}"
         TargetType="Label">
 
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=20, Tablet=26}" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="Shadow">
             <Setter.Value>
@@ -213,7 +229,7 @@
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
 
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=15, Tablet=20}" />
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
@@ -221,12 +237,37 @@
         x:Key="RadioBtnsLabel"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
-        <Setter Property="FontSize" Value="{OnIdiom Phone=12, Tablet=14}" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=12, Tablet=16}" />
         <Setter Property="FontAttributes" Value="Italic" />
         <Setter Property="Margin" Value="{OnIdiom Phone='0,4,0,0', Tablet='0,8,0,0'}" />
-        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=52, Tablet=65}" />
         <Setter Property="VerticalOptions" Value="End" />
         <Setter Property="TextColor" Value="{StaticResource White}" />
     </Style>
 
+    <Style x:Key="SettingsPageSectionTitle"
+        BasedOn="{StaticResource BaseLabel}"
+        TargetType="Label">
+        <Setter Property="Margin" Value="{OnIdiom Phone='5,0', Tablet='5,0'}" />
+        <Setter Property="Padding" Value="{OnIdiom Phone='10,10,10,0', Tablet='10,10,10,00'}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="SettingsPageSectionSubtitle"
+        BasedOn="{StaticResource BaseLabel}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{OnIdiom Phone=15, Tablet=22}" />
+        <Setter Property="FontAttributes" Value="Italic" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+
+    <!--  VERTICAL STACK LAYOUT  -->
+    
+    <Style x:Key="SettingsPageSectionsStackLayout" TargetType="VerticalStackLayout">
+        <Setter Property="Padding" Value="{OnIdiom Phone=10, Tablet=15}" />
+        <Setter Property="Spacing" Value="{OnIdiom Phone=0, Tablet=15}" />
+    </Style>
+    
 </ResourceDictionary>
