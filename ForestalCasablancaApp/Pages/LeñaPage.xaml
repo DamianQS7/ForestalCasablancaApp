@@ -44,14 +44,7 @@
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
 
                         <!--  Especie  -->
-                        <Grid
-                            Padding="{OnIdiom Phone='10,0',
-                                              Tablet='10,10,10,5'}"
-                            ColumnDefinitions="{OnIdiom Phone='80, *',
-                                                        Tablet='180, *'}"
-                            RowDefinitions="Auto, Auto"
-                            RowSpacing="{OnIdiom Phone=8,
-                                                 Tablet=12}">
+                        <Grid RowDefinitions="Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
 
                             <Label
                                 Grid.Row="0"
@@ -62,8 +55,6 @@
                                 x:Name="pickerEspecie"
                                 Title="Seleccione una especie"
                                 Grid.Column="1"
-                                FontSize="{OnIdiom Phone=15,
-                                                   Tablet=20}"
                                 ItemsSource="{Binding ListaEspecies}"
                                 SelectedItem="{Binding Despacho.Especie}" />
                         </Grid>

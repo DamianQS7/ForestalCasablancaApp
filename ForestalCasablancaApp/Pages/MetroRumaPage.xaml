@@ -98,7 +98,7 @@
                             ColumnDefinitions="{OnIdiom Phone='*, *, 4*,  *, *',
                                                         Tablet='*, *, 3*,  *, *'}"
                             RowDefinitions="{OnIdiom Phone='Auto, *, *, *, Auto, *, *, *',
-                                                     Tablet='75, Auto, Auto, Auto, Auto, Auto, Auto, Auto, 15'}"
+                                                     Tablet='Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto'}"
                             RowSpacing="3">
 
                             <Image
@@ -286,15 +286,16 @@
 
                 <!--  Palomera Section  -->
                 <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
+                    
                     <VerticalStackLayout>
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Palomera" />
 
                         <Grid
-                            Padding="{OnIdiom Phone='10'}"
+                            Style="{StaticResource PageSectionGrid}"
                             ColumnDefinitions="*, *, *"
                             RowDefinitions="Auto, Auto"
-                            RowSpacing="0">
+                            RowSpacing="{OnIdiom Phone=0, Tablet=8}">
 
                             <!--  Altura Palomera 1  -->
                             <Label
@@ -307,6 +308,7 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 HorizontalOptions="Center"
+                                Padding="0,10"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AltoPalomera}"
                                 VerticalOptions="Center" />
@@ -321,6 +323,7 @@
                             <controls:NumericEntryCell
                                 Grid.Row="1"
                                 Grid.Column="1"
+                                Padding="0,10"
                                 HorizontalOptions="Center"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AltoPalomera2}"
@@ -336,6 +339,7 @@
                             <controls:NumericEntryCell
                                 Grid.Row="1"
                                 Grid.Column="2"
+                                Padding="0,10"
                                 HorizontalOptions="Center"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AnchoPalomera}"
@@ -352,13 +356,11 @@
 
                     <Button
                         Grid.Column="0"
-                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding DisplaySummaryAsyncCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Calcular" />
                     <Button
                         Grid.Column="1"
-                        Margin="{OnIdiom Phone='0,10,0,20'}"
                         Command="{Binding ClearPageCommand}"
                         Style="{StaticResource PageButtons}"
                         Text="Reiniciar" />
