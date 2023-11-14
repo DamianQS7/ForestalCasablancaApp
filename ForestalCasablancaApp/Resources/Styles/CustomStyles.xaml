@@ -240,7 +240,8 @@
         <Setter Property="FontSize" Value="{OnIdiom Phone=12, Tablet=16}" />
         <Setter Property="FontAttributes" Value="Italic" />
         <Setter Property="Margin" Value="{OnIdiom Phone='0,4,0,0', Tablet='0,8,0,0'}" />
-        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="WidthRequest" Value="52" />
         <Setter Property="VerticalOptions" Value="End" />
         <Setter Property="TextColor" Value="{StaticResource White}" />
     </Style>

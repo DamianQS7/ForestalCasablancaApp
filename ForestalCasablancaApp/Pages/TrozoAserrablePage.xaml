@@ -83,7 +83,7 @@
                             </Grid>
 
                             <Grid
-                                Margin="{OnIdiom Phone=10,
+                                Margin="{OnIdiom Phone='0,10',
                                                  Tablet=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *"
@@ -94,7 +94,7 @@
                                 <Label
                                     Grid.Row="0"
                                     HorizontalTextAlignment="Center"
-                                    Text="Diámetro (cm) "
+                                    Text="Diámetro&#10;(cm) "
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -110,7 +110,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     HorizontalTextAlignment="Center"
-                                    Text="Total (Cantidad)"
+                                    Text="Total&#10;(Cantidad)"
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -125,7 +125,7 @@
                                     Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="{Binding Source={x:Reference Cell1}}"
-                                    HeightRequest="{OnIdiom Tablet=80}"
+                                    HeightRequest="{OnIdiom Tablet=80, Phone=50}"
                                     Style="{StaticResource Buttons}"
                                     Text=""
                                     VerticalOptions="End"
@@ -136,7 +136,7 @@
                                         <FontImageSource
                                             FontFamily="FAS"
                                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                            Size="{OnIdiom Tablet=35}"
+                                            Size="{OnIdiom Tablet=35, Phone=25}"
                                             Color="{StaticResource White}" />
                                     </Button.ImageSource>
                                 </Button>
@@ -158,21 +158,21 @@
                                         <Label
                                             Grid.Row="0"
                                             HorizontalTextAlignment="Center"
-                                            Text="Diámetro (cm)"
+                                            Text="Diámetro&#10;(cm)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             HorizontalTextAlignment="Center"
-                                            Text="Total (Cantidad)"
+                                            Text="Total&#10;(Cantidad)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             HorizontalTextAlignment="Center"
-                                            Text="Volumen (m3) "
+                                            Text="Volumen&#10;(m3) "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
@@ -200,7 +200,7 @@
                                             </SwipeView.RightItems>
 
                                             <Border
-                                                Margin="{OnIdiom Tablet='10,0'}"
+                                                Margin="{OnIdiom Tablet='10,0', Phone=0}"
                                                 Padding="{OnIdiom Phone=5,
                                                                   Tablet=10}"
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
@@ -210,11 +210,11 @@
                                                 StrokeThickness="2">
 
                                                 <Grid
-                                                    Padding="{OnIdiom Phone='10,0',
-                                                                      Tablet='0,0,0,5'}"
+                                                    Padding="{OnIdiom Phone='5,0',
+                                                                      Tablet='0,0,0,8'}"
                                                     ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
-                                                    RowSpacing="{OnIdiom Phone=8,
+                                                    RowSpacing="{OnIdiom Phone=6,
                                                                          Tablet=12}">
 
                                                     <controls:NumericEntryCell
@@ -285,7 +285,7 @@
                             </Grid>
 
                             <Grid
-                                Margin="{OnIdiom Phone=10,
+                                Margin="{OnIdiom Phone='0,10',
                                                  Tablet=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *"
@@ -294,7 +294,7 @@
                                 <Label
                                     Grid.Row="0"
                                     HorizontalTextAlignment="Center"
-                                    Text="Diámetro (cm) "
+                                    Text="Diámetro&#10;(cm) "
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -309,7 +309,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     HorizontalTextAlignment="Center"
-                                    Text="Total (Cantidad)"
+                                    Text="Total&#10;(Cantidad)"
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -323,7 +323,7 @@
                                     Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="{Binding Source={x:Reference Cell2}}"
-                                    HeightRequest="{OnIdiom Tablet=80}"
+                                    HeightRequest="{OnIdiom Tablet=80, Phone=50}"
                                     Style="{StaticResource Buttons}"
                                     Text=""
                                     VerticalOptions="End"
@@ -334,7 +334,7 @@
                                         <FontImageSource
                                             FontFamily="FAS"
                                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                            Size="{OnIdiom Tablet=35}"
+                                            Size="{OnIdiom Tablet=35, Phone=25}"
                                             Color="{StaticResource White}" />
                                     </Button.ImageSource>
                                 </Button>
@@ -356,21 +356,21 @@
                                         <Label
                                             Grid.Row="0"
                                             HorizontalTextAlignment="Center"
-                                            Text="Diámetro (cm) "
+                                            Text="Diámetro&#10;(cm) "
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             HorizontalTextAlignment="Center"
-                                            Text="Total (Cantidad)"
+                                            Text="Total&#10;(Cantidad)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             HorizontalTextAlignment="Center"
-                                            Text="Volumen (m3) "
+                                            Text="Volumen&#10;(m3) "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
@@ -398,7 +398,7 @@
                                             </SwipeView.RightItems>
 
                                             <Border
-                                                Margin="{OnIdiom Tablet='10,0'}"
+                                                Margin="{OnIdiom Tablet='10,0', Phone=0}"
                                                 Padding="{OnIdiom Phone=5,
                                                                   Tablet=10}"
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
@@ -408,11 +408,11 @@
                                                 StrokeThickness="2">
 
                                                 <Grid
-                                                    Padding="{OnIdiom Phone='10,0',
-                                                                      Tablet='0,0,0,5'}"
+                                                    Padding="{OnIdiom Phone='5,0',
+                                                                      Tablet='0,0,0,8'}"
                                                     ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
-                                                    RowSpacing="{OnIdiom Phone=8,
+                                                    RowSpacing="{OnIdiom Phone=6,
                                                                          Tablet=12}">
 
                                                     <controls:NumericEntryCell
@@ -480,7 +480,7 @@
                             </Grid>
 
                             <Grid
-                                Margin="{OnIdiom Phone=10,
+                                Margin="{OnIdiom Phone='0,10',
                                                  Tablet=10}"
                                 ColumnDefinitions="*, *, *"
                                 RowDefinitions="Auto, *, *"
@@ -490,7 +490,7 @@
                                 <Label
                                     Grid.Row="0"
                                     HorizontalTextAlignment="Center"
-                                    Text="Diámetro (cm) "
+                                    Text="Diámetro&#10;(cm) "
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -505,7 +505,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     HorizontalTextAlignment="Center"
-                                    Text="Total (Cantidad)"
+                                    Text="Total&#10;(Cantidad)"
                                     VerticalOptions="Center" />
 
                                 <controls:NumericEntryCell
@@ -519,7 +519,7 @@
                                     Margin="{OnIdiom Phone='0,5'}"
                                     Command="{Binding AddItemToListCommand}"
                                     CommandParameter="{Binding Source={x:Reference Cell3}}"
-                                    HeightRequest="{OnIdiom Tablet=80}"
+                                    HeightRequest="{OnIdiom Tablet=80, Phone=50}"
                                     Style="{StaticResource Buttons}"
                                     Text=""
                                     VerticalOptions="End"
@@ -530,7 +530,7 @@
                                         <FontImageSource
                                             FontFamily="FAS"
                                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
-                                            Size="{OnIdiom Tablet=35}"
+                                            Size="{OnIdiom Tablet=35, Phone=25}"
                                             Color="{StaticResource White}" />
                                     </Button.ImageSource>
                                 </Button>
@@ -552,21 +552,21 @@
                                         <Label
                                             Grid.Row="0"
                                             HorizontalTextAlignment="Center"
-                                            Text="Diámetro (cm) "
+                                            Text="Diámetro&#10;(cm) "
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             HorizontalTextAlignment="Center"
-                                            Text="Total (Cantidad)"
+                                            Text="Total&#10;(Cantidad)"
                                             VerticalOptions="Center" />
 
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             HorizontalTextAlignment="Center"
-                                            Text="Volumen (m3) "
+                                            Text="Volumen&#10;(m3) "
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </CollectionView.Header>
@@ -594,7 +594,7 @@
                                             </SwipeView.RightItems>
 
                                             <Border
-                                                Margin="{OnIdiom Tablet='10,0'}"
+                                                Margin="{OnIdiom Tablet='10,0', Phone=0}"
                                                 Padding="{OnIdiom Phone=5,
                                                                   Tablet=10}"
                                                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
@@ -604,11 +604,11 @@
                                                 StrokeThickness="2">
 
                                                 <Grid
-                                                    Padding="{OnIdiom Phone='10,0',
-                                                                      Tablet='0,0,0,5'}"
+                                                    Padding="{OnIdiom Phone='5,0',
+                                                                      Tablet='0,0,0,8'}"
                                                     ColumnDefinitions="*, *, *"
                                                     RowDefinitions="Auto, Auto"
-                                                    RowSpacing="{OnIdiom Phone=8,
+                                                    RowSpacing="{OnIdiom Phone=6,
                                                                          Tablet=12}">
 
                                                     <controls:NumericEntryCell
