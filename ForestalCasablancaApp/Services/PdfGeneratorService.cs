@@ -30,7 +30,7 @@ namespace ForestalCasablancaApp.Services
         public async void GenerateTrozoAserrablePDF(TrozoAserrableViewModel model)
         {
             // Set the file name
-            string folder = Preferences.Get("CurrentWorkingDirectory", "");
+            string folder = Preferences.Get("CurrentWorkingDirectory", FileSystem.Current.CacheDirectory);
             string fileName = PdfGeneratorService.GenerateFileName(model.Cliente.Nombre);
             string finalPath = Path.Combine(folder, fileName);
 
@@ -155,7 +155,7 @@ namespace ForestalCasablancaApp.Services
         public async void GenerateLeñaPDF(LeñaViewModel model)
         {
             // Set the file name
-            string folder = Preferences.Get("CurrentWorkingDirectory", "");
+            string folder = Preferences.Get("CurrentWorkingDirectory", FileSystem.Current.CacheDirectory);
             string fileName = PdfGeneratorService.GenerateFileName(model.Cliente.Nombre);
             string finalPath = Path.Combine(folder, fileName);
 
@@ -241,7 +241,7 @@ namespace ForestalCasablancaApp.Services
         public async void GenerateMetroRumaPDF(MetroRumaViewModel model)
         {
             // Set the file name
-            string folder = Preferences.Get("CurrentWorkingDirectory", "");
+            string folder = Preferences.Get("CurrentWorkingDirectory", FileSystem.Current.CacheDirectory);
             string fileName = PdfGeneratorService.GenerateFileName(model.Cliente.Nombre);
             string finalPath = Path.Combine(folder, fileName);
 
