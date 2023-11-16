@@ -13,6 +13,14 @@
             x:Name="CustomBorder"
             Style="{StaticResource CardViewControlStyle}" >
 
+            <Border.Behaviors>
+                <toolkit:AnimationBehavior>
+                    <toolkit:AnimationBehavior.AnimationType>
+                        <toolkit:FadeAnimation Opacity="0.6" />
+                    </toolkit:AnimationBehavior.AnimationType>
+                </toolkit:AnimationBehavior>
+            </Border.Behaviors>
+
             <Border.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=GoToDespachoCommand}" 
@@ -59,19 +67,11 @@
             StrokeThickness="{OnIdiom Phone=3, Tablet=4}"
             WidthRequest="{OnIdiom Phone=110, Tablet=170}">
 
-            <!--<Border.Triggers>
-                <DataTrigger TargetType="Border" 
-                             Binding="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=IsBusy}"
-                             Value="True" >
-                    <Setter Property="BackgroundColor" Value="Black" />
-                </DataTrigger>
-            </Border.Triggers>-->
-            
-            <ImageButton
+            <Image
                 Margin="{OnIdiom Phone=25, Tablet=35}"
                 Aspect="AspectFill"
                 Source="{Binding CardImage}" />
+
         </Border>
     </Grid>
-
 </ContentView>
