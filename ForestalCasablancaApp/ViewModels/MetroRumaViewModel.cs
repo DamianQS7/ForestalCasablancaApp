@@ -58,7 +58,7 @@ namespace ForestalCasablancaApp.ViewModels
 
             if (Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
             {
-                DisplayInputError(InfoMessage.MissingLeñaData);
+                DisplayInputError(InfoMessage.MissingMetroRumaData);
                 return false;
             }
 
