@@ -21,10 +21,11 @@
     </Style>
 
     <Style x:Key="EntryCellBorderStyle" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray300}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Gray500}, Light={StaticResource Gray100}}" />
         <Setter Property="HeightRequest" Value="{OnIdiom Phone=30, Tablet=45}" />
         <Setter Property="WidthRequest" Value="{OnIdiom Phone=50, Tablet=70}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 2" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Dark={StaticResource Black}, Light={StaticResource Gray700}}" />
         <Setter Property="Margin" Value="{OnIdiom Phone='0, 0, 5, 0', Tablet='0, 0, 5, 0'}" />
     </Style>
 
@@ -39,8 +40,8 @@
             <Setter.Value>
                 <Shadow
                     Brush="{StaticResource Black}"
-                    Radius="50"
-                    Offset="20, 20" />
+                    Radius="30"
+                    Offset="10, 20" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -56,8 +57,8 @@
             <Setter.Value>
                 <Shadow
                     Brush="{StaticResource Black}"
-                    Radius="50"
-                    Offset="20, 30" />
+                    Radius="30"
+                    Offset="10, 20" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -97,9 +98,9 @@
         <Setter Property="Shadow">
             <Setter.Value>
                 <Shadow
-                    Brush="{StaticResource Black}"
-                    Radius="50"
-                    Offset="20, 20" />
+                    Brush="{StaticResource Gray900}"
+                    Radius="10"
+                    Offset="15, 20" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -118,8 +119,8 @@
             <Setter.Value>
                 <Shadow
                     Brush="{StaticResource Black}"
-                    Radius="30"
-                    Offset="30, 30" />
+                    Radius="20"
+                    Offset="15, 20" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -214,14 +215,6 @@
 
         <Setter Property="FontSize" Value="{OnIdiom Phone=20, Tablet=26}" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="Shadow">
-            <Setter.Value>
-                <Shadow
-                    Brush="{StaticResource Black}"
-                    Radius="50"
-                    Offset="20, 20" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style
