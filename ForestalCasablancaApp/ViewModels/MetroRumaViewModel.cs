@@ -6,6 +6,7 @@ using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
+using System.Globalization;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -47,7 +48,8 @@ namespace ForestalCasablancaApp.ViewModels
             // Check if palomera is valid
             if (_calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2))
             {
-                Despacho.MedidaPalomera = _calculatorService.CalculatePalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2);
+                Despacho.AlturaMediaPalomera = _calculatorService.CalculateAlturaMediaPalomera(Despacho.AltoPalomera, Despacho.AltoPalomera2);
+                Despacho.MedidaPalomera = _calculatorService.CalculateMedidaPalomera(Despacho.AlturaMediaPalomera, Despacho.AnchoPalomera);
                 Despacho.IsPalomeraValid = true;
             }
             else

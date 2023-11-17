@@ -11,6 +11,7 @@ namespace ForestalCasablancaApp.Models
         public double AlturaMedia { get; set; }
         public double TotalMetros { get; set; }
         public string Especie { get; set; }
+        public double AlturaMediaPalomera { get; set; }
         public double MedidaPalomera { get; set; }
         public bool IsPalomeraValid { get; set; } = true;
         public List<string> Alturas { get; set; } = new List<string> 

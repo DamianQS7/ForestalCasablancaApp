@@ -13,7 +13,8 @@ namespace ForestalCasablancaApp.Services
         bool CheckIfAlturasAreValid(List<string> alturas);
         bool CheckPalomera(string ancho, string alto, string alto2);
         double CalculateAlturaMedia(List<string> alturas);
-        double CalculatePalomera(string ancho, string alto, string alto2);
+        double CalculateAlturaMediaPalomera(string alto, string alto2);
+        double CalculateMedidaPalomera(double alturaMedia, string anchoPalomera);
         double CalculateTotalMetros(DespachoModel model);
         double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, double? largo);
         int CalculateTotalSum(ObservableCollection<MedidaTrozoAserrable> lista);

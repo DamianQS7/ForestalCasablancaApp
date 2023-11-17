@@ -83,10 +83,8 @@ namespace ForestalCasablancaApp.Services
         /// <param name="alto"> String representing the value for AltoPalomera input by the user. </param>
         /// <param name="alto2"> String representing the value for AltoPalomera2 input by the user. </param>
         /// <returns> A double value representing the palomera's volume. </returns>
-        public double CalculatePalomera(string ancho, string alto, string alto2)
+        public double CalculateAlturaMediaPalomera(string alto, string alto2)
         {
-
-            double.TryParse(ancho, CultureInfo.InvariantCulture, out double anchoPalomera);
             double.TryParse(alto, CultureInfo.InvariantCulture, out double altoPalomera);
             double.TryParse(alto2, CultureInfo.InvariantCulture, out double altoPalomera2);
             int count = 0;
@@ -97,9 +95,18 @@ namespace ForestalCasablancaApp.Services
             if(altoPalomera2 > 0)
                 count++;
 
-
-            return count > 0 ? (altoPalomera + altoPalomera2) / count * anchoPalomera : 0;
+            return count > 0 ? (altoPalomera + altoPalomera2) / count : 0;
                         
+        }
+
+        public double CalculateMedidaPalomera(double alturaMedia, string anchoPalomera)
+        {
+            double.TryParse(anchoPalomera, CultureInfo.InvariantCulture, out double ancho);
+
+            if(ancho > 0)
+                return alturaMedia * ancho;
+            else
+                return 0;
         }
 
         public double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, double? largo)

@@ -206,7 +206,7 @@ namespace ForestalCasablancaApp.Services
 
                                 col.Item()
                                    .Component(new DetalleCarga("Camión", "Largo Camión", model.Despacho.AlturaMedia, model.Despacho.LargoCamion,
-                                   model.Despacho.Bancos, model.Despacho.AltoPalomera, model.Despacho.AnchoPalomera));
+                                   model.Despacho.Bancos, model.Despacho.AlturaMediaPalomera, model.Despacho.AnchoPalomera));
 
 
                                 col.Item().Height(12);
@@ -292,7 +292,7 @@ namespace ForestalCasablancaApp.Services
 
                                 col.Item()
                                    .Component(new DetalleCarga("Camión y Carro", "Ancho Camión", model.Despacho.AlturaMedia, model.Despacho.LargoCamion,
-                                   model.Despacho.Bancos, model.Despacho.AltoPalomera, model.Despacho.AnchoPalomera));
+                                   model.Despacho.Bancos, model.Despacho.AlturaMediaPalomera, model.Despacho.AnchoPalomera));
 
 
                                 col.Item().Height(12);
@@ -485,10 +485,10 @@ namespace ForestalCasablancaApp.Services
 
                     // N° & Fecha ColumnHeaders
                     column.Item()
-                          .PaddingRight(300)
+                          .PaddingRight(270)
                           .Row(row =>
                           {
-                              row.RelativeItem()
+                              row.ConstantItem(150)
                                  .Border(1)
                                  .AlignCenter()
                                  .Text(x =>
@@ -509,10 +509,10 @@ namespace ForestalCasablancaApp.Services
 
                     // N° y Fecha actual values
                     column.Item()
-                          .PaddingRight(300)
+                          .PaddingRight(270)
                           .Row(row =>
                           {
-                              row.RelativeItem()
+                              row.ConstantItem(150)
                                  .Border(1)
                                  .AlignCenter()
                                  .Text(Folio);
@@ -781,21 +781,31 @@ namespace ForestalCasablancaApp.Services
         {
             public string SectionTitle { get; set; }
             public string RowName { get; set; }
-            public double? AlturaMedia { get; set; }
+            public double AlturaMedia { get; set; }
             public string MedidaCamion { get; set; }
             public string Bancos { get; set; }
-            public string AltoPalomera { get; set; }
             public string AnchoPalomera { get; set; }
-
-            public DetalleCarga(string title, string rowName, double? alturaMedia, string medidaCamion, string bancos,
-                string altoPalomera, string anchoPalomera)
+            public double AlturaMediaPalomera { get; set; }
+            public string AlturaMediaPalomeraStr
+            {
+                get
+                {
+                    if (AlturaMediaPalomera == 0)
+                        return string.Empty;
+                    else
+                        return AlturaMediaPalomera.ToString("F2");
+                }
+            }
+            
+            public DetalleCarga(string title, string rowName, double alturaMedia, string medidaCamion, string bancos,
+                double altoPalomera, string anchoPalomera)
             {
                 SectionTitle = title;
                 RowName = rowName;
                 AlturaMedia = alturaMedia;
                 MedidaCamion = medidaCamion;
                 Bancos = bancos;
-                AltoPalomera = altoPalomera;
+                AlturaMediaPalomera = altoPalomera;
                 AnchoPalomera = anchoPalomera;
             }
 
@@ -824,7 +834,7 @@ namespace ForestalCasablancaApp.Services
 
                             // Table Content
                             table.Cell().Element(SummaryCellStyle).Text("H Media (m)");
-                            table.Cell().Element(SummaryCellStyle).Text(AlturaMedia.ToString());
+                            table.Cell().Element(SummaryCellStyle).Text(AlturaMedia.ToString("F2"));
 
                             table.Cell().Element(SummaryCellStyle).Text($"{RowName} (m)");
                             table.Cell().Element(SummaryCellStyle).Text(MedidaCamion);
@@ -851,7 +861,7 @@ namespace ForestalCasablancaApp.Services
 
                             // Table Content
                             table.Cell().Element(SummaryCellStyle).Text("H Media (m)");
-                            table.Cell().Element(SummaryCellStyle).Text(AltoPalomera);
+                            table.Cell().Element(SummaryCellStyle).Text(AlturaMediaPalomeraStr);
 
                             table.Cell().Element(SummaryCellStyle).Text("Ancho (m)");
                             table.Cell().Element(SummaryCellStyle).Text(AnchoPalomera);
