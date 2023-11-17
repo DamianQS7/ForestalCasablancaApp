@@ -28,7 +28,14 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         #region Methods
-        public static string GenerateFolio() => Preferences.Get("CurrentUserInitials", "NN") + DateTime.Now.ToString("dd'/'MM'/'yy'-'HH:mm");
+        public static string GenerateFolio()
+        {
+            string initials = Preferences.Get("CurrentUserInitials", "NN");
+            string date = DateTime.Now.ToString("dd'/'MM'/'yy'-'HH:mm");
+            int currentNumber = Preferences.Get("CurrentFileNumber", 1);
+
+            return $"{currentNumber}{initials}{date}";
+        }
 
         public async Task DisplayInputError(InfoMessage infoMessage)
         {
