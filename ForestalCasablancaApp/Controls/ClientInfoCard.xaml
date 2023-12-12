@@ -9,18 +9,18 @@
     x:DataType="models:Cliente">
 
     <VerticalStackLayout>
-        <Border Style="{StaticResource InfoCard}" >
+        <Border Style="{StaticResource PageSectionCard}">
 
             <Grid RowDefinitions="Auto, *">
-                
+
                 <Label Style="{StaticResource PageSubtitle}" Text="Datos del Cliente" />
 
                 <Grid
                     Grid.Row="1"
-                    Style="{StaticResource PageSectionTwoColumnGrid}"
-                    RowDefinitions="Auto, Auto" >
+                    RowDefinitions="Auto, Auto"
+                    Style="{StaticResource PageSectionTwoColumnGrid}">
 
-                    <!--Nombre-->
+                    <!--  Nombre  -->
                     <Label
                         Grid.Row="0"
                         Text="Nombre: "
@@ -31,7 +31,7 @@
                         Grid.Column="1"
                         Text="{Binding Nombre}" />
 
-                    <!-- RUT -->
+                    <!--  RUT  -->
                     <Label
                         Grid.Row="1"
                         Text="RUT: "

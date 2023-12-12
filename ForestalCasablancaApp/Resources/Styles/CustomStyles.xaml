@@ -29,23 +29,6 @@
         <Setter Property="Margin" Value="{OnIdiom Phone='0, 0, 5, 0', Tablet='0, 0, 5, 0'}" />
     </Style>
 
-    <Style x:Key="InfoCard" TargetType="Border">
-        <Setter Property="Margin" Value="{OnIdiom Phone='10,10,10,15', Tablet='20,20,20,30'}" />
-        <Setter Property="Padding" Value="{OnIdiom Phone='8,0,8,8', Tablet='12,12,12,18'}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PaleGreen}, Dark={StaticResource Gray700}}" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 20" />
-        <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="Shadow">
-            <Setter.Value>
-                <Shadow
-                    Brush="{StaticResource Black}"
-                    Radius="30"
-                    Offset="10, 20" />
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="PageSectionCard" TargetType="Border">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PaleGreen}, Dark={StaticResource Gray700}}" />
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}" />
@@ -200,7 +183,7 @@
         <Setter Property="Margin" Value="{OnIdiom Phone=10, Tablet=10}" />
     </Style>
 
-    <Style 
+    <Style
         x:Key="PopupContent"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
@@ -239,7 +222,8 @@
         <Setter Property="TextColor" Value="{StaticResource White}" />
     </Style>
 
-    <Style x:Key="SettingsPageSectionTitle"
+    <Style
+        x:Key="SettingsPageSectionTitle"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
         <Setter Property="Margin" Value="{OnIdiom Phone='5,0', Tablet='5,0'}" />
@@ -248,7 +232,8 @@
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
-    <Style x:Key="SettingsPageSectionSubtitle"
+    <Style
+        x:Key="SettingsPageSectionSubtitle"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
         <Setter Property="FontSize" Value="{OnIdiom Phone=15, Tablet=22}" />
@@ -257,10 +242,10 @@
     </Style>
 
     <!--  VERTICAL STACK LAYOUT  -->
-    
+
     <Style x:Key="SettingsPageSectionsStackLayout" TargetType="VerticalStackLayout">
         <Setter Property="Padding" Value="{OnIdiom Phone=10, Tablet=15}" />
         <Setter Property="Spacing" Value="{OnIdiom Phone=0, Tablet=15}" />
     </Style>
-    
+
 </ResourceDictionary>
