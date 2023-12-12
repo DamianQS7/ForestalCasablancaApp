@@ -317,6 +317,14 @@ namespace ForestalCasablancaApp.ViewModels
             LargoEspecieUno = "";
             LargoEspecieDos = "";
             LargoEspecieTres = "";
+
+            // Reset other values.
+            TotalSumLista1 = 0;
+            FinalTotalSumLista1 = 0;
+            TotalSumLista2 = 0;
+            FinalTotalSumLista2 = 0;
+            TotalSumLista3 = 0;
+            FinalTotalSumLista3 = 0;
         }
 
         [RelayCommand]
