@@ -9,7 +9,7 @@
     x:DataType="models:DatosCamion">
 
     <VerticalStackLayout>
-        <Border Style="{StaticResource InfoCard}">
+        <Border Style="{StaticResource PageSectionCard}">
 
             <Grid RowDefinitions="Auto, *">
 
