@@ -80,7 +80,8 @@ namespace ForestalCasablancaApp.ViewModels
         {
             if (ValidateInput())
             {
-                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho);
+                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho.Bancos,
+                                        Despacho.LargoCamion, Despacho.AlturaMedia, Despacho.MedidaPalomera);
 
                 _popup = new MetroRumaPopup();
 

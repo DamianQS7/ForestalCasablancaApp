@@ -40,7 +40,7 @@ namespace ForestalCasablancaApp.ViewModels
             _pdfGeneratorService = pdfGeneratorService;
         }
 
-        private bool ValidateInput()
+        public bool ValidateInput()
         {
             // Get the average height of the wood
             if(_calculatorService.CheckIfAlturasAreValid(Despacho.Alturas))
@@ -81,12 +81,13 @@ namespace ForestalCasablancaApp.ViewModels
         #region Commands
 
         [RelayCommand]
-        private void DisplaySummaryAsync()
+        public void DisplaySummaryAsync()
         {
 
             if (ValidateInput())
             {
-                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho);
+                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho.Bancos, 
+                                        Despacho.LargoCamion, Despacho.AlturaMedia, Despacho.MedidaPalomera);
 
                 _popup = new ConfirmationPopup();
                 BasePage.ShowPopup(_popup);
@@ -94,7 +95,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        void ClearPage()
+        public void ClearPage()
         {
             Cliente = new();
             DatosCamion = new();
@@ -103,7 +104,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task GeneratePDF()
+        public async Task GeneratePDF()
         {
             if (IsBusy)
                 return;
@@ -129,7 +130,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task ClosePopup()
+        public async Task ClosePopup()
         {
             await _popup.CloseAsync();
         }
