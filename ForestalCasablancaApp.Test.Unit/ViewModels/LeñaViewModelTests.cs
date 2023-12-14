@@ -17,6 +17,10 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         [Fact]
         public void ValidateInput_ShouldReturnFalse_WhenNoValuesAreGiven()
         {
+            // Arrange
+            _calculatorService.CheckIfAlturasAreValid(Arg.Any<List<string>>()).Returns(false);
+            _calculatorService.CheckPalomera(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+
             // Act
             var result = _sut.ValidateInput();
 
