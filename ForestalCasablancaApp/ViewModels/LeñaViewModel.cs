@@ -90,7 +90,9 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         public void DisplaySummaryAsync()
         {
-            if (ValidateInput())
+            IsValidInput = ValidateInput();
+
+            if (IsValidInput)
             {
                 Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho.Bancos, 
                                         Despacho.LargoCamion, Despacho.AlturaMedia, Despacho.MedidaPalomera);
