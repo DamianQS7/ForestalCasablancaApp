@@ -28,7 +28,7 @@ namespace ForestalCasablancaApp.ViewModels
             "Mezcla de Oregón-Nativo"
         };
 
-        #region Methods
+        
         public LeñaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
         {
             Title = "Despacho Leña";
@@ -39,6 +39,8 @@ namespace ForestalCasablancaApp.ViewModels
             IsValidInput = false;
             _pdfGeneratorService = pdfGeneratorService;
         }
+
+        #region Methods
 
         public bool ValidateInput()
         {

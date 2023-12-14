@@ -37,26 +37,12 @@ namespace ForestalCasablancaApp.ViewModels
             _pdfGeneratorService = pdfGeneratorService;
         }
 
-        private bool ValidateInput()
-        {
-            // Get the average height of the wood
-            if (_calculatorService.CheckIfAlturasAreValid(Despacho.Alturas))
-                Despacho.AlturaMedia = _calculatorService.CalculateAlturaMedia(Despacho.Alturas);
-            else
-                Despacho.AlturaMedia = 0;
+        #region Methods
 
-            // Check if palomera is valid
-            if (_calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2))
-            {
-                Despacho.AlturaMediaPalomera = _calculatorService.CalculateAlturaMediaPalomera(Despacho.AltoPalomera, Despacho.AltoPalomera2);
-                Despacho.MedidaPalomera = _calculatorService.CalculateMedidaPalomera(Despacho.AlturaMediaPalomera, Despacho.AnchoPalomera);
-                Despacho.IsPalomeraValid = true;
-            }
-            else
-            {
-                Despacho.MedidaPalomera = 0;
-                Despacho.IsPalomeraValid = false;
-            }
+        public bool ValidateInput()
+        {
+            ValidateAlturasAndUpdateModelAccordingly();
+            ValidatePalomeraAndUpdateModelAccordingly();
 
             if (Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
             {
@@ -73,10 +59,35 @@ namespace ForestalCasablancaApp.ViewModels
             return true;
         }
 
+        public void ValidateAlturasAndUpdateModelAccordingly()
+        {
+            if (_calculatorService.CheckIfAlturasAreValid(Despacho.Alturas))
+                Despacho.AlturaMedia = _calculatorService.CalculateAlturaMedia(Despacho.Alturas);
+            else
+                Despacho.AlturaMedia = 0;
+        }
+
+        public void ValidatePalomeraAndUpdateModelAccordingly()
+        {
+            if (_calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2))
+            {
+                Despacho.AlturaMediaPalomera = _calculatorService.CalculateAlturaMediaPalomera(Despacho.AltoPalomera, Despacho.AltoPalomera2);
+                Despacho.MedidaPalomera = _calculatorService.CalculateMedidaPalomera(Despacho.AlturaMediaPalomera, Despacho.AnchoPalomera);
+                Despacho.IsPalomeraValid = true;
+            }
+            else
+            {
+                Despacho.MedidaPalomera = 0;
+                Despacho.IsPalomeraValid = false;
+            }
+        }
+
+        #endregion
+
         #region Commands
 
         [RelayCommand]
-        private void DisplaySummaryAsync()
+        public void DisplaySummaryAsync()
         {
             IsValidInput = ValidateInput();
 
@@ -92,7 +103,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        void ClearPage()
+        public void ClearPage()
         {
             Cliente = new();
             DatosCamion = new();
@@ -101,7 +112,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task GeneratePDF()
+        public async Task GeneratePDF()
         {
             if (IsBusy)
                 return;
@@ -127,7 +138,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task ClosePopup()
+        public async Task ClosePopup()
         {
             await _popup.CloseAsync();
         }

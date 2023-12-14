@@ -70,6 +70,23 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         }
 
         [Fact]
+        public void ValidateInput_ShouldDisplayMessage_WhenValuesForCalculationAreGivenButPalomeraIsInvalid()
+        {
+            // Arrange
+            _calculatorService.CheckIfAlturasAreValid(Arg.Any<List<string>>()).Returns(true);
+            _calculatorService.CalculateAlturaMedia(Arg.Any<List<string>>()).Returns(2);
+            _calculatorService.CheckPalomera(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(false);
+            _sut.Despacho.Bancos = "2";
+            _sut.Despacho.LargoCamion = "2.5";
+
+            // Act
+            var result = () => _sut.ValidateInput();
+
+            // Assert
+            
+        }
+
+        [Fact]
         public void ValidateInput_ShouldReturnTrue_WhenAllValuesAreGiven()
         {
             // Arrange
