@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
 using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Helpers;
-using System.Globalization;
+using BosquesNalcahue.Services;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -16,6 +16,7 @@ namespace ForestalCasablancaApp.ViewModels
     {
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
+        private readonly IInfoService _infoService;
 
         #region Properties
 
@@ -78,13 +79,15 @@ namespace ForestalCasablancaApp.ViewModels
 
         #endregion
 
-        public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
+        public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
+            IInfoService infoService)
         {
             Title = "Despacho Trozo Aserrable";
             _calculatorService = calculatorService;
             Cliente = new();
             DatosCamion = new();
             _pdfGeneratorService = pdfGeneratorService;
+            _infoService = infoService;
         }
 
         #region Methods
@@ -107,13 +110,13 @@ namespace ForestalCasablancaApp.ViewModels
                     }
                     else
                     {
-                        DisplayInputError(InfoMessage.InvalidDiameter);
+                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
                         return false;
                     }
                 }
                 else
                 {
-                    DisplayInputError(InfoMessage.MissingTrozoData);
+                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
                     return false;
                 }
                     
@@ -128,13 +131,13 @@ namespace ForestalCasablancaApp.ViewModels
                     }
                     else
                     {
-                        DisplayInputError(InfoMessage.InvalidDiameter);
+                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
                         return false;
                     }
                 }
                 else
                 {
-                    DisplayInputError(InfoMessage.MissingTrozoData);
+                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
                     return false;
                 }
 
@@ -149,13 +152,13 @@ namespace ForestalCasablancaApp.ViewModels
                     }
                     else
                     {
-                        DisplayInputError(InfoMessage.InvalidDiameter);
+                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
                         return false;
                     }
                 }
                 else
                 {
-                    DisplayInputError(InfoMessage.MissingTrozoData);
+                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
                     return false;
                 }
 
@@ -218,9 +221,9 @@ namespace ForestalCasablancaApp.ViewModels
         #region Commands
 
         /// <summary>
-        /// Adds a new item to the respective list based on the assigned property "Identifier" of the NumericEntryCell.
+        /// Adds a new MedidaTrozoAserrable item to the appropriate list based on the specified NumericEntryCell identifier.
         /// </summary>
-        /// <param name="cell"></param>
+        /// <param name="cell">The NumericEntryCell containing information about the target list.</param>
         [RelayCommand]
         public void AddItemToList(NumericEntryCell cell)
         {
@@ -270,9 +273,9 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         /// <summary>
-        /// Removes a specified item from the respective list based on its associated NumeroLista.
+        /// Removes a MedidaTrozoAserrable item from the appropriate list based on its NumeroLista.
         /// </summary>
-        /// <param name="item">The MedidaTrozoAserrable item to be removed.</param>
+        /// <param name="item">The MedidaTrozoAserrable item to be removed from the lists.</param>
         [RelayCommand]
         public void RemoveItemFromList(MedidaTrozoAserrable item)
         {
@@ -286,7 +289,7 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         /// <summary>
-        /// Clears all data on the current page, including measurements and client information.
+        /// Clears the current page by resetting various properties and clearing lists of measurements for different species.
         /// </summary>
         [RelayCommand]
         public void ClearPage()
@@ -323,6 +326,9 @@ namespace ForestalCasablancaApp.ViewModels
             FinalTotalSumLista3 = 0;
         }
 
+        /// <summary>
+        /// Displays a Popup with a summary based on the data from multiple MedidasEspecie lists.
+        /// </summary>
         [RelayCommand]
         public async Task DisplaySummaryAsync()
         {
@@ -339,16 +345,23 @@ namespace ForestalCasablancaApp.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "Debe ingresar al menos una medida", "OK");
+                await _infoService.ShowAlert(InfoMessage.MissingMedidaTrozoAserrable);
             }
         }
 
+        /// <summary>
+        /// Asynchronously closes the currently displayed popup.
+        /// </summary>
         [RelayCommand]
         public async Task ClosePopup()
         {
              await _popup.CloseAsync();
         }
 
+        /// <summary>
+        /// Generates a PDF document based on the current data and displays a toast notification upon success, or an alert
+        /// upon failure.
+        /// </summary>
         [RelayCommand]
         public async Task GeneratePDF()
         {
@@ -361,13 +374,13 @@ namespace ForestalCasablancaApp.ViewModels
 
                 Folio = GenerateFolio();
 
-                _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
+                await _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
 
-                await Toast.Make("El archivo PDF se ha generado con éxito").Show();
+                await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
+                await _infoService.ShowAlert(ex.Message);
             }
             finally
             {

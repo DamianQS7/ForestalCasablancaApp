@@ -3,6 +3,9 @@ using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.ViewModels;
 using ForestalCasablancaApp;
+using BosquesNalcahue.Services;
+using ForestalCasablancaApp.Helpers;
+using NSubstitute.ReturnsExtensions;
 
 namespace ForestalCasablancaApp.Tests.Unit.ViewModels
 {
@@ -11,10 +14,11 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         private readonly LeñaViewModel _sut;
         private readonly ICalculatorService _calculatorService = Substitute.For<ICalculatorService>();
         private readonly IPdfGeneratorService _pdfGeneratorService = Substitute.For<IPdfGeneratorService>();
+        private readonly IInfoService _infoService = Substitute.For<IInfoService>();
 
         public LeñaViewModelTests()
         {
-            _sut = new LeñaViewModel(_calculatorService, _pdfGeneratorService);
+            _sut = new LeñaViewModel(_calculatorService, _pdfGeneratorService, _infoService);
         }
 
         [Fact]
@@ -69,10 +73,11 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
             result.Should().BeFalse();
         }
 
-        [Fact(Skip = "Needs Fixing -> AlertService required")]
+        [Fact]
         public void ValidateInput_ShouldDisplayMessage_WhenValuesForCalculationAreGivenButPalomeraIsInvalid()
         {
             // Arrange
+            _infoService.ShowAlert(Arg.Any<InfoMessage>()).ReturnsNull();
             _calculatorService.CheckIfAlturasAreValid(Arg.Any<List<string>>()).Returns(true);
             _calculatorService.CalculateAlturaMedia(Arg.Any<List<string>>()).Returns(2);
             _calculatorService.CheckPalomera(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(false);
@@ -80,10 +85,29 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
             _sut.Despacho.LargoCamion = "2.5";
 
             // Act
-            var result = () => _sut.ValidateInput();
+            _sut.ValidateInput();
 
             // Assert
+            _infoService.Received(1).ShowAlert(InfoMessage.InvalidPalomera);
             
+        }
+
+        [Fact]
+        public void ValidateInput_ShouldDisplayMessage_WhenThereAreMissingValuesForCalculation()
+        {
+            // Arrange
+            _infoService.ShowAlert(Arg.Any<InfoMessage>()).ReturnsNull();
+            _calculatorService.CheckIfAlturasAreValid(Arg.Any<List<string>>()).Returns(false);
+            _calculatorService.CheckPalomera(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+            _sut.Despacho.Bancos = "2";
+            _sut.Despacho.LargoCamion = "2.5";
+
+            // Act
+            _sut.ValidateInput();
+
+            // Assert
+            _infoService.Received(1).ShowAlert(InfoMessage.MissingLeñaData);
+
         }
 
         [Fact]

@@ -1,6 +1,9 @@
 ﻿
+using BosquesNalcahue.Services;
+using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.ViewModels;
+using NSubstitute.ReturnsExtensions;
 
 namespace ForestalCasablancaApp.Tests.Unit.ViewModels
 {
@@ -9,10 +12,48 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         private readonly MetroRumaViewModel _sut;
         private readonly ICalculatorService _calculatorService = Substitute.For<ICalculatorService>();
         private readonly IPdfGeneratorService _pdfGeneratorService = Substitute.For<IPdfGeneratorService>();
+        private readonly IInfoService _infoService = Substitute.For<IInfoService>();
 
         public MetroRumaViewModelTests()
         {
-            _sut = new MetroRumaViewModel(_calculatorService, _pdfGeneratorService);
+            _sut = new MetroRumaViewModel(_calculatorService, _pdfGeneratorService, _infoService);
+        }
+
+        [Fact]
+        public void ValidateInput_ShouldDisplayMessage_WhenValuesForCalculationAreGivenButPalomeraIsInvalid()
+        {
+            // Arrange
+            _infoService.ShowAlert(Arg.Any<InfoMessage>()).ReturnsNull();
+            _calculatorService.CheckIfAlturasAreValid(Arg.Any<List<string>>()).Returns(true);
+            _calculatorService.CalculateAlturaMedia(Arg.Any<List<string>>()).Returns(2);
+            _calculatorService.CheckPalomera(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(false);
+            _sut.Despacho.Bancos = "2";
+            _sut.Despacho.LargoCamion = "2.5";
+
+            // Act
+            _sut.ValidateInput();
+
+            // Assert
+            _infoService.Received(1).ShowAlert(InfoMessage.InvalidPalomera);
+
+        }
+
+        [Fact]
+        public void ValidateInput_ShouldDisplayMessage_WhenThereAreMissingValuesForCalculation()
+        {
+            // Arrange
+            _infoService.ShowAlert(Arg.Any<InfoMessage>()).ReturnsNull();
+            _calculatorService.CheckIfAlturasAreValid(Arg.Any<List<string>>()).Returns(false);
+            _calculatorService.CheckPalomera(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+            _sut.Despacho.Bancos = "2";
+            _sut.Despacho.LargoCamion = "2.5";
+
+            // Act
+            _sut.ValidateInput();
+
+            // Assert
+            _infoService.Received(1).ShowAlert(InfoMessage.MissingMetroRumaData);
+
         }
 
         [Fact]

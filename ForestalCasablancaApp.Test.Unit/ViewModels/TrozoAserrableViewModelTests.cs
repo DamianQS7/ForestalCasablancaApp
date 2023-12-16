@@ -1,8 +1,11 @@
 ﻿
+using BosquesNalcahue.Services;
 using ForestalCasablancaApp.Controls;
+using ForestalCasablancaApp.Helpers;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Services;
 using ForestalCasablancaApp.ViewModels;
+using NSubstitute.ReturnsExtensions;
 using System.Collections.ObjectModel;
 
 namespace ForestalCasablancaApp.Tests.Unit.ViewModels
@@ -12,10 +15,11 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         private readonly TrozoAserrableViewModel _sut;
         private readonly ICalculatorService _calculatorService = Substitute.For<ICalculatorService>();
         private readonly IPdfGeneratorService _pdfGeneratorService = Substitute.For<IPdfGeneratorService>();
+        private readonly IInfoService _infoService = Substitute.For<IInfoService>();
 
         public TrozoAserrableViewModelTests()
         {
-            _sut = new TrozoAserrableViewModel(_calculatorService, _pdfGeneratorService);
+            _sut = new TrozoAserrableViewModel(_calculatorService, _pdfGeneratorService, _infoService);
         }
 
         [Theory(Skip = "Move to UI Test")]
@@ -110,31 +114,17 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
             _sut.CantidadIngresada3.Should().BeNull();
         }
 
-        [Fact(Skip = "Needs AlertService")]
+        [Fact]
         public async Task DisplaySummaryAsync_ShouldRaiseAnAlert_WhenAllListsAreEmpty()
         {
             // Arrange
+            _infoService.ShowAlert(InfoMessage.MissingMedidaTrozoAserrable).Returns(Task.CompletedTask);
 
             // Act
             await _sut.DisplaySummaryAsync();
 
             // Assert
-            // Alert service received call
-        }
-
-        [Fact(Skip = "Needs fixing -> Create Alerts Service")]
-        public async Task GeneratePDF_ShouldCallGenerateTrozoAserrablePDFMethod()
-        {
-            // Arrange
-            _pdfGeneratorService.GenerateTrozoAserrablePDF(Arg.Any<TrozoAserrableViewModel>());
-
-            // Act
-            await _sut.GeneratePDF();
-
-            // Assert
-            _pdfGeneratorService.Received(1).
-                GenerateTrozoAserrablePDF(Arg.Any<TrozoAserrableViewModel>());
-
+            await _infoService.Received(1).ShowAlert(InfoMessage.MissingMedidaTrozoAserrable);
         }
 
         [Theory]
@@ -207,6 +197,53 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
+        public void ValidateInput_ShouldDisplayMessage_WhenThereAreMissingValuesForCalculation(int especie)
+        {
+            // Arrange
+            _infoService.ShowAlert(Arg.Any<InfoMessage>()).ReturnsNull();
+
+            // Act
+            _sut.ValidateInput(especie);
+
+            // Assert
+            _infoService.Received(1).ShowAlert(InfoMessage.MissingTrozoData);
+
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void ValidateInput_ShouldDisplayMessage_WhenAllValuesAreGivenAndDiameterIsNotEven(int especie)
+        {
+            // Arrange
+            _infoService.ShowAlert(Arg.Any<InfoMessage>()).ReturnsNull();
+            
+            // Largo for the three species is given
+            _sut.LargoEspecieUno = "1";
+            _sut.LargoEspecieDos = "1";
+            _sut.LargoEspecieTres = "1";
+            // Diámetro for the three species is given and it is even
+            _sut.DiametroIngresado = 3;
+            _sut.DiametroIngresado2 = 5;
+            _sut.DiametroIngresado3 = 7;
+            // Cantidad for the three species is given
+            _sut.CantidadIngresada = 1;
+            _sut.CantidadIngresada2 = 1;
+            _sut.CantidadIngresada3 = 1;
+
+            // Act
+            _sut.ValidateInput(especie);
+
+            // Assert
+            _infoService.Received(1).ShowAlert(InfoMessage.InvalidDiameter);
+
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
         public void ValidateInput_ShouldReturnFalse_WhenNoValuesAreGiven(int especie)
         {
             // Act
@@ -272,13 +309,5 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
             result.Should().BeFalse();
         }
 
-        
-
-
-        #region Data Providers
-
-
-
-        #endregion
     }
 }
