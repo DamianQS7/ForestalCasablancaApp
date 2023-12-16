@@ -203,7 +203,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         [Theory]
         [MemberData(nameof(NullableNumericValuesGreaterThanCutOff))]
         public void CalculateTrozoAserrableVolume_ShouldReturnValidCalculation_WhenLargoIsGreaterThanCutoffValue
-            (double? diametro, int? cantidad, double? largo, double expected)
+            (double? diametro, int? cantidad, string largo, double expected)
         {
             // Act
             var result = _sut.CalculateTrozoAserrableVolume(diametro, cantidad, largo);
@@ -215,7 +215,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         [Theory]
         [MemberData(nameof(NullableNumericValuesLessThanCutOff))]
         public void CalculateTrozoAserrableVolume_ShouldReturnValidCalculation_WhenLargoIsLessThanCutoffValue
-            (double? diametro, int? cantidad, double? largo, double expected)
+            (double? diametro, int? cantidad, string largo, double expected)
         {
             // Act
             var result = _sut.CalculateTrozoAserrableVolume(diametro, cantidad, largo);
@@ -297,7 +297,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
             { 
                 Nullable.GetValueRefOrDefaultRef<double>(20),
                 Nullable.GetValueRefOrDefaultRef<int>(15),
-                Nullable.GetValueRefOrDefaultRef<double>(7.0),
+                "7.0",
                 0.3281975
             },
 
@@ -305,7 +305,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
             {
                 Nullable.GetValueRefOrDefaultRef<double>(32),
                 Nullable.GetValueRefOrDefaultRef<int>(20),
-                Nullable.GetValueRefOrDefaultRef<double>(6.0),
+                "6.0",
                 0.6642899999999999
             }
         };
@@ -317,7 +317,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
             {
                 Nullable.GetValueRefOrDefaultRef<double>(20),
                 Nullable.GetValueRefOrDefaultRef<int>(15),
-                Nullable.GetValueRefOrDefaultRef<double>(5.0),
+                "5.0",
                 0.2
             },
 
@@ -325,7 +325,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
             {
                 Nullable.GetValueRefOrDefaultRef<double>(32),
                 Nullable.GetValueRefOrDefaultRef<int>(20),
-                Nullable.GetValueRefOrDefaultRef<double>(3.2),
+                "3.2",
                 0.32768
             }
         };

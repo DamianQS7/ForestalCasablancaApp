@@ -163,13 +163,15 @@ namespace ForestalCasablancaApp.Services
         /// </summary>
         /// <param name="diametro">The diameter of the trozo as a nullable double.</param>
         /// <param name="cantidad">The quantity of the trozo as a nullable integer.</param>
-        /// <param name="largo">The length of the trozo as a nullable double.</param>
+        /// <param name="largoStr">The length of the trozo as a string.</param>
         /// <returns>
         /// Returns the calculated volume of the trozo aserrable based on the provided dimensions.
         /// </returns>
-        public double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, double? largo)
+        public double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, string largoStr)
         {
-            if(largo <= 5.90)
+            double largo = double.Parse(largoStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+
+            if (largo <= 5.90)
             {
                 return ((double)diametro * (double)diametro * (double)largo) / 10000;
             }
