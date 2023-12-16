@@ -4,6 +4,7 @@
     {
         InvalidDiameter,
         MissingTrozoData,
+        MissingMedidaTrozoAserrable,
         MissingLeñaData,
         MissingMetroRumaData,
         InvalidPalomera

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using BosquesNalcahue.Services;
+using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using ForestalCasablancaApp.Pages;
@@ -31,7 +32,8 @@ public static class MauiProgram
 			.AddTransient<IPermissionsManager, PermissionsManager>()
 			.AddSingleton<ICalculatorService, CalculatorService>()
 			.AddSingleton<IPdfGeneratorService, PdfGeneratorService>()
-			.AddSingleton<IFolderPicker>(FolderPicker.Default)
+            .AddSingleton<IInfoService, InfoService>()
+            .AddSingleton<IFolderPicker>(FolderPicker.Default)
 			.AddSingleton<MainPage>()
 			.AddSingleton<MainPageViewModel>()
 			.AddSingleton<SettingsPage>()

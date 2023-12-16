@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
 using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Helpers;
-using System.Globalization;
+using BosquesNalcahue.Services;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -16,6 +16,7 @@ namespace ForestalCasablancaApp.ViewModels
     {
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
+        private readonly IInfoService _infoService;
 
         #region Properties
 
@@ -78,17 +79,18 @@ namespace ForestalCasablancaApp.ViewModels
 
         #endregion
 
-        #region Methods
-
-        // Constructor
-        public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
+        public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
+            IInfoService infoService)
         {
             Title = "Despacho Trozo Aserrable";
             _calculatorService = calculatorService;
             Cliente = new();
             DatosCamion = new();
             _pdfGeneratorService = pdfGeneratorService;
+            _infoService = infoService;
         }
+
+        #region Methods
 
         /// <summary>
         /// Validates the input fields for a specific list based on the provided "numeroLista" value.
@@ -96,7 +98,7 @@ namespace ForestalCasablancaApp.ViewModels
         /// </summary>
         /// <param name="numeroLista">Used as an identifier for the lists</param>
         /// <returns></returns>
-        private bool ValidateInput(int numeroLista)
+        public bool ValidateInput(int numeroLista)
         {
             if(numeroLista == 1)
             {
@@ -108,13 +110,13 @@ namespace ForestalCasablancaApp.ViewModels
                     }
                     else
                     {
-                        DisplayInputError(InfoMessage.InvalidDiameter);
+                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
                         return false;
                     }
                 }
                 else
                 {
-                    DisplayInputError(InfoMessage.MissingTrozoData);
+                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
                     return false;
                 }
                     
@@ -129,13 +131,13 @@ namespace ForestalCasablancaApp.ViewModels
                     }
                     else
                     {
-                        DisplayInputError(InfoMessage.InvalidDiameter);
+                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
                         return false;
                     }
                 }
                 else
                 {
-                    DisplayInputError(InfoMessage.MissingTrozoData);
+                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
                     return false;
                 }
 
@@ -150,13 +152,13 @@ namespace ForestalCasablancaApp.ViewModels
                     }
                     else
                     {
-                        DisplayInputError(InfoMessage.InvalidDiameter);
+                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
                         return false;
                     }
                 }
                 else
                 {
-                    DisplayInputError(InfoMessage.MissingTrozoData);
+                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
                     return false;
                 }
 
@@ -169,7 +171,7 @@ namespace ForestalCasablancaApp.ViewModels
         /// <summary>
         /// Updates the total sum and final total sum for a specific list based on the content of each MedidasEspecie list.
         /// </summary>
-        private void UpdateViewModelTotals()
+        public void UpdateViewModelTotals()
         {
             if (MedidasEspecieUno.Count > 0)
             {
@@ -191,34 +193,47 @@ namespace ForestalCasablancaApp.ViewModels
 
         }
 
+        /// <summary>
+        /// Adds a new MedidaTrozoAserrable instance to the specified ObservableCollection based on provided dimensions.
+        /// </summary>
+        /// <param name="listNumber">The number representing the list to which the MedidaTrozoAserrable instance is added.</param>
+        /// <param name="list">The ObservableCollection to which the MedidaTrozoAserrable instance is added.</param>
+        /// <param name="diametro">The diameter of the trozo as a nullable double.</param>
+        /// <param name="cantidad">The quantity of the trozo as a nullable integer.</param>
+        /// <param name="largo">The length of the trozo as a string.</param>
+        public void AddMedidaTrozoAserrableToList(int listNumber, ObservableCollection<MedidaTrozoAserrable> list, 
+            double? diametro, int? cantidad, string largo)
+        {
+            double volume = _calculatorService.CalculateTrozoAserrableVolume(diametro, cantidad, largo);
+
+            list.Add(new MedidaTrozoAserrable()
+            {
+                NumeroLista = listNumber,
+                Diametro = diametro,
+                Cantidad = cantidad,
+                Volumen = volume,
+                Total = Math.Round((double)(volume * cantidad), 2)
+            });
+        }
+
         #endregion
 
         #region Commands
-        
+
         /// <summary>
-        /// Adds a new item to the respective list based on the assigned property "Identifier" of the NumericEntryCell.
+        /// Adds a new MedidaTrozoAserrable item to the appropriate list based on the specified NumericEntryCell identifier.
         /// </summary>
-        /// <param name="cell"></param>
+        /// <param name="cell">The NumericEntryCell containing information about the target list.</param>
         [RelayCommand]
-        void AddItemToList(NumericEntryCell cell)
+        public void AddItemToList(NumericEntryCell cell)
         {
             if(cell.Identifier == "1")
             {
                 if (ValidateInput(1))
                 {
-                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado, CantidadIngresada, 
-                                    double.Parse(LargoEspecieUno, NumberStyles.AllowDecimalPoint ,CultureInfo.InvariantCulture));
-
                     // Add the new item to the list number 1
-                    MedidasEspecieUno.Add(new MedidaTrozoAserrable()
-                    {
-                        NumeroLista = 1,
-                        Diametro = DiametroIngresado,
-                        Cantidad = CantidadIngresada,
-                        Volumen = volume,
-                        Total = Math.Round((double)(volume * CantidadIngresada), 2)
-                    });
-
+                    AddMedidaTrozoAserrableToList(1, MedidasEspecieUno, DiametroIngresado, CantidadIngresada, LargoEspecieUno);
+                    
                     // Clear the input fields
                     DiametroIngresado = null;
                     CantidadIngresada = null;
@@ -231,18 +246,7 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if (ValidateInput(2))
                 {
-                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado2, CantidadIngresada2, 
-                                    double.Parse(LargoEspecieDos, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture));
-
-                    // Add the new item to the list number 2
-                    MedidasEspecieDos.Add(new MedidaTrozoAserrable()
-                    {
-                        NumeroLista = 2,
-                        Diametro = DiametroIngresado2,
-                        Cantidad = CantidadIngresada2,
-                        Volumen = volume,
-                        Total = Math.Round((double)(volume * CantidadIngresada2), 2)
-                    });
+                    AddMedidaTrozoAserrableToList(2, MedidasEspecieDos, DiametroIngresado2, CantidadIngresada2, LargoEspecieDos);
 
                     // Clear the input fields
                     DiametroIngresado2 = null;
@@ -256,18 +260,7 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if(ValidateInput(3))
                 {
-                    double volume = _calculatorService.CalculateTrozoAserrableVolume(DiametroIngresado3, CantidadIngresada3, 
-                                    double.Parse(LargoEspecieTres, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture));
-
-                    // Add the new item to the list number 3
-                    MedidasEspecieTres.Add(new MedidaTrozoAserrable()
-                    {
-                        NumeroLista = 3,
-                        Diametro = DiametroIngresado3,
-                        Cantidad = CantidadIngresada3,
-                        Volumen = volume,
-                        Total = Math.Round((double)(volume * CantidadIngresada3), 2)
-                    });
+                    AddMedidaTrozoAserrableToList(3, MedidasEspecieTres, DiametroIngresado3, CantidadIngresada3, LargoEspecieTres);
 
                     // Clear the input fields
                     DiametroIngresado3 = null;
@@ -280,11 +273,11 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         /// <summary>
-        /// Removes a specified item from the respective list based on its associated NumeroLista.
+        /// Removes a MedidaTrozoAserrable item from the appropriate list based on its NumeroLista.
         /// </summary>
-        /// <param name="item">The MedidaTrozoAserrable item to be removed.</param>
+        /// <param name="item">The MedidaTrozoAserrable item to be removed from the lists.</param>
         [RelayCommand]
-        void RemoveItemFromList(MedidaTrozoAserrable item)
+        public void RemoveItemFromList(MedidaTrozoAserrable item)
         {
             // Check the associated NumeroLista and remove the item from the respective list.
             if (item.NumeroLista == 1)
@@ -296,10 +289,10 @@ namespace ForestalCasablancaApp.ViewModels
         }
 
         /// <summary>
-        /// Clears all data on the current page, including measurements and client information.
+        /// Clears the current page by resetting various properties and clearing lists of measurements for different species.
         /// </summary>
         [RelayCommand]
-        void ClearPage()
+        public void ClearPage()
         {
             // Clear the lists of measurements for different species.
             MedidasEspecieUno.Clear();
@@ -319,16 +312,27 @@ namespace ForestalCasablancaApp.ViewModels
             LargoEspecieTres = "";
 
             // Reset other values.
+            DiametroIngresado = null;
+            DiametroIngresado2 = null;
+            DiametroIngresado3 = null;
+            CantidadIngresada = null;
+            CantidadIngresada2 = null;
+            CantidadIngresada3 = null;
             TotalSumLista1 = 0;
             FinalTotalSumLista1 = 0;
             TotalSumLista2 = 0;
             FinalTotalSumLista2 = 0;
             TotalSumLista3 = 0;
             FinalTotalSumLista3 = 0;
+
+            _infoService.ShowToast("Módulo reiniciado con éxito");
         }
 
+        /// <summary>
+        /// Displays a Popup with a summary based on the data from multiple MedidasEspecie lists.
+        /// </summary>
         [RelayCommand]
-        private async Task DisplaySummaryAsync()
+        public async Task DisplaySummaryAsync()
         {
             if (MedidasEspecieUno.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
             {
@@ -343,18 +347,25 @@ namespace ForestalCasablancaApp.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "Debe ingresar al menos una medida", "OK");
+                await _infoService.ShowAlert(InfoMessage.MissingMedidaTrozoAserrable);
             }
         }
 
+        /// <summary>
+        /// Asynchronously closes the currently displayed popup.
+        /// </summary>
         [RelayCommand]
-        private async Task ClosePopup()
+        public async Task ClosePopup()
         {
              await _popup.CloseAsync();
         }
 
+        /// <summary>
+        /// Generates a PDF document based on the current data and displays a toast notification upon success, or an alert
+        /// upon failure.
+        /// </summary>
         [RelayCommand]
-        private async Task GeneratePDF()
+        public async Task GeneratePDF()
         {
             if(IsBusy)
                 return;
@@ -367,11 +378,11 @@ namespace ForestalCasablancaApp.ViewModels
 
                 _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
 
-                await Toast.Make("El archivo PDF se ha generado con éxito").Show();
+                await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
+                await _infoService.ShowAlert(ex.Message);
             }
             finally
             {

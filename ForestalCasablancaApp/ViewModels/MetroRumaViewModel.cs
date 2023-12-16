@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui.Alerts;
+﻿using BosquesNalcahue.Services;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,6 +15,7 @@ namespace ForestalCasablancaApp.ViewModels
     {
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
+        private readonly IInfoService _infoService;
         private MetroRumaPopup _popup;
 
         [ObservableProperty] private Cliente _cliente;
@@ -27,7 +29,8 @@ namespace ForestalCasablancaApp.ViewModels
             "Otro"
         };
 
-        public MetroRumaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService)
+        public MetroRumaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
+            IInfoService infoService)
         {
             Title = "Despacho Metro Ruma";
             _calculatorService = calculatorService;
@@ -35,17 +38,53 @@ namespace ForestalCasablancaApp.ViewModels
             Cliente = new();
             DatosCamion = new();
             _pdfGeneratorService = pdfGeneratorService;
+            _infoService = infoService;
         }
 
-        private bool ValidateInput()
+        #region Methods
+
+        /// <summary>
+        /// Validates the input data for a Despacho (dispatch) and updates the model accordingly.
+        /// </summary>
+        /// <returns>
+        /// Returns true if the input data is valid; otherwise, shows an alert and returns false.
+        /// </returns>
+        public bool ValidateInput()
         {
-            // Get the average height of the wood
+            ValidateAlturasAndUpdateModelAccordingly();
+            ValidatePalomeraAndUpdateModelAccordingly();
+
+            if (Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
+            {
+                _infoService.ShowAlert(InfoMessage.MissingMetroRumaData);
+                return false;
+            }
+
+            if (!Despacho.IsPalomeraValid)
+            {
+                _infoService.ShowAlert(InfoMessage.InvalidPalomera);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Validates the alturas (heights) in the Despacho model and updates the model's AlturaMedia accordingly.
+        /// </summary>
+        public void ValidateAlturasAndUpdateModelAccordingly()
+        {
             if (_calculatorService.CheckIfAlturasAreValid(Despacho.Alturas))
                 Despacho.AlturaMedia = _calculatorService.CalculateAlturaMedia(Despacho.Alturas);
             else
                 Despacho.AlturaMedia = 0;
+        }
 
-            // Check if palomera is valid
+        /// <summary>
+        /// Validates the palomera in the Despacho model and updates the model's properties accordingly.
+        /// </summary>
+        public void ValidatePalomeraAndUpdateModelAccordingly()
+        {
             if (_calculatorService.CheckPalomera(Despacho.AnchoPalomera, Despacho.AltoPalomera, Despacho.AltoPalomera2))
             {
                 Despacho.AlturaMediaPalomera = _calculatorService.CalculateAlturaMediaPalomera(Despacho.AltoPalomera, Despacho.AltoPalomera2);
@@ -57,30 +96,24 @@ namespace ForestalCasablancaApp.ViewModels
                 Despacho.MedidaPalomera = 0;
                 Despacho.IsPalomeraValid = false;
             }
-
-            if (Despacho.AlturaMedia <= 0 || Despacho.Bancos is null || Despacho.LargoCamion is null)
-            {
-                DisplayInputError(InfoMessage.MissingMetroRumaData);
-                return false;
-            }
-
-            if (!Despacho.IsPalomeraValid)
-            {
-                DisplayInputError(InfoMessage.InvalidPalomera);
-                return false;
-            }
-
-            return true;
         }
+
+        #endregion
 
         #region Commands
 
+        /// <summary>
+        /// Displays a Popup with a summary based on the Despacho model data.
+        /// </summary>
         [RelayCommand]
-        private void DisplaySummaryAsync()
+        public void DisplaySummaryAsync()
         {
-            if (ValidateInput())
+            IsValidInput = ValidateInput();
+
+            if (IsValidInput)
             {
-                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho);
+                Despacho.TotalMetros = _calculatorService.CalculateTotalMetros(Despacho.Bancos,
+                                        Despacho.LargoCamion, Despacho.AlturaMedia, Despacho.MedidaPalomera);
 
                 _popup = new MetroRumaPopup();
 
@@ -88,16 +121,27 @@ namespace ForestalCasablancaApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Clears the current page by resetting the Cliente, DatosCamion, and Despacho properties to new instances,
+        /// and sets IsValidInput to false.
+        /// </summary>
         [RelayCommand]
-        void ClearPage()
+        public void ClearPage()
         {
             Cliente = new();
             DatosCamion = new();
             Despacho = new();
+            IsValidInput = false;
+
+            _infoService.ShowToast("Módulo reiniciado con éxito");
         }
 
+        /// <summary>
+        /// Generates a PDF document based on the current data and displays a toast notification upon success, or an alert
+        /// upon failure.
+        /// </summary>
         [RelayCommand]
-        private async Task GeneratePDF()
+        public async Task GeneratePDF()
         {
             if (IsBusy)
                 return;
@@ -110,11 +154,11 @@ namespace ForestalCasablancaApp.ViewModels
 
                 _pdfGeneratorService.GenerateMetroRumaPDF(this);
 
-                await Toast.Make("El archivo PDF se ha generado con éxito").Show();
+                await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
+                await _infoService.ShowAlert(ex.Message);
             }
             finally
             {
@@ -122,8 +166,11 @@ namespace ForestalCasablancaApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Asynchronously closes the currently displayed popup.
+        /// </summary>
         [RelayCommand]
-        private async Task ClosePopup()
+        public async Task ClosePopup()
         {
             await _popup.CloseAsync();
         }

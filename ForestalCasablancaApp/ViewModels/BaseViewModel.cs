@@ -39,7 +39,7 @@ namespace ForestalCasablancaApp.ViewModels
 
         public async Task DisplayInputError(InfoMessage infoMessage)
         {
-            if (infoMessage == InfoMessage.InvalidDiameter)
+            if (infoMessage is InfoMessage.InvalidDiameter)
             {
                 await Shell.Current.DisplayAlert("Error", "El diámetro debe ser un número par", "OK");
             }
