@@ -132,6 +132,8 @@ namespace ForestalCasablancaApp.ViewModels
             DatosCamion = new();
             Despacho = new();
             IsValidInput = false;
+
+            _infoService.ShowToast("Módulo reiniciado con éxito");
         }
 
         /// <summary>

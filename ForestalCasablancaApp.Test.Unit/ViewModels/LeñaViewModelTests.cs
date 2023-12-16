@@ -22,6 +22,38 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         }
 
         [Fact]
+        public void ClearPage_ShouldDisplayToast_WhenCalled()
+        {
+            // Arrange
+            _infoService.ShowToast(Arg.Any<string>()).ReturnsNull();
+
+            // Act
+            _sut.ClearPage();
+
+            // Assert
+            _infoService.Received(1).ShowToast("Módulo reiniciado con éxito");
+        }
+
+        [Fact]
+        public void ClearPage_ShouldReturnNewObjectsWithinTheViewModel()
+        {
+            // Arrange
+            _sut.Despacho.AlturaMedia = 2;
+            _sut.Cliente.Nombre = "Kobe Bryant";
+            _sut.DatosCamion.Chofer = "John Snow";
+            _sut.IsValidInput = true;
+
+            // Act
+            _sut.ClearPage();
+
+            // Assert
+            _sut.Despacho.AlturaMedia.Should().Be(0);
+            _sut.Cliente.Nombre.Should().BeNullOrEmpty();
+            _sut.DatosCamion.Chofer.Should().BeNullOrEmpty();
+            _sut.IsValidInput.Should().BeFalse();
+        }
+
+        [Fact]
         public void ValidateInput_ShouldReturnFalse_WhenNoValuesAreGiven()
         {
             // Arrange
@@ -238,26 +270,6 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
             // Assert
             //_sut.BasePage.Received(1).ShowPopup(Arg.Any<ConfirmationPopup>());
         }
-
-        [Fact]
-        public void ClearPage_ShouldReturnNewObjectsWithinTheViewModel()
-        {
-            // Arrange
-            _sut.Despacho.AlturaMedia = 2;
-            _sut.Cliente.Nombre = "Kobe Bryant";
-            _sut.DatosCamion.Chofer = "John Snow";
-            _sut.IsValidInput = true;
-
-            // Act
-            _sut.ClearPage();
-
-            // Assert
-            _sut.Despacho.AlturaMedia.Should().Be(0);
-            _sut.Cliente.Nombre.Should().BeNullOrEmpty();
-            _sut.DatosCamion.Chofer.Should().BeNullOrEmpty();
-            _sut.IsValidInput.Should().BeFalse();
-        }
-
 
         [Fact(Skip = "Requires a Popup object -> Move to UI Testing")]
         public async Task ClosePopup_ShouldCallCloseAsyncInThePopup()

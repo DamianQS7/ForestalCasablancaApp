@@ -20,6 +20,19 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
         }
 
         [Fact]
+        public void ClearPage_ShouldDisplayToast_WhenCalled()
+        {
+            // Arrange
+            _infoService.ShowToast(Arg.Any<string>()).ReturnsNull();
+
+            // Act
+            _sut.ClearPage();
+
+            // Assert
+            _infoService.Received(1).ShowToast("Módulo reiniciado con éxito");
+        }
+
+        [Fact]
         public void ValidateInput_ShouldDisplayMessage_WhenValuesForCalculationAreGivenButPalomeraIsInvalid()
         {
             // Arrange

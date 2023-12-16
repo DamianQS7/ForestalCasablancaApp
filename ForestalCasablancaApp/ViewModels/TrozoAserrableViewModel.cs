@@ -324,6 +324,8 @@ namespace ForestalCasablancaApp.ViewModels
             FinalTotalSumLista2 = 0;
             TotalSumLista3 = 0;
             FinalTotalSumLista3 = 0;
+
+            _infoService.ShowToast("Módulo reiniciado con éxito");
         }
 
         /// <summary>
@@ -374,7 +376,7 @@ namespace ForestalCasablancaApp.ViewModels
 
                 Folio = GenerateFolio();
 
-                await _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
+                _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
 
                 await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
             }
