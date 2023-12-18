@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
+    xmlns:components="clr-namespace:BosquesNalcahue.Controls"
     xmlns:fontAwesome="clr-namespace:ForestalCasablancaApp.Helpers"
     xmlns:models="clr-namespace:ForestalCasablancaApp.Models"
     xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
@@ -40,6 +41,18 @@
                     Origen="{Binding DatosCamion.UnidadOrigen}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
+
+                <components:MedidasEspecieSection 
+                    ComponentTitle="Test"
+                    EspeciePickerItemSource="{Binding MedidasEspecieTest.ListaEspecies}"
+                    SelectedEspecie="{Binding MedidasEspecieTest.Especie}"
+                    LargoPickerItemSource="{Binding MedidasEspecieTest.ListaLargos}"
+                    SelectedLargo="{Binding MedidasEspecieTest.LargoEspecie}"
+                    DiametroCellId="1"
+                    DiametroInput="{Binding MedidasEspecieTest.DiametroIngresado}"
+                    CantidadInput="{Binding MedidasEspecieTest.CantidadIngresada}"
+                    ListaMedidasSource="{Binding MedidasEspecieTest.ListaMedidas}"
+                    ListaMedidasCount="{Binding MedidasEspecieTest.ListaMedidas.Count}"/>
 
                 <!--  Mediciones Especie 1 Section  -->
                 <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">

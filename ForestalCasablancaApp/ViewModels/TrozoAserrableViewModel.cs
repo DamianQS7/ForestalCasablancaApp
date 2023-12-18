@@ -9,6 +9,7 @@ using CommunityToolkit.Maui.Views;
 using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Helpers;
 using BosquesNalcahue.Services;
+using BosquesNalcahue.Models;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -34,6 +35,7 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private int? _cantidadIngresada3;
         private TrozoAserrableSummaryPopup _popup;
 
+        [ObservableProperty] private MedidasEspecie _medidasEspecieTest;
         public int TotalSumLista1 { get; set; }
         public double FinalTotalSumLista1 { get; set; }
         public int TotalSumLista2 { get; set; }
@@ -86,6 +88,7 @@ namespace ForestalCasablancaApp.ViewModels
             _calculatorService = calculatorService;
             Cliente = new();
             DatosCamion = new();
+            MedidasEspecieTest = new();
             _pdfGeneratorService = pdfGeneratorService;
             _infoService = infoService;
         }
@@ -102,9 +105,9 @@ namespace ForestalCasablancaApp.ViewModels
         {
             if(numeroLista == 1)
             {
-                if(!string.IsNullOrEmpty(LargoEspecieUno) && DiametroIngresado > 0 && CantidadIngresada > 0)
+                if(!string.IsNullOrEmpty(MedidasEspecieTest.LargoEspecie) && MedidasEspecieTest.DiametroIngresado > 0 && MedidasEspecieTest.CantidadIngresada > 0)
                 {
-                    if(DiametroIngresado % 2 == 0)
+                    if(MedidasEspecieTest.DiametroIngresado % 2 == 0)
                     {
                            return true;
                     }
@@ -232,11 +235,12 @@ namespace ForestalCasablancaApp.ViewModels
                 if (ValidateInput(1))
                 {
                     // Add the new item to the list number 1
-                    AddMedidaTrozoAserrableToList(1, MedidasEspecieUno, DiametroIngresado, CantidadIngresada, LargoEspecieUno);
-                    
+                    AddMedidaTrozoAserrableToList(1, MedidasEspecieTest.ListaMedidas,
+                        MedidasEspecieTest.DiametroIngresado, MedidasEspecieTest.CantidadIngresada, MedidasEspecieTest.LargoEspecie);
+
                     // Clear the input fields
-                    DiametroIngresado = null;
-                    CantidadIngresada = null;
+                    MedidasEspecieTest.DiametroIngresado = null;
+                    MedidasEspecieTest.CantidadIngresada = null;
 
                     // Set the focus on Diametro Entry.
                     cell.Focus();
