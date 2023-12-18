@@ -17,7 +17,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         public void CheckIfAlturasAreValid_ShouldReturnFalse_WhenEmptyListIsGiven()
         {
             // Arrange
-            List<string> alturas = new List<string>();
+            List<string> alturas = new();
 
             // Act
             var result = _sut.CheckIfAlturasAreValid(alturas);
@@ -30,7 +30,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         public void CheckIfAlturasAreValid_ShouldReturnFalse_WhenListContainingOnlyZerosIsGiven()
         {
             // Arrange
-            List<string> alturas = new List<string> { "0", "0"};
+            List<string> alturas = new() { "0", "0"};
 
             // Act
             var result = _sut.CheckIfAlturasAreValid(alturas);
@@ -55,7 +55,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         {
             // Arrange
             double expected = 0;
-            List<string> alturas = new List<string> { "0", "0" };
+            List<string> alturas = new() { "0", "0" };
 
             // Act
             var result = _sut.CalculateAlturaMedia(alturas);
@@ -203,10 +203,10 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         [Theory]
         [MemberData(nameof(NullableNumericValuesGreaterThanCutOff))]
         public void CalculateTrozoAserrableVolume_ShouldReturnValidCalculation_WhenLargoIsGreaterThanCutoffValue
-            (double? diametro, int? cantidad, string largo, double expected)
+            (string diametro, string largo, double expected)
         {
             // Act
-            var result = _sut.CalculateTrozoAserrableVolume(diametro, cantidad, largo);
+            var result = _sut.CalculateTrozoAserrableVolume(diametro, largo);
 
             // Assert
             result.Should().Be(expected);
@@ -215,10 +215,10 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         [Theory]
         [MemberData(nameof(NullableNumericValuesLessThanCutOff))]
         public void CalculateTrozoAserrableVolume_ShouldReturnValidCalculation_WhenLargoIsLessThanCutoffValue
-            (double? diametro, int? cantidad, string largo, double expected)
+            (string diametro, string largo, double expected)
         {
             // Act
-            var result = _sut.CalculateTrozoAserrableVolume(diametro, cantidad, largo);
+            var result = _sut.CalculateTrozoAserrableVolume(diametro, largo);
 
             // Assert
             result.Should().Be(expected);
@@ -228,7 +228,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         public void CalculateTotalSum_ShouldReturnValidSum_WhenListIsNotEmpty()
         {
             // Arrange
-            ObservableCollection<MedidaTrozoAserrable> lista = new ObservableCollection<MedidaTrozoAserrable>
+            ObservableCollection<MedidaTrozoAserrable> lista = new()
             {
                 new() { Diametro = 22, Cantidad = 64 },
                 new() { Diametro = 24, Cantidad = 36 }
@@ -260,7 +260,7 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         public void CalculateFinalTotalSum_ShouldReturnValidSum_WhenListIsNotEmpty()
         {
             // Arrange
-            ObservableCollection<MedidaTrozoAserrable> lista = new ObservableCollection<MedidaTrozoAserrable>
+            ObservableCollection<MedidaTrozoAserrable> lista = new()
             {
                 new() { Diametro = 22, Cantidad = 64, Total = 12 },
                 new() { Diametro = 24, Cantidad = 36, Total = 18 }
@@ -288,6 +288,34 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
             result.Should().Be(expected);
         }
 
+        [Theory]
+        [InlineData(1, 2, 3, 4, 5, 6, 21)]
+        [InlineData(2, 0, 0, 0, 0, 2, 4)]
+        [InlineData(0, 0, 0, 0, 0, 0, 0)]
+        public void GetCantidadFinalDespachoTrozos_ShouldReturnValidSum_WhenAllValuesAreGiven(int cantidad1, int cantidad2, int cantidad3,
+            int cantidad4, int cantidad5, int cantidad6, int expected)
+        {
+            // Act
+            var result = _sut.GetCantidadFinalDespachoTrozos(cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData(1, 2, 3, 4, 5, 6, 21)]
+        [InlineData(2, 0, 0, 0, 0, 2, 4)]
+        [InlineData(0, 0, 0, 0, 0, 0, 0)]
+        public void GetVolumenFinalDespachoTrozos_ShouldReturnValidSum_WhenAllValuesAreGiven(double volumen1, double volumen2, double volumen3,
+            double volumen4, double volumen5, double volumen6, double expected)
+        {
+            // Act
+            var result = _sut.GetVolumenFinalDespachoTrozos(volumen1, volumen2, volumen3, volumen4, volumen5, volumen6);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
         #region Data Providers
 
         public static IEnumerable<object[]> NullableNumericValuesGreaterThanCutOff =>
@@ -295,16 +323,14 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         {
             new object[] 
             { 
-                Nullable.GetValueRefOrDefaultRef<double>(20),
-                Nullable.GetValueRefOrDefaultRef<int>(15),
+                "20",
                 "7.0",
                 0.3281975
             },
 
             new object[]
             {
-                Nullable.GetValueRefOrDefaultRef<double>(32),
-                Nullable.GetValueRefOrDefaultRef<int>(20),
+                "32",
                 "6.0",
                 0.6642899999999999
             }
@@ -315,16 +341,14 @@ namespace ForestalCasablancaApp.Tests.Unit.Services
         {
             new object[]
             {
-                Nullable.GetValueRefOrDefaultRef<double>(20),
-                Nullable.GetValueRefOrDefaultRef<int>(15),
+                "20",
                 "5.0",
                 0.2
             },
 
             new object[]
             {
-                Nullable.GetValueRefOrDefaultRef<double>(32),
-                Nullable.GetValueRefOrDefaultRef<int>(20),
+                "32",
                 "3.2",
                 0.32768
             }

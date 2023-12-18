@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="BosquesNalcahue.Controls.MedidasEspecieSection"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ForestalCasablancaApp.Controls"
+    xmlns:fontAwesome="clr-namespace:ForestalCasablancaApp.Helpers"
+    xmlns:models="clr-namespace:BosquesNalcahue.Models"
+    xmlns:models2="clr-namespace:ForestalCasablancaApp.Models"
+    xmlns:viewModels="clr-namespace:ForestalCasablancaApp.ViewModels"
+    x:Name="this">
+
+    <VerticalStackLayout BindingContext="{Binding Source={x:Reference this}}">
+        <Border Style="{StaticResource PageSectionCard}">
+            <Grid RowDefinitions="Auto, Auto">
+
+                <Label
+                    x:Name="ComponentTitleLabel"
+                    Grid.Row="0"
+                    Style="{StaticResource PageSubtitle}"
+                    Text="{Binding ComponentTitle}" />
+
+                <VerticalStackLayout Grid.Row="1" Spacing="{OnIdiom Phone=5, Tablet=10}">
+
+                    <Grid RowDefinitions="Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
+
+                        <!--  Especie  -->
+                        <Label
+                            Grid.Row="0"
+                            Text="Especie: "
+                            VerticalOptions="Center" />
+
+                        <Picker
+                            x:Name="EspeciePicker"
+                            Title="Seleccione una especie"
+                            Grid.Column="1"
+                            ItemsSource="{Binding EspeciePickerItemSource}"
+                            SelectedItem="{Binding SelectedEspecie}" />
+
+                        <!--  Largo 1  -->
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Largo: "
+                            VerticalOptions="Center" />
+
+                        <Picker
+                            x:Name="LargoPicker"
+                            Title="Selecione el largo"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            ItemsSource="{Binding LargoPickerItemSource}"
+                            SelectedItem="{Binding SelectedLargo}" />
+                    </Grid>
+
+                    <Grid
+                        Margin="{OnIdiom Phone='0,10',
+                                         Tablet=10}"
+                        ColumnDefinitions="*, *, *"
+                        RowDefinitions="Auto, *, *"
+                        RowSpacing="{OnIdiom Phone=0,
+                                             Tablet=10}">
+
+                        <!--  Diametro  -->
+                        <Label
+                            Grid.Row="0"
+                            HorizontalTextAlignment="Center"
+                            Text="Diámetro&#10;(cm) "
+                            VerticalOptions="Center" />
+
+                        <controls:NumericEntryCell
+                            x:Name="DiametroCell"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Identifier="{Binding DiametroCellId}"
+                            UserInput="{Binding DiametroInput}" />
+
+                        <!--  Cantidad  -->
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalTextAlignment="Center"
+                            Text="Total&#10;(Cantidad)"
+                            VerticalOptions="Center" />
+
+                        <controls:NumericEntryCell
+                            x:Name="CantidadCell"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            UserInput="{Binding CantidadInput}" />
+
+                        <!--  Add Button  -->
+
+                        <Button
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            Margin="{OnIdiom Phone='0,5'}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TrozoAserrableViewModel}}, Path=AddItemToListCommand}"
+                            CommandParameter="{Binding Source={x:Reference DiametroCell}}"
+                            HeightRequest="{OnIdiom Tablet=80,
+                                                    Phone=50}"
+                            Style="{StaticResource Buttons}"
+                            Text=""
+                            VerticalOptions="End"
+                            WidthRequest="{OnIdiom Phone=100,
+                                                   Tablet=150}">
+
+                            <Button.ImageSource>
+                                <FontImageSource
+                                    FontFamily="FAS"
+                                    Glyph="{x:Static fontAwesome:FontAwesomeIcons.CirclePlus}"
+                                    Size="{OnIdiom Tablet=35,
+                                                   Phone=25}"
+                                    Color="{StaticResource White}" />
+                            </Button.ImageSource>
+                        </Button>
+                    </Grid>
+
+                    <CollectionView x:Name="MedidasCollectionView" ItemsSource="{Binding ListaMedidasSource}">
+
+                        <CollectionView.Triggers>
+                            <DataTrigger
+                                x:Name="IsVisibleTrigger"
+                                Binding="{Binding ListaMedidasSource.Count}"
+                                TargetType="CollectionView"
+                                Value="0">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </CollectionView.Triggers>
+
+                        <CollectionView.Header>
+                            <Grid Margin="{OnIdiom Phone=10, Tablet=10}" ColumnDefinitions="*, *, *">
+                                <Label
+                                    Grid.Row="0"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Diámetro&#10;(cm)"
+                                    VerticalOptions="Center" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Total&#10;(Cantidad)"
+                                    VerticalOptions="Center" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Volumen&#10;(m3) "
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </CollectionView.Header>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models2:MedidaTrozoAserrable">
+
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                BackgroundColor="Maroon"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:TrozoAserrableViewModel}}, Path=RemoveItemFromListCommand}"
+                                                CommandParameter="{Binding .}">
+
+                                                <SwipeItem.IconImageSource>
+                                                    <FontImageSource
+                                                        FontFamily="FAS"
+                                                        Glyph="{x:Static fontAwesome:FontAwesomeIcons.TrashCan}"
+                                                        Color="{AppThemeBinding Light={StaticResource Black},
+                                                                                Dark={StaticResource White}}" />
+                                                </SwipeItem.IconImageSource>
+                                            </SwipeItem>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <Border
+                                        Margin="{OnIdiom Tablet='10,0',
+                                                         Phone=0}"
+                                        Padding="{OnIdiom Phone=5,
+                                                          Tablet=10}"
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource Gray900},
+                                                                          Light={StaticResource Gray600}}"
+                                        Stroke="{StaticResource Gray700}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="2">
+
+                                        <Grid
+                                            Padding="{OnIdiom Phone='5,0',
+                                                              Tablet='0,0,0,8'}"
+                                            ColumnDefinitions="*, *, *"
+                                            RowDefinitions="Auto, Auto"
+                                            RowSpacing="{OnIdiom Phone=6,
+                                                                 Tablet=12}">
+
+                                            <controls:NumericEntryCell
+                                                x:Name="NewMedidaDiametroCell"
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                ReadOnly="True"
+                                                UserInput="{Binding Diametro}" />
+
+                                            <controls:NumericEntryCell
+                                                x:Name="NewMedidaCantidadCell"
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                ReadOnly="True"
+                                                UserInput="{Binding Cantidad}" />
+
+                                            <controls:NumericEntryCell
+                                                x:Name="NewMedidaTotalCell"
+                                                Grid.Row="1"
+                                                Grid.Column="2"
+                                                ReadOnly="True"
+                                                UserInput="{Binding Total, StringFormat='{0:F2}'}" />
+
+                                        </Grid>
+                                    </Border>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

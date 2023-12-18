@@ -15,38 +15,37 @@
 
         <ScrollView>
             <VerticalStackLayout
-                Margin="{OnIdiom Phone='8,0,0,0', Tablet='8,0,0,0'}"
-                Padding="{OnIdiom Phone=10, Tablet=15}"
-                Spacing="{OnIdiom Phone=8, Tablet=12}">
+                Margin="{OnIdiom Phone='8,0,0,0',
+                                 Tablet='8,0,0,0'}"
+                Padding="{OnIdiom Phone=10,
+                                  Tablet=15}"
+                Spacing="{OnIdiom Phone=8,
+                                  Tablet=12}">
 
                 <Image
                     Aspect="AspectFill"
-                    HeightRequest="{OnIdiom Phone=80, Tablet=150}"
+                    HeightRequest="{OnIdiom Phone=80,
+                                            Tablet=150}"
                     Source="popup_icon.png"
-                    WidthRequest="{OnIdiom Phone=80, Tablet=150}">
+                    WidthRequest="{OnIdiom Phone=80,
+                                           Tablet=150}">
 
                     <Image.Shadow>
                         <Shadow Offset="20,20" />
                     </Image.Shadow>
                 </Image>
 
-                <Label
-                    Style="{StaticResource PopupTitle}"
-                    Text="Resumen" />
+                <Label Style="{StaticResource PopupTitle}" Text="Resumen" />
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Datos del Cliente  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Datos del Cliente:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Cliente:" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Cliente.Nombre, StringFormat='Nombre: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Cliente.RUT, StringFormat='RUT: {0}'}" />
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Datos del Camión  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Datos del Camión:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Camión:" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
@@ -55,80 +54,146 @@
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Especie 1  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Especie 1:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 1:" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding EspecieUno, StringFormat='Especie: {0}'}" />
+                        Text="{Binding Especie1.Especie, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding LargoEspecieUno, StringFormat='Largo: {0:F2}'}" />
+                        Text="{Binding Especie1.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding TotalSumLista1, StringFormat='Cantidad: {0}'}" />
+                        Text="{Binding Especie1.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding FinalTotalSumLista1, StringFormat='Volumen: {0:F2} m3'}" />
+                        Text="{Binding Especie1.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
                 </Grid>
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Especie 2  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Especie 2:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 2:" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding EspecieDos, StringFormat='Especie: {0}'}" />
+                        Text="{Binding Especie2.Especie, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding LargoEspecieDos, StringFormat='Largo: {0:F2}'}" />
+                        Text="{Binding Especie2.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding TotalSumLista2, StringFormat='Cantidad: {0}'}" />
+                        Text="{Binding Especie2.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding FinalTotalSumLista2, StringFormat='Volumen: {0:F2} m3'}" />
+                        Text="{Binding Especie2.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
                 </Grid>
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Especie 3  -->
-                <Label
-                    Style="{StaticResource PopupSectionLabel}"
-                    Text="Especie 3:" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 3:" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding EspecieTres, StringFormat='Especie: {0}'}" />
+                        Text="{Binding Especie3.Especie, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding LargoEspecieTres, StringFormat='Largo: {0:F2}'}" />
+                        Text="{Binding Especie3.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding TotalSumLista3, StringFormat='Cantidad: {0}'}" />
+                        Text="{Binding Especie3.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding FinalTotalSumLista3, StringFormat='Volumen: {0:F2} m3'}" />
+                        Text="{Binding Especie3.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
+                </Grid>
+                <BoxView Style="{StaticResource Separator}" />
+
+                <!--  Especie 4  -->
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 4:" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie4.Especie, StringFormat='Especie: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie4.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie4.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie4.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
+                </Grid>
+                <BoxView Style="{StaticResource Separator}" />
+
+                <!--  Especie 5  -->
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 5:" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie5.Especie, StringFormat='Especie: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie5.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie5.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie5.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
+                </Grid>
+                <BoxView Style="{StaticResource Separator}" />
+
+                <!--  Especie 6  -->
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 6:" />
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie6.Especie, StringFormat='Especie: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie6.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie6.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PopupContent}"
+                        Text="{Binding Especie6.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
                 </Grid>
                 <BoxView Style="{StaticResource Separator}" />
 
