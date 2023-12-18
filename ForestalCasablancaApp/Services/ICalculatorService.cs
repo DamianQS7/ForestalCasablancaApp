@@ -16,8 +16,12 @@ namespace ForestalCasablancaApp.Services
         double CalculateAlturaMediaPalomera(string alto, string alto2);
         double CalculateMedidaPalomera(double alturaMedia, string anchoPalomera);
         double CalculateTotalMetros(string bancosStr, string largoStr, double alturaMedia, double medidaPalomera);
-        double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, string largoStr);
+        double CalculateTrozoAserrableVolume(string diametroStr, string largoStr);
         int CalculateTotalSum(ObservableCollection<MedidaTrozoAserrable> lista);
-        public double CalculateFinalTotalSum(ObservableCollection<MedidaTrozoAserrable> lista);
+        double CalculateFinalTotalSum(ObservableCollection<MedidaTrozoAserrable> lista);
+        int GetCantidadFinalDespachoTrozos(int cantidad1, int cantidad2, int cantidad3, int cantidad4, int cantidad5, 
+            int cantidad6);
+        double GetVolumenFinalDespachoTrozos(double cantidad1, double cantidad2, double cantidad3, double cantidad4,
+            double cantidad5, double cantidad6);
     }
 }

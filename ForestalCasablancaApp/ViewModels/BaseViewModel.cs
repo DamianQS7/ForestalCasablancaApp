@@ -37,30 +37,6 @@ namespace ForestalCasablancaApp.ViewModels
             return $"{currentNumber}{initials}{date}";
         }
 
-        public async Task DisplayInputError(InfoMessage infoMessage)
-        {
-            if (infoMessage is InfoMessage.InvalidDiameter)
-            {
-                await Shell.Current.DisplayAlert("Error", "El diámetro debe ser un número par", "OK");
-            }
-            else if (infoMessage == InfoMessage.MissingTrozoData)
-            {
-                await Shell.Current.DisplayAlert("Error", "Se requiere Largo, Diámetro, y Cantidad para agregar una medida", "OK");
-            }
-            else if(infoMessage == InfoMessage.MissingLeñaData)
-            {
-                await Shell.Current.DisplayAlert("Error", "Debe incluir 'Largo Camión', 'N° de Bancos' y por lo menos una altura", "OK");
-            }
-            else if(infoMessage == InfoMessage.MissingMetroRumaData)
-            {
-                await Shell.Current.DisplayAlert("Error", "Debe incluir 'Ancho Camión', 'N° de Bancos' y por lo menos una altura", "OK");
-            }
-            else if (infoMessage == InfoMessage.InvalidPalomera)
-            {
-                await Shell.Current.DisplayAlert("Error", "Los datos introducidos para el cálculo de la palomera son incorrectos", "OK");
-            }
-        }
-
         #endregion
 
         #region Commands

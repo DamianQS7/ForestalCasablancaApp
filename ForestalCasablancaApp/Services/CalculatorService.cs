@@ -161,23 +161,23 @@ namespace ForestalCasablancaApp.Services
         /// Calculates the volume of a trozo aserrable based on the provided dimensions: diametro, cantidad, and largo.
         /// It will apply a different formula depending on the length of the trozo.
         /// </summary>
-        /// <param name="diametro">The diameter of the trozo as a nullable double.</param>
-        /// <param name="cantidad">The quantity of the trozo as a nullable integer.</param>
+        /// <param name="diametroStr">The diameter of the trozo as a nullable double.</param>
         /// <param name="largoStr">The length of the trozo as a string.</param>
         /// <returns>
         /// Returns the calculated volume of the trozo aserrable based on the provided dimensions.
         /// </returns>
-        public double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, string largoStr)
+        public double CalculateTrozoAserrableVolume(string diametroStr, string largoStr)
         {
             double largo = double.Parse(largoStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+            double diametro = double.Parse(diametroStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
             if (largo <= 5.90)
             {
-                return ((double)diametro * (double)diametro * (double)largo) / 10000;
+                return (diametro * diametro * largo) / 10000;
             }
             else
             {
-                double result = Math.Pow((double)diametro + ((double)largo - 4) / 2, 2) * (((double)largo + 0.10) / 10000);
+                double result = Math.Pow(diametro + (largo - 4) / 2, 2) * ((largo + 0.10) / 10000);
                 return result;
             }
         }
@@ -219,6 +219,42 @@ namespace ForestalCasablancaApp.Services
             }
 
             return Math.Round(totalFinal, 2);
+        }
+
+        /// <summary>
+        /// Calculates the final total quantity for a Despacho by summing individual quantities from multiple sources.
+        /// </summary>
+        /// <param name="cantidad1">The quantity from source 1.</param>
+        /// <param name="cantidad2">The quantity from source 2.</param>
+        /// <param name="cantidad3">The quantity from source 3.</param>
+        /// <param name="cantidad4">The quantity from source 4.</param>
+        /// <param name="cantidad5">The quantity from source 5.</param>
+        /// <param name="cantidad6">The quantity from source 6.</param>
+        /// <returns>
+        /// Returns the final total quantity calculated by summing individual quantities from multiple sources.
+        /// </returns>
+        public int GetCantidadFinalDespachoTrozos(int cantidad1, int cantidad2, int cantidad3, int cantidad4, int cantidad5, 
+            int cantidad6)
+        {
+            return cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6;
+        }
+
+        /// <summary>
+        /// Calculates the final total volume for a Despacho by summing individual volumes from multiple sources.
+        /// </summary>
+        /// <param name="volumen1">The volume from source 1.</param>
+        /// <param name="volumen2">The volume from source 2.</param>
+        /// <param name="volumen3">The volume from source 3.</param>
+        /// <param name="volumen4">The volume from source 4.</param>
+        /// <param name="volumen5">The volume from source 5.</param>
+        /// <param name="volumen6">The volume from source 6.</param>
+        /// <returns>
+        /// Returns the final total volume calculated by summing individual volumes from multiple sources.
+        /// </returns>
+        public double GetVolumenFinalDespachoTrozos(double volumen1, double volumen2, double volumen3, double volumen4, 
+            double volumen5, double volumen6)
+        {
+            return volumen1 + volumen2 + volumen3 + volumen4 + volumen5 + volumen6;
         }
     }
 }
