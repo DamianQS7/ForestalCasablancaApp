@@ -42,20 +42,21 @@
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
-                <components:MedidasEspecieSection 
-                    ComponentTitle="Test"
-                    EspeciePickerItemSource="{Binding MedidasEspecieTest.ListaEspecies}"
-                    SelectedEspecie="{Binding MedidasEspecieTest.Especie}"
-                    LargoPickerItemSource="{Binding MedidasEspecieTest.ListaLargos}"
-                    SelectedLargo="{Binding MedidasEspecieTest.LargoEspecie}"
+                <components:MedidasEspecieSection
+                    Grid.Row="2"
+                    ComponentTitle="Mediciones Especie 1"
+                    EspeciePickerItemSource="{Binding ListaEspecies}"
+                    SelectedEspecie="{Binding Especie1.Especie}"
+                    LargoPickerItemSource="{Binding ListaLargos}"
+                    SelectedLargo="{Binding Especie1.LargoEspecie}"
                     DiametroCellId="1"
-                    DiametroInput="{Binding MedidasEspecieTest.DiametroIngresado}"
-                    CantidadInput="{Binding MedidasEspecieTest.CantidadIngresada}"
-                    ListaMedidasSource="{Binding MedidasEspecieTest.ListaMedidas}"
-                    ListaMedidasCount="{Binding MedidasEspecieTest.ListaMedidas.Count}"/>
+                    DiametroInput="{Binding Especie1.DiametroIngresado}"
+                    CantidadInput="{Binding Especie1.CantidadIngresada}"
+                    ListaMedidasSource="{Binding Especie1.ListaMedidas}"
+                    ListaMedidasCount="{Binding Especie1.ListaMedidas.Count}"/>
 
                 <!--  Mediciones Especie 1 Section  -->
-                <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
+                <!--<Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
 
                     <Grid RowDefinitions="Auto, Auto">
                         <Label
@@ -66,7 +67,7 @@
                         <VerticalStackLayout Grid.Row="1" Spacing="{OnIdiom Phone=5, Tablet=10}">
                             <Grid RowDefinitions="Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
 
-                                <!--  Especie 1  -->
+                                --><!--  Especie 1  --><!--
                                 <Label
                                     Grid.Row="0"
                                     Text="Especie: "
@@ -79,7 +80,7 @@
                                     ItemsSource="{Binding ListaEspecies}"
                                     SelectedItem="{Binding EspecieUno}" />
 
-                                <!--  Largo 1  -->
+                                --><!--  Largo 1  --><!--
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -103,7 +104,7 @@
                                 RowSpacing="{OnIdiom Phone=0,
                                                      Tablet=10}">
 
-                                <!--  Diametro  -->
+                                --><!--  Diametro  --><!--
                                 <Label
                                     Grid.Row="0"
                                     HorizontalTextAlignment="Center"
@@ -118,7 +119,7 @@
                                     Identifier="1"
                                     UserInput="{Binding DiametroIngresado}" />
 
-                                <!--  Cantidad  -->
+                                --><!--  Cantidad  --><!--
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
@@ -256,7 +257,7 @@
                             </CollectionView>
                         </VerticalStackLayout>
                     </Grid>
-                </Border>
+                </Border>-->
 
                 <!--  Mediciones Especie 2 Section  -->
                 <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">

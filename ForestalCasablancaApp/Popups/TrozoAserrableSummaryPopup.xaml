@@ -62,21 +62,21 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding EspecieUno, StringFormat='Especie: {0}'}" />
+                        Text="{Binding Especie1.Especie, StringFormat='Especie: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding LargoEspecieUno, StringFormat='Largo: {0:F2}'}" />
+                        Text="{Binding Especie1.LargoEspecie, StringFormat='Largo: {0:F2}'}" />
                 </Grid>
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding TotalSumLista1, StringFormat='Cantidad: {0}'}" />
+                        Text="{Binding Especie1.CantidadTotalSum, StringFormat='Cantidad: {0}'}" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource PopupContent}"
-                        Text="{Binding FinalTotalSumLista1, StringFormat='Volumen: {0:F2} m3'}" />
+                        Text="{Binding Especie1.TotalSumFinal, StringFormat='Volumen: {0:F2} m3'}" />
                 </Grid>
                 <BoxView Style="{StaticResource Separator}" />
 

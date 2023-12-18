@@ -167,17 +167,18 @@ namespace ForestalCasablancaApp.Services
         /// <returns>
         /// Returns the calculated volume of the trozo aserrable based on the provided dimensions.
         /// </returns>
-        public double CalculateTrozoAserrableVolume(double? diametro, int? cantidad, string largoStr)
+        public double CalculateTrozoAserrableVolume(string diametroStr, string largoStr)
         {
             double largo = double.Parse(largoStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+            double diametro = double.Parse(diametroStr, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
             if (largo <= 5.90)
             {
-                return ((double)diametro * (double)diametro * (double)largo) / 10000;
+                return (diametro * diametro * largo) / 10000;
             }
             else
             {
-                double result = Math.Pow((double)diametro + ((double)largo - 4) / 2, 2) * (((double)largo + 0.10) / 10000);
+                double result = Math.Pow(diametro + (largo - 4) / 2, 2) * ((largo + 0.10) / 10000);
                 return result;
             }
         }

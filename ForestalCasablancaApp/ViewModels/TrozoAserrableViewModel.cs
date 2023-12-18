@@ -35,7 +35,12 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private int? _cantidadIngresada3;
         private TrozoAserrableSummaryPopup _popup;
 
-        [ObservableProperty] private MedidasEspecie _medidasEspecieTest;
+        [ObservableProperty] private MedidasEspecie _especie1;
+        [ObservableProperty] private MedidasEspecie _especie2;
+        [ObservableProperty] private MedidasEspecie _especie3;
+        [ObservableProperty] private MedidasEspecie _especie4;
+        [ObservableProperty] private MedidasEspecie _especie5;
+        [ObservableProperty] private MedidasEspecie _especie6;
         public int TotalSumLista1 { get; set; }
         public double FinalTotalSumLista1 { get; set; }
         public int TotalSumLista2 { get; set; }
@@ -86,11 +91,18 @@ namespace ForestalCasablancaApp.ViewModels
         {
             Title = "Despacho Trozo Aserrable";
             _calculatorService = calculatorService;
-            Cliente = new();
-            DatosCamion = new();
-            MedidasEspecieTest = new();
             _pdfGeneratorService = pdfGeneratorService;
             _infoService = infoService;
+
+            Cliente = new();
+            DatosCamion = new();
+            Especie1 = new();
+            Especie2 = new();
+            Especie3 = new();
+            Especie4 = new();
+            Especie5 = new();
+            Especie6 = new();
+            
         }
 
         #region Methods
@@ -105,24 +117,8 @@ namespace ForestalCasablancaApp.ViewModels
         {
             if(numeroLista == 1)
             {
-                if(!string.IsNullOrEmpty(MedidasEspecieTest.LargoEspecie) && MedidasEspecieTest.DiametroIngresado > 0 && MedidasEspecieTest.CantidadIngresada > 0)
-                {
-                    if(MedidasEspecieTest.DiametroIngresado % 2 == 0)
-                    {
-                           return true;
-                    }
-                    else
-                    {
-                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
-                        return false;
-                    }
-                }
-                else
-                {
-                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
-                    return false;
-                }
-                    
+                return CheckIfMedidaTrozoAserrableIsValid(Especie1.LargoEspecie,
+                    Especie1.DiametroIngresado, Especie1.CantidadIngresada);                    
             }
             else if (numeroLista == 2)
             {
@@ -171,15 +167,45 @@ namespace ForestalCasablancaApp.ViewModels
             
         }
 
+        public bool CheckIfMedidaTrozoAserrableIsValid(string largoEspecie, string diametroStr, string cantidadStr)
+        {
+            bool validDiametro = double.TryParse(diametroStr, out double diametro);
+            bool validCantidad = int.TryParse(cantidadStr, out int cantidad);
+
+            if(!validCantidad || !validDiametro)
+            {
+                _infoService.ShowAlert(InfoMessage.MissingTrozoData);
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(largoEspecie) && diametro > 0 && cantidad > 0)
+            {
+                if (diametro % 2 == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    _infoService.ShowAlert(InfoMessage.InvalidDiameter);
+                    return false;
+                }
+            }
+            else
+            {
+                _infoService.ShowAlert(InfoMessage.MissingTrozoData);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Updates the total sum and final total sum for a specific list based on the content of each MedidasEspecie list.
         /// </summary>
         public void UpdateViewModelTotals()
         {
-            if (MedidasEspecieUno.Count > 0)
+            if (Especie1.ListaMedidas.Count > 0)
             {
-                TotalSumLista1 = _calculatorService.CalculateTotalSum(MedidasEspecieUno);
-                FinalTotalSumLista1 = _calculatorService.CalculateFinalTotalSum(MedidasEspecieUno);
+                Especie1.CantidadTotalSum = _calculatorService.CalculateTotalSum(Especie1.ListaMedidas);
+                Especie1.TotalSumFinal = _calculatorService.CalculateFinalTotalSum(Especie1.ListaMedidas);
             }
             
             if (MedidasEspecieDos.Count > 0)
@@ -205,17 +231,17 @@ namespace ForestalCasablancaApp.ViewModels
         /// <param name="cantidad">The quantity of the trozo as a nullable integer.</param>
         /// <param name="largo">The length of the trozo as a string.</param>
         public void AddMedidaTrozoAserrableToList(int listNumber, ObservableCollection<MedidaTrozoAserrable> list, 
-            double? diametro, int? cantidad, string largo)
+            string diametro, string cantidad, string largo)
         {
-            double volume = _calculatorService.CalculateTrozoAserrableVolume(diametro, cantidad, largo);
+            double volume = _calculatorService.CalculateTrozoAserrableVolume(diametro, largo);
 
             list.Add(new MedidaTrozoAserrable()
             {
                 NumeroLista = listNumber,
-                Diametro = diametro,
-                Cantidad = cantidad,
+                Diametro = double.Parse(diametro),
+                Cantidad = int.Parse(cantidad),
                 Volumen = volume,
-                Total = Math.Round((double)(volume * cantidad), 2)
+                Total = Math.Round((double)(volume * int.Parse(cantidad)), 2)
             });
         }
 
@@ -235,22 +261,22 @@ namespace ForestalCasablancaApp.ViewModels
                 if (ValidateInput(1))
                 {
                     // Add the new item to the list number 1
-                    AddMedidaTrozoAserrableToList(1, MedidasEspecieTest.ListaMedidas,
-                        MedidasEspecieTest.DiametroIngresado, MedidasEspecieTest.CantidadIngresada, MedidasEspecieTest.LargoEspecie);
+                    AddMedidaTrozoAserrableToList(1, Especie1.ListaMedidas,
+                        Especie1.DiametroIngresado, Especie1.CantidadIngresada, Especie1.LargoEspecie);
 
                     // Clear the input fields
-                    MedidasEspecieTest.DiametroIngresado = null;
-                    MedidasEspecieTest.CantidadIngresada = null;
+                    cell.ClearValue(NumericEntryCell.UserInputProperty);
+                    Especie1.CantidadIngresada = null;
 
                     // Set the focus on Diametro Entry.
-                    cell.Focus();
+                    cell.Focus(); 
                 }
             } 
             else if(cell.Identifier == "2")
             {
                 if (ValidateInput(2))
                 {
-                    AddMedidaTrozoAserrableToList(2, MedidasEspecieDos, DiametroIngresado2, CantidadIngresada2, LargoEspecieDos);
+                    AddMedidaTrozoAserrableToList(2, MedidasEspecieDos, "asd", "", LargoEspecieDos);
 
                     // Clear the input fields
                     DiametroIngresado2 = null;
@@ -264,7 +290,7 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if(ValidateInput(3))
                 {
-                    AddMedidaTrozoAserrableToList(3, MedidasEspecieTres, DiametroIngresado3, CantidadIngresada3, LargoEspecieTres);
+                    AddMedidaTrozoAserrableToList(3, MedidasEspecieTres, "", "", LargoEspecieTres);
 
                     // Clear the input fields
                     DiametroIngresado3 = null;
@@ -285,11 +311,13 @@ namespace ForestalCasablancaApp.ViewModels
         {
             // Check the associated NumeroLista and remove the item from the respective list.
             if (item.NumeroLista == 1)
-                MedidasEspecieUno.Remove(item);
+                Especie1.ListaMedidas.Remove(item);
             else if (item.NumeroLista == 2)
                 MedidasEspecieDos.Remove(item);
             else if (item.NumeroLista == 3)
                 MedidasEspecieTres.Remove(item);
+
+
         }
 
         /// <summary>
@@ -338,7 +366,7 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         public async Task DisplaySummaryAsync()
         {
-            if (MedidasEspecieUno.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
+            if (Especie1.ListaMedidas.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
             {
                 // We get the totals for each list, before calling the popup.
                 UpdateViewModelTotals();
