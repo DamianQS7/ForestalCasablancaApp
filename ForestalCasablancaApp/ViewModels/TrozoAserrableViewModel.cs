@@ -123,45 +123,28 @@ namespace ForestalCasablancaApp.ViewModels
             }
             else if (numeroLista == 2)
             {
-                if (!string.IsNullOrEmpty(LargoEspecieDos) && DiametroIngresado2 > 0 && CantidadIngresada2 > 0)
-                {
-                    if (DiametroIngresado2 % 2 == 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
-                        return false;
-                    }
-                }
-                else
-                {
-                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
-                    return false;
-                }
-
+                return CheckIfMedidaTrozoAserrableIsValid(Especie2.LargoEspecie,
+                    Especie2.DiametroIngresado, Especie2.CantidadIngresada);
             }
             else if (numeroLista == 3)
             {
-                if (!string.IsNullOrEmpty(LargoEspecieTres) && DiametroIngresado3 > 0 && CantidadIngresada3 > 0)
-                {
-                    if (DiametroIngresado3 % 2 == 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        _infoService.ShowAlert(InfoMessage.InvalidDiameter);
-                        return false;
-                    }
-                }
-                else
-                {
-                    _infoService.ShowAlert(InfoMessage.MissingTrozoData);
-                    return false;
-                }
-
+                return CheckIfMedidaTrozoAserrableIsValid(Especie3.LargoEspecie,
+                    Especie3.DiametroIngresado, Especie3.CantidadIngresada);
+            }
+            else if (numeroLista == 4)
+            {
+                return CheckIfMedidaTrozoAserrableIsValid(Especie4.LargoEspecie,
+                    Especie4.DiametroIngresado, Especie4.CantidadIngresada);
+            }
+            else if (numeroLista == 5)
+            {
+                return CheckIfMedidaTrozoAserrableIsValid(Especie5.LargoEspecie,
+                    Especie5.DiametroIngresado, Especie5.CantidadIngresada);
+            }
+            else if (numeroLista == 6)
+            {
+                return CheckIfMedidaTrozoAserrableIsValid(Especie6.LargoEspecie,
+                    Especie6.DiametroIngresado, Especie6.CantidadIngresada);
             }
 
             return false;
@@ -203,23 +186,12 @@ namespace ForestalCasablancaApp.ViewModels
         /// </summary>
         public void UpdateViewModelTotals()
         {
-            if (Especie1.ListaMedidas.Count > 0)
-            {
-                Especie1.CantidadTotalSum = _calculatorService.CalculateTotalSum(Especie1.ListaMedidas);
-                Especie1.TotalSumFinal = _calculatorService.CalculateFinalTotalSum(Especie1.ListaMedidas);
-            }
-            
-            if (MedidasEspecieDos.Count > 0)
-            {
-                TotalSumLista2 = _calculatorService.CalculateTotalSum(MedidasEspecieDos);
-                FinalTotalSumLista2 = _calculatorService.CalculateFinalTotalSum(MedidasEspecieDos);
-            }
-            
-            if (MedidasEspecieTres.Count > 0)
-            {
-                TotalSumLista3 = _calculatorService.CalculateTotalSum(MedidasEspecieTres);
-                FinalTotalSumLista3 = _calculatorService.CalculateFinalTotalSum(MedidasEspecieTres);
-            }
+            GetListaMedidasTotals(Especie1);
+            GetListaMedidasTotals(Especie2);
+            GetListaMedidasTotals(Especie3);
+            GetListaMedidasTotals(Especie4);
+            GetListaMedidasTotals(Especie5);
+            GetListaMedidasTotals(Especie6);
 
             CantidadFinalDespacho = _calculatorService.GetCantidadFinalDespachoTrozos(Especie1.CantidadTotalSum,
                 Especie2.CantidadTotalSum, Especie3.CantidadTotalSum, Especie4.CantidadTotalSum, Especie5.CantidadTotalSum, 
@@ -227,6 +199,19 @@ namespace ForestalCasablancaApp.ViewModels
 
             VolumenFinalDespacho = _calculatorService.GetVolumenFinalDespachoTrozos(Especie1.TotalSumFinal, Especie2.TotalSumFinal,
                 Especie3.TotalSumFinal, Especie4.TotalSumFinal, Especie5.TotalSumFinal, Especie6.TotalSumFinal);
+        }
+
+        /// <summary>
+        /// Calculates and updates the total and final total sums for a given MedidasEspecie instance.
+        /// </summary>
+        /// <param name="especie">The MedidasEspecie instance for which totals are calculated and updated.</param>
+        public void GetListaMedidasTotals(MedidasEspecie especie)
+        {
+            if (especie.ListaMedidas.Count > 0)
+            {
+                especie.CantidadTotalSum = _calculatorService.CalculateTotalSum(especie.ListaMedidas);
+                especie.TotalSumFinal = _calculatorService.CalculateFinalTotalSum(especie.ListaMedidas);
+            }
         }
 
         /// <summary>
@@ -320,49 +305,32 @@ namespace ForestalCasablancaApp.ViewModels
             if (item.NumeroLista == 1)
                 Especie1.ListaMedidas.Remove(item);
             else if (item.NumeroLista == 2)
-                MedidasEspecieDos.Remove(item);
+                Especie2.ListaMedidas.Remove(item);
             else if (item.NumeroLista == 3)
-                MedidasEspecieTres.Remove(item);
-
-
+                Especie3.ListaMedidas.Remove(item);
+            else if (item.NumeroLista == 4)
+                Especie4.ListaMedidas.Remove(item);
+            else if (item.NumeroLista == 5)
+                Especie5.ListaMedidas.Remove(item);
+            else if (item.NumeroLista == 6)
+                Especie6.ListaMedidas.Remove(item);
         }
 
         /// <summary>
-        /// Clears the current page by resetting various properties and clearing lists of measurements for different species.
+        /// Clears the current page by instantiating new objects.
         /// </summary>
         [RelayCommand]
         public void ClearPage()
         {
-            // Clear the lists of measurements for different species.
-            MedidasEspecieUno.Clear();
-            MedidasEspecieDos.Clear();
-            MedidasEspecieTres.Clear();
-
             // Reset client and truck information.
             Cliente = new();
             DatosCamion = new();
-
-            // Reset species names and lengths.
-            EspecieUno = "";
-            EspecieDos = "";
-            EspecieTres = "";
-            LargoEspecieUno = "";
-            LargoEspecieDos = "";
-            LargoEspecieTres = "";
-
-            // Reset other values.
-            DiametroIngresado = null;
-            DiametroIngresado2 = null;
-            DiametroIngresado3 = null;
-            CantidadIngresada = null;
-            CantidadIngresada2 = null;
-            CantidadIngresada3 = null;
-            TotalSumLista1 = 0;
-            FinalTotalSumLista1 = 0;
-            TotalSumLista2 = 0;
-            FinalTotalSumLista2 = 0;
-            TotalSumLista3 = 0;
-            FinalTotalSumLista3 = 0;
+            Especie1 = new();
+            Especie2 = new();
+            Especie3 = new();
+            Especie4 = new();
+            Especie5 = new();
+            Especie6 = new();
 
             _infoService.ShowToast("Módulo reiniciado con éxito");
         }
@@ -373,7 +341,8 @@ namespace ForestalCasablancaApp.ViewModels
         [RelayCommand]
         public async Task DisplaySummaryAsync()
         {
-            if (Especie1.ListaMedidas.Count > 0 || MedidasEspecieDos.Count > 0 || MedidasEspecieTres.Count > 0)
+            if (Especie1.ListaMedidas.Count > 0 || Especie2.ListaMedidas.Count > 0 || Especie3.ListaMedidas.Count > 0
+                || Especie4.ListaMedidas.Count > 0 || Especie5.ListaMedidas.Count > 0|| Especie6.ListaMedidas.Count > 0)
             {
                 // We get the totals for each list, before calling the popup.
                 UpdateViewModelTotals();
