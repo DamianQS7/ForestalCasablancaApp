@@ -161,8 +161,7 @@ namespace ForestalCasablancaApp.Services
         /// Calculates the volume of a trozo aserrable based on the provided dimensions: diametro, cantidad, and largo.
         /// It will apply a different formula depending on the length of the trozo.
         /// </summary>
-        /// <param name="diametro">The diameter of the trozo as a nullable double.</param>
-        /// <param name="cantidad">The quantity of the trozo as a nullable integer.</param>
+        /// <param name="diametroStr">The diameter of the trozo as a nullable double.</param>
         /// <param name="largoStr">The length of the trozo as a string.</param>
         /// <returns>
         /// Returns the calculated volume of the trozo aserrable based on the provided dimensions.

@@ -6,6 +6,7 @@ using Colors = QuestPDF.Helpers.Colors;
 using IContainer = QuestPDF.Infrastructure.IContainer;
 using System.Collections.ObjectModel;
 using ForestalCasablancaApp.Models;
+using BosquesNalcahue.Models;
 
 namespace ForestalCasablancaApp.Services
 {
@@ -90,15 +91,13 @@ namespace ForestalCasablancaApp.Services
                             }
 
                             // Lista 2
-                            if (model.MedidasEspecieDos.Count > 0)
+                            if (model.Especie2.ListaMedidas.Count > 0)
                             {
-                                // If there is content in the first list, add a page break
-                                if (model.MedidasEspecieUno.Count > 0)
+                                if (model.Especie1.ListaMedidas.Count > 0)
                                     x.Item().Height(0).PageBreak();
 
-
-                                x.Item()
-                                .Component(new EspecieInfo("Producto 2", SubtitleSize, FirstColumnSize, model.EspecieDos, model.LargoEspecieDos));
+                                x.Item().Component(new EspecieInfo("Producto 2", SubtitleSize, FirstColumnSize,
+                                    model.Especie2.Especie, model.Especie2.LargoEspecie));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -108,17 +107,18 @@ namespace ForestalCasablancaApp.Services
                                 });
 
                                 // Detalle de Carga (Tabla)
-                                x.Item().Component(new TrozoAserrableDetails(model.MedidasEspecieDos, model.TotalSumLista2, model.FinalTotalSumLista2));
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie1.ListaMedidas,
+                                    model.Especie2.CantidadTotalSum, model.Especie2.TotalSumFinal));
                             }
 
                             // Lista 3
-                            if (model.MedidasEspecieTres.Count > 0)
+                            if (model.Especie3.ListaMedidas.Count > 0)
                             {
-                                if (model.MedidasEspecieDos.Count > 0 || model.MedidasEspecieUno.Count > 0)
+                                if (model.Especie1.ListaMedidas.Count > 0 || model.Especie2.ListaMedidas.Count > 0)
                                     x.Item().Height(0).PageBreak();
 
-                                x.Item()
-                             .Component(new EspecieInfo("Producto 3", SubtitleSize, FirstColumnSize, model.EspecieTres, model.LargoEspecieTres));
+                                x.Item().Component(new EspecieInfo("Producto 3", SubtitleSize, FirstColumnSize,
+                                    model.Especie3.Especie, model.Especie3.LargoEspecie));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -128,7 +128,71 @@ namespace ForestalCasablancaApp.Services
                                 });
 
                                 // Detalle de Carga (Tabla)
-                                x.Item().Component(new TrozoAserrableDetails(model.MedidasEspecieTres, model.TotalSumLista3, model.FinalTotalSumLista3));
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie3.ListaMedidas,
+                                    model.Especie3.CantidadTotalSum, model.Especie3.TotalSumFinal));
+                            }
+                            // Lista 4
+                            if (model.Especie4.ListaMedidas.Count > 0)
+                            {
+                                if (model.Especie1.ListaMedidas.Count > 0 || model.Especie2.ListaMedidas.Count > 0
+                                    || model.Especie3.ListaMedidas.Count > 0)
+                                    x.Item().Height(0).PageBreak();
+
+                                x.Item().Component(new EspecieInfo("Producto 4", SubtitleSize, FirstColumnSize,
+                                    model.Especie4.Especie, model.Especie4.LargoEspecie));
+
+                                // Detalle de Carga (Titulo)
+                                x.Item().Column(col =>
+                                {
+                                    col.Item()
+                                       .Component(new SectionTitle("Detalle de Carga", SubtitleSize));
+                                });
+
+                                // Detalle de Carga (Tabla)
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie4.ListaMedidas,
+                                    model.Especie4.CantidadTotalSum, model.Especie4.TotalSumFinal));
+                            }
+                            // Lista 5
+                            if (model.Especie5.ListaMedidas.Count > 0)
+                            {
+                                if (model.Especie1.ListaMedidas.Count > 0 || model.Especie2.ListaMedidas.Count > 0
+                                    || model.Especie3.ListaMedidas.Count > 0 || model.Especie4.ListaMedidas.Count > 0)
+                                    x.Item().Height(0).PageBreak();
+
+                                x.Item().Component(new EspecieInfo("Producto 5", SubtitleSize, FirstColumnSize,
+                                    model.Especie5.Especie, model.Especie5.LargoEspecie));
+
+                                // Detalle de Carga (Titulo)
+                                x.Item().Column(col =>
+                                {
+                                    col.Item()
+                                       .Component(new SectionTitle("Detalle de Carga", SubtitleSize));
+                                });
+
+                                // Detalle de Carga (Tabla)
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie5.ListaMedidas,
+                                    model.Especie5.CantidadTotalSum, model.Especie5.TotalSumFinal));
+                            }
+                            // Lista 6
+                            if (model.Especie6.ListaMedidas.Count > 0)
+                            {
+                                if (model.Especie1.ListaMedidas.Count > 0 || model.Especie2.ListaMedidas.Count > 0
+                                || model.Especie3.ListaMedidas.Count > 0 || model.Especie4.ListaMedidas.Count > 0 || model.Especie5.ListaMedidas.Count > 0)
+                                    x.Item().Height(0).PageBreak();
+
+                                x.Item().Component(new EspecieInfo("Producto 6", SubtitleSize, FirstColumnSize,
+                                    model.Especie6.Especie, model.Especie6.LargoEspecie));
+
+                                // Detalle de Carga (Titulo)
+                                x.Item().Column(col =>
+                                {
+                                    col.Item()
+                                       .Component(new SectionTitle("Detalle de Carga", SubtitleSize));
+                                });
+
+                                // Detalle de Carga (Tabla)
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie6.ListaMedidas,
+                                    model.Especie6.CantidadTotalSum, model.Especie6.TotalSumFinal));
                             }
 
                             // Summary
@@ -983,9 +1047,29 @@ namespace ForestalCasablancaApp.Services
                         table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie3.TotalSumFinal.ToString("F2"));
                     }
 
-                    // Total
-                    //int cantidadFinal = ViewModel.TotalSumLista1 + ViewModel.TotalSumLista2 + ViewModel.TotalSumLista3;
-                    //double volumenFinal = ViewModel.FinalTotalSumLista1 + ViewModel.FinalTotalSumLista2 + ViewModel.FinalTotalSumLista3;
+                    if (ViewModel.Especie4.ListaMedidas.Count > 0)
+                    {
+                        string producto = $"Trozo Aserrable {ViewModel.Especie4.Especie} {ViewModel.Especie4.LargoEspecie} m.";
+                        table.Cell().Element(SummaryCellStyle).Text(producto);
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie4.CantidadTotalSum.ToString());
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie4.TotalSumFinal.ToString("F2"));
+                    }
+
+                    if (ViewModel.Especie5.ListaMedidas.Count > 0)
+                    {
+                        string producto = $"Trozo Aserrable {ViewModel.Especie5.Especie} {ViewModel.Especie5.LargoEspecie} m.";
+                        table.Cell().Element(SummaryCellStyle).Text(producto);
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie5.CantidadTotalSum.ToString());
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie5.TotalSumFinal.ToString("F2"));
+                    }
+
+                    if (ViewModel.Especie6.ListaMedidas.Count > 0)
+                    {
+                        string producto = $"Trozo Aserrable {ViewModel.Especie6.Especie} {ViewModel.Especie6.LargoEspecie} m.";
+                        table.Cell().Element(SummaryCellStyle).Text(producto);
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie6.CantidadTotalSum.ToString());
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie6.TotalSumFinal.ToString("F2"));
+                    }
 
                     table.Cell().Element(SummaryCellStyle).Text("Total:");
                     table.Cell().Element(SummaryCellStyle).Text(ViewModel.CantidadFinalDespacho.ToString());

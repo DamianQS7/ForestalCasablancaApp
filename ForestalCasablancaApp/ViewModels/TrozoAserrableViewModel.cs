@@ -17,23 +17,10 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
         private readonly IInfoService _infoService;
+        private TrozoAserrableSummaryPopup _popup;
 
         #region Properties
 
-        [ObservableProperty] private string _especieUno;
-        [ObservableProperty] private string _especieDos;
-        [ObservableProperty] private string _especieTres;
-        [ObservableProperty] private string _largoEspecieUno;
-        [ObservableProperty] private string _largoEspecieDos;
-        [ObservableProperty] private string _largoEspecieTres;
-        [ObservableProperty] private double? _diametroIngresado;
-        [ObservableProperty] private int? _cantidadIngresada;
-        [ObservableProperty] private double? _diametroIngresado2;
-        [ObservableProperty] private int? _cantidadIngresada2;
-        [ObservableProperty] private double? _diametroIngresado3;
-        [ObservableProperty] private int? _cantidadIngresada3;
-        
-        private TrozoAserrableSummaryPopup _popup;
         [ObservableProperty] private int _cantidadFinalDespacho;
         [ObservableProperty] private double _volumenFinalDespacho;
         [ObservableProperty] private MedidasEspecie _especie1;
@@ -42,15 +29,6 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private MedidasEspecie _especie4;
         [ObservableProperty] private MedidasEspecie _especie5;
         [ObservableProperty] private MedidasEspecie _especie6;
-        public int TotalSumLista1 { get; set; }
-        public double FinalTotalSumLista1 { get; set; }
-        public int TotalSumLista2 { get; set; }
-        public double FinalTotalSumLista2 { get; set; }
-        public int TotalSumLista3 { get; set; }
-        public double FinalTotalSumLista3 { get; set; }
-        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieUno { get; set; } = new();
-        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieDos { get; set; } = new();
-        public ObservableCollection<MedidaTrozoAserrable> MedidasEspecieTres { get; set; } = new();
         public List<string> ListaEspecies { get; set; } = new() 
         { 
             "Oregón",
@@ -268,11 +246,12 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if (ValidateInput(2))
                 {
-                    AddMedidaTrozoAserrableToList(2, MedidasEspecieDos, "asd", "", LargoEspecieDos);
+                    AddMedidaTrozoAserrableToList(2, Especie2.ListaMedidas,
+                        Especie2.DiametroIngresado, Especie2.CantidadIngresada, Especie2.LargoEspecie);
 
                     // Clear the input fields
-                    DiametroIngresado2 = null;
-                    CantidadIngresada2 = null;
+                    Especie2.DiametroIngresado = null;
+                    Especie2.CantidadIngresada = null;
 
                     // Set the focus on Diametro Entry.
                     cell.Focus();
@@ -282,11 +261,57 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 if(ValidateInput(3))
                 {
-                    AddMedidaTrozoAserrableToList(3, MedidasEspecieTres, "", "", LargoEspecieTres);
+                    AddMedidaTrozoAserrableToList(3, Especie3.ListaMedidas,
+                        Especie3.DiametroIngresado, Especie3.CantidadIngresada, Especie3.LargoEspecie);
 
                     // Clear the input fields
-                    DiametroIngresado3 = null;
-                    CantidadIngresada3 = null;
+                    Especie3.DiametroIngresado = null;
+                    Especie3.CantidadIngresada = null;
+
+                    // Set the focus on Diametro Entry.
+                    cell.Focus();
+                }
+            }
+            else if (cell.Identifier == "4")
+            {
+                if (ValidateInput(4))
+                {
+                    AddMedidaTrozoAserrableToList(4, Especie4.ListaMedidas,
+                        Especie4.DiametroIngresado, Especie4.CantidadIngresada, Especie4.LargoEspecie);
+
+                    // Clear the input fields
+                    Especie4.DiametroIngresado = null;
+                    Especie4.CantidadIngresada = null;
+
+                    // Set the focus on Diametro Entry.
+                    cell.Focus();
+                }
+            }
+            else if (cell.Identifier == "5")
+            {
+                if (ValidateInput(5))
+                {
+                    AddMedidaTrozoAserrableToList(5, Especie5.ListaMedidas,
+                        Especie5.DiametroIngresado, Especie5.CantidadIngresada, Especie5.LargoEspecie);
+
+                    // Clear the input fields
+                    Especie5.DiametroIngresado = null;
+                    Especie5.CantidadIngresada = null;
+
+                    // Set the focus on Diametro Entry.
+                    cell.Focus();
+                }
+            }
+            else if (cell.Identifier == "6")
+            {
+                if (ValidateInput(6))
+                {
+                    AddMedidaTrozoAserrableToList(6, Especie6.ListaMedidas,
+                        Especie6.DiametroIngresado, Especie6.CantidadIngresada, Especie6.LargoEspecie);
+
+                    // Clear the input fields
+                    Especie6.DiametroIngresado = null;
+                    Especie6.CantidadIngresada = null;
 
                     // Set the focus on Diametro Entry.
                     cell.Focus();

@@ -22,36 +22,10 @@ namespace ForestalCasablancaApp.Tests.Unit.ViewModels
             _sut = new TrozoAserrableViewModel(_calculatorService, _pdfGeneratorService, _infoService);
         }
 
-        [Theory(Skip = "Move to UI Test")]
-        [InlineData("1", 1, 0, 0)]
-        [InlineData("2", 0, 1, 0)]
-        [InlineData("3", 0, 0, 1)]
-        public void AddItemToList_ShouldAddItemToAppropriateList_WhenValuesAreGiven(string id, int expectedList1,
-            int expectedList2, int expectedList3)
+        [Fact(Skip = "Move to UI Test")]
+        public void AddItemToList_ShouldAddItemToAppropriateList_WhenValuesAreGiven()
         {
-            // Arrange
-            var cell = new NumericEntryCell { Identifier = id };
-
-            // Largo for the three species is given
-            _sut.LargoEspecieUno = "1";
-            _sut.LargoEspecieDos = "1";
-            _sut.LargoEspecieTres = "1";
-            // Diámetro for the three species is given and it is even
-            _sut.DiametroIngresado = 3;
-            _sut.DiametroIngresado2 = 5;
-            _sut.DiametroIngresado3 = 7;
-            // Cantidad for the three species is given
-            _sut.CantidadIngresada = 1;
-            _sut.CantidadIngresada2 = 1;
-            _sut.CantidadIngresada3 = 1;
-
-            // Act
-            _sut.AddItemToList(cell);
-
-            // Assert
-            _sut.MedidasEspecieUno.Should().HaveCount(expectedList1);
-            _sut.MedidasEspecieDos.Should().HaveCount(expectedList2);
-            _sut.MedidasEspecieTres.Should().HaveCount(expectedList3);
+            
         }
 
         [Fact]
