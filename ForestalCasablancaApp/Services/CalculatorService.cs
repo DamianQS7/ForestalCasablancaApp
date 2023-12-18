@@ -221,5 +221,17 @@ namespace ForestalCasablancaApp.Services
 
             return Math.Round(totalFinal, 2);
         }
+
+        public int GetCantidadFinalDespachoTrozos(int cantidad1, int cantidad2, int cantidad3, int cantidad4, int cantidad5, 
+            int cantidad6)
+        {
+            return cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6;
+        }
+
+        public double GetVolumenFinalDespachoTrozos(double volumen1, double volumen2, double volumen3, double volumen4, 
+            double volumen5, double volumen6)
+        {
+            return volumen1 + volumen2 + volumen3 + volumen4 + volumen5 + volumen6;
+        }
     }
 }

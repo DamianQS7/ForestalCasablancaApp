@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Services;
@@ -33,8 +32,10 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private int? _cantidadIngresada2;
         [ObservableProperty] private double? _diametroIngresado3;
         [ObservableProperty] private int? _cantidadIngresada3;
+        
         private TrozoAserrableSummaryPopup _popup;
-
+        [ObservableProperty] private int _cantidadFinalDespacho;
+        [ObservableProperty] private double _volumenFinalDespacho;
         [ObservableProperty] private MedidasEspecie _especie1;
         [ObservableProperty] private MedidasEspecie _especie2;
         [ObservableProperty] private MedidasEspecie _especie3;
@@ -220,6 +221,12 @@ namespace ForestalCasablancaApp.ViewModels
                 FinalTotalSumLista3 = _calculatorService.CalculateFinalTotalSum(MedidasEspecieTres);
             }
 
+            CantidadFinalDespacho = _calculatorService.GetCantidadFinalDespachoTrozos(Especie1.CantidadTotalSum,
+                Especie2.CantidadTotalSum, Especie3.CantidadTotalSum, Especie4.CantidadTotalSum, Especie5.CantidadTotalSum, 
+                Especie6.CantidadTotalSum);
+
+            VolumenFinalDespacho = _calculatorService.GetVolumenFinalDespachoTrozos(Especie1.TotalSumFinal, Especie2.TotalSumFinal,
+                Especie3.TotalSumFinal, Especie4.TotalSumFinal, Especie5.TotalSumFinal, Especie6.TotalSumFinal);
         }
 
         /// <summary>

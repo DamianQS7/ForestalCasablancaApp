@@ -72,10 +72,10 @@ namespace ForestalCasablancaApp.Services
                             // Detalles de Carga
 
                             // Lista 1
-                            if (model.MedidasEspecieUno.Count > 0)
+                            if (model.Especie1.ListaMedidas.Count > 0)
                             {
-                                x.Item()
-                             .Component(new EspecieInfo("Producto 1", SubtitleSize, FirstColumnSize, model.EspecieUno, model.LargoEspecieUno));
+                                x.Item().Component(new EspecieInfo("Producto 1", SubtitleSize, FirstColumnSize, 
+                                    model.Especie1.Especie, model.Especie1.LargoEspecie));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -85,7 +85,8 @@ namespace ForestalCasablancaApp.Services
                                 });
 
                                 // Detalle de Carga (Tabla)
-                                x.Item().Component(new TrozoAserrableDetails(model.MedidasEspecieUno, model.TotalSumLista1, model.FinalTotalSumLista1));
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie1.ListaMedidas, 
+                                    model.Especie1.CantidadTotalSum, model.Especie1.TotalSumFinal));
                             }
 
                             // Lista 2
@@ -956,39 +957,39 @@ namespace ForestalCasablancaApp.Services
                     // Table Content based on the number of products
 
                     // Product 1
-                    if(ViewModel.MedidasEspecieUno.Count > 0)
+                    if(ViewModel.Especie1.ListaMedidas.Count > 0)
                     {
-                        string producto = $"Trozo Aserrable {ViewModel.EspecieUno} {ViewModel.LargoEspecieUno} m.";
+                        string producto = $"Trozo Aserrable {ViewModel.Especie1.Especie} {ViewModel.Especie1.LargoEspecie} m.";
                         table.Cell().Element(SummaryCellStyle).Text(producto);
-                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.TotalSumLista1.ToString());
-                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.FinalTotalSumLista1.ToString("F2"));
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie1.CantidadTotalSum.ToString());
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie1.TotalSumFinal.ToString("F2"));
                     }
 
                     // Product 2
-                    if (ViewModel.MedidasEspecieDos.Count > 0)
+                    if (ViewModel.Especie2.ListaMedidas.Count > 0)
                     {
-                        string producto = $"Trozo Aserrable {ViewModel.EspecieDos} {ViewModel.LargoEspecieDos} m.";
+                        string producto = $"Trozo Aserrable {ViewModel.Especie2.Especie} {ViewModel.Especie2.LargoEspecie} m.";
                         table.Cell().Element(SummaryCellStyle).Text(producto);
-                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.TotalSumLista2.ToString());
-                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.FinalTotalSumLista2.ToString("F2"));
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie2.CantidadTotalSum.ToString());
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie2.TotalSumFinal.ToString("F2"));
                     }
 
                     // Product 3
-                    if (ViewModel.MedidasEspecieTres.Count > 0)
+                    if (ViewModel.Especie3.ListaMedidas.Count > 0)
                     {
-                        string producto = $"Trozo Aserrable {ViewModel.EspecieTres} {ViewModel.LargoEspecieTres} m.";
+                        string producto = $"Trozo Aserrable {ViewModel.Especie3.Especie} {ViewModel.Especie3.LargoEspecie} m.";
                         table.Cell().Element(SummaryCellStyle).Text(producto);
-                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.TotalSumLista3.ToString());
-                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.FinalTotalSumLista3.ToString("F2"));
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie3.CantidadTotalSum.ToString());
+                        table.Cell().Element(SummaryCellStyle).Text(ViewModel.Especie3.TotalSumFinal.ToString("F2"));
                     }
 
                     // Total
-                    int cantidadFinal = ViewModel.TotalSumLista1 + ViewModel.TotalSumLista2 + ViewModel.TotalSumLista3;
-                    double volumenFinal = ViewModel.FinalTotalSumLista1 + ViewModel.FinalTotalSumLista2 + ViewModel.FinalTotalSumLista3;
+                    //int cantidadFinal = ViewModel.TotalSumLista1 + ViewModel.TotalSumLista2 + ViewModel.TotalSumLista3;
+                    //double volumenFinal = ViewModel.FinalTotalSumLista1 + ViewModel.FinalTotalSumLista2 + ViewModel.FinalTotalSumLista3;
 
                     table.Cell().Element(SummaryCellStyle).Text("Total:");
-                    table.Cell().Element(SummaryCellStyle).Text(cantidadFinal.ToString());
-                    table.Cell().Element(SummaryCellStyle).Text(volumenFinal.ToString("F2"));
+                    table.Cell().Element(SummaryCellStyle).Text(ViewModel.CantidadFinalDespacho.ToString());
+                    table.Cell().Element(SummaryCellStyle).Text(ViewModel.VolumenFinalDespacho.ToString("F2"));
                 });
             }
         }
