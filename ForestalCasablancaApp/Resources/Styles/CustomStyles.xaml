@@ -158,7 +158,7 @@
     <Style x:Key="CardLabel" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="FontSize" Value="{OnIdiom Phone=20, Tablet=28}" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=18, Tablet=28}" />
         <Setter Property="FontAutoScalingEnabled" Value="True" />
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
