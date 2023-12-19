@@ -17,27 +17,50 @@
     </Page.Behaviors>
 
     <FlexLayout
-        Margin="{OnIdiom Phone='20, 0, 20, 30', Tablet='80, 0, 80, 50'}"
+        Margin="{OnIdiom Phone='20, 0, 20, 30',
+                         Tablet='80, 0, 80, 50'}"
         AlignContent="Center"
         Direction="Column"
         JustifyContent="SpaceEvenly">
 
-        <Image
-            Margin="0,0"
-            Aspect="Fill"
-            FlexLayout.AlignSelf="Center"
-            HeightRequest="{OnIdiom Phone=130, Tablet=200}"
-            Opacity="0.85"
-            Source="mainpage_logo.png"
-            WidthRequest="{OnIdiom Phone=130, Tablet=200}">
+        <VerticalStackLayout>
+            <Image
+                Margin="0,0"
+                Aspect="Fill"
+                FlexLayout.AlignSelf="Center"
+                HeightRequest="{OnIdiom Phone=130,
+                                        Tablet=200}"
+                Opacity="0.85"
+                Source="mainpage_logo.png"
+                WidthRequest="{OnIdiom Phone=130,
+                                       Tablet=200}">
 
-            <Image.Background>
-                <RadialGradientBrush>
-                    <GradientStop Offset="1.0" Color="{StaticResource Gray900}" />
-                    <GradientStop Offset="0.1" Color="Transparent" />
-                </RadialGradientBrush>
-            </Image.Background>
-        </Image>
+                <Image.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Offset="1.0" Color="{StaticResource Gray900}" />
+                        <GradientStop Offset="0.1" Color="Transparent" />
+                    </RadialGradientBrush>
+                </Image.Background>
+            </Image>
+            <Border
+                Margin="2,-15,0,0"
+                BackgroundColor="{StaticResource Gray900}"
+                HeightRequest="{OnIdiom Phone=30,
+                                        Tablet=40}"
+                StrokeShape="RoundRectangle 50"
+                WidthRequest="{OnIdiom Phone=30,
+                                       Tablet=40}">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="{OnIdiom Phone=13, Tablet=15}"
+                    HorizontalTextAlignment="Center"
+                    Text="V2"
+                    TextColor="{AppThemeBinding Dark={StaticResource White},
+                                                Light={StaticResource White}}"
+                    VerticalTextAlignment="Center" />
+            </Border>
+        </VerticalStackLayout>
+
 
         <controls:CardView
             CardImage="lenamodule_icon_dos.png"
@@ -53,21 +76,27 @@
             CommandPath="TrozoAserrablePage" />
 
 
-        <FlexLayout AlignContent="Start" Direction="Column" Margin="0, 0, 0, 12">
+        <FlexLayout
+            Margin="0,0,0,12"
+            AlignContent="Start"
+            Direction="Column">
             <Border
                 BackgroundColor="{StaticResource Gray900}"
                 FlexLayout.AlignSelf="Center"
-                HeightRequest="{OnIdiom Phone=55, Tablet=85}"
+                HeightRequest="{OnIdiom Phone=55,
+                                        Tablet=85}"
                 IsVisible="{Binding IsBusy}"
                 StrokeShape="Ellipse"
-                WidthRequest="{OnIdiom Phone=55, Tablet=85}">
+                WidthRequest="{OnIdiom Phone=55,
+                                       Tablet=85}">
 
                 <ActivityIndicator
                     HorizontalOptions="Fill"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
                     VerticalOptions="Center"
-                    WidthRequest="{OnIdiom Phone=55, Tablet=85}"
+                    WidthRequest="{OnIdiom Phone=55,
+                                           Tablet=85}"
                     Color="{StaticResource Primary}" />
             </Border>
         </FlexLayout>
