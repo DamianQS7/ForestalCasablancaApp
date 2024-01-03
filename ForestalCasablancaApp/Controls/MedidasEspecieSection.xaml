@@ -22,24 +22,30 @@
 
                 <VerticalStackLayout Grid.Row="1" Spacing="{OnIdiom Phone=5, Tablet=10}">
 
-                    <Grid RowDefinitions="Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
+                    <Grid RowDefinitions="Auto, Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
+
+                        <!--  Unidad de Origen  -->
+                        <Label Text="Unidad de Origen: " VerticalOptions="Center" />
+
+                        <Entry Grid.Column="1" Text="{Binding UnidadOrigen}" />
 
                         <!--  Especie  -->
                         <Label
-                            Grid.Row="0"
+                            Grid.Row="1"
                             Text="Especie: "
                             VerticalOptions="Center" />
 
                         <Picker
                             x:Name="EspeciePicker"
                             Title="Seleccione una especie"
+                            Grid.Row="1"
                             Grid.Column="1"
                             ItemsSource="{Binding EspeciePickerItemSource}"
                             SelectedItem="{Binding SelectedEspecie}" />
 
-                        <!--  Largo 1  -->
+                        <!--  Largo  -->
                         <Label
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="0"
                             Text="Largo: "
                             VerticalOptions="Center" />
@@ -47,7 +53,7 @@
                         <Picker
                             x:Name="LargoPicker"
                             Title="Selecione el largo"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="1"
                             ItemsSource="{Binding LargoPickerItemSource}"
                             SelectedItem="{Binding SelectedLargo}" />

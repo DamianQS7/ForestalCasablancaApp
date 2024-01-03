@@ -32,7 +32,6 @@
                     Grid.Row="1"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
-                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
@@ -41,6 +40,14 @@
                     <VerticalStackLayout>
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
+
+                        <!--  Unidad de Origen  -->
+                        <Grid Style="{StaticResource PageSectionTwoColumnGrid}">
+
+                            <Label Text="Unidad de Origen: " VerticalOptions="Center" />
+
+                            <Entry Grid.Column="1" Text="{Binding Despacho.UnidadOrigen}" />
+                        </Grid>
 
                         <!--  Especie  -->
                         <Grid
@@ -286,16 +293,17 @@
 
                 <!--  Palomera Section  -->
                 <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
-                    
+
                     <VerticalStackLayout>
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Palomera" />
 
                         <Grid
-                            Style="{StaticResource PageSectionGrid}"
                             ColumnDefinitions="*, *, *"
                             RowDefinitions="Auto, Auto"
-                            RowSpacing="{OnIdiom Phone=0, Tablet=8}">
+                            RowSpacing="{OnIdiom Phone=0,
+                                                 Tablet=8}"
+                            Style="{StaticResource PageSectionGrid}">
 
                             <!--  Altura Palomera 1  -->
                             <Label
@@ -307,8 +315,8 @@
                             <controls:NumericEntryCell
                                 Grid.Row="1"
                                 Grid.Column="0"
-                                HorizontalOptions="Center"
                                 Padding="0,10"
+                                HorizontalOptions="Center"
                                 MaxInputLength="4"
                                 UserInput="{Binding Despacho.AltoPalomera}"
                                 VerticalOptions="Center" />

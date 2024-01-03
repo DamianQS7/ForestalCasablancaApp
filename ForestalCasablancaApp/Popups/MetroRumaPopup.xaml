@@ -13,15 +13,20 @@
 
         <ScrollView>
             <VerticalStackLayout
-                Margin="{OnIdiom Phone='8,0,0,0', Tablet='8,0,0,0'}"
-                Padding="{OnIdiom Phone=10, Tablet=15}"
-                Spacing="{OnIdiom Phone=8, Tablet=12}">
+                Margin="{OnIdiom Phone='8,0,0,0',
+                                 Tablet='8,0,0,0'}"
+                Padding="{OnIdiom Phone=10,
+                                  Tablet=15}"
+                Spacing="{OnIdiom Phone=8,
+                                  Tablet=12}">
 
                 <Image
                     Aspect="AspectFill"
-                    HeightRequest="{OnIdiom Phone=80, Tablet=150}"
+                    HeightRequest="{OnIdiom Phone=80,
+                                            Tablet=150}"
                     Source="popup_icon.png"
-                    WidthRequest="{OnIdiom Phone=80, Tablet=150}">
+                    WidthRequest="{OnIdiom Phone=80,
+                                           Tablet=150}">
                     <Image.Shadow>
                         <Shadow Offset="20,20" />
                     </Image.Shadow>
@@ -40,7 +45,6 @@
 
                 <!--  Datos del Camión  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Camión:" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
@@ -50,6 +54,7 @@
 
                 <!--  Detalles Despacho  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Detalles Despacho:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Especie, StringFormat='Tipo MR: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Ancho Camión: {0} m'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />

@@ -33,7 +33,6 @@
                     Grid.Row="1"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
-                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
@@ -43,8 +42,16 @@
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
 
+                        <!--  Unidad de Origen  -->
+                        <Grid Style="{StaticResource PageSectionTwoColumnGrid}">
+
+                            <Label Text="Unidad de Origen: " VerticalOptions="Center" />
+
+                            <Entry Grid.Column="1" Text="{Binding Despacho.UnidadOrigen}" />
+                        </Grid>
+
                         <!--  Especie  -->
-                        <Grid RowDefinitions="Auto, Auto" Style="{StaticResource PageSectionTwoColumnGrid}">
+                        <Grid Style="{StaticResource PageSectionTwoColumnGrid}">
 
                             <Label
                                 Grid.Row="0"

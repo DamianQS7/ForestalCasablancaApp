@@ -37,6 +37,7 @@ namespace BosquesNalcahue.Models
             }
         }
 
+        public string UnidadOrigen { get; set; }
         public string Especie { get; set; }
         public string LargoEspecie { get; set; }
         public int CantidadTotalSum { get; set; }
