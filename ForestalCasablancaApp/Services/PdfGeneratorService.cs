@@ -1011,7 +1011,7 @@ namespace ForestalCasablancaApp.Services
                     {
                         header.Cell().Element(SummaryHeaderCellStyle).Text("Producto");
                         header.Cell().Element(SummaryHeaderCellStyle).Text("Cantidad de Trozos");
-                        header.Cell().Element(SummaryHeaderCellStyle).Text("Volumen (M3)");
+                        header.Cell().Element(SummaryHeaderCellStyle).Text("Volumen (m3)");
                     });
 
                     // Table Content based on the number of products
