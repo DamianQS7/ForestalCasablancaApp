@@ -46,7 +46,6 @@
 
                 <!--  Datos del Camión  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Camión:" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
@@ -55,6 +54,7 @@
 
                 <!--  Especie 1  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 1:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Especie1.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
@@ -79,6 +79,7 @@
 
                 <!--  Especie 2  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 2:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Especie2.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
@@ -103,6 +104,7 @@
 
                 <!--  Especie 3  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 3:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Especie3.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
@@ -127,6 +129,7 @@
 
                 <!--  Especie 4  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 4:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Especie4.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
@@ -151,6 +154,7 @@
 
                 <!--  Especie 5  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 5:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Especie5.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"
@@ -175,6 +179,7 @@
 
                 <!--  Especie 6  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Especie 6:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Especie6.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Grid ColumnDefinitions="*, *">
                     <Label
                         Grid.Column="0"

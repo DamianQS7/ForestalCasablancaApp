@@ -45,7 +45,6 @@
 
                 <!--  Datos del Camión  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Datos del Camión:" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.EmpresaTransportista, StringFormat='Empresa: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.Chofer, StringFormat='Chofer: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding DatosCamion.RutChofer, StringFormat='RUT Chofer: {0}'}" />
@@ -55,6 +54,7 @@
 
                 <!--  Detalles Despacho  -->
                 <Label Style="{StaticResource PopupSectionLabel}" Text="Detalles Despacho:" />
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.UnidadOrigen, StringFormat='Unidad de Origen: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Especie, StringFormat='Tipo Leña: {0}'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.LargoCamion, StringFormat='Largo Camión: {0} m'}" />
                 <Label Style="{StaticResource PopupContent}" Text="{Binding Despacho.Bancos, StringFormat='N° de Bancos: {0}'}" />

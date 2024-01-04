@@ -67,8 +67,7 @@ namespace ForestalCasablancaApp.Services
                             // Datos Camión
                             x.Item()
                              .Component(new CamionInfoTrozo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
-                             model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista,
-                             model.DatosCamion.UnidadOrigen));
+                             model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
 
                             // Detalles de Carga
 
@@ -76,7 +75,7 @@ namespace ForestalCasablancaApp.Services
                             if (model.Especie1.ListaMedidas.Count > 0)
                             {
                                 x.Item().Component(new EspecieInfo("Producto 1", SubtitleSize, FirstColumnSize, 
-                                    model.Especie1.Especie, model.Especie1.LargoEspecie));
+                                    model.Especie1.Especie, model.Especie1.LargoEspecie, model.Especie1.UnidadOrigen));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -97,7 +96,7 @@ namespace ForestalCasablancaApp.Services
                                     x.Item().Height(0).PageBreak();
 
                                 x.Item().Component(new EspecieInfo("Producto 2", SubtitleSize, FirstColumnSize,
-                                    model.Especie2.Especie, model.Especie2.LargoEspecie));
+                                    model.Especie2.Especie, model.Especie2.LargoEspecie, model.Especie2.UnidadOrigen));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -118,7 +117,7 @@ namespace ForestalCasablancaApp.Services
                                     x.Item().Height(0).PageBreak();
 
                                 x.Item().Component(new EspecieInfo("Producto 3", SubtitleSize, FirstColumnSize,
-                                    model.Especie3.Especie, model.Especie3.LargoEspecie));
+                                    model.Especie3.Especie, model.Especie3.LargoEspecie, model.Especie3.UnidadOrigen));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -139,7 +138,7 @@ namespace ForestalCasablancaApp.Services
                                     x.Item().Height(0).PageBreak();
 
                                 x.Item().Component(new EspecieInfo("Producto 4", SubtitleSize, FirstColumnSize,
-                                    model.Especie4.Especie, model.Especie4.LargoEspecie));
+                                    model.Especie4.Especie, model.Especie4.LargoEspecie, model.Especie4.UnidadOrigen));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -160,7 +159,7 @@ namespace ForestalCasablancaApp.Services
                                     x.Item().Height(0).PageBreak();
 
                                 x.Item().Component(new EspecieInfo("Producto 5", SubtitleSize, FirstColumnSize,
-                                    model.Especie5.Especie, model.Especie5.LargoEspecie));
+                                    model.Especie5.Especie, model.Especie5.LargoEspecie, model.Especie5.UnidadOrigen));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -181,7 +180,7 @@ namespace ForestalCasablancaApp.Services
                                     x.Item().Height(0).PageBreak();
 
                                 x.Item().Component(new EspecieInfo("Producto 6", SubtitleSize, FirstColumnSize,
-                                    model.Especie6.Especie, model.Especie6.LargoEspecie));
+                                    model.Especie6.Especie, model.Especie6.LargoEspecie, model.Especie6.UnidadOrigen));
 
                                 // Detalle de Carga (Titulo)
                                 x.Item().Column(col =>
@@ -259,7 +258,7 @@ namespace ForestalCasablancaApp.Services
 
                             // Despacho Leña
                             x.Item().Component(new DespachoInfo("Despacho Leña", SubtitleSize, FirstColumnSize, 
-                                model.Despacho.Especie, model.DatosCamion.UnidadOrigen));
+                                model.Despacho.Especie, model.Despacho.UnidadOrigen));
 
                             // Detalles de Carga
                             x.Item().Column(col =>
@@ -345,7 +344,7 @@ namespace ForestalCasablancaApp.Services
 
                             // Despacho Leña
                             x.Item().Component(new DespachoInfo("Despacho Metro Ruma", SubtitleSize, FirstColumnSize,
-                                model.Despacho.Especie, model.DatosCamion.UnidadOrigen));
+                                model.Despacho.Especie, model.Despacho.UnidadOrigen));
 
                             // Detalles de Carga
                             x.Item().Column(col =>
@@ -648,14 +647,16 @@ namespace ForestalCasablancaApp.Services
             public int FirstColumnSize { get; set; }
             public string Especie { get; set; }
             public string Largo { get; set; }
+            public string UnidadOrigen { get; set; }
 
-            public EspecieInfo(string title, int subtitle, int columnSize, string especie, string largo)
+            public EspecieInfo(string title, int subtitle, int columnSize, string especie, string largo, string origen)
             {
                 SubtitleSize = subtitle;
                 FirstColumnSize = columnSize;
                 Especie = especie;
                 Largo = largo;
                 SectionTitle = title;
+                UnidadOrigen = origen;
 
             }
             public void Compose(IContainer container)
@@ -666,7 +667,8 @@ namespace ForestalCasablancaApp.Services
 
                     col.Item()
                        .Component(new SectionTitle(SectionTitle, SubtitleSize));
-
+                    col.Item()
+                       .Component(new SingleRow(FirstColumnSize, " Unidad de origen:", UnidadOrigen));
                     col.Item()
                        .Component(new SingleRow(FirstColumnSize, " Producto:", Especie));
                     col.Item()
@@ -763,9 +765,8 @@ namespace ForestalCasablancaApp.Services
             public string Chofer { get; set; }
             public string RutChofer { get; set; }
             public string EmpresaTransportista { get; set; }
-            public string UnidadOrigen { get; set; }
 
-            public CamionInfoTrozo(string title, int subtitle, int columnSize, string patente, string chofer, string rut, string empresa, string origen)
+            public CamionInfoTrozo(string title, int subtitle, int columnSize, string patente, string chofer, string rut, string empresa)
             {
                 SubtitleSize = subtitle;
                 FirstColumnSize = columnSize;
@@ -774,7 +775,6 @@ namespace ForestalCasablancaApp.Services
                 Chofer = chofer;
                 RutChofer = rut;
                 EmpresaTransportista = empresa;
-                UnidadOrigen = origen;
             }
 
             public void Compose(IContainer container)
@@ -785,10 +785,6 @@ namespace ForestalCasablancaApp.Services
 
                     col.Item()
                        .Component(new SectionTitle(SectionTitle, SubtitleSize));
-
-                    col.Item()
-                       .Component(new SingleRow(FirstColumnSize, " Unidad de Origen:",
-                           UnidadOrigen));
 
                     col.Item()
                        .Component(new SingleRow(FirstColumnSize, " Empresa de Transporte:",
@@ -1015,7 +1011,7 @@ namespace ForestalCasablancaApp.Services
                     {
                         header.Cell().Element(SummaryHeaderCellStyle).Text("Producto");
                         header.Cell().Element(SummaryHeaderCellStyle).Text("Cantidad de Trozos");
-                        header.Cell().Element(SummaryHeaderCellStyle).Text("Volumen (M3)");
+                        header.Cell().Element(SummaryHeaderCellStyle).Text("Volumen (m3)");
                     });
 
                     // Table Content based on the number of products

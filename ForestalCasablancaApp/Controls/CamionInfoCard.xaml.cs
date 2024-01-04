@@ -14,9 +14,6 @@ public partial class CamionInfoCard : ContentView
     public static readonly BindableProperty PatenteCamionProperty =
         BindableProperty.Create(nameof(PatenteCamion), typeof(string), typeof(CamionInfoCard), default, BindingMode.TwoWay);
 
-    public static readonly BindableProperty OrigenProperty =
-        BindableProperty.Create(nameof(Origen), typeof(string), typeof(CamionInfoCard), default, BindingMode.TwoWay);
-
     public string Empresa
     {
         get => (string)GetValue(EmpresaProperty);
@@ -41,12 +38,6 @@ public partial class CamionInfoCard : ContentView
         set => SetValue(PatenteCamionProperty, value);
     }
 
-    public string Origen
-    {
-        get => (string)GetValue(OrigenProperty);
-        set => SetValue(OrigenProperty, value);
-    }
-
     public CamionInfoCard()
 	{
 		InitializeComponent();
@@ -54,6 +45,5 @@ public partial class CamionInfoCard : ContentView
         ChoferEntry.SetBinding(Entry.TextProperty, new Binding(nameof(NombreChofer), source: this));
         RutChoferEntry.SetBinding(Entry.TextProperty, new Binding(nameof(RutChofer), source: this));
         PatenteEntry.SetBinding(Entry.TextProperty, new Binding(nameof(PatenteCamion), source: this));
-        OrigenEntry.SetBinding(Entry.TextProperty, new Binding(nameof(Origen), source: this));
     }
 }

@@ -38,7 +38,6 @@
                     Grid.Row="1"
                     Empresa="{Binding DatosCamion.EmpresaTransportista}"
                     NombreChofer="{Binding DatosCamion.Chofer}"
-                    Origen="{Binding DatosCamion.UnidadOrigen}"
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
@@ -53,7 +52,8 @@
                     ListaMedidasCount="{Binding Especie1.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie1.ListaMedidas}"
                     SelectedEspecie="{Binding Especie1.Especie}"
-                    SelectedLargo="{Binding Especie1.LargoEspecie}" />
+                    SelectedLargo="{Binding Especie1.LargoEspecie}"
+                    UnidadOrigen="{Binding Especie1.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
                     Grid.Row="3"
@@ -66,7 +66,8 @@
                     ListaMedidasCount="{Binding Especie2.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie2.ListaMedidas}"
                     SelectedEspecie="{Binding Especie2.Especie}"
-                    SelectedLargo="{Binding Especie2.LargoEspecie}" />
+                    SelectedLargo="{Binding Especie2.LargoEspecie}"
+                    UnidadOrigen="{Binding Especie2.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
                     Grid.Row="4"
@@ -79,7 +80,8 @@
                     ListaMedidasCount="{Binding Especie3.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie3.ListaMedidas}"
                     SelectedEspecie="{Binding Especie3.Especie}"
-                    SelectedLargo="{Binding Especie3.LargoEspecie}" />
+                    SelectedLargo="{Binding Especie3.LargoEspecie}"
+                    UnidadOrigen="{Binding Especie3.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
                     Grid.Row="5"
@@ -92,7 +94,8 @@
                     ListaMedidasCount="{Binding Especie4.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie4.ListaMedidas}"
                     SelectedEspecie="{Binding Especie4.Especie}"
-                    SelectedLargo="{Binding Especie4.LargoEspecie}" />
+                    SelectedLargo="{Binding Especie4.LargoEspecie}"
+                    UnidadOrigen="{Binding Especie4.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
                     Grid.Row="6"
@@ -105,7 +108,8 @@
                     ListaMedidasCount="{Binding Especie5.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie5.ListaMedidas}"
                     SelectedEspecie="{Binding Especie5.Especie}"
-                    SelectedLargo="{Binding Especie5.LargoEspecie}" />
+                    SelectedLargo="{Binding Especie5.LargoEspecie}"
+                    UnidadOrigen="{Binding Especie5.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
                     Grid.Row="7"
@@ -118,7 +122,8 @@
                     ListaMedidasCount="{Binding Especie6.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie6.ListaMedidas}"
                     SelectedEspecie="{Binding Especie6.Especie}"
-                    SelectedLargo="{Binding Especie6.LargoEspecie}" />
+                    SelectedLargo="{Binding Especie6.LargoEspecie}"
+                    UnidadOrigen="{Binding Especie6.UnidadOrigen}" />
 
                 <!--  Buttons Section  -->
                 <Grid

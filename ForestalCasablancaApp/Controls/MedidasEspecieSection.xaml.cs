@@ -36,6 +36,8 @@ public partial class MedidasEspecieSection : ContentView
     public static readonly BindableProperty ListaMedidasCountProperty =
         BindableProperty.Create(nameof(ListaMedidasCount), typeof(int), typeof(MedidasEspecieSection), default, BindingMode.TwoWay);
 
+    public static readonly BindableProperty UnidadOrigenProperty =
+        BindableProperty.Create(nameof(UnidadOrigen), typeof(string), typeof(MedidasEspecieSection), default, BindingMode.TwoWay);
 
     public string ComponentTitle
     {
@@ -95,6 +97,12 @@ public partial class MedidasEspecieSection : ContentView
     {
         get => (int)GetValue(ListaMedidasCountProperty);
         set => SetValue(ListaMedidasCountProperty, value);
+    }
+
+    public string UnidadOrigen
+    {
+        get => (string)GetValue(UnidadOrigenProperty);
+        set => SetValue(UnidadOrigenProperty, value);
     }
 
     public MedidasEspecieSection()

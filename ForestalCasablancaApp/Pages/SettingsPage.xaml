@@ -13,20 +13,24 @@
     <ContentPage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
             <Border
+                Margin="{OnIdiom Phone=0,
+                                 Tablet='0,10'}"
                 BackgroundColor="{AppThemeBinding Dark={StaticResource Gray500},
                                                   Light={StaticResource Gray600}}"
-                HeightRequest="{OnIdiom Phone=85, Tablet=100}"
+                HeightRequest="{OnIdiom Phone=85,
+                                        Tablet=100}"
                 HorizontalOptions="Start"
                 Stroke="#F3F2F1"
                 StrokeShape="RoundRectangle 10"
                 StrokeThickness="2"
                 VerticalOptions="Start"
-                WidthRequest="{OnIdiom Phone=85, Tablet=100}"
-                Margin="{OnIdiom Phone=0, Tablet='0,10'}">
+                WidthRequest="{OnIdiom Phone=85,
+                                       Tablet=100}">
                 <VerticalStackLayout
                     Margin="0,4"
                     Padding="5"
-                    WidthRequest="{OnIdiom Phone=80, Tablet=95}">
+                    WidthRequest="{OnIdiom Phone=80,
+                                           Tablet=95}">
                     <Grid
                         Margin="0,0,4,0"
                         HeightRequest="15"
@@ -83,17 +87,26 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <FlexLayout
-            AlignItems="Center"
-            Direction="Column"
-            JustifyContent="SpaceEvenly">
+        <VerticalStackLayout>
 
             <!--  User  -->
-            <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Nombre de Usuario" />
-
-            <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
-
+            <Border Style="{StaticResource PageSectionCard}">
                 <VerticalStackLayout Style="{StaticResource SettingsPageSectionsStackLayout}">
+                    <HorizontalStackLayout>
+                        <Image Margin="5,5,0,0">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="FAS"
+                                    Glyph="{x:Static fontAwesome:FontAwesomeIcons.User}"
+                                    Size="{OnIdiom Phone=Medium,
+                                                   Tablet=Large}"
+                                    Color="{AppThemeBinding Dark={StaticResource PaleGreen},
+                                                            Light={StaticResource Black}}" />
+                            </Image.Source>
+                        </Image>
+                        <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Nombre de Usuario" />
+                    </HorizontalStackLayout>
+                    <BoxView Margin="10" Style="{StaticResource Separator}" />
                     <Label Style="{StaticResource SettingsPageSectionSubtitle}" Text="Usuario Actual:" />
 
                     <Entry Style="{StaticResource CurrentUserEntryStyle}" Text="{Binding CurrentUser}" />
@@ -115,12 +128,26 @@
             </Border>
 
             <!--  PDF Directory  -->
-            <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Directorio de destino para PDF" />
 
-            <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
+            <Border Style="{StaticResource PageSectionCard}">
 
                 <VerticalStackLayout Style="{StaticResource SettingsPageSectionsStackLayout}">
 
+                    <HorizontalStackLayout>
+                        <Image Margin="5,5,0,0">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="FAS"
+                                    Glyph="{x:Static fontAwesome:FontAwesomeIcons.Folder}"
+                                    Size="{OnIdiom Phone=Medium,
+                                                   Tablet=Large}"
+                                    Color="{AppThemeBinding Dark={StaticResource PaleGreen},
+                                                            Light={StaticResource Black}}" />
+                            </Image.Source>
+                        </Image>
+                        <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Directorio para PDFs" />
+                    </HorizontalStackLayout>
+                    <BoxView Margin="10" Style="{StaticResource Separator}" />
                     <Label Style="{StaticResource SettingsPageSectionSubtitle}" Text="Directorio Actual:" />
                     <Label
                         Margin="0,12,0,0"
@@ -146,62 +173,77 @@
             </Border>
 
             <!--  App Theme  -->
-            <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Tema de la App" />
 
-            <Border FlexLayout.AlignSelf="Stretch" Style="{StaticResource PageSectionCard}">
+            <Border Style="{StaticResource PageSectionCard}">
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Margin="5">
+                        <Image Margin="8,8,0,0">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="FAS"
+                                    Glyph="{x:Static fontAwesome:FontAwesomeIcons.Lightbulb}"
+                                    Size="{OnIdiom Phone=Medium,
+                                                   Tablet=Large}"
+                                    Color="{AppThemeBinding Dark={StaticResource PaleGreen},
+                                                            Light={StaticResource Black}}" />
+                            </Image.Source>
+                        </Image>
+                        <Label Style="{StaticResource SettingsPageSectionTitle}" Text="Tema de la App" />
+                    </HorizontalStackLayout>
+                    <BoxView Margin="10" Style="{StaticResource Separator}" />
+                    <Grid
+                        Margin="10"
+                        ColumnDefinitions="*, *, *"
+                        ColumnSpacing="0"
+                        RadioButtonGroup.GroupName="ThemeGroup">
 
-                <Grid
-                    Margin="10"
-                    ColumnDefinitions="*, *, *"
-                    ColumnSpacing="0"
-                    RadioButtonGroup.GroupName="ThemeGroup">
+                        <RadioButton
+                            x:Name="RadBtnSystem"
+                            Grid.Column="0"
+                            CheckedChanged="RadioButton_CheckedChanged"
+                            HorizontalOptions="Center"
+                            Value="System">
 
-                    <RadioButton
-                        x:Name="RadBtnSystem"
-                        Grid.Column="0"
-                        CheckedChanged="RadioButton_CheckedChanged"
-                        HorizontalOptions="Center"
-                        Value="System">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Scale="{OnIdiom Phone=0.65, Tablet=0.85}" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource White}}" />
+                                    <Label Style="{StaticResource RadioBtnsLabel}" Text="Sistema" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
 
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Scale="{OnIdiom Phone=0.65, Tablet=0.85}" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Phone}, Color={StaticResource White}}" />
-                                <Label Style="{StaticResource RadioBtnsLabel}" Text="Sistema" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
+                        <RadioButton
+                            x:Name="RadBtnLight"
+                            Grid.Column="1"
+                            CheckedChanged="RadioButton_CheckedChanged"
+                            HorizontalOptions="Center"
+                            Value="Light">
 
-                    <RadioButton
-                        x:Name="RadBtnLight"
-                        Grid.Column="1"
-                        CheckedChanged="RadioButton_CheckedChanged"
-                        HorizontalOptions="Center"
-                        Value="Light">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Scale="{OnIdiom Phone=0.65, Tablet=0.85}" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource White}}" />
+                                    <Label Style="{StaticResource RadioBtnsLabel}" Text="Claro" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
 
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Scale="{OnIdiom Phone=0.65, Tablet=0.85}" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Sun}, Color={StaticResource White}}" />
-                                <Label Style="{StaticResource RadioBtnsLabel}" Text="Claro" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
+                        <RadioButton
+                            x:Name="RadBtnDark"
+                            Grid.Column="2"
+                            CheckedChanged="RadioButton_CheckedChanged"
+                            HorizontalOptions="Center"
+                            Value="Dark">
 
-                    <RadioButton
-                        x:Name="RadBtnDark"
-                        Grid.Column="2"
-                        CheckedChanged="RadioButton_CheckedChanged"
-                        HorizontalOptions="Center"
-                        Value="Dark">
-
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Scale="{OnIdiom Phone=0.65, Tablet=0.85}" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource White}}" />
-                                <Label Style="{StaticResource RadioBtnsLabel}" Text="Oscuro" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
-                </Grid>
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Scale="{OnIdiom Phone=0.65, Tablet=0.85}" Source="{FontImage FontFamily=FAS, Glyph={x:Static fontAwesome:FontAwesomeIcons.Moon}, Color={StaticResource White}}" />
+                                    <Label Style="{StaticResource RadioBtnsLabel}" Text="Oscuro" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </Grid>
+                </VerticalStackLayout>
             </Border>
-        </FlexLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

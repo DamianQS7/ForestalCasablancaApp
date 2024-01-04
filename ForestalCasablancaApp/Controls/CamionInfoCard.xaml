@@ -18,61 +18,50 @@
 
                 <Grid
                     Grid.Row="1"
-                    RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                    RowDefinitions="Auto, Auto, Auto, Auto"
                     Style="{StaticResource PageSectionTwoColumnGrid}">
-
-                    <!--  Unidad de Origen  -->
-                    <Label
-                        Grid.Row="0"
-                        Text="Unidad de Origen: "
-                        VerticalOptions="Center" />
-                    <Entry
-                        x:Name="OrigenEntry"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Text="{Binding UnidadOrigen}" />
 
                     <!--  Empresa Transportista  -->
                     <Label
-                        Grid.Row="1"
+                        Grid.Row="0"
                         Text="Empresa: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="EmpresaEntry"
-                        Grid.Row="1"
+                        Grid.Row="0"
                         Grid.Column="1"
                         Text="{Binding EmpresaTransportista}" />
 
                     <!--  Chofer  -->
                     <Label
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Text="Chofer: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="ChoferEntry"
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding Chofer}" />
 
                     <!--  Rut Chofer  -->
                     <Label
-                        Grid.Row="3"
+                        Grid.Row="2"
                         Text="Rut Chofer: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="RutChoferEntry"
-                        Grid.Row="3"
+                        Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding RutChofer}" />
 
                     <!--  Patente  -->
                     <Label
-                        Grid.Row="4"
+                        Grid.Row="3"
                         Text="Patente: "
                         VerticalOptions="Center" />
                     <Entry
                         x:Name="PatenteEntry"
-                        Grid.Row="4"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding Patente}" />
                 </Grid>

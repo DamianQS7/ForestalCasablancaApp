@@ -3,6 +3,7 @@ namespace ForestalCasablancaApp.Models
 {
     public class DespachoModel
     {
+        public string UnidadOrigen {  get; set; }
         public string AltoPalomera { get; set; }
         public string AltoPalomera2 { get; set; }
         public string AnchoPalomera { get; set; }
