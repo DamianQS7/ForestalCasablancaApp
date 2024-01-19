@@ -43,7 +43,7 @@
                             ItemsSource="{Binding EspeciePickerItemSource}"
                             SelectedItem="{Binding SelectedEspecie}" />
 
-                        <!--  Otra Especie  -->
+                        <!--  Nueva Especie  -->
                         <Label
                             Grid.Row="2"
                             IsVisible="False"
@@ -95,17 +95,18 @@
                             ItemsSource="{Binding LargoPickerItemSource}"
                             SelectedItem="{Binding SelectedLargo}" />
 
+                        <!-- Nuevo Largo -->
                         <Label
-                            Grid.Row="2"
+                            Grid.Row="4"
                             IsVisible="False"
-                            Text="Nueva Especie: "
+                            Text="Nuevo Largo: "
                             VerticalOptions="Center">
 
                             <Label.Triggers>
                                 <DataTrigger
-                                    Binding="{Binding SelectedEspecie}"
+                                    Binding="{Binding SelectedLargo}"
                                     TargetType="Label"
-                                    Value="Otras Especies">
+                                    Value="Otros">
 
                                     <Setter Property="IsVisible" Value="True" />
                                 </DataTrigger>
@@ -113,18 +114,19 @@
                         </Label>
 
                         <Entry
-                            x:Name="otraEspecieEntry"
-                            Grid.Row="2"
+                            x:Name="otrolargoEntry"
+                            Grid.Row="4"
                             Grid.Column="1"
+                            Keyboard="Numeric"
                             IsVisible="False"
-                            Placeholder="Ingrese el nombre de la especie"
-                            Text="{Binding NuevaEspecie}">
+                            Placeholder="Ingrese el largo de cubicación"
+                            Text="{Binding NuevoLargo}">
 
                             <Entry.Triggers>
                                 <DataTrigger
-                                    Binding="{Binding SelectedEspecie}"
+                                    Binding="{Binding SelectedLargo}"
                                     TargetType="Entry"
-                                    Value="Otras Especies">
+                                    Value="Otros">
 
                                     <Setter Property="IsVisible" Value="True" />
                                 </DataTrigger>

@@ -1,14 +1,4 @@
-﻿
-using BosquesNalcahue.Services;
-using ForestalCasablancaApp.Controls;
-using ForestalCasablancaApp.Helpers;
-using ForestalCasablancaApp.Models;
-using ForestalCasablancaApp.Services;
-using ForestalCasablancaApp.ViewModels;
-using NSubstitute.ReturnsExtensions;
-using System.Collections.ObjectModel;
-
-namespace ForestalCasablancaApp.Tests.Unit.ViewModels
+﻿namespace ForestalCasablancaApp.Tests.Unit.ViewModels
 {
     public class TrozoAserrableViewModelTests
     {

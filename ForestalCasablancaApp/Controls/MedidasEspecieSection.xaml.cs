@@ -42,6 +42,9 @@ public partial class MedidasEspecieSection : ContentView
     public static readonly BindableProperty NuevaEspecieProperty =
         BindableProperty.Create(nameof(NuevaEspecie), typeof(string), typeof(MedidasEspecieSection), default, BindingMode.TwoWay);
 
+    public static readonly BindableProperty NuevoLargoProperty =
+        BindableProperty.Create(nameof(NuevoLargo), typeof(string), typeof(MedidasEspecieSection), default, BindingMode.TwoWay);
+
     public string ComponentTitle
     {
         get => (string)GetValue(ComponentTitleProperty);
@@ -70,6 +73,12 @@ public partial class MedidasEspecieSection : ContentView
     {
         get => (string)GetValue(SelectedLargoProperty);
         set => SetValue(SelectedLargoProperty, value);
+    }
+
+    public string NuevoLargo
+    {
+        get => (string)GetValue(NuevoLargoProperty);
+        set => SetValue(NuevoLargoProperty, value);
     }
 
     public string DiametroCellId

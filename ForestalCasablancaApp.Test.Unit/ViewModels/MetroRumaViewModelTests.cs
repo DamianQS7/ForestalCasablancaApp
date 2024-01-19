@@ -1,11 +1,4 @@
-﻿
-using BosquesNalcahue.Services;
-using ForestalCasablancaApp.Helpers;
-using ForestalCasablancaApp.Services;
-using ForestalCasablancaApp.ViewModels;
-using NSubstitute.ReturnsExtensions;
-
-namespace ForestalCasablancaApp.Tests.Unit.ViewModels
+﻿namespace ForestalCasablancaApp.Tests.Unit.ViewModels
 {
     public class MetroRumaViewModelTests
     {

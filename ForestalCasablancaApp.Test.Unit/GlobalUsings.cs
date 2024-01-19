@@ -1,3 +1,11 @@
 global using Xunit;
 global using FluentAssertions;
 global using NSubstitute;
+global using BosquesNalcahue.Services;
+global using ForestalCasablancaApp.Helpers;
+global using NSubstitute.ReturnsExtensions;
+global using ForestalCasablancaApp.Services;
+global using ForestalCasablancaApp.ViewModels;
+global using ForestalCasablancaApp.Models;
+global using System.Collections.ObjectModel;
+global using BosquesNalcahue.Models;

@@ -51,10 +51,11 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie1.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie1.ListaMedidas}"
+                    NuevaEspecie="{Binding Especie1.NuevaEspecie}"
+                    NuevoLargo="{Binding Especie1.NuevoLargo}"
                     SelectedEspecie="{Binding Especie1.SelectedEspecie}"
-                    SelectedLargo="{Binding Especie1.LargoEspecie}"
-                    UnidadOrigen="{Binding Especie1.UnidadOrigen}" 
-                    NuevaEspecie="{Binding Especie1.NuevaEspecie}"/>
+                    SelectedLargo="{Binding Especie1.SelectedLargo}"
+                    UnidadOrigen="{Binding Especie1.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
                     Grid.Row="3"
@@ -66,8 +67,10 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie2.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie2.ListaMedidas}"
-                    SelectedEspecie="{Binding Especie2.Especie}"
-                    SelectedLargo="{Binding Especie2.LargoEspecie}"
+                    NuevaEspecie="{Binding Especie2.NuevaEspecie}"
+                    NuevoLargo="{Binding Especie2.NuevoLargo}"
+                    SelectedEspecie="{Binding Especie2.SelectedEspecie}"
+                    SelectedLargo="{Binding Especie2.SelectedLargo}"
                     UnidadOrigen="{Binding Especie2.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
@@ -80,8 +83,10 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie3.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie3.ListaMedidas}"
-                    SelectedEspecie="{Binding Especie3.Especie}"
-                    SelectedLargo="{Binding Especie3.LargoEspecie}"
+                    NuevaEspecie="{Binding Especie3.NuevaEspecie}"
+                    NuevoLargo="{Binding Especie3.NuevoLargo}"
+                    SelectedEspecie="{Binding Especie3.SelectedEspecie}"
+                    SelectedLargo="{Binding Especie3.SelectedLargo}"
                     UnidadOrigen="{Binding Especie3.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
@@ -94,8 +99,10 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie4.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie4.ListaMedidas}"
-                    SelectedEspecie="{Binding Especie4.Especie}"
-                    SelectedLargo="{Binding Especie4.LargoEspecie}"
+                    NuevaEspecie="{Binding Especie4.NuevaEspecie}"
+                    NuevoLargo="{Binding Especie4.NuevoLargo}"
+                    SelectedEspecie="{Binding Especie4.SelectedEspecie}"
+                    SelectedLargo="{Binding Especie4.SelectedLargo}"
                     UnidadOrigen="{Binding Especie4.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
@@ -108,8 +115,10 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie5.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie5.ListaMedidas}"
-                    SelectedEspecie="{Binding Especie5.Especie}"
-                    SelectedLargo="{Binding Especie5.LargoEspecie}"
+                    NuevaEspecie="{Binding Especie5.NuevaEspecie}"
+                    NuevoLargo="{Binding Especie5.NuevoLargo}"
+                    SelectedEspecie="{Binding Especie5.SelectedEspecie}"
+                    SelectedLargo="{Binding Especie5.SelectedLargo}"
                     UnidadOrigen="{Binding Especie5.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
@@ -122,8 +131,10 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie6.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie6.ListaMedidas}"
-                    SelectedEspecie="{Binding Especie6.Especie}"
-                    SelectedLargo="{Binding Especie6.LargoEspecie}"
+                    NuevaEspecie="{Binding Especie6.NuevaEspecie}"
+                    NuevoLargo="{Binding Especie6.NuevoLargo}"
+                    SelectedEspecie="{Binding Especie6.SelectedEspecie}"
+                    SelectedLargo="{Binding Especie6.SelectedLargo}"
                     UnidadOrigen="{Binding Especie6.UnidadOrigen}" />
 
                 <!--  Buttons Section  -->

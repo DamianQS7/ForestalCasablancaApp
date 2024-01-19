@@ -52,21 +52,6 @@ namespace BosquesNalcahue.Models
             }
         }
 
-        private string _otroLargo;
-        public string OtroLargo
-        {
-            get => _otroLargo;
-            set
-            {
-                if (_otroLargo == value)
-                    return;
-
-                _otroLargo = value.Trim().Replace(",", ".");
-                UpdateLargo();
-                OnPropertyChanged();
-            }
-        }
-
         private string _selectedEspecie;
         public string SelectedEspecie
         {
@@ -82,6 +67,36 @@ namespace BosquesNalcahue.Models
             }
         }
 
+        private string _selectedLargo;
+        public string SelectedLargo
+        {
+            get => _selectedLargo;
+            set
+            {
+                if (_selectedLargo == value)
+                    return;
+
+                _selectedLargo = value;
+                UpdateLargo();
+                OnPropertyChanged();
+            }
+        }
+
+        private string _nuevoLargo;
+        public string NuevoLargo
+        {
+            get => _nuevoLargo;
+            set
+            {
+                if (_nuevoLargo == value)
+                    return;
+
+                _nuevoLargo = value.Trim().Replace(",", ".");
+                UpdateLargo();
+                OnPropertyChanged();
+            }
+        }
+
         public string UnidadOrigen { get; set; }
         public string Especie { get; set; }
         public string LargoEspecie { get; set; }
@@ -92,8 +107,7 @@ namespace BosquesNalcahue.Models
         public void OnPropertyChanged([CallerMemberName] string name = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-        
         public void UpdateEspecie() => Especie = SelectedEspecie == "Otras Especies" ? NuevaEspecie : SelectedEspecie;
-        public void UpdateLargo() => LargoEspecie = LargoEspecie == "Otro Largo" ? OtroLargo : LargoEspecie;
+        public void UpdateLargo() => LargoEspecie = SelectedLargo == "Otros" ? NuevoLargo : SelectedLargo;
     }
 }
