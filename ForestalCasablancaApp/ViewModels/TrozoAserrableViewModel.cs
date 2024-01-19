@@ -46,7 +46,8 @@ namespace ForestalCasablancaApp.ViewModels
             "Lingue", 
             "Avellano",
             "Aromo",
-            "Encino" 
+            "Encino",
+            "Otras Especies"
         };
         public List<string> ListaLargos { get; set; } = new()
         {
@@ -59,8 +60,11 @@ namespace ForestalCasablancaApp.ViewModels
             "3.66",
             "4.00",
             "5.00",
+            "5.60",
             "6.00",
-            "7.00"
+            "6.50",
+            "7.00",
+            "Otros"
         };
 
         #endregion
@@ -218,7 +222,7 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         #region Commands
-
+        
         /// <summary>
         /// Adds a new MedidaTrozoAserrable item to the appropriate list based on the specified NumericEntryCell identifier.
         /// </summary>

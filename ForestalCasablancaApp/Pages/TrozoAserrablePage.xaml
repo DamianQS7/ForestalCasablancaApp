@@ -51,9 +51,10 @@
                     LargoPickerItemSource="{Binding ListaLargos}"
                     ListaMedidasCount="{Binding Especie1.ListaMedidas.Count}"
                     ListaMedidasSource="{Binding Especie1.ListaMedidas}"
-                    SelectedEspecie="{Binding Especie1.Especie}"
+                    SelectedEspecie="{Binding Especie1.SelectedEspecie}"
                     SelectedLargo="{Binding Especie1.LargoEspecie}"
-                    UnidadOrigen="{Binding Especie1.UnidadOrigen}" />
+                    UnidadOrigen="{Binding Especie1.UnidadOrigen}" 
+                    NuevaEspecie="{Binding Especie1.NuevaEspecie}"/>
 
                 <components:MedidasEspecieSection
                     Grid.Row="3"
