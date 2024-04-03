@@ -1,4 +1,5 @@
-﻿using BosquesNalcahue.Services;
+﻿using BosquesNalcahue.Mapping;
+using BosquesNalcahue.Services;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,6 +17,7 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
         private readonly IInfoService _infoService;
+        private readonly IRestService _restService;
         private ConfirmationPopup _popup;
 
         [ObservableProperty] private DespachoModel _despacho;
@@ -30,9 +32,9 @@ namespace ForestalCasablancaApp.ViewModels
             "Mezcla de Oregón-Nativo"
         };
 
-        
+
         public LeñaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
-            IInfoService infoService)
+            IInfoService infoService, IRestService restService)
         {
             Title = "Despacho Leña";
             _calculatorService = calculatorService;
@@ -42,6 +44,7 @@ namespace ForestalCasablancaApp.ViewModels
             IsValidInput = false;
             _pdfGeneratorService = pdfGeneratorService;
             _infoService = infoService;
+            _restService = restService;
         }
 
         #region Methods
@@ -152,8 +155,16 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 IsBusy = true;
 
+                // Generate a unique folio for the report using the current date and time.
                 Folio = GenerateFolio();
 
+                // Set the current date and time as the report date.
+                ReportDate = DateTime.Now;
+
+                // Post the report to the server after mapping the ViewModel to a DTO.
+                await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this));
+
+                // Generate the PDF file only if the report was successfully posted.
                 _pdfGeneratorService.GenerateLeñaPDF(this);
 
                 await _infoService.ShowToast("El archivo PDF se ha generado con éxito");

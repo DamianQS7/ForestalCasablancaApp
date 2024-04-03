@@ -32,8 +32,8 @@ public static class MauiProgram
 			.AddTransient<IPermissionsManager, PermissionsManager>()
 			.AddSingleton<ICalculatorService, CalculatorService>()
 			.AddSingleton<IPdfGeneratorService, PdfGeneratorService>()
-            .AddSingleton<IInfoService, InfoService>()
-            .AddSingleton<IFolderPicker>(FolderPicker.Default)
+			.AddSingleton<IInfoService, InfoService>()
+			.AddSingleton<IFolderPicker>(FolderPicker.Default)
 			.AddSingleton<MainPage>()
 			.AddSingleton<MainPageViewModel>()
 			.AddSingleton<SettingsPage>()
@@ -43,7 +43,8 @@ public static class MauiProgram
 			.AddTransient<MetroRumaPage>()
 			.AddTransient<MetroRumaViewModel>()
 			.AddTransient<TrozoAserrablePage>()
-			.AddTransient<TrozoAserrableViewModel>();
+			.AddTransient<TrozoAserrableViewModel>()
+			.AddHttpClient<IRestService, RestService>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

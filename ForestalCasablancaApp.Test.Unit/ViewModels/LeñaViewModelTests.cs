@@ -6,10 +6,11 @@
         private readonly ICalculatorService _calculatorService = Substitute.For<ICalculatorService>();
         private readonly IPdfGeneratorService _pdfGeneratorService = Substitute.For<IPdfGeneratorService>();
         private readonly IInfoService _infoService = Substitute.For<IInfoService>();
+        private readonly IRestService _restService = Substitute.For<IRestService>();
 
         public LeñaViewModelTests()
         {
-            _sut = new LeñaViewModel(_calculatorService, _pdfGeneratorService, _infoService);
+            _sut = new LeñaViewModel(_calculatorService, _pdfGeneratorService, _infoService, _restService);
         }
 
         [Fact]

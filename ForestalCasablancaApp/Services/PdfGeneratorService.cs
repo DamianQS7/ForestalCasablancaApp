@@ -50,7 +50,7 @@ namespace ForestalCasablancaApp.Services
                     #endregion
 
                     page.Header()
-                        .Component(new DocumentHeader("Venta en Trozos", ImagePath, TitleSize, model.Folio));
+                        .Component(new DocumentHeader("Venta en Trozos", ImagePath, TitleSize, model.Folio, model.ReportDate));
 
                     page.Content()
                         .PaddingVertical(0, Unit.Centimetre)
@@ -236,7 +236,7 @@ namespace ForestalCasablancaApp.Services
 
                     // Document Sections
                     page.Header()
-                        .Component(new DocumentHeader("Leña", ImagePath, TitleSize, model.Folio));
+                        .Component(new DocumentHeader("Leña", ImagePath, TitleSize, model.Folio, model.ReportDate));
 
                     page.Content()
                         .PaddingVertical(0, Unit.Centimetre)
@@ -322,7 +322,7 @@ namespace ForestalCasablancaApp.Services
 
                     // Document Sections
                     page.Header()
-                        .Component(new DocumentHeader("Metro Ruma", ImagePath, TitleSize, model.Folio));
+                        .Component(new DocumentHeader("Metro Ruma", ImagePath, TitleSize, model.Folio, model.ReportDate));
 
                     page.Content()
                         .PaddingVertical(0, Unit.Centimetre)
@@ -510,13 +510,15 @@ namespace ForestalCasablancaApp.Services
             public string ImagePath { get; set; }
             public int TitleSize { get; set; }
             public string Folio { get; set; }
+            public DateTime ReportDate { get; set; }
 
-            public DocumentHeader(string title, string imagePath, int titleSize, string folio)
+            public DocumentHeader(string title, string imagePath, int titleSize, string folio, DateTime reportDate)
             {
                 Title = title;
                 ImagePath = imagePath;
                 TitleSize = titleSize;
                 Folio = folio;
+                ReportDate = reportDate;
             }
 
             public void Compose(IContainer container)
@@ -584,7 +586,7 @@ namespace ForestalCasablancaApp.Services
                               row.RelativeItem()
                                  .Border(1)
                                  .AlignCenter()
-                                 .Text(DateTime.Now.ToString());
+                                 .Text(ReportDate.ToString());
                           });
                 });
             }

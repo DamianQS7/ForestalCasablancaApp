@@ -18,11 +18,15 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private string _folio;
         [ObservableProperty] private Cliente _cliente;
         [ObservableProperty] private DatosCamion _datosCamion;
+        [ObservableProperty] private DateTime _reportDate;
         
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         private bool _isBusy;
         public bool IsNotBusy => !IsBusy;
+
+        public string OperatorName => Preferences.Get("CurrentUser", "Usuario sin definir.");
+        
         public static Page BasePage => Application.Current.MainPage;
 
         #endregion

@@ -16,6 +16,7 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
         private readonly IInfoService _infoService;
+        private readonly IRestService _restService;
         private MetroRumaPopup _popup;
 
         [ObservableProperty] private Cliente _cliente;
@@ -30,7 +31,7 @@ namespace ForestalCasablancaApp.ViewModels
         };
 
         public MetroRumaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
-            IInfoService infoService)
+            IInfoService infoService, IRestService restService)
         {
             Title = "Despacho Metro Ruma";
             _calculatorService = calculatorService;
@@ -39,6 +40,7 @@ namespace ForestalCasablancaApp.ViewModels
             DatosCamion = new();
             _pdfGeneratorService = pdfGeneratorService;
             _infoService = infoService;
+            _restService = restService;
         }
 
         #region Methods

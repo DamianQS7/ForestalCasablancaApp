@@ -17,6 +17,7 @@ namespace ForestalCasablancaApp.ViewModels
         private readonly ICalculatorService _calculatorService;
         private readonly IPdfGeneratorService _pdfGeneratorService;
         private readonly IInfoService _infoService;
+        private readonly IRestService _restService;
         private TrozoAserrableSummaryPopup _popup;
 
         #region Properties
@@ -70,12 +71,13 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
-            IInfoService infoService)
+            IInfoService infoService, IRestService restService)
         {
             Title = "Despacho Trozo Aserrable";
             _calculatorService = calculatorService;
             _pdfGeneratorService = pdfGeneratorService;
             _infoService = infoService;
+            _restService = restService;
 
             Cliente = new();
             DatosCamion = new();
@@ -85,7 +87,6 @@ namespace ForestalCasablancaApp.ViewModels
             Especie4 = new();
             Especie5 = new();
             Especie6 = new();
-            
         }
 
         #region Methods
