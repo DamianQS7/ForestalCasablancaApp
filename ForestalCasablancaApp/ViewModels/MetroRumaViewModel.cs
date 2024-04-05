@@ -1,4 +1,5 @@
-﻿using BosquesNalcahue.Services;
+﻿using BosquesNalcahue.Mapping;
+using BosquesNalcahue.Services;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -8,6 +9,7 @@ using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
 using System.Globalization;
+using System.Net;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -154,9 +156,22 @@ namespace ForestalCasablancaApp.ViewModels
 
                 Folio = GenerateFolio();
 
-                _pdfGeneratorService.GenerateMetroRumaPDF(this);
+                ReportDate = DateTime.Now;
 
-                await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                // Post the report to the server after mapping the ViewModel to a DTO.
+                var response = await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this));
+
+                if (response == HttpStatusCode.Created)
+                {
+                    // Generate the PDF file only if the report was successfully posted.
+                    _pdfGeneratorService.GenerateMetroRumaPDF(this);
+
+                    await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                }
+                else
+                {
+                    await _infoService.ShowAlert("Error al enviar el reporte al servidor");
+                }
             }
             catch (Exception ex)
             {

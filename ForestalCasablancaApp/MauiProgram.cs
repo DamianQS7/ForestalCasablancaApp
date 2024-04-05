@@ -44,7 +44,13 @@ public static class MauiProgram
 			.AddTransient<MetroRumaViewModel>()
 			.AddTransient<TrozoAserrablePage>()
 			.AddTransient<TrozoAserrableViewModel>()
-			.AddHttpClient<IRestService, RestService>();
+			.AddHttpClient<IRestService, RestService>(client =>
+			{
+			client.Timeout = TimeSpan.FromSeconds(10);
+			client.BaseAddress = new Uri(DeviceInfo.Platform == DevicePlatform.Android
+															 ? "http://10.0.2.2:5207/api"
+															 : "http://localhost:5207/api");
+            });
 
 #if DEBUG
 		builder.Logging.AddDebug();

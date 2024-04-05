@@ -9,6 +9,7 @@ using ForestalCasablancaApp.Models;
 using ForestalCasablancaApp.Popups;
 using ForestalCasablancaApp.Services;
 using System.Globalization;
+using System.Net;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -162,12 +163,19 @@ namespace ForestalCasablancaApp.ViewModels
                 ReportDate = DateTime.Now;
 
                 // Post the report to the server after mapping the ViewModel to a DTO.
-                await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this));
+                var response = await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this));
 
-                // Generate the PDF file only if the report was successfully posted.
-                _pdfGeneratorService.GenerateLeñaPDF(this);
+                if(response == HttpStatusCode.Created)
+                {
+                    // Generate the PDF file only if the report was successfully posted.
+                    _pdfGeneratorService.GenerateLeñaPDF(this);
 
-                await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                    await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                }
+                else
+                {
+                    await _infoService.ShowAlert("Error al enviar el reporte al servidor");
+                }
             }
             catch (Exception ex)
             {

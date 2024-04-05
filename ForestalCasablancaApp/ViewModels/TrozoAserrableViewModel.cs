@@ -9,6 +9,8 @@ using ForestalCasablancaApp.Controls;
 using ForestalCasablancaApp.Helpers;
 using BosquesNalcahue.Services;
 using BosquesNalcahue.Models;
+using BosquesNalcahue.Mapping;
+using System.Net;
 
 namespace ForestalCasablancaApp.ViewModels
 {
@@ -414,9 +416,22 @@ namespace ForestalCasablancaApp.ViewModels
 
                 Folio = GenerateFolio();
 
-                _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
+                ReportDate = DateTime.Now;
 
-                await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                // Post the report to the server after mapping the ViewModel to a DTO.
+                var response = await _restService.PostAsync(ModelToDtoMapper.MapToMultiProductReport(this));
+
+                if (response == HttpStatusCode.Created)
+                {
+                    // Generate the PDF file only if the report was successfully posted.
+                    _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
+
+                    await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                }
+                else
+                {
+                    await _infoService.ShowAlert("Error al enviar el reporte al servidor");
+                }
             }
             catch (Exception ex)
             {

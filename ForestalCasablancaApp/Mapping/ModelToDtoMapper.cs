@@ -7,7 +7,7 @@ namespace BosquesNalcahue.Mapping
 {
     public static class ModelToDtoMapper
     {
-        public static SingleProductReport MapToSingleProductReport(LeñaViewModel  model)
+        public static SingleProductReport MapToSingleProductReport(LeñaViewModel model)
         {
             return new SingleProductReport
             {
@@ -28,7 +28,9 @@ namespace BosquesNalcahue.Mapping
                 TruckLength = double.Parse(model.Despacho.LargoCamion, CultureInfo.InvariantCulture),
                 Banks = int.Parse(model.Despacho.Bancos),
                 PalomeraHeight = model.Despacho.AlturaMediaPalomera,
-                PalomeraWidth = double.Parse(model.Despacho.AnchoPalomera, CultureInfo.InvariantCulture),
+                PalomeraWidth = string.IsNullOrEmpty(model.Despacho.AnchoPalomera) 
+                                ? 0 
+                                : double.Parse(model.Despacho.AnchoPalomera, CultureInfo.InvariantCulture),
                 FinalQuantity = model.Despacho.TotalMetros,
             };
         }
