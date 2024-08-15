@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace ForestalCasablancaApp.ViewModels
 {
-    public partial class MainPageViewModel : BaseViewModel
+    public partial class MainPageViewModel
     {
+        public bool IsBusy { get; set; } = false;
+
         public MainPageViewModel()
         {
-            Title = string.Empty;
             QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
             CopyFileToAppDataDirectory("pdf_image.png");
         }

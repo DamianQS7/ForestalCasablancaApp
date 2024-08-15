@@ -7,13 +7,14 @@ using ForestalCasablancaApp.Services;
 
 namespace ForestalCasablancaApp.ViewModels
 {
-    public partial class SettingsPageViewModel : BaseViewModel
+    public partial class SettingsPageViewModel : ObservableObject
     {
         private readonly IFolderPicker _folderPicker;
         private readonly IPermissionsManager _manager;
 
         [ObservableProperty] private string _currentWorkingDirectory;
         [ObservableProperty] private string _currentUser;
+        public string Title { get; set; }
 
         public SettingsPageViewModel(IFolderPicker folderPicker, IPermissionsManager permissionsManager)
         {
@@ -24,7 +25,7 @@ namespace ForestalCasablancaApp.ViewModels
             CurrentUser = Preferences.Get("CurrentUser", "Usuario 01");
         }
 
-        public void GetUserInitials()
+        private void GetUserInitials()
         {
             CurrentUser = CurrentUser.Trim();
             string[] names = CurrentUser.Split(' ');

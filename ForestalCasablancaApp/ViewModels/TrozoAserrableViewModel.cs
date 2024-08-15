@@ -10,17 +10,11 @@ using ForestalCasablancaApp.Helpers;
 using BosquesNalcahue.Services;
 using BosquesNalcahue.Models;
 using BosquesNalcahue.Mapping;
-using System.Net;
 
 namespace ForestalCasablancaApp.ViewModels
 {
     public partial class TrozoAserrableViewModel : BaseViewModel
     {
-        private readonly ICalculatorService _calculatorService;
-        private readonly IPdfGeneratorService _pdfGeneratorService;
-        private readonly IInfoService _infoService;
-        private readonly IRestService _restService;
-        private TrozoAserrableSummaryPopup _popup;
 
         #region Properties
 
@@ -32,26 +26,6 @@ namespace ForestalCasablancaApp.ViewModels
         [ObservableProperty] private MedidasEspecie _especie4;
         [ObservableProperty] private MedidasEspecie _especie5;
         [ObservableProperty] private MedidasEspecie _especie6;
-        public List<string> ListaEspecies { get; set; } = new() 
-        { 
-            "Oregón",
-            "Eucalipto",
-            "Roble Estaca",
-            "Roble Desecho",
-            "Hualle", 
-            "Raulí", 
-            "Coihue", 
-            "Pellín",
-            "Laurel",
-            "Olivillo",
-            "Tepa", 
-            "Ulmo",
-            "Lingue", 
-            "Avellano",
-            "Aromo",
-            "Encino",
-            "Otras Especies"
-        };
         public List<string> ListaLargos { get; set; } = new()
         {
             "1.20",
@@ -73,16 +47,29 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         public TrozoAserrableViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
-            IInfoService infoService, IRestService restService)
+            IInfoService infoService) : base(calculatorService, pdfGeneratorService, infoService)
         {
             Title = "Despacho Trozo Aserrable";
-            _calculatorService = calculatorService;
-            _pdfGeneratorService = pdfGeneratorService;
-            _infoService = infoService;
-            _restService = restService;
-
-            Cliente = new();
-            DatosCamion = new();
+            ListaEspecies = new()
+            {
+                "Oregón",
+                "Eucalipto",
+                "Roble Estaca",
+                "Roble Desecho",
+                "Hualle",
+                "Raulí",
+                "Coihue",
+                "Pellín",
+                "Laurel",
+                "Olivillo",
+                "Tepa",
+                "Ulmo",
+                "Lingue",
+                "Avellano",
+                "Aromo",
+                "Encino",
+                "Otras Especies"
+            };
             Especie1 = new();
             Especie2 = new();
             Especie3 = new();
@@ -380,10 +367,10 @@ namespace ForestalCasablancaApp.ViewModels
                 UpdateViewModelTotals();
 
                 // We get a new instance of the popup each time we call it.
-                _popup = new TrozoAserrableSummaryPopup();
+                Popup = new TrozoAserrableSummaryPopup();
 
                 // Call the popup and display it.
-                BasePage.ShowPopup(_popup);
+                BasePage.ShowPopup(Popup);
             }
             else
             {
@@ -391,14 +378,6 @@ namespace ForestalCasablancaApp.ViewModels
             }
         }
 
-        /// <summary>
-        /// Asynchronously closes the currently displayed popup.
-        /// </summary>
-        [RelayCommand]
-        public async Task ClosePopup()
-        {
-             await _popup.CloseAsync();
-        }
 
         /// <summary>
         /// Generates a PDF document based on the current data and displays a toast notification upon success, or an alert
@@ -423,8 +402,9 @@ namespace ForestalCasablancaApp.ViewModels
 
                 if (response.IsSuccessStatusCode)
                 {
-
+                    var (fileName, filePath) = await PdfGeneratorService.GeneratePdfFile(response);
                     await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
+                    await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(filePath)));
                 }
                 else
                 {
