@@ -35,7 +35,7 @@ namespace ForestalCasablancaApp.ViewModels
 
 
         public LeñaViewModel(ICalculatorService calculatorService, IPdfGeneratorService pdfGeneratorService,
-            IInfoService infoService, IRestService restService)
+            IInfoService infoService)
         {
             Title = "Despacho Leña";
             _calculatorService = calculatorService;
@@ -45,7 +45,7 @@ namespace ForestalCasablancaApp.ViewModels
             IsValidInput = false;
             _pdfGeneratorService = pdfGeneratorService;
             _infoService = infoService;
-            _restService = restService;
+            _restService = new RestService();
         }
 
         #region Methods
@@ -163,19 +163,17 @@ namespace ForestalCasablancaApp.ViewModels
                 ReportDate = DateTime.Now;
 
                 // Post the report to the server after mapping the ViewModel to a DTO.
-                var response = await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this));
+                var response = await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this), "single-product-report");
 
-                if(response == HttpStatusCode.Created)
+                if(response.IsSuccessStatusCode)
                 {
-                    // Generate the PDF file only if the report was successfully posted.
-                    _pdfGeneratorService.GenerateLeñaPDF(this);
-
+                    var (fileName, filePath) = await PdfGeneratorService.GeneratePdfFile(response);
                     await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
-                }
+                    await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(filePath)));
+                }  
                 else
-                {
                     await _infoService.ShowAlert("Error al enviar el reporte al servidor");
-                }
+                
             }
             catch (Exception ex)
             {

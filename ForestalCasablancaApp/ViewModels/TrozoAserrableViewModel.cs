@@ -419,12 +419,10 @@ namespace ForestalCasablancaApp.ViewModels
                 ReportDate = DateTime.Now;
 
                 // Post the report to the server after mapping the ViewModel to a DTO.
-                var response = await _restService.PostAsync(ModelToDtoMapper.MapToMultiProductReport(this));
+                var response = await _restService.PostAsync(ModelToDtoMapper.MapToMultiProductReport(this), "multi-product-report");
 
-                if (response == HttpStatusCode.Created)
+                if (response.IsSuccessStatusCode)
                 {
-                    // Generate the PDF file only if the report was successfully posted.
-                    _pdfGeneratorService.GenerateTrozoAserrablePDF(this);
 
                     await _infoService.ShowToast("El archivo PDF se ha generado con éxito");
                 }

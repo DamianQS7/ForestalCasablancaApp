@@ -388,6 +388,17 @@ namespace ForestalCasablancaApp.Services
             await Launcher.Default.OpenAsync(new OpenFileRequest(fileName, new ReadOnlyFile(finalPath)));
         }
 
+        public static async Task<(string FileName, string FilePath)> GeneratePdfFile(HttpResponseMessage response)
+        {
+            byte[] pdfBytes = await response.Content.ReadAsByteArrayAsync();
+
+            // Save the PDF file to the device.
+            string fileName = response.Content.Headers.ContentDisposition.FileNameStar;
+            string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+            File.WriteAllBytes(filePath, pdfBytes);
+            return (fileName, filePath);
+        }
+
         #region Helper Methods
 
         /// <summary>

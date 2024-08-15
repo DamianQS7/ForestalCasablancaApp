@@ -5,6 +5,6 @@ namespace BosquesNalcahue.Services
 {
     public interface IRestService
     {
-        Task<HttpStatusCode> PostAsync(BaseReport report);
+        Task<HttpResponseMessage> PostAsync(BaseReport report, string route);
     }
 }
