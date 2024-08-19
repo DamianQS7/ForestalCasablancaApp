@@ -393,9 +393,7 @@ namespace ForestalCasablancaApp.ViewModels
             {
                 IsBusy = true;
 
-                Folio = GenerateFolio();
-
-                ReportDate = DateTime.Now;
+                GenerateFileMetadata();
 
                 // Post the report to the server after mapping the ViewModel to a DTO.
                 var response = await _restService.PostAsync(ModelToDtoMapper.MapToMultiProductReport(this), "multi-product-report");

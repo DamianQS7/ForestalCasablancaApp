@@ -13,6 +13,7 @@ namespace BosquesNalcahue.Mapping
             {
                 ReportType = "SingleProductReport",
                 ProductType = "Leña",
+                FileId = model.FileId,
                 OperatorName = model.OperatorName,
                 Folio = model.Folio,
                 Date = model.ReportDate,
@@ -41,6 +42,7 @@ namespace BosquesNalcahue.Mapping
             {
                 ReportType = "SingleProductReport",
                 ProductType = "Metro Ruma",
+                FileId = model.FileId,
                 OperatorName = model.OperatorName,
                 Folio = model.Folio,
                 Date = model.ReportDate,
@@ -106,6 +108,7 @@ namespace BosquesNalcahue.Mapping
             {
                 ReportType = "MultiProductReport",
                 ProductType = "Trozo Aserrable",
+                FileId = model.FileId,
                 OperatorName = model.OperatorName,
                 Folio = model.Folio,
                 Date = model.ReportDate,

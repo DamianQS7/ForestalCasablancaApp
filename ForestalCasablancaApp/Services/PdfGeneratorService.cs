@@ -433,7 +433,7 @@ namespace ForestalCasablancaApp.Services
         /// Generates a new file number and saves it in the app's preferences.
         /// </summary>
         /// <returns></returns>
-        public static int GetNextFileNumber()
+        private static int GetNextFileNumber()
         {
             int currentNumber = Preferences.Get("CurrentFileNumber", 1);
 

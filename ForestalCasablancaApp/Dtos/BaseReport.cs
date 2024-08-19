@@ -5,6 +5,7 @@ namespace BosquesNalcahue.Dtos
     {
         public string? ReportType { get; set; }
         public string? ProductType { get; set; }
+        public string? FileId { get; set; }
         public string? OperatorName { get; set; }
         public string? Folio { get; set; }
         public DateTime Date { get; set; }

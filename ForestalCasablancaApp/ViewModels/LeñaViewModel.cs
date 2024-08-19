@@ -75,10 +75,9 @@ namespace ForestalCasablancaApp.ViewModels
                 IsBusy = true;
 
                 // Generate a unique folio for the report using the current date and time.
-                Folio = GenerateFolio();
-
                 // Set the current date and time as the report date.
-                ReportDate = DateTime.Now;
+                // Generate a unique file ID for the report.
+                GenerateFileMetadata();
 
                 // Post the report to the server after mapping the ViewModel to a DTO.
                 var response = await _restService.PostAsync(ModelToDtoMapper.MapToSingleProductReport(this), "single-product-report");

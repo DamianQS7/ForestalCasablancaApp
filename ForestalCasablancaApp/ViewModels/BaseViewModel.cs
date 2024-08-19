@@ -35,6 +35,7 @@ public abstract partial class BaseViewModel : ObservableObject
     public bool IsNotBusy => !IsBusy;
 
     public string ReportType { get; set;}
+    public string FileId { get; set; }
 
     public List<string> ListaEspecies { get; set; }
 
@@ -60,13 +61,19 @@ public abstract partial class BaseViewModel : ObservableObject
         IsBusy = false;
     }
 
-    public static string GenerateFolio()
+    public void GenerateFileMetadata()
+    {
+        GenerateFolio();
+        ReportDate = DateTime.Now;
+        FileId = PdfGeneratorService.GenerateFileName(Cliente.Nombre);
+    }
+    private void GenerateFolio()
     {
         string initials = Preferences.Get("CurrentUserInitials", "NN");
         string date = DateTime.Now.ToString("dd'/'MM'/'yy'-'HH:mm");
         int currentNumber = Preferences.Get("CurrentFileNumber", 1);
 
-        return $"{currentNumber}{initials}{date}";
+        Folio = $"{currentNumber}{initials}{date}";
     }
 
     /// <summary>
