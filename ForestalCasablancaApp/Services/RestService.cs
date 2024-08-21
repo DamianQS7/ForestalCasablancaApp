@@ -11,6 +11,7 @@ namespace BosquesNalcahue.Services
     {
         private readonly HttpClient _client;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
+        private readonly string _apiKey = "MarrichiweuPupeiPuLamngen";
 
         public RestService()
         {
@@ -23,7 +24,8 @@ namespace BosquesNalcahue.Services
             _client = new HttpClient(handler)
             {
                 BaseAddress = new Uri(DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7117/api" : "http://localhost:5207/api"),
-                Timeout = TimeSpan.FromSeconds(60)
+                Timeout = TimeSpan.FromSeconds(60),
+                DefaultRequestHeaders = { { "api-key", _apiKey } }
             };
         }
 
