@@ -4,6 +4,7 @@ As a freelance developer for Forestal Casablanca, I undertook the task of enhanc
 To address this inefficiency, I conceptualized, designed, and implemented a mobile application using .NET MAUI. The app enables designated users to: 
 * Input data related to the products in the trucks, automatically calculating volumes based on the selected product.
 * Once the calculations are completed, the app seamlessly generates a PDF file, serving as both a summary and an invoice for the product.
+
 This solution not only eliminated manual data entry errors but also significantly expedited the entire process, contributing to improved efficiency and accuracy in their forestry operations.
 
 ![26shots_so](https://github.com/DamianQS7/ForestalCasablancaApp/assets/102097286/be12c2b9-ba61-456e-9ab5-00f3f1ca91d2)
