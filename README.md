@@ -24,3 +24,9 @@ This project uses some third-party assets with a license that requires attributi
 
 - [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui)
 - [MVVM Community Toolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit)
+
+## Possible Upgrades
+The client who implemented this project was thinking about centralizing the data and the files generated through this app in a web project.
+A demo for that possible solution has been developed. You can find the link to other projects here:
+* Web API => https://github.com/DamianQS7/BosquesNalcahueAPI
+* Single Page App => https://github.com/DamianQS7/BosquesNalcahue_WebPortal
