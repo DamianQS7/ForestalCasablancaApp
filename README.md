@@ -30,3 +30,6 @@ The client who implemented this project was thinking about centralizing the data
 A demo for that possible solution has been developed. You can find the link to other projects here:
 * Web API => https://github.com/DamianQS7/BosquesNalcahueAPI
 * Single Page App => https://github.com/DamianQS7/BosquesNalcahue_WebPortal
+
+### Project Architecture
+![image](https://github.com/user-attachments/assets/718eb455-9584-407e-97ba-38c5b6ce142f)
