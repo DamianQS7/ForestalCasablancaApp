@@ -32,4 +32,5 @@ A demo for that possible solution has been developed. You can find the link to o
 * Single Page App => https://github.com/DamianQS7/BosquesNalcahue_WebPortal
 
 ### Project Architecture
-![image](https://github.com/user-attachments/assets/718eb455-9584-407e-97ba-38c5b6ce142f)
+![image](https://github.com/user-attachments/assets/f037c3c1-4aa5-42c1-8a25-418bdfb8f11b)
+
