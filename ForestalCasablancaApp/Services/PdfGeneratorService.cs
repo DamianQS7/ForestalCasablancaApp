@@ -6,7 +6,6 @@ using Colors = QuestPDF.Helpers.Colors;
 using IContainer = QuestPDF.Infrastructure.IContainer;
 using System.Collections.ObjectModel;
 using ForestalCasablancaApp.Models;
-using BosquesNalcahue.Models;
 
 namespace ForestalCasablancaApp.Services
 {
@@ -68,6 +67,18 @@ namespace ForestalCasablancaApp.Services
                             x.Item()
                              .Component(new CamionInfoTrozo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Summary
+                            x.Item().Column(col =>
+                            {
+                                // Title
+                                col.Item()
+                                   .Component(new SectionTitle("Resumen", SubtitleSize));
+
+                                //Table
+                                col.Item().Component(new TrozoAserrableSummary(model));
+                                col.Item().PageBreak();
+                            });
 
                             // Detalles de Carga
 
@@ -193,18 +204,6 @@ namespace ForestalCasablancaApp.Services
                                 x.Item().Component(new TrozoAserrableDetails(model.Especie6.ListaMedidas,
                                     model.Especie6.CantidadTotalSum, model.Especie6.TotalSumFinal));
                             }
-
-                            // Summary
-                            x.Item().Column(col =>
-                            {
-                                // Title
-                                col.Item()
-                                   .Component(new SectionTitle("Resumen", SubtitleSize));
-
-                                //Table
-                                col.Item().Component(new TrozoAserrableSummary(model));
-                            });
-
                         });
 
                     page.Footer()
