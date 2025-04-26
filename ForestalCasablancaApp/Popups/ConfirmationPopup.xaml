@@ -64,8 +64,8 @@
                 <BoxView Style="{StaticResource Separator}" />
 
                 <!--  Observaciones  -->
-                <Label Style="{StaticResource PopupSectionLabel}" Text="Observaciones:" />
-                <Label Style="{StaticResource PopupContent}" Text="{Binding Comments}" />
+                <Label Style="{StaticResource PopupSectionLabel}" Text="Observaciones:"/>
+                <Label Style="{StaticResource PopupContent}" Text="{Binding Comments, Converter={StaticResource EmptyStringToMessageConverter}}" />
 
                 <Grid ColumnDefinitions="*, *">
                     <Button
