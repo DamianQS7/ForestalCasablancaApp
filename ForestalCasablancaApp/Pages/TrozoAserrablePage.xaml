@@ -21,7 +21,7 @@
                                         Tablet=300}"
                 Source="trozoaserrable_background.jpg" />
 
-            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
                 <BoxView
                     Grid.Row="0"
                     Grid.RowSpan="5"
@@ -41,8 +41,25 @@
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
+                <!--  Observaciones Section  -->
+                <Border 
+                    Grid.Row="2" 
+                    Style="{StaticResource PageSectionCard}" 
+                    Padding="{OnIdiom Phone='12,0,12,16', Tablet='20,20,20,24'}">
+
+                    <Grid RowDefinitions="Auto, Auto">
+                        <Label Grid.Row="0" Style="{StaticResource PageSubtitle}" Text="Observaciones" />
+                        <Border Grid.Row="1" Style="{StaticResource EditorBorderStyle}" />
+                        <Editor
+                            Grid.Row="1"
+                            AutoSize="TextChanges"
+                            MaxLength="80"
+                            Text="{Binding Comments}" />
+                    </Grid>
+                </Border>
+
                 <components:MedidasEspecieSection
-                    Grid.Row="2"
+                    Grid.Row="3"
                     CantidadInput="{Binding Especie1.CantidadIngresada}"
                     ComponentTitle="Mediciones Especie 1"
                     DiametroCellId="1"
@@ -58,7 +75,7 @@
                     UnidadOrigen="{Binding Especie1.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
-                    Grid.Row="3"
+                    Grid.Row="4"
                     CantidadInput="{Binding Especie2.CantidadIngresada}"
                     ComponentTitle="Mediciones Especie 2"
                     DiametroCellId="2"
@@ -74,7 +91,7 @@
                     UnidadOrigen="{Binding Especie2.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
-                    Grid.Row="4"
+                    Grid.Row="5"
                     CantidadInput="{Binding Especie3.CantidadIngresada}"
                     ComponentTitle="Mediciones Especie 3"
                     DiametroCellId="3"
@@ -90,7 +107,7 @@
                     UnidadOrigen="{Binding Especie3.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
-                    Grid.Row="5"
+                    Grid.Row="6"
                     CantidadInput="{Binding Especie4.CantidadIngresada}"
                     ComponentTitle="Mediciones Especie 4"
                     DiametroCellId="4"
@@ -106,7 +123,7 @@
                     UnidadOrigen="{Binding Especie4.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
-                    Grid.Row="6"
+                    Grid.Row="7"
                     CantidadInput="{Binding Especie5.CantidadIngresada}"
                     ComponentTitle="Mediciones Especie 5"
                     DiametroCellId="5"
@@ -122,7 +139,7 @@
                     UnidadOrigen="{Binding Especie5.UnidadOrigen}" />
 
                 <components:MedidasEspecieSection
-                    Grid.Row="7"
+                    Grid.Row="8"
                     CantidadInput="{Binding Especie6.CantidadIngresada}"
                     ComponentTitle="Mediciones Especie 6"
                     DiametroCellId="6"
@@ -139,7 +156,7 @@
 
                 <!--  Buttons Section  -->
                 <Grid
-                    Grid.Row="8"
+                    Grid.Row="9"
                     Grid.ColumnSpan="2"
                     ColumnDefinitions="*, *">
 

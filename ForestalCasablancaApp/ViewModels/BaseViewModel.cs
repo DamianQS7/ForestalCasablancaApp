@@ -13,12 +13,14 @@ namespace ForestalCasablancaApp.ViewModels
     public abstract partial class BaseViewModel : ObservableObject
     {
         #region Properties
+
         [ObservableProperty] private string _title;
         [ObservableProperty] private bool _isValidInput;
         [ObservableProperty] private string _folio;
         [ObservableProperty] private Cliente _cliente;
         [ObservableProperty] private DatosCamion _datosCamion;
-        
+        [ObservableProperty] private string _comments;
+
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         private bool _isBusy;
@@ -28,6 +30,7 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         #region Methods
+
         public static string GenerateFolio()
         {
             string initials = Preferences.Get("CurrentUserInitials", "NN");
@@ -40,6 +43,7 @@ namespace ForestalCasablancaApp.ViewModels
         #endregion
 
         #region Commands
+
         [RelayCommand]
         async static Task GoBackAsync()
         {

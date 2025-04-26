@@ -18,7 +18,7 @@
                                         Tablet=300}"
                 Source="metroruma_background.jpg" />
 
-            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, *, Auto, Auto">
+            <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto, *, Auto, Auto">
                 <BoxView Grid.RowSpan="4" Style="{StaticResource PageContentBackground}" />
 
                 <!--  Client Info Section  -->
@@ -35,8 +35,25 @@
                     PatenteCamion="{Binding DatosCamion.Patente}"
                     RutChofer="{Binding DatosCamion.RutChofer}" />
 
+                <!--  Observaciones Section  -->
+                <Border 
+                    Grid.Row="2" 
+                    Style="{StaticResource PageSectionCard}" 
+                    Padding="{OnIdiom Phone='12,0,12,16', Tablet='20,20,20,24'}">
+
+                    <Grid RowDefinitions="Auto, Auto">
+                        <Label Grid.Row="0" Style="{StaticResource PageSubtitle}" Text="Observaciones" />
+                        <Border Grid.Row="1" Style="{StaticResource EditorBorderStyle}" />
+                        <Editor
+                            Grid.Row="1"
+                            AutoSize="TextChanges"
+                            MaxLength="80"
+                            Text="{Binding Comments}" />
+                    </Grid>
+                </Border>
+
                 <!--  Mediciones  -->
-                <Border Grid.Row="2" Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
                     <VerticalStackLayout>
 
                         <Label Style="{StaticResource PageSubtitle}" Text="Mediciones" />
@@ -292,7 +309,7 @@
                 </Border>
 
                 <!--  Palomera Section  -->
-                <Border Grid.Row="3" Style="{StaticResource PageSectionCard}">
+                <Border Grid.Row="4" Style="{StaticResource PageSectionCard}">
 
                     <VerticalStackLayout>
 
@@ -358,7 +375,7 @@
 
                 <!--  Buttons Section  -->
                 <Grid
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.ColumnSpan="2"
                     ColumnDefinitions="*, *">
 
