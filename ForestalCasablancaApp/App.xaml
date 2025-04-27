@@ -3,7 +3,8 @@
     x:Class="ForestalCasablancaApp.App"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:ForestalCasablancaApp">
+    xmlns:local="clr-namespace:ForestalCasablancaApp"
+    xmlns:converters="clr-namespace:BosquesNalcahue.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -11,6 +12,7 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary Source="Resources/Styles/CustomStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:EmptyStringToMessageConverter x:Key="EmptyStringToMessageConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -6,7 +6,6 @@ using Colors = QuestPDF.Helpers.Colors;
 using IContainer = QuestPDF.Infrastructure.IContainer;
 using System.Collections.ObjectModel;
 using ForestalCasablancaApp.Models;
-using BosquesNalcahue.Models;
 
 namespace ForestalCasablancaApp.Services
 {
@@ -68,6 +67,22 @@ namespace ForestalCasablancaApp.Services
                             x.Item()
                              .Component(new CamionInfoTrozo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Observaciones
+                            x.Item().Component(new ObservacionesSection("Observaciones", SubtitleSize, 
+                                string.IsNullOrEmpty(model.Comments) ? "Sin observaciones" : model.Comments));
+
+                            // Summary
+                            x.Item().Column(col =>
+                            {
+                                // Title
+                                col.Item()
+                                   .Component(new SectionTitle("Resumen", SubtitleSize));
+
+                                //Table
+                                col.Item().Component(new TrozoAserrableSummary(model));
+                                col.Item().PageBreak();
+                            });
 
                             // Detalles de Carga
 
@@ -193,18 +208,6 @@ namespace ForestalCasablancaApp.Services
                                 x.Item().Component(new TrozoAserrableDetails(model.Especie6.ListaMedidas,
                                     model.Especie6.CantidadTotalSum, model.Especie6.TotalSumFinal));
                             }
-
-                            // Summary
-                            x.Item().Column(col =>
-                            {
-                                // Title
-                                col.Item()
-                                   .Component(new SectionTitle("Resumen", SubtitleSize));
-
-                                //Table
-                                col.Item().Component(new TrozoAserrableSummary(model));
-                            });
-
                         });
 
                     page.Footer()
@@ -255,6 +258,10 @@ namespace ForestalCasablancaApp.Services
                             x.Item()
                              .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente, 
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Observaciones
+                            x.Item().Component(new ObservacionesSection("Observaciones", SubtitleSize,
+                                string.IsNullOrEmpty(model.Comments) ? "Sin observaciones" : model.Comments));
 
                             // Despacho Leña
                             x.Item().Component(new DespachoInfo("Despacho Leña", SubtitleSize, FirstColumnSize, 
@@ -341,6 +348,10 @@ namespace ForestalCasablancaApp.Services
                             x.Item()
                              .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Observaciones
+                            x.Item().Component(new ObservacionesSection("Observaciones", SubtitleSize,
+                                string.IsNullOrEmpty(model.Comments) ? "Sin observaciones" : model.Comments));
 
                             // Despacho Leña
                             x.Item().Component(new DespachoInfo("Despacho Metro Ruma", SubtitleSize, FirstColumnSize,
@@ -611,6 +622,36 @@ namespace ForestalCasablancaApp.Services
             
         }
 
+        public class ObservacionesSection : IComponent
+        {
+            public string SectionTitle { get; set; }
+            public int SubtitleSize { get; set; }
+            public string Observaciones { get; set; }
+
+
+            public ObservacionesSection(string title, int subtitleSize, string observaciones)
+            {
+                SectionTitle = title;
+                SubtitleSize = subtitleSize;
+                Observaciones = observaciones;
+            }
+
+            public void Compose(IContainer container)
+            {
+                container.Column(col =>
+                {
+                    col.Spacing(3);
+
+                    col.Item()
+                       .Component(new SectionTitle(SectionTitle, SubtitleSize));
+
+                    col.Item()
+                       .Border(1)
+                       .AlignCenter()
+                       .Text(Observaciones);
+                });
+            }
+        }
         public class SingleRow : IComponent
         {
             public int ColumnSize { get; set; }

@@ -54,7 +54,7 @@
                     FontAttributes="Bold"
                     FontSize="{OnIdiom Phone=13, Tablet=15}"
                     HorizontalTextAlignment="Center"
-                    Text="V2"
+                    Text="V3"
                     TextColor="{AppThemeBinding Dark={StaticResource White},
                                                 Light={StaticResource White}}"
                     VerticalTextAlignment="Center" />
