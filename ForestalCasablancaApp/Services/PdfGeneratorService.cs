@@ -68,6 +68,10 @@ namespace ForestalCasablancaApp.Services
                              .Component(new CamionInfoTrozo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
 
+                            // Observaciones
+                            x.Item().Component(new ObservacionesSection("Observaciones", SubtitleSize, 
+                                string.IsNullOrEmpty(model.Comments) ? "Sin observaciones" : model.Comments));
+
                             // Summary
                             x.Item().Column(col =>
                             {
@@ -255,6 +259,10 @@ namespace ForestalCasablancaApp.Services
                              .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente, 
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
 
+                            // Observaciones
+                            x.Item().Component(new ObservacionesSection("Observaciones", SubtitleSize,
+                                string.IsNullOrEmpty(model.Comments) ? "Sin observaciones" : model.Comments));
+
                             // Despacho Leña
                             x.Item().Component(new DespachoInfo("Despacho Leña", SubtitleSize, FirstColumnSize, 
                                 model.Despacho.Especie, model.Despacho.UnidadOrigen));
@@ -340,6 +348,10 @@ namespace ForestalCasablancaApp.Services
                             x.Item()
                              .Component(new CamionInfo("Datos Camión", SubtitleSize, FirstColumnSize, model.DatosCamion.Patente,
                              model.DatosCamion.Chofer, model.DatosCamion.RutChofer, model.DatosCamion.EmpresaTransportista));
+
+                            // Observaciones
+                            x.Item().Component(new ObservacionesSection("Observaciones", SubtitleSize,
+                                string.IsNullOrEmpty(model.Comments) ? "Sin observaciones" : model.Comments));
 
                             // Despacho Leña
                             x.Item().Component(new DespachoInfo("Despacho Metro Ruma", SubtitleSize, FirstColumnSize,
@@ -610,6 +622,36 @@ namespace ForestalCasablancaApp.Services
             
         }
 
+        public class ObservacionesSection : IComponent
+        {
+            public string SectionTitle { get; set; }
+            public int SubtitleSize { get; set; }
+            public string Observaciones { get; set; }
+
+
+            public ObservacionesSection(string title, int subtitleSize, string observaciones)
+            {
+                SectionTitle = title;
+                SubtitleSize = subtitleSize;
+                Observaciones = observaciones;
+            }
+
+            public void Compose(IContainer container)
+            {
+                container.Column(col =>
+                {
+                    col.Spacing(3);
+
+                    col.Item()
+                       .Component(new SectionTitle(SectionTitle, SubtitleSize));
+
+                    col.Item()
+                       .Border(1)
+                       .AlignCenter()
+                       .Text(Observaciones);
+                });
+            }
+        }
         public class SingleRow : IComponent
         {
             public int ColumnSize { get; set; }
