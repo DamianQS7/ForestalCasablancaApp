@@ -121,7 +121,7 @@ namespace ForestalCasablancaApp.Services
                                 });
 
                                 // Detalle de Carga (Tabla)
-                                x.Item().Component(new TrozoAserrableDetails(model.Especie1.ListaMedidas,
+                                x.Item().Component(new TrozoAserrableDetails(model.Especie2.ListaMedidas,
                                     model.Especie2.CantidadTotalSum, model.Especie2.TotalSumFinal));
                             }
 
